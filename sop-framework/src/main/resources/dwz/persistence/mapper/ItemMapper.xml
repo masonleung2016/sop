@@ -1,0 +1,1423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.ItemMapper">
+    <resultMap id="itemType" type="sop.persistence.beans.ItemType">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="name" jdbcType="VARCHAR" column="type"/>
+    </resultMap>
+    <resultMap id="template" type="sop.persistence.beans.Template">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="name" jdbcType="VARCHAR" column="name"/>
+        <result property="labelEng" jdbcType="VARCHAR" column="label_eng"/>
+        <result property="labelChn" jdbcType="VARCHAR" column="label_chn"/>
+    </resultMap>
+    <resultMap id="uom" type="sop.persistence.beans.Uom">
+        <result property="uCode" jdbcType="VARCHAR" column="u_code"/>
+        <result property="uDesc" jdbcType="VARCHAR" column="u_desc"/>
+        <result property="uChn" jdbcType="VARCHAR" column="u_chn"/>
+        <result property="uRate" jdbcType="DECIMAL" column="u_rate"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <resultMap id="curr" type="sop.persistence.beans.Currency">
+        <result property="ccyCode" jdbcType="VARCHAR" column="ccy_code"/>
+        <result property="ccyDesc" jdbcType="VARCHAR" column="ccy_desc"/>
+        <result property="ccyChn" jdbcType="VARCHAR" column="ccy_chn"/>
+        <result property="ccyRate" jdbcType="DECIMAL" column="ccy_rate"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="ccyRef" jdbcType="VARCHAR" column="ccy_ref"/>
+    </resultMap>
+    <resultMap id="staff" type="sop.persistence.beans.Staff">
+        <result property="sfCode" jdbcType="VARCHAR" column="sf_code"/>
+        <result property="sfName" jdbcType="VARCHAR" column="sf_name"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+    </resultMap>
+    <resultMap id="factory" type="sop.persistence.beans.Factory">
+        <result property="suCode" jdbcType="VARCHAR" column="su_code"/>
+        <result property="suName" jdbcType="VARCHAR" column="su_name"/>
+    </resultMap>
+    <resultMap id="productcat" type="sop.persistence.beans.ProductCategory">
+        <result property="catCode" jdbcType="VARCHAR" column="cat_code"/>
+    </resultMap>
+    <resultMap id="itemMaster" type="sop.persistence.beans.ItemMaster">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="itCatNoSuffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="itCat" jdbcType="VARCHAR" column="it_cat"/>
+        <result property="itNo" jdbcType="VARCHAR" column="it_no"/>
+        <result property="itSuffix" jdbcType="VARCHAR" column="it_suffix"/>
+        <result property="itName" jdbcType="VARCHAR" column="it_name"/>
+        <result property="itUom" jdbcType="VARCHAR" column="it_uom"/>
+        <result property="itDelTime" jdbcType="VARCHAR" column="it_del_time"/>
+        <result property="itBasePrice" jdbcType="DECIMAL" column="it_base_price"/>
+        <result property="itCurr" jdbcType="VARCHAR" column="it_curr"/>
+        <result property="itHandle" jdbcType="VARCHAR" column="it_handle"/>
+        <result property="itFtyItemNo" jdbcType="VARCHAR" column="it_fty_item_no"/>
+        <result property="itDescOfSh" jdbcType="VARCHAR" column="it_desc_of_sh"/>
+        <result property="itRmk" jdbcType="VARCHAR" column="it_rmk"/>
+        <result property="itPkgDetail" jdbcType="VARCHAR" column="it_pkg_detail"/>
+        <result property="itInnCtnUom" jdbcType="VARCHAR" column="it_inn_ctn_uom"/>
+        <result property="itPkgInnPcs" jdbcType="VARCHAR" column="it_pkg_inn_pcs"/>
+        <result property="itPkgLCm0" jdbcType="DECIMAL" column="it_pkg_l_cm0"/>
+        <result property="itPkgWCm0" jdbcType="DECIMAL" column="it_pkg_w_cm0"/>
+        <result property="itPkgHCm0" jdbcType="DECIMAL" column="it_pkg_h_cm0"/>
+
+        <result property="itPkgLCm1" jdbcType="DECIMAL" column="it_pkg_l_cm1"/>
+        <result property="itPkgWCm1" jdbcType="DECIMAL" column="it_pkg_w_cm1"/>
+        <result property="itPkgHCm1" jdbcType="DECIMAL" column="it_pkg_h_cm1"/>
+
+        <result property="itPkgLCm2" jdbcType="DECIMAL" column="it_pkg_l_cm2"/>
+        <result property="itPkgWCm2" jdbcType="DECIMAL" column="it_pkg_w_cm2"/>
+        <result property="itPkgHCm2" jdbcType="DECIMAL" column="it_pkg_h_cm2"/>
+
+        <result property="itPkgLCm3" jdbcType="DECIMAL" column="it_pkg_l_cm3"/>
+        <result property="itPkgWCm3" jdbcType="DECIMAL" column="it_pkg_w_cm3"/>
+        <result property="itPkgHCm3" jdbcType="DECIMAL" column="it_pkg_h_cm3"/>
+
+        <result property="itPkgLCm4" jdbcType="DECIMAL" column="it_pkg_l_cm4"/>
+        <result property="itPkgWCm4" jdbcType="DECIMAL" column="it_pkg_w_cm4"/>
+        <result property="itPkgHCm4" jdbcType="DECIMAL" column="it_pkg_h_cm4"/>
+
+        <result property="itPkgLCm5" jdbcType="DECIMAL" column="it_pkg_l_cm5"/>
+        <result property="itPkgWCm5" jdbcType="DECIMAL" column="it_pkg_w_cm5"/>
+        <result property="itPkgHCm5" jdbcType="DECIMAL" column="it_pkg_h_cm5"/>
+
+        <result property="itExpCtnUom" jdbcType="VARCHAR" column="it_exp_ctn_uom"/>
+        <result property="itPkgExpPcs" jdbcType="VARCHAR" column="it_pkg_exp_pcs"/>
+        <result property="itCbmTotal" jdbcType="DECIMAL" column="it_cbm_total"/>
+        <result property="itPkgNwKg" jdbcType="DECIMAL" column="it_pkg_nw_kg"/>
+        <result property="itPkg20Qty" jdbcType="DECIMAL" column="it_pkg_20_qty"/>
+        <result property="itPkg40Qty" jdbcType="DECIMAL" column="it_pkg_40_qty"/>
+        <result property="itPkg40HQQty" jdbcType="DECIMAL" column="it_pkg_40HQ_qty"/>
+        <result property="itPkgGwKg" jdbcType="DECIMAL" column="it_pkg_gw_kg"/>
+        <result property="itFtyFobCost" jdbcType="DECIMAL" column="it_fty_fob_cost"/>
+        <result property="itFtyFobPort" jdbcType="VARCHAR" column="it_fty_fob_port"/>
+        <result property="itFtyCode" jdbcType="VARCHAR" column="it_fty_code"/>
+        <result property="itFtyCostLastUpdate" jdbcType="DATE" column="it_fty_cost_last_update"/>
+        <result property="itFtyName" jdbcType="VARCHAR" column="it_fty_name"/>
+        <result property="itPicNameJpg1" jdbcType="VARCHAR" column="it_pic_name_jpg1"/>
+        <result property="itPicNameJpg2" jdbcType="VARCHAR" column="it_pic_name_jpg2"/>
+        <result property="itImage1" jdbcType="VARCHAR" column="it_image_1"/>
+        <result property="itImage2" jdbcType="VARCHAR" column="it_image_2"/>
+        <result property="itImage3" jdbcType="VARCHAR" column="it_image_3"/>
+        <result property="itImage4" jdbcType="VARCHAR" column="it_image_4"/>
+        <result property="itDescFtyPo" jdbcType="VARCHAR" column="it_desc_fty_po"/>
+
+        <result property="fkTemplate" jdbcType="INTEGER" column="fk_template"/>
+        <result property="fkItemType" jdbcType="INTEGER" column="fk_item_type"/>
+        <result property="detailData" jdbcType="VARCHAR" column="detail_data"/>
+        <result property="labelEng" jdbcType="VARCHAR" column="label_eng"/>
+        <result property="labelChn" jdbcType="VARCHAR" column="label_chn"/>
+        <result property="importdatetime" jdbcType="TIMESTAMP" column="importdatetime"/>
+        <result property="itemEngName" jdbcType="VARCHAR" column="item_eng_name"/>
+        <result property="itemChnName" jdbcType="VARCHAR" column="item_chn_name"/>
+        <result property="templateName" jdbcType="VARCHAR" column="template_name"/>
+        <result property="itemType" jdbcType="VARCHAR" column="item_type"/>
+        <result property="partPic" jdbcType="VARCHAR" column="part_pic"/>
+        <result property="itFtyFobCostB" jdbcType="DECIMAL" column="it_fty_fob_cost_b"/>
+        <result property="itMoqA" jdbcType="INTEGER" column="it_moq_a"/>
+        <result property="itMoqB" jdbcType="INTEGER" column="it_moq_b"/>
+        <result property="shippingMark" jdbcType="VARCHAR" column="shipping_mark"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		barcodeval,
+		fkpatient,
+		importdatetime,
+		moddatetime,
+		freezed,
+		actived
+	</sql>
+
+    <sql id="All_Column_List">
+		id,
+		fk_template,
+		detail_data,
+		importdatetime,
+		item_eng_name,
+		item_chn_name,
+		template_name,
+		item_type,
+		it_cat,
+		it_no,
+		it_suffix,
+		it_name,
+		it_desc_of_sh,
+		it_desc_fty_po,
+		it_rmk,
+		it_del_time,
+		it_base_price,
+		it_curr,
+		it_pkg_detail,
+		it_pkg_inn_pcs,
+		it_pkg_exp_pcs,
+		it_pkg_nw_kg,
+		it_pkg_gw_kg,
+		it_pkg_l_cm0,
+		it_pkg_w_cm0,
+		it_pkg_h_cm0,
+		it_pkg_l_cm1,
+		it_pkg_w_cm1,
+		it_pkg_h_cm1,
+		it_pkg_l_cm2,
+		it_pkg_w_cm2,
+		it_pkg_h_cm2,
+		it_pkg_l_cm3,
+		it_pkg_w_cm3,
+		it_pkg_h_cm3,
+		it_pkg_l_cm4,
+		it_pkg_w_cm4,
+		it_pkg_h_cm4,
+		it_pkg_l_cm5,
+		it_pkg_w_cm5,
+		it_pkg_h_cm5,						
+		it_pkg_20_qty,
+		it_pkg_40_qty,
+		it_pkg_40HQ_qty,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date,
+		it_uom,
+		it_uom_inn,
+		it_uom_ctn,
+		it_pic_name,
+		it_gl_inf_si,
+		it_pic_name_jpg1,
+		it_pic_name_jpg2,
+		it_fty_fob_cost,
+		it_fty_fob_cost_b,
+		it_moq_a,
+		it_moq_b,
+		it_fty_cost_curr,
+		it_fty_code,
+		it_handle,
+		it_fty_fob_port,
+		it_fty_cost_last_update,
+		it_fty_item_no,
+		it_image_1,
+		it_image_2,
+		it_image_3,
+		it_image_4,
+		it_pkg_idv,
+		it_exp_ctn_1,
+		it_exp_ctn_1_l_cm,
+		it_exp_ctn_1_w_cm,
+		it_exp_ctn_1_h_cm,
+		it_exp_ctn_1_cbm,
+		it_exp_ctn_2,
+		it_exp_ctn_2_l_cm,
+		it_exp_ctn_2_w_cm,
+		it_exp_ctn_2_h_cm,
+		it_exp_ctn_2_cbm,
+		it_exp_ctn_3,
+		it_exp_ctn_3_l_cm,
+		it_exp_ctn_3_w_cm,
+		it_exp_ctn_3_h_cm,
+		it_exp_ctn_3_cbm,
+		it_exp_ctn_4,
+		it_exp_ctn_4_l_cm,
+		it_exp_ctn_4_w_cm,
+		it_exp_ctn_4_h_cm,
+		it_exp_ctn_4_cbm,
+		it_cbm_total,
+		it_inn_ctn_uom,
+		it_exp_ctn_uom,
+		it_inn_ctn_qty,
+		it_exp_ctn_qty,
+		it_inn_ctn_per,
+		it_exp_ctn_per,
+		it_certificate,
+		it_fty_cost_trade_unit,
+		it_fty_name,
+		it_exp_ctn_1_nw,
+		it_exp_ctn_1_gw,
+		it_exp_ctn_2_nw,
+		it_exp_ctn_2_gw,
+		it_exp_ctn_3_nw,
+		it_exp_ctn_3_gw,
+		it_exp_ctn_4_nw,
+		it_exp_ctn_4_gw,
+		label_eng,
+		it_cat_no_suffix,
+		label_chn,
+		fk_item_type,
+		part_pic,
+		shipping_mark
+	</sql>
+
+    <!-- itemindex获取item combobox值 -->
+    <select id="getAllItemTypes" resultMap="itemType">
+		select 
+			id,
+			type
+		from
+			itemtype
+		order by id,type asc
+	</select>
+
+    <!-- 根据id获取itemMaster -->
+    <select id="getItemMasterById" resultMap="itemMaster" parameterType="map">
+        select
+        <include refid="All_Column_List"/>
+        from
+        itmast
+        where
+        id = #{fkItem}
+    </select>
+
+    <select id="getItemMasterByItCatNoSuffix" resultMap="itemMaster" parameterType="map">
+        select
+        <include refid="All_Column_List"/>
+        from
+        itmast
+        where
+        it_cat_no_suffix = #{offItemId}
+    </select>
+
+    <select id="getTemplatesByItemMasterType" resultMap="template" parameterType="java.lang.String">
+		select 
+			b.*
+		from
+			itemtype a
+		left join
+			templates b
+		on
+			a.id = b.fkitemmaster
+		where
+			a.type = #{itemMasterType}
+		order by b.id
+	</select>
+
+    <select id="getTemplatesByFkItemType" resultMap="template" parameterType="java.lang.Integer">
+		select 
+			b.*
+		from
+			templates b
+		where
+			b.fkitemmaster = #{fkItemType}
+		order by b.id, b.name
+	</select>
+
+    <select id="getAllTemplates" resultMap="template">
+		select 
+			b.*
+		from
+			templates b
+		order by b.fkitemmaster, b.id
+	</select>
+
+    <!-- 增加item -->
+    <!-- <insert id="insertItem" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+        INSERT INTO productitems(
+            itemMaster_type,
+            template_name,
+            productno,
+            productengname,
+            productchnname,
+            fktemplate,
+            details,
+            importdatetime
+        ) VALUES (
+            #{itemMasterType},
+            #{templateName},
+            #{productNo},
+            #{productEngName},
+            #{productChnName},
+            #{fkTemplate},
+            #{vo},
+            #{date}
+        )
+    </insert> -->
+
+    <!-- 增加item -->
+    <insert id="insertItem" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		INSERT INTO itmast(
+			it_cat_no_suffix,
+			it_cat,
+			it_no,
+			it_suffix,
+			it_name,
+			it_uom,
+			it_del_time,
+			it_base_price,
+			it_curr,
+			it_handle,
+			it_fty_item_no,
+			it_desc_of_sh,
+			it_rmk,
+			it_pkg_detail,
+			it_inn_ctn_uom,
+			it_pkg_inn_pcs,
+			it_pkg_l_cm0,
+			it_exp_ctn_1_l_cm,
+			it_pkg_w_cm0,
+			it_exp_ctn_1_w_cm,
+			it_pkg_h_cm0,
+			it_exp_ctn_1_h_cm,
+			it_exp_ctn_uom,
+			it_pkg_exp_pcs,
+			it_cbm_total,
+			it_exp_ctn_1_cbm,
+			it_pkg_nw_kg,
+			it_exp_ctn_1_nw,
+			it_pkg_20_qty,
+			it_pkg_40_qty,
+			it_pkg_40HQ_qty,
+			it_pkg_gw_kg,
+			it_exp_ctn_1_gw,
+			it_fty_fob_cost,
+			it_fty_fob_cost_b,
+			it_moq_a,
+			it_moq_b,
+			it_fty_fob_port,
+			it_fty_code,
+			it_fty_cost_last_update,
+			it_fty_name,
+			it_pic_name_jpg1,
+			it_pic_name_jpg2,
+			it_image_1,
+			it_image_2,
+			it_image_3,
+			it_image_4,
+			it_desc_fty_po,
+			fk_item_type,
+			fk_template,
+			detail_data,
+			label_eng,
+			label_chn,
+			importdatetime,
+			item_eng_name,
+			item_chn_name,
+			template_name,
+			item_type,
+			part_pic,
+			shipping_mark,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) VALUES (
+			#{itCatNoSuffix},
+			#{itCat},
+			#{itNo},
+			#{itSuffix},
+			#{itName},
+			#{itUom},
+			#{itDelTime},
+			#{itBasePrice},
+			#{itCurr},
+			#{itHandle},
+			#{itFtyItemNo},
+			#{itDescOfSh},
+			#{itRmk},
+			#{itPkgDetail},
+			#{itInnCtnUom},
+			#{itPkgInnPcs},
+			#{itPkgLCm0},
+			#{itExpCtn1LCm},
+			#{itPkgWCm0},
+			#{itExpCtn1WCm},
+			#{itPkgHCm0},
+			#{itExpCtn1HCm},
+			#{itExpCtnUom},
+			#{itPkgExpPcs},
+			#{itCbmTotal},
+			#{itExpCtn1Cbm},
+			#{itPkgNwKg},
+			#{itExpCtn1Nw},
+			#{itPkg20Qty},
+			#{itPkg40Qty},
+			#{itPkg40HQQty},
+			#{itPkgGwKg},
+			#{itExpCtn1Gw},
+			#{itFtyFobCost},
+			#{itFtyFobCostB},
+			#{itMoqA},
+			#{itMoqB},
+			#{itFtyFobPort},
+			#{itFtyCode},
+			#{itFtyCostLastUpdate},
+			#{itFtyName},
+			#{itPicNameJpg1},
+			#{itPicNameJpg2},
+			#{itImage1},
+			#{itImage2},
+			#{itImage3},
+			#{itImage4},
+			#{itDescFtyPo},
+			#{fkItemType},
+			#{fkTemplate},
+			#{detailData},
+			#{labelEng},
+			#{labelChn},
+			#{importdatetime},
+			#{itemEngName},
+			#{itemChnName},
+			#{templateName},
+			#{itemType},
+			#{partPic},
+			#{shippingMark},
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+    <!-- offer sheet getitem -->
+    <select id="getOffersheetItemListByCondition" resultMap="offItemVoListMap" parameterType="map">
+        select
+        id,
+        it_cat_no_suffix,
+        it_cat,
+        it_no,
+        it_suffix,
+        it_name
+        from
+        itmast
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <choose>
+                <when test="itemNoTo != null">
+                    <choose>
+                        <when test="itemNoTo != ''">
+                            and it_cat_no_suffix &gt;= #{itemNoFrom}
+                            and it_cat_no_suffix &lt;= #{itemNoTo}
+                        </when>
+                        <otherwise>
+                            and it_cat_no_suffix = #{itemNoFrom}
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    and it_cat_no_suffix = #{itemNoFrom}
+                </otherwise>
+            </choose>
+
+        </trim>
+
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by it_cat_no_suffix asc
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="getOffersheetItemListFromOffNoByCondition" resultMap="offItemVoListMap" parameterType="map">
+        <choose>
+            <when test="fromPrefix == null || fromNo == ''">
+                select
+                off2_sh_no_pfix as off_sh_no_pfix,
+                off2_sh_no as off_sh_no,
+                concat(off2_it_cat,off2_it_no,off2_it_suffix) as it_cat_no_suffix,
+                off2_it_cat as it_cat,
+                off2_it_no as it_no,
+                off2_it_suffix as it_suffix,
+                off2_it_name as it_name
+                from
+                offsheet2
+                where
+                1 = 0
+            </when>
+            <otherwise>
+                <choose>
+                    <when test="toPrefix == null || toNo == ''">
+                        select
+                        off2_sh_no_pfix as off_sh_no_pfix,
+                        off2_sh_no as off_sh_no,
+                        concat(off2_it_cat,off2_it_no,off2_it_suffix) as it_cat_no_suffix,
+                        off2_it_cat as it_cat,
+                        off2_it_no as it_no,
+                        off2_it_suffix as it_suffix,
+                        off2_it_name as it_name
+                        from
+                        offsheet2
+                        where
+                        off2_sh_no_pfix = #{fromPrefix}
+                        and
+                        off2_sh_no = #{fromNo}
+                        order by off2_sh_no_pfix, off2_sh_no
+                    </when>
+                    <otherwise>
+                        select
+                        *
+                        from (
+                        select
+                        a.off2_sh_no_pfix as off_sh_no_pfix,
+                        a.off2_sh_no as off_sh_no,
+                        concat(a.off2_it_cat, a.off2_it_no, a.off2_it_suffix) as it_cat_no_suffix,
+                        a.off2_it_cat as it_cat,
+                        a.off2_it_no as it_no,
+                        a.off2_it_suffix as it_suffix,
+                        a.off2_it_name as it_name
+                        from
+                        offsheet2 a
+                        where
+                        a.off2_sh_no_pfix &gt;= #{fromPrefix}
+                        and
+                        a.off2_sh_no &gt;= #{fromNo}
+                        ) b
+                        where
+                        b.off_sh_no_pfix &lt;= #{toPrefix}
+                        and
+                        b.off_sh_no &lt;= #{toNo}
+                        order by b.off_sh_no_pfix, b.off_sh_no
+                    </otherwise>
+                </choose>
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <select id="getOffItemByOffItem" resultMap="offerSheetItem" parameterType="map">
+			select
+				concat(a.off2_it_cat, a.off2_it_no, a.off2_it_suffix) off2_it_cat_no_suffix,
+				a.*
+			from
+				offsheet2 a
+			where
+				a.off2_sh_no_pfix = #{offShNoPfix}
+			and
+				a.off2_sh_no = #{offShNo}
+			and
+				a.off2_it_cat = #{itCat}
+			and
+				a.off2_it_no = #{itNo}
+			and
+				a.off2_it_suffix = #{itSuffix}
+	</select>
+    <resultMap id="offItemVoListMap" type="sop.vo.OffItemMasterVo">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="offShNoPfix" jdbcType="VARCHAR" column="off_sh_no_pfix"/>
+        <result property="offShNo" jdbcType="VARCHAR" column="off_sh_no"/>
+        <result property="itCatNoSuffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="itCat" jdbcType="VARCHAR" column="it_cat"/>
+        <result property="itNo" jdbcType="VARCHAR" column="it_no"/>
+        <result property="itSuffix" jdbcType="VARCHAR" column="it_suffix"/>
+        <result property="itName" jdbcType="VARCHAR" column="it_name"/>
+    </resultMap>
+    <resultMap id="offerSheetItem" type="sop.persistence.beans.OfferSheetItem">
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="off2ShNoPfix" jdbcType="VARCHAR" column="off2_sh_no_pfix"/>
+        <result property="off2ShNo" jdbcType="VARCHAR" column="off2_sh_no"/>
+        <result property="off2ItCat" jdbcType="VARCHAR" column="off2_it_cat"/>
+        <result property="off2ItNo" jdbcType="VARCHAR" column="off2_it_no"/>
+        <result property="off2ItSuffix" jdbcType="VARCHAR" column="off2_it_suffix"/>
+        <result property="off2DescOfferSh" jdbcType="VARCHAR" column="off2_desc_offer_sh"/>
+        <result property="off2ItName" jdbcType="VARCHAR" column="off2_it_name"/>
+        <result property="off2ItRemark" jdbcType="VARCHAR" column="off2_it_remark"/>
+        <result property="off2CertOrigin" jdbcType="VARCHAR" column="off2_cert_origin"/>
+        <result property="off2FormA" jdbcType="VARCHAR" column="off2_form_a"/>
+        <result property="off2CnfPrice" jdbcType="DECIMAL" column="off2_cnf_price"/>
+        <result property="off2FobPort" jdbcType="VARCHAR" column="off2_fob_port"/>
+        <result property="off2CnfPort" jdbcType="VARCHAR" column="off2_cnf_port"/>
+        <result property="off2CurrCode" jdbcType="VARCHAR" column="off2_curr_code"/>
+        <result property="off2FobPrice" jdbcType="DECIMAL" column="off2_fob_price"/>
+        <result property="off2FobCost" jdbcType="DECIMAL" column="off2_fob_cost"/>
+        <result property="off2FobCostB" jdbcType="DECIMAL" column="off2_fob_cost_b"/>
+        <result property="off2MoqA" jdbcType="INTEGER" column="off2_moq_a"/>
+        <result property="off2MoqB" jdbcType="INTEGER" column="off2_moq_b"/>
+        <result property="off2MarkupRate" jdbcType="DECIMAL" column="off2_markup_rate"/>
+        <result property="off2FobPriceB" jdbcType="DECIMAL" column="off2_fob_price_b"/>
+        <result property="off2MarkupRateB" jdbcType="DECIMAL" column="off2_markup_rate_b"/>
+        <result property="off2PriceTradeUnit" jdbcType="VARCHAR" column="off2_price_trade_unit"/>
+        <result property="off2Price" jdbcType="DECIMAL" column="off2_price"/>
+        <result property="off2PricePort" jdbcType="VARCHAR" column="off2_price_port"/>
+        <result property="off2Moq" jdbcType="DECIMAL" column="off2_moq"/>
+        <result property="off2MoqUom" jdbcType="VARCHAR" column="off2_moq_uom"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="off2ItCatNoSuffix" jdbcType="VARCHAR" column="off2_it_cat_no_suffix"/>
+    </resultMap>
+
+    <!-- Sale Order 获取Item -->
+    <select id="getSoItemListByCondition" resultMap="soItemVoListMap" parameterType="map">
+        select
+        id,
+        it_cat_no_suffix,
+        it_cat,
+        it_no,
+        it_suffix,
+        it_name
+
+        from
+        itmast
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <choose>
+                <when test="itemNoTo != null">
+                    <choose>
+                        <when test="itemNoTo != ''">
+                            and it_cat_no_suffix &gt;= #{itemNoFrom}
+                            and it_cat_no_suffix &lt;= #{itemNoTo}
+                        </when>
+                        <otherwise>
+                            and it_cat_no_suffix = #{itemNoFrom}
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    and it_cat_no_suffix = #{itemNoFrom}
+                </otherwise>
+            </choose>
+            order by it_cat_no_suffix asc
+        </trim>
+    </select>
+
+    <select id="getSoItemListFromSoNoByCondition" resultMap="soItemVoListMap" parameterType="map">
+        select
+        so2_no as so2_no,
+        so2_off_sh_no_pfix as off_sh_no_pfix,
+        so2_off_sh_no as off_sh_no,
+        concat(so2_it_cat, so2_it_no, so2_it_suffix) as it_cat_no_suffix,
+        so2_it_cat as it_cat,
+        so2_it_no as it_no,
+        so2_it_suffix as it_suffix,
+        so2_it_name as it_name
+        from
+        sotx2
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="fromSoNo != null">
+                    <choose>
+                        <when test="fromSoNo != ''">
+                            <choose>
+                                <when test="toSoNo != null">
+                                    <choose>
+                                        <when test="toSoNo != ''">
+                                            so2_no &gt;= #{fromSoNo}
+                                            AND
+                                            so2_no &lt;= #{toSoNo}
+                                        </when>
+                                        <otherwise>
+                                            so2_no = #{fromSoNo}
+                                        </otherwise>
+                                    </choose>
+                                </when>
+                                <otherwise>
+                                    so2_no = #{fromSoNo}
+                                </otherwise>
+                            </choose>
+                        </when>
+                        <otherwise>
+                            1=0
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    1=0
+                </otherwise>
+            </choose>
+        </trim>
+        order by so2_no
+    </select>
+
+    <select id="getSoItemListFromOffNoByCondition" resultMap="soItemVoListMap" parameterType="map">
+        <choose>
+            <when test="fromPrefix == null || fromNo == ''">
+                select
+                off2_sh_no_pfix as off_sh_no_pfix,
+                off2_sh_no as off_sh_no,
+                concat(off2_it_cat,off2_it_no,off2_it_suffix) as it_cat_no_suffix,
+                off2_it_cat as it_cat,
+                off2_it_no as it_no,
+                off2_it_suffix as it_suffix,
+                off2_it_name as it_name
+                from
+                offsheet2
+                where
+                1 = 0
+            </when>
+            <otherwise>
+                <choose>
+                    <when test="toPrefix == null || toNo == ''">
+                        select
+                        off2_sh_no_pfix as off_sh_no_pfix,
+                        off2_sh_no as off_sh_no,
+                        concat(off2_it_cat,off2_it_no,off2_it_suffix) as it_cat_no_suffix,
+                        off2_it_cat as it_cat,
+                        off2_it_no as it_no,
+                        off2_it_suffix as it_suffix,
+                        off2_it_name as it_name
+                        from
+                        offsheet2
+                        where
+                        off2_sh_no_pfix = #{fromPrefix}
+                        and
+                        off2_sh_no = #{fromNo}
+                        order by off2_sh_no_pfix, off2_sh_no
+                    </when>
+                    <otherwise>
+                        select
+                        *
+                        from (
+                        select
+                        a.off2_sh_no_pfix as off_sh_no_pfix,
+                        a.off2_sh_no as off_sh_no,
+                        concat(a.off2_it_cat, a.off2_it_no, a.off2_it_suffix) as it_cat_no_suffix,
+                        a.off2_it_cat as it_cat,
+                        a.off2_it_no as it_no,
+                        a.off2_it_suffix as it_suffix,
+                        a.off2_it_name as it_name
+                        from
+                        offsheet2 a
+                        where
+                        a.off2_sh_no_pfix &gt;= #{fromPrefix}
+                        and
+                        a.off2_sh_no &gt;= #{fromNo}
+                        ) b
+                        where
+                        b.off_sh_no_pfix &lt;= #{toPrefix}
+                        and
+                        b.off_sh_no &lt;= #{toNo}
+                        order by b.off_sh_no_pfix, b.off_sh_no
+                    </otherwise>
+                </choose>
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="getSoItemBySoItem" resultMap="saleOrderItem" parameterType="map">
+		select
+			concat(so2_it_cat,so2_it_no,so2_it_suffix) so2_it_cat_no_suffix,
+			b.*
+		from(
+			select
+				*
+			from
+				sotx2 a
+			where
+				a.so2_no = #{soNo}
+			and
+				a.so2_it_cat = #{itCat}
+			and
+				a.so2_it_no = #{itNo}
+			and
+				a.so2_it_suffix = #{itSuffix}
+		) b
+	</select>
+
+    <resultMap id="soItemVoListMap" type="sop.vo.SoItemMasterVo">
+        <result property="soNo" jdbcType="VARCHAR" column="so2_no"/>
+        <result property="offShNoPfix" jdbcType="VARCHAR" column="off_sh_no_pfix"/>
+        <result property="offShNo" jdbcType="VARCHAR" column="off_sh_no"/>
+        <result property="itCatNoSuffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="itCat" jdbcType="VARCHAR" column="it_cat"/>
+        <result property="itNo" jdbcType="VARCHAR" column="it_no"/>
+        <result property="itSuffix" jdbcType="VARCHAR" column="it_suffix"/>
+        <result property="itName" jdbcType="VARCHAR" column="it_name"/>
+    </resultMap>
+
+    <resultMap id="saleOrderItem" type="sop.persistence.beans.SaleOrderItem">
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="so2No" jdbcType="VARCHAR" column="so2_no"/>
+        <result property="so2OffShNoPfix" jdbcType="VARCHAR" column="so2_off_sh_no_pfix"/>
+        <result property="so2OffShNo" jdbcType="VARCHAR" column="so2_off_sh_no"/>
+        <result property="so2ItCat" jdbcType="CHAR" column="so2_it_cat"/>
+        <result property="so2ItNo" jdbcType="CHAR" column="so2_it_no"/>
+        <result property="so2ItSuffix" jdbcType="CHAR" column="so2_it_suffix"/>
+        <result property="so2ItName" jdbcType="VARCHAR" column="so2_it_name"/>
+        <result property="so2OrdQty" jdbcType="DECIMAL" column="so2_ord_qty"/>
+        <result property="so2ShdQty" jdbcType="DECIMAL" column="so2_shd_qty"/>
+        <result property="so2Uom" jdbcType="CHAR" column="so2_uom"/>
+        <result property="so2Uprice" jdbcType="DECIMAL" column="so2_uprice"/>
+        <result property="so2Amt" jdbcType="DECIMAL" column="so2_amt"/>
+        <result property="so2Remk" jdbcType="VARCHAR" column="so2_remk"/>
+        <result property="so2ItDetails" jdbcType="VARCHAR" column="so2_it_details"/>
+        <result property="so2CuItNo" jdbcType="VARCHAR" column="so2_cu_it_no"/>
+        <result property="so2Ean" jdbcType="VARCHAR" column="so2_ean"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="so2ItCatNoSuffix" jdbcType="VARCHAR" column="so2_it_cat_no_suffix"/>
+    </resultMap>
+
+    <!-- 查询item列表 -->
+    <select id="getItemListByCondition" resultMap="itemVoListMap" parameterType="map">
+        select
+        id,
+        it_cat_no_suffix,
+        it_cat,
+        it_no,
+        it_suffix,
+        it_name,
+        it_del_time,
+        it_base_price,
+        it_curr,
+        it_handle,
+        it_image_1,
+        it_image_2,
+        it_image_3,
+        it_image_4
+        from
+        itmast
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <choose>
+                <when test="itemNoTo != null || itemNoFrom!=null">
+                    <choose>
+                        <when test="itemNoTo != '' and itemNoTo != ''">
+                            and it_cat_no_suffix &gt;= #{itemNoFrom}
+                            and it_cat_no_suffix &lt;= #{itemNoTo}
+                        </when>
+
+                        <when test="itemNoFrom != '' and itemNoTo == ''">
+                            and it_cat_no_suffix = #{itemNoFrom}
+                        </when>
+
+                        <when test="fkTempType != null">
+                            and fk_item_type = #{fkTempType}
+                        </when>
+                        <when test="fkTemplate != null">
+                            and fk_template = #{fkTemplate}
+                        </when>
+                        <otherwise>
+                        </otherwise>
+                    </choose>
+
+                </when>
+
+            </choose>
+
+            <choose>
+                <when test="orderField !=null and orderField !=''">
+                    ORDER BY ${orderField}
+                    <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+                </when>
+                <otherwise>
+                    order by it_cat_no_suffix asc
+                </otherwise>
+            </choose>
+        </trim>
+    </select>
+    <select id="getItemListNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        itmast
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <choose>
+                <when test="itemNoTo != null">
+                    <choose>
+                        <when test="itemNoTo != '' and itemNoTo != ''">
+                            and it_cat_no_suffix &gt;= #{itemNoFrom}
+                            and it_cat_no_suffix &lt;= #{itemNoTo}
+                        </when>
+                        <when test="itemNoFrom != '' and itemNoTo == ''">
+                            and it_cat_no_suffix = #{itemNoFrom}
+                        </when>
+                        <when test="fkTempType != null">
+                            and fk_item_type = #{fkTempType}
+                        </when>
+                        <when test="fkTemplate != null">
+                            and fk_template = #{fkTemplate}
+                        </when>
+                        <otherwise>
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                </otherwise>
+            </choose>
+        </trim>
+    </select>
+    <resultMap id="itemVoListMap" type="sop.vo.ItemMasterVo">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="itCatNoSuffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="itCat" jdbcType="VARCHAR" column="it_cat"/>
+        <result property="itNo" jdbcType="VARCHAR" column="it_no"/>
+        <result property="itSuffix" jdbcType="VARCHAR" column="it_suffix"/>
+        <result property="itName" jdbcType="VARCHAR" column="it_name"/>
+        <result property="itDelTime" jdbcType="VARCHAR" column="it_del_time"/>
+        <result property="itBasePrice" jdbcType="DECIMAL" column="it_base_price"/>
+        <result property="itCurr" jdbcType="VARCHAR" column="it_curr"/>
+        <result property="itHandle" jdbcType="VARCHAR" column="it_handle"/>
+        <result property="itImage1" jdbcType="VARCHAR" column="it_image1"/>
+        <result property="itImage2" jdbcType="VARCHAR" column="it_image2"/>
+        <result property="itImage3" jdbcType="VARCHAR" column="it_image3"/>
+        <result property="itImage4" jdbcType="VARCHAR" column="it_image4"/>
+    </resultMap>
+    <select id="getCountByFkItCatNoSuffix" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        itmast
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            it_cat_no_suffix = #{fkItCatNoSuffix}
+        </trim>
+    </select>
+
+    <select id="getCountByFkItCatNoSuffixAndId" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(0) as c 
+		from 
+			itmast
+		where
+			it_cat_no_suffix = #{itCatNoSuffix}
+		and
+			id != #{id}
+	</select>
+    <!-- 更新 -->
+    <update id="updateItem" parameterType="map">
+		update
+			itmast
+		set
+			it_cat_no_suffix = #{itCatNoSuffix},
+			it_cat = #{itCat},
+			it_no = #{itNo},
+			it_suffix = #{itSuffix},
+			it_name = #{itName},
+			it_uom = #{itUom},
+			it_del_time = #{itDelTime},
+			it_base_price = #{itBasePrice},
+			it_curr = #{itCurr},
+			it_handle = #{itHandle},
+			it_fty_item_no = #{itFtyItemNo},
+			it_desc_of_sh = #{itDescOfSh},
+			it_rmk = #{itRmk},
+			it_pkg_detail = #{itPkgDetail},
+			it_inn_ctn_uom = #{itInnCtnUom},
+			it_pkg_inn_pcs = #{itPkgInnPcs},
+			it_pkg_l_cm0 = #{itPkgLCm0},
+			it_pkg_w_cm0 = #{itPkgWCm0},
+			it_pkg_h_cm0 = #{itPkgHCm0},
+			it_pkg_l_cm1 = #{itPkgLCm1},
+			it_pkg_w_cm1 = #{itPkgWCm1},
+			it_pkg_h_cm1 = #{itPkgHCm1},
+			it_pkg_l_cm2 = #{itPkgLCm2},
+			it_pkg_w_cm2 = #{itPkgWCm2},
+			it_pkg_h_cm2 = #{itPkgHCm2},
+			it_pkg_l_cm3 = #{itPkgLCm3},
+			it_pkg_w_cm3 = #{itPkgWCm3},
+			it_pkg_h_cm3 = #{itPkgHCm3},
+			it_pkg_l_cm4 = #{itPkgLCm4},
+			it_pkg_w_cm4 = #{itPkgWCm4},
+			it_pkg_h_cm4 = #{itPkgHCm4},
+			it_pkg_l_cm5 = #{itPkgLCm5},
+			it_pkg_w_cm5 = #{itPkgWCm5},
+			it_pkg_h_cm5 = #{itPkgHCm5},									
+			it_exp_ctn_1_l_cm = #{itExpCtn1LCm},
+			it_exp_ctn_1_w_cm = #{itExpCtn1WCm},
+			it_exp_ctn_1_h_cm = #{itExpCtn1HCm},
+			it_exp_ctn_uom = #{itExpCtnUom},
+			it_pkg_exp_pcs = #{itPkgExpPcs},
+			it_cbm_total = #{itCbmTotal},
+			it_exp_ctn_1_cbm = #{itExpCtn1Cbm},
+			it_pkg_nw_kg = #{itPkgNwKg},
+			it_exp_ctn_1_nw = #{itExpCtn1Nw},
+			it_pkg_20_qty = #{itPkg20Qty},
+			it_pkg_40_qty = #{itPkg40Qty},
+			it_pkg_40HQ_qty = #{itPkg40HQQty},
+			it_pkg_gw_kg = #{itPkgGwKg},
+			it_exp_ctn_1_gw = #{itExpCtn1Gw},
+			it_fty_fob_cost = #{itFtyFobCost},
+			it_fty_fob_cost_b = #{itFtyFobCostB},
+			it_moq_a = #{itMoqA},
+			it_moq_b = #{itMoqB},
+			it_fty_fob_port = #{itFtyFobPort},
+			it_fty_code = #{itFtyCode},
+			it_fty_cost_last_update = #{itFtyCostLastUpdate},
+			it_fty_name = #{itFtyName},
+			it_pic_name_jpg1 = #{itPicNameJpg1},
+			it_pic_name_jpg2 = #{itPicNameJpg2},
+			it_image_1 = #{itImage1},
+			it_image_2 = #{itImage2},
+			it_image_3 = #{itImage3},
+			it_image_4 = #{itImage4},
+			it_desc_fty_po = #{itDescFtyPo},
+			fk_item_type = #{fkItemType},
+			fk_template = #{fkTemplate},
+			detail_data = #{detailData},
+			label_eng = #{labelEng},
+			label_chn = #{labelChn},
+			importdatetime = #{importdatetime},
+			item_eng_name = #{itemEngName},
+			item_chn_name = #{itemChnName},
+			template_name = #{templateName},
+			item_type = #{itemType},
+			part_pic = #{partPic},
+			shipping_mark = #{shippingMark},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where
+			id = #{id}
+	</update>
+
+    <!-- 根据itCatNoSuffix获取templateName -->
+    <select id="getTemplateNameByItCatNoSuffix" resultType="java.lang.String" parameterType="map">
+		select
+			template_name
+		from
+			itmast
+		where
+			it_cat_no_suffix = #{itCatNoSuffix}
+	</select>
+
+    <delete id="deleteItem" parameterType="map">
+		delete
+		from
+			itmast
+		where
+			id = #{fkItem}
+	</delete>
+
+    <!-- Purchase Order 获取Item -->
+    <select id="getPoItemListByCondition" resultMap="poItemVoListMap" parameterType="map">
+        select
+        id,
+        it_cat_no_suffix,
+        it_cat,
+        it_no,
+        it_suffix,
+        it_name
+        from
+        itmast
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <choose>
+                <when test="itemNoTo != null">
+                    <choose>
+                        <when test="itemNoTo != ''">
+                            and it_cat_no_suffix &gt;= #{itemNoFrom}
+                            and it_cat_no_suffix &lt;= #{itemNoTo}
+                        </when>
+                        <otherwise>
+                            and it_cat_no_suffix = #{itemNoFrom}
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    and it_cat_no_suffix = #{itemNoFrom}
+                </otherwise>
+            </choose>
+            order by it_cat_no_suffix asc
+        </trim>
+    </select>
+
+    <select id="getPoItemListFromSoNoByCondition" resultMap="poItemVoListMap" parameterType="map">
+        select
+        so2_no as so2_no,
+        so2_off_sh_no_pfix as off_sh_no_pfix,
+        so2_off_sh_no as off_sh_no,
+        concat(so2_it_cat, so2_it_no, so2_it_suffix) as it_cat_no_suffix,
+        so2_it_cat as it_cat,
+        so2_it_no as it_no,
+        so2_it_suffix as it_suffix,
+        so2_it_name as it_name
+        from
+        sotx2
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="fromSoNo != null">
+                    <choose>
+                        <when test="fromSoNo != ''">
+                            <choose>
+                                <when test="toSoNo != null">
+                                    <choose>
+                                        <when test="toSoNo != ''">
+                                            so2_no &gt;= #{fromSoNo}
+                                            AND
+                                            so2_no &lt;= #{toSoNo}
+                                        </when>
+                                        <otherwise>
+                                            so2_no = #{fromSoNo}
+                                        </otherwise>
+                                    </choose>
+                                </when>
+                                <otherwise>
+                                    so2_no = #{fromSoNo}
+                                </otherwise>
+                            </choose>
+                        </when>
+                        <otherwise>
+                            1=0
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    1=0
+                </otherwise>
+            </choose>
+        </trim>
+        order by so2_no
+    </select>
+
+    <select id="getPoItemListFromOffNoByCondition" resultMap="poItemVoListMap" parameterType="map">
+        <choose>
+            <when test="fromPrefix == null || fromNo == ''">
+                select
+                off2_sh_no_pfix as off_sh_no_pfix,
+                off2_sh_no as off_sh_no,
+                concat(off2_it_cat,off2_it_no,off2_it_suffix) as it_cat_no_suffix,
+                off2_it_cat as it_cat,
+                off2_it_no as it_no,
+                off2_it_suffix as it_suffix,
+                off2_it_name as it_name
+                from
+                offsheet2
+                where
+                1 = 0
+            </when>
+            <otherwise>
+                <choose>
+                    <when test="toPrefix == null || toNo == ''">
+                        select
+                        off2_sh_no_pfix as off_sh_no_pfix,
+                        off2_sh_no as off_sh_no,
+                        concat(off2_it_cat,off2_it_no,off2_it_suffix) as it_cat_no_suffix,
+                        off2_it_cat as it_cat,
+                        off2_it_no as it_no,
+                        off2_it_suffix as it_suffix,
+                        off2_it_name as it_name
+                        from
+                        offsheet2
+                        where
+                        off2_sh_no_pfix = #{fromPrefix}
+                        and
+                        off2_sh_no = #{fromNo}
+                        order by off2_sh_no_pfix, off2_sh_no
+                    </when>
+                    <otherwise>
+                        select
+                        *
+                        from (
+                        select
+                        a.off2_sh_no_pfix as off_sh_no_pfix,
+                        a.off2_sh_no as off_sh_no,
+                        concat(a.off2_it_cat, a.off2_it_no, a.off2_it_suffix) as it_cat_no_suffix,
+                        a.off2_it_cat as it_cat,
+                        a.off2_it_no as it_no,
+                        a.off2_it_suffix as it_suffix,
+                        a.off2_it_name as it_name
+                        from
+                        offsheet2 a
+                        where
+                        a.off2_sh_no_pfix &gt;= #{fromPrefix}
+                        and
+                        a.off2_sh_no &gt;= #{fromNo}
+                        ) b
+                        where
+                        b.off_sh_no_pfix &lt;= #{toPrefix}
+                        and
+                        b.off_sh_no &lt;= #{toNo}
+                        order by b.off_sh_no_pfix, b.off_sh_no
+                    </otherwise>
+                </choose>
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="getPoItemListFromPoNoByCondition" resultMap="poItemVoListMap" parameterType="map">
+        select
+        po2_no as po2_no,
+        po2_so_no as so2_no,
+        concat(po2_it_cat, po2_it_no, po2_it_suffix) as it_cat_no_suffix,
+        po2_it_cat as it_cat,
+        po2_it_no as it_no,
+        po2_it_suffix as it_suffix,
+        po2_it_name as it_name
+        from
+        potx2
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="fromPoNo != null">
+                    <choose>
+                        <when test="fromPoNo != ''">
+                            <choose>
+                                <when test="toPoNo != null">
+                                    <choose>
+                                        <when test="toPoNo != ''">
+                                            po2_no &gt;= #{fromPoNo}
+                                            AND
+                                            po2_no &lt;= #{toPoNo}
+                                        </when>
+                                        <otherwise>
+                                            po2_no = #{fromPoNo}
+                                        </otherwise>
+                                    </choose>
+                                </when>
+                                <otherwise>
+                                    po2_no = #{fromPoNo}
+                                </otherwise>
+                            </choose>
+                        </when>
+                        <otherwise>
+                            1=0
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    1=0
+                </otherwise>
+            </choose>
+        </trim>
+        order by po2_no
+    </select>
+
+    <select id="getPoItemBySoItem" resultMap="saleOrderItem" parameterType="map">
+		select
+			concat(a.so2_it_cat,a.so2_it_no,a.so2_it_suffix) so2_it_cat_no_suffix,
+			a.*
+		from
+			sotx2 a
+		where
+			a.so2_no = #{soNo}
+		and
+			a.so2_it_cat = #{itCat}
+		and
+			a.so2_it_no = #{itNo}
+		and
+			a.so2_it_suffix = #{itSuffix}
+	</select>
+
+    <select id="getPoItemByPoItem" resultMap="purchaseOrderItem" parameterType="map">
+		select
+			concat(a.po2_it_cat,a.po2_it_no,a.po2_it_suffix) po2_it_cat_no_suffix,
+			a.*
+		from
+			potx2 a
+		where
+			a.po2_no = #{poNo}
+		and
+			a.po2_it_cat = #{itCat}
+		and
+			a.po2_it_no = #{itNo}
+		and
+			a.po2_it_suffix = #{itSuffix}
+	</select>
+
+    <resultMap id="poItemVoListMap" type="sop.vo.PoItemMasterVo">
+        <result property="poNo" jdbcType="VARCHAR" column="po2_no"/>
+        <result property="soNo" jdbcType="VARCHAR" column="so2_no"/>
+        <result property="offShNoPfix" jdbcType="VARCHAR" column="off_sh_no_pfix"/>
+        <result property="offShNo" jdbcType="VARCHAR" column="off_sh_no"/>
+        <result property="itCatNoSuffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="itCat" jdbcType="VARCHAR" column="it_cat"/>
+        <result property="itNo" jdbcType="VARCHAR" column="it_no"/>
+        <result property="itSuffix" jdbcType="VARCHAR" column="it_suffix"/>
+        <result property="itName" jdbcType="VARCHAR" column="it_name"/>
+        <result property="itDelTime" jdbcType="VARCHAR" column="it_del_time"/>
+        <result property="itBasePrice" jdbcType="DECIMAL" column="it_base_price"/>
+        <result property="itCurr" jdbcType="VARCHAR" column="it_curr"/>
+    </resultMap>
+
+    <resultMap id="purchaseOrderItem" type="sop.persistence.beans.PurchaseOrderItem">
+        <result property="po2Amt" jdbcType="DECIMAL" column="po2_amt"/>
+        <result property="po2Appendix" jdbcType="VARCHAR" column="po2_appendix"/>
+        <result property="po2Article" jdbcType="VARCHAR" column="po2_article"/>
+        <result property="po2Ean" jdbcType="VARCHAR" column="po2_ean"/>
+        <result property="po2ExpCtnPcs" jdbcType="VARCHAR" column="po2_exp_ctn_pcs"/>
+        <result property="po2ExpUom" jdbcType="CHAR" column="po2_exp_uom"/>
+        <result property="po2InnCtnPcs" jdbcType="VARCHAR" column="po2_inn_ctn_pcs"/>
+        <result property="po2InnUom" jdbcType="CHAR" column="po2_inn_uom"/>
+        <result property="po2ItCat" jdbcType="CHAR" column="po2_it_cat"/>
+        <result property="po2ItDetails" jdbcType="VARCHAR" column="po2_it_details"/>
+        <result property="po2ItName" jdbcType="VARCHAR" column="po2_it_name"/>
+        <result property="po2ItNo" jdbcType="VARCHAR" column="po2_it_no"/>
+        <result property="po2ItSuffix" jdbcType="CHAR" column="po2_it_suffix"/>
+        <result property="po2No" jdbcType="VARCHAR" column="po2_no"/>
+        <result property="po2OrdQty" jdbcType="DECIMAL" column="po2_ord_qty"/>
+        <result property="po2Remk" jdbcType="VARCHAR" column="po2_remk"/>
+        <result property="po2ShdQty" jdbcType="DECIMAL" column="po2_shd_qty"/>
+        <result property="po2SoNo" jdbcType="VARCHAR" column="po2_so_no"/>
+        <result property="po2Uom" jdbcType="CHAR" column="po2_uom"/>
+        <result property="po2Uprice" jdbcType="DECIMAL" column="po2_uprice"/>
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="po2ItCatNoSuffix" jdbcType="VARCHAR" column="po2_it_cat_no_suffix"/>
+    </resultMap>
+
+    <select id="getPartPicByItCatNoSuffix" parameterType="map" resultType="java.lang.String">
+		select
+			part_pic
+		from
+			itmast
+		where
+			it_cat_no_suffix = #{itCatNoSuffix}
+	</select>
+
+    <!-- 报表VO -->
+    <select id="getItemMasterReport" resultMap="itemMaterReport" parameterType="map">
+        select it_cat
+        ,it_no
+        ,it_suffix
+        ,it_name
+        ,it_pkg_20_qty
+        ,it_pkg_40_qty
+        ,it_cbm_total
+        ,it_pkg_l_cm0
+        ,it_pkg_w_cm0
+        ,it_pkg_h_cm0
+        ,it_uom_inn
+        ,it_pkg_exp_pcs
+        ,it_pkg_detail
+        ,it_desc_of_sh
+        ,it_desc_fty_po
+        ,it_fty_name
+        ,it_image_1
+        ,it_fty_code
+        from itmast
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <choose>
+                <when test="fromNo != null and fromNo != ''">
+                    <choose>
+                        <when test="toNo != '' and toNo != null">
+                            and it_cat_no_suffix &gt;= #{fromNo}
+                            and it_cat_no_suffix &lt;= #{toNo}
+                        </when>
+                        <otherwise>
+                            and it_cat_no_suffix = #{fromNo}
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    and it_cat_no_suffix = #{fromNo}
+                </otherwise>
+            </choose>
+            order by it_cat_no_suffix asc
+        </trim>
+    </select>
+
+    <resultMap type="sop.reports.vo.ItemMaterReport" id="itemMaterReport">
+        <result property="it_cat" jdbcType="CHAR" column="it_cat"/>
+        <result property="it_no" jdbcType="VARCHAR" column="it_no"/>
+        <result property="it_suffix" jdbcType="CHAR" column="it_suffix"/>
+        <result property="it_name" jdbcType="VARCHAR" column="it_name"/>
+        <result property="it_pkg_20_qty" jdbcType="DECIMAL" column="it_pkg_20_qty"/>
+        <result property="it_pkg_40_qty" jdbcType="DECIMAL" column="it_pkg_40_qty"/>
+        <result property="it_cbm_total" jdbcType="DECIMAL" column="it_cbm_total"/>
+        <result property="it_pkg_l_cm" jdbcType="DECIMAL" column="it_pkg_l_cm0"/>
+        <result property="it_pkg_w_cm" jdbcType="DECIMAL" column="it_pkg_w_cm0"/>
+        <result property="it_pkg_h_cm" jdbcType="DECIMAL" column="it_pkg_h_cm0"/>
+        <result property="it_uom_inn" jdbcType="CHAR" column="it_uom_inn"/>
+        <result property="it_pkg_exp_pcs" jdbcType="VARCHAR" column="it_pkg_exp_pcs"/>
+        <result property="it_pkg_detail" jdbcType="VARCHAR" column="it_pkg_detail"/>
+        <result property="it_desc_of_sh" jdbcType="VARCHAR" column="it_desc_of_sh"/>
+        <result property="it_desc_fty_po" jdbcType="VARCHAR" column="it_desc_fty_po"/>
+        <result property="it_fty_name" jdbcType="VARCHAR" column="it_fty_name"/>
+        <result property="it_image_1" jdbcType="VARCHAR" column="it_image_1"/>
+        <result property="it_fty_code" jdbcType="VARCHAR" column="it_fty_code"/>
+    </resultMap>
+</mapper>

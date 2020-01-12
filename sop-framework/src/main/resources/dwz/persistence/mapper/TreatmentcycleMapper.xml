@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.TreatmentcycleMapper">
+    <resultMap id="rm" type="dwz.persistence.beans.Treatmentcycle">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="fktreatmentcycletypesid" jdbcType="INTEGER" column="fktreatmentcycletypesid"/>
+        <result property="startdate" jdbcType="DATE" column="startdate"/>
+        <result property="lasteventdate" jdbcType="DATE" column="lasteventdate"/>
+        <result property="enddate" jdbcType="DATE" column="enddate"/>
+        <result property="notes" jdbcType="VARCHAR" column="notes"/>
+        <result property="moddatetime" jdbcType="DATE" column="moddatetime"/>
+        <result property="modoperator" jdbcType="INTEGER" column="modoperator"/>
+        <result property="deleted" jdbcType="BIT" column="deleted"/>
+        <result property="fkcouple" jdbcType="INTEGER" column="fkcouple"/>
+        <result property="eggcollectiondatetime" jdbcType="DATE" column="eggcollectiondatetime"/>
+        <result property="embryotransferdatetime" jdbcType="DATE" column="embryotransferdatetime"/>
+        <result property="customreference" jdbcType="VARCHAR" column="customreference"/>
+        <result property="cycleType" jdbcType="VARCHAR" column="cycleType"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		fktreatmentcycletypesid,
+		startdate,
+		lasteventdate,
+		enddate,
+		notes,
+		moddatetime,
+		modoperator,
+		modnextrecord,
+		deleted,
+		fkcouple,
+		eggcollectiondatetime,
+		embryotransferdatetime,
+		customreference
+	</sql>
+    <select id="getCycleByFkpatient" resultMap="rm" parameterType="map">
+		select 
+			b.id,
+			b.fktreatmentcycletypesid,
+			b.startdate,
+			b.lasteventdate,
+			b.enddate,
+			b.notes,
+			b.moddatetime,
+			b.modoperator,
+			b.deleted,
+			b.fkcouple,
+			b.eggcollectiondatetime,
+			b.embryotransferdatetime,
+			b.customreference
+		from 
+			treatmentcycles b
+		where b.fkcouple = (
+			select 
+				distinct id 
+			from 
+				partners a
+			where 
+				a.fk_male = #{id} 
+			or 
+				a.fk_female = #{id}
+			limit 1
+		)
+	</select>
+    <select id="getCycleById" resultMap="rm" parameterType="int">
+		select 
+			a.id,
+			a.fktreatmentcycletypesid,
+			a.startdate,
+			a.lasteventdate,
+			a.enddate,
+			a.notes,
+			a.moddatetime,
+			a.modoperator,
+			a.modnextrecord,
+			a.deleted,
+			a.fkcouple,
+			a.eggcollectiondatetime,
+			a.embryotransferdatetime,
+			a.customreference,
+			b.name as cycleType
+		from 
+			treatmentcycles a
+		left join 
+			treatmentcycletypes b
+		on
+			a.fktreatmentcycletypesid = b.id
+		where a.id = #{id}
+	</select>
+    <!-- 校验夫妇是否存在未结束治疗周期 -->
+    <select id="validateCoupleNotEndCycles" resultType="java.lang.Integer" parameterType="int">
+		select count(0) as c 
+		from treatmentcycles
+		where fkcouple = #{value}
+		and enddate is null
+	</select>
+    <!-- 更新 -->
+    <update id="updateSelective" parameterType="dwz.persistence.beans.Treatmentcycle">
+        UPDATE treatmentcycles
+        <set>
+            <if test="customreference!=null">
+                customreference = #{customreference},
+            </if>
+            <if test="deleted!=null">
+                deleted = #{deleted},
+            </if>
+            <if test="eggcollectiondatetime!=null">
+                eggcollectiondatetime = #{eggcollectiondatetime},
+            </if>
+            <if test="embryotransferdatetime!=null">
+                embryotransferdatetime = #{embryotransferdatetime},
+            </if>
+            <if test="enddate!=null">
+                enddate = #{enddate},
+            </if>
+            <if test="fkcouple!=null">
+                fkcouple = #{fkcouple},
+            </if>
+            <if test="fktreatmentcycletypesid!=null">
+                fktreatmentcycletypesid = #{fktreatmentcycletypesid},
+            </if>
+            <if test="lasteventdate!=null">
+                lasteventdate = #{lasteventdate},
+            </if>
+            <if test="moddatetime!=null">
+                moddatetime = #{moddatetime},
+            </if>
+            <if test="modoperator!=null">
+                modoperator = #{modoperator},
+            </if>
+            <if test="notes!=null">
+                notes = #{notes},
+            </if>
+            <if test="startdate!=null">
+                startdate = #{startdate}
+            </if>
+        </set>
+        WHERE
+        ID = #{id}
+    </update>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="dwz.persistence.beans.Treatmentcycle">
+		INSERT INTO treatmentcycles(
+			fktreatmentcycletypesid,
+			startdate,
+			eggcollectiondatetime,
+			embryotransferdatetime,
+			notes,
+			customreference,
+			fkcouple,
+			moddatetime,
+			deleted
+		) VALUES (
+			#{fktreatmentcycletypesid},
+			#{startdate},
+			#{eggcollectiondatetime},
+			#{embryotransferdatetime},
+			#{notes},
+			#{customreference},
+			#{fkcouple},
+			#{moddatetime},
+			#{deleted}
+		)
+	</insert>
+    <resultMap id="allcycles" type="dwz.framework.vo.TreatmentcycleVo">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="fkfemale" jdbcType="INTEGER" column="fkfemale"/>
+        <result property="femalePatientId" jdbcType="VARCHAR" column="femalePatientId"/>
+        <result property="femalePatientName" jdbcType="VARCHAR" column="femalePatientName"/>
+        <result property="fkmale" jdbcType="INTEGER" column="fkmale"/>
+        <result property="malePatientId" jdbcType="VARCHAR" column="malePatientId"/>
+        <result property="malePatientName" jdbcType="VARCHAR" column="malePatientName"/>
+        <result property="startdate" jdbcType="DATE" column="startdate"/>
+        <result property="enddate" jdbcType="DATE" column="enddate"/>
+        <result property="notes" jdbcType="VARCHAR" column="notes"/>
+        <result property="eggcollectiondatetime" jdbcType="DATE" column="eggcollectiondatetime"/>
+        <result property="embryotransferdatetime" jdbcType="DATE" column="embryotransferdatetime"/>
+    </resultMap>
+    <!-- 根据时间段查询全部病人周期 -->
+    <select id="findPageBreakByCondition" resultMap="allcycles" parameterType="map">
+        SELECT
+        a.id as id,
+        d.id as fkfemale,
+        d.patientID as femalePatientId,
+        d.name as femalePatientName,
+        c.id as fkmale,
+        c.patientID as malePatientId,
+        c.name as malePatientName,
+        a.startdate as startdate,
+        a.enddate as enddate,
+        a.notes as notes,
+        a.eggcollectiondatetime as eggcollectiondatetime,
+        a.embryotransferdatetime as embryotransferdatetime
+        FROM treatmentcycles as a
+        LEFT JOIN partners as b
+        ON a.fkcouple = b.id
+        LEFT JOIN patients as c
+        ON b.fk_male = c.id
+        LEFT JOIN patients as d
+        ON b.fk_female = d.id
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="startDate != null">
+                AND startdate &gt;= #{startDate}
+            </if>
+            <if test="endDate != null">
+                AND startdate &lt;= #{endDate}
+            </if>
+            and
+            (
+            b.id is not null
+            or
+            c.id is not null
+            )
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by a.id DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+        select count(0) as c
+        FROM treatmentcycles as a
+        LEFT JOIN partners as b
+        ON a.fkcouple = b.id
+        LEFT JOIN patients as c
+        ON b.fk_male = c.id
+        LEFT JOIN patients as d
+        ON b.fk_female = d.id
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="startDate != null">
+                AND startdate &gt;= #{startDate}
+            </if>
+            <if test="endDate != null">
+                AND startdate &lt;= #{endDate}
+            </if>
+            and
+            (
+            b.id is not null
+            or
+            c.id is not null
+            )
+        </trim>
+    </select>
+
+    <!-- workarea 查找夫妇历史记录 -->
+    <select id="getCouleHix" resultMap="history" parameterType="java.lang.Integer">
+		select 
+			b.witnessName as witnessName,
+			b.importdatetime as importdatetime,
+			e.name as operatorName,
+			f.name as doubleOperatorName,
+			b.status as status
+		from 
+			witness b
+			left join treatmentcycles a
+			on a.id = b.fkcycle
+			left join operators e
+			on b.modoperator = e.id
+			left join operators f
+			on b.doubleoperator = f.id
+		where 
+			a.fkcouple = #{fkcouple}
+		order by 
+			b.importdatetime desc
+		limit 4
+	</select>
+
+    <!-- workarea 根据操作者的ID和病人Id查找核对点记录 -->
+    <select id="getHixByFkpatientFkoperator" resultMap="history" parameterType="map">
+		select 
+			b.witnessName as witnessName,
+			b.importdatetime as importdatetime,
+			e.name as operatorName,
+			f.name as doubleOperatorName,
+			b.status as status
+		from 
+			witness b
+			left join operators e
+			on b.modoperator = e.id
+			left join operators f
+			on b.doubleoperator = f.id
+		where 
+			b.modoperator = #{fkoperator}
+		and 
+			b.fkpatient = #{fkpatient}
+		order by 
+			b.importdatetime desc
+		limit 4
+	</select>
+
+    <resultMap id="history" type="match.vo.HistoryVo">
+        <result column="witnessName" property="witnessName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="importdatetime" property="importdatetime" jdbcType="DATE" javaType="java.lang.String"/>
+        <result column="operatorName" property="operatorName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="doubleOperatorName" property="doubleOperatorName" jdbcType="VARCHAR"
+                javaType="java.lang.String"/>
+        <result column="status" property="status" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    </resultMap>
+
+    <!-- 通过fkcouple获取活动的cycle的id -->
+    <select id="getActiveFkcycleByFkcouple" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select 
+			a.id fkcycle
+		from 
+			treatmentcycles a
+		where 
+			a.fkcouple = #{fkcouple}
+		and
+			a.enddate is null
+	</select>
+
+    <!-- 通过fkpatient获取活动的cycle的id -->
+    <select id="getActiveFkcycleByFkpatient" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select 
+			a.id fkcycle
+		from 
+			treatmentcycles a
+		left join 
+			partners b
+		on 
+			a.fkcouple = b.id
+		where 
+			b.fk_male = #{fkpatient}
+		or 
+			b.fk_female = #{fkpatient}
+		and
+			a.enddate is null
+	</select>
+
+    <!-- 通过fkcouple获取最后结束的cycle的id -->
+    <select id="getLatestFkcycleByFkcouple" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select 
+			a.id fkcycle
+		from 
+			treatmentcycles a
+		where 
+			a.fkcouple = #{fkcouple}
+		order by 
+			a.enddate desc
+		limit 1
+	</select>
+
+    <!-- 通过fkpatient获取最后结束的cycle的id -->
+    <select id="getLatestFkcycleByFkpatient" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		select 
+			a.id fkcycle
+		from 
+			treatmentcycles a
+		left join 
+			partners b
+		on 
+			a.fkcouple = b.id
+		where 
+			b.fk_male = #{fkpatient}
+		or 
+			b.fk_female = #{fkpatient}
+		order by 
+			a.enddate desc
+		limit 1
+	</select>
+
+    <!-- workarea 模糊查找当日任务 -->
+    <select id="getTodayTasks" resultMap="tasksForWorkarea" parameterType="map">
+		select distinct
+		a.id as id,
+		a.patientID as patientId,
+		a.name as patientName,
+		a.male as male,
+		a.dob as dob,
+		b.id as fkcouple,
+		c.startdate as startdate,
+		c.eggcollectiondatetime as eggcollectiondatetime,
+		c.embryotransferdatetime as embryotransferdatetime
+		from patients as a,
+			 partners as b,
+			 treatmentcycles as c
+		where
+				c.fkcouple = b.id
+		and
+			(
+				b.fk_male = a.id
+				or
+				b.fk_female = a.id
+			)
+		and
+			(
+				a.patientId LIKE "%"#{keywords}"%"
+				or 
+				a.name LIKE "%"#{keywords}"%"
+				or 
+				a.name_pinyin LIKE "%"#{keywords}"%"
+			)
+		and
+			(
+				c.startdate = #{date}
+				or 
+				c.eggcollectiondatetime = #{date}
+				or 
+				c.embryotransferdatetime = #{date}
+			)
+	</select>
+
+    <resultMap id="tasksForWorkarea" type="match.vo.TaskWorkareaVo">
+        <result column="fkcycle" property="fkcycle" jdbcType="INTEGER"/>
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="fkcouple" property="fkcouple" jdbcType="INTEGER"/>
+        <result column="patientId" property="patientId" jdbcType="VARCHAR"/>
+        <result column="patientName" property="patientName" jdbcType="VARCHAR"/>
+        <result column="male" property="male" jdbcType="BIT"/>
+        <result column="dob" property="dob" jdbcType="VARCHAR"/>
+        <result column="startdate" property="startdate" jdbcType="VARCHAR"/>
+        <result column="eggcollectiondatetime" property="eggcollectiondatetime" jdbcType="VARCHAR"/>
+        <result column="embryotransferdatetime" property="embryotransferdatetime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="patientsForWorkarea" type="match.vo.PatientWorkareaVo">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="fkcouple" property="fkcouple" jdbcType="INTEGER"/>
+        <result column="patientId" property="patientId" jdbcType="VARCHAR"/>
+        <result column="patientName" property="patientName" jdbcType="VARCHAR"/>
+        <result column="male" property="male" jdbcType="BIT"/>
+        <result column="dob" property="dob" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 查询所有周期类型 -->
+    <select id="getAllCycleTypes" resultMap="typeRm">
+		select 
+			id,
+			name
+		from 
+			treatmentcycletypes
+	</select>
+
+    <!-- 周期类型 -->
+    <resultMap id="typeRm" type="dwz.framework.vo.CycleTypeVo">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 根据时间段查询全部病人周期 -->
+    <select id="getActiveCycles" resultMap="allcycles" parameterType="map">
+		SELECT 
+		a.id as id,
+	    d.patientID as femalePatientId,
+	    d.name as femalePatientName,
+	    c.patientID as malePatientId,
+	    c.name as malePatientName,
+		a.startdate as startdate,
+		a.enddate as enddate,
+		a.notes as notes,
+		a.eggcollectiondatetime as eggcollectiondatetime,
+		a.embryotransferdatetime as embryotransferdatetime
+		FROM treatmentcycles as a
+		LEFT JOIN partners as b
+		ON a.fkcouple = b.id
+		LEFT JOIN patients as c
+		ON b.fk_male = c.id
+		LEFT JOIN patients as d
+		ON b.fk_female = d.id
+		where 
+			a.enddate is null
+		and
+			(
+				b.id is not null
+				or
+				c.id is not null
+			)
+	</select>
+    <select id="searchActiveCyclesNum" resultType="java.lang.Integer" parameterType="map">
+		select count(0) as c 
+		FROM treatmentcycles as a
+		LEFT JOIN partners as b
+		ON a.fkcouple = b.id
+		LEFT JOIN patients as c
+		ON b.fk_male = c.id
+		LEFT JOIN patients as d
+		ON b.fk_female = d.id
+		where 
+			a.enddate is null
+		and
+			(
+				b.id is not null
+				or
+				c.id is not null
+			)
+	</select>
+
+    <!-- 获取周期数量 -->
+    <select id="getCyclesCount" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0)
+        from
+        treatmentcycles a
+        where
+        1=1
+        <if test="startDate != null">
+            and
+            a.moddatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.moddatetime &lt;= #{endDate}
+        </if>
+    </select>
+
+    <!-- 根据时间段查询全部病人周期类型 -->
+    <select id="findCycleTypesPageBreakByCondition" resultMap="allcycletypes" parameterType="map">
+        SELECT
+        id,
+        name
+        FROM
+        treatmentcycletypes
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            deleted = false
+            <if test="keywords != null">
+                AND (
+                name LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+
+    <resultMap id="allcycletypes" type="dwz.persistence.beans.Treatmentcycletype">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="name" jdbcType="VARCHAR" column="name"/>
+    </resultMap>
+
+    <select id="findCycleTypesNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+        select count(0) as c
+        FROM treatmentcycletypes
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            deleted = false
+            <if test="keywords != null">
+                AND (
+                name LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <!-- 增加周期类型 -->
+    <insert id="insertCycleType" useGeneratedKeys="true" keyProperty="id"
+            parameterType="dwz.persistence.beans.Treatmentcycletype">
+		INSERT INTO treatmentcycletypes(
+			name,
+			customreference,
+			moddatetime,
+			deleted,
+			modoperator,
+			cyclesummary,
+			eggcountparam
+		) VALUES (
+			#{name},
+			#{customreference},
+			#{moddatetime},
+			#{deleted},
+			#{modoperator},
+			#{cyclesummary},
+			#{eggcountparam}
+		)
+	</insert>
+
+    <select id="getCycleTypeById" resultMap="cycletype" parameterType="int">
+		select * 
+		from treatmentcycletypes b
+		where b.id = #{id}
+	</select>
+
+    <resultMap id="cycletype" type="dwz.persistence.beans.Treatmentcycletype">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="name" jdbcType="VARCHAR" column="name"/>
+    </resultMap>
+
+    <!-- 更新 -->
+    <update id="updateCycleTypeSelective" parameterType="dwz.persistence.beans.Treatmentcycletype">
+        UPDATE treatmentcycletypes
+        <set>
+            <if test="customreference!=null">
+                customreference = #{customreference},
+            </if>
+            <if test="deleted!=null">
+                deleted = #{deleted},
+            </if>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="moddatetime!=null">
+                moddatetime = #{moddatetime},
+            </if>
+            <if test="modoperator!=null">
+                modoperator = #{modoperator},
+            </if>
+        </set>
+        WHERE
+        ID = #{id}
+    </update>
+
+    <update id="updateCycleTypeStatus" parameterType="map">
+		UPDATE treatmentcycletypes SET
+			deleted = #{deleted},
+			moddatetime = #{moddatetime},
+			modoperator = #{modoperator}
+		WHERE 
+			ID = #{id} 
+	</update>
+
+    <select id="checkCycleType" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(0) as c 
+		from 
+			treatmentcycletypes
+		where 
+			deleted = false
+		and 
+			name = #{name}
+	</select>
+</mapper>
+

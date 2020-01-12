@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.CustomerMapper">
+    <resultMap id="rm" type="sop.persistence.beans.Customer">
+        <result property="cuCode" jdbcType="VARCHAR" column="cu_code"/>
+        <result property="cuName" jdbcType="VARCHAR" column="cu_name"/>
+        <result property="cuChn" jdbcType="VARCHAR" column="cu_chn"/>
+        <result property="cuConPer" jdbcType="VARCHAR" column="cu_con_per"/>
+        <result property="cuAdd" jdbcType="VARCHAR" column="cu_add"/>
+        <result property="cuTel" jdbcType="VARCHAR" column="cu_tel"/>
+        <result property="cuFax" jdbcType="VARCHAR" column="cu_fax"/>
+        <result property="cuPayTm" jdbcType="VARCHAR" column="cu_pay_tm"/>
+        <result property="cuCredit" jdbcType="DECIMAL" column="cu_credit"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="cuGlInfSi" jdbcType="VARCHAR" column="cu_gl_inf_si"/>
+        <result property="cuWebsiteUrl" jdbcType="VARCHAR" column="cu_website_url"/>
+        <result property="cuFSCCertCode" jdbcType="VARCHAR" column="cu_FSC_cert_code"/>
+        <result property="cuFSCValidFm" jdbcType="TIMESTAMP" column="cu_FSC_valid_fm"/>
+        <result property="cuFSCValidTo" jdbcType="TIMESTAMP" column="cu_FSC_valid_to"/>
+    </resultMap>
+
+    <resultMap type="sop.vo.CustomerVo" id="customerVo">
+        <result property="cuCode" jdbcType="VARCHAR" column="cu_code"/>
+        <result property="cuName" jdbcType="VARCHAR" column="cu_name"/>
+        <result property="cuChn" jdbcType="VARCHAR" column="cu_chn"/>
+        <result property="cuConPer" jdbcType="VARCHAR" column="cu_con_per"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		cu_code,
+		cu_name,
+		cu_chn,
+		cu_con_per,
+		cu_add,
+		cu_tel,
+		cu_fax,
+		cu_pay_tm,
+		cu_credit,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date,
+		cu_website_url,
+		cu_gl_inf_si,
+		cu_FSC_cert_code,
+		cu_FSC_valid_fm,
+		cu_FSC_valid_to
+	</sql>
+
+    <sql id="Insert_Column_List">
+		cu_code,
+		cu_name,
+		cu_chn,
+		cu_con_per,
+		cu_add,
+		cu_tel,
+		cu_fax,
+		cu_pay_tm,
+		cu_credit,
+		crt_usr,
+		crt_date,
+		cu_website_url,
+		cu_gl_inf_si,
+		cu_FSC_cert_code,
+		cu_FSC_valid_fm,
+		cu_FSC_valid_to
+	</sql>
+    <select id="getCustomerByCode" resultMap="rm" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from cust where cu_code = #{cuCode}
+
+    </select>
+    <select id="findPageBreakByCondition" resultMap="customerVo"
+            parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from
+        cust
+        Where
+        1 = 1
+        <if test="keywords != null">
+            AND (
+            cu_code LIKE "%"#{keywords}"%"
+            or cu_name LIKE "%"#{keywords}"%"
+            or cu_chn LIKE "%"#{keywords}"%"
+            or cu_con_per LIKE "%"#{keywords}"%"
+            )
+        </if>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by mod_date DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="findNumberByCondition" resultType="java.lang.Integer"
+            parameterType="map">
+        select
+        count(0) as c
+        from
+        cust
+        <if test="keywords != null">
+            Where
+            cu_code LIKE "%"#{keywords}"%"
+        </if>
+    </select>
+
+
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        cust (
+        <include refid="Insert_Column_List"/>
+        )
+        VALUES (
+        #{cuCode},
+        #{cuName},
+        #{cuChn},
+        #{cuConPer},
+        #{cuAdd},
+        #{cuTel},
+        #{cuFax},
+        #{cuPayTm},
+        #{cuCredit},
+        #{crtUsr},
+        #{crtDate},
+        #{cuGlInfSi},
+        #{cuWebsiteUrl},
+        #{cuFSCCertCode},
+        #{cuFSCValidFm},
+        #{cuFSCValidTo}
+        )
+    </insert>
+
+    <!-- 更新 -->
+    <update id="updateSelective" parameterType="sop.persistence.beans.Customer">
+        UPDATE cust
+        <set>
+            <if test="cuCode != null">
+                cu_code = #{cuCode},
+            </if>
+            <if test="cuName != null">
+                cu_name = #{cuName},
+            </if>
+            <if test="cuChn != null">
+                cu_chn = #{cuChn},
+            </if>
+            <if test="cuConPer != null">
+                cu_con_per = #{cuConPer},
+            </if>
+            <if test="cuAdd != null">
+                cu_add = #{cuAdd},
+            </if>
+            <if test="cuTel != null">
+                cu_tel = #{cuTel},
+            </if>
+            <if test="cuFax != null">
+                cu_fax = #{cuFax},
+            </if>
+            <if test="cuPayTm != null">
+                cu_pay_tm = #{cuPayTm},
+            </if>
+            <if test="cuCredit != null">
+                cu_credit = #{cuCredit},
+            </if>
+            <if test="modUsr != null">
+                mod_usr = #{modUsr},
+            </if>
+            <if test="modDate != null">
+                mod_date = #{modDate},
+            </if>
+            <if test="cuGlInfSi != null">
+                cu_gl_inf_si = #{cuGlInfSi},
+            </if>
+            <if test="cuWebsiteUrl != null">
+                cu_website_url = #{cuWebsiteUrl},
+            </if>
+            <if test="cuFSCCertCode != null">
+                cu_FSC_cert_code = #{cuFSCCertCode},
+            </if>
+            <if test="cuFSCValidFm != null">
+                cu_FSC_valid_fm = #{cuFSCValidFm},
+            </if>
+            <if test="cuFSCValidTo != null">
+                cu_FSC_valid_to = #{cuFSCValidTo}
+            </if>
+        </set>
+        WHERE
+        cu_code = #{cuCode}
+    </update>
+
+    <update id="updateStatus" parameterType="map">
+		UPDATE cust SET
+		mod_usr = #{modUsr},
+		mod_date = #{modDate},
+		deleted = #{deleted}
+		WHERE
+		cu_code = #{cuCode}
+	</update>
+
+    <delete id="deleteCustomer" parameterType="map">
+		delete
+		from
+			cust
+		where
+			cu_code = #{fkCuCode}
+	</delete>
+
+    <select id="getCountByFkCuCode" resultType="java.lang.Integer" parameterType="map">
+		select
+			count(0)
+		from
+			cust
+		where
+			cu_code = #{fkCuCode}
+	</select>
+    <!-- 获取所有的customer-->
+    <select id="getAllCustomers" resultMap="customerVo">
+		select 
+			cu_code,
+			cu_name
+		from
+			cust
+		order by cu_name asc	
+	</select>
+
+    <select id="getAttnsByCuCode" resultMap="custAttn" parameterType="map">
+		select 
+			*
+		from
+			cust_attn
+		where
+			cu_code = #{fkCuCode}
+		order by id asc	
+	</select>
+
+    <resultMap type="sop.persistence.beans.CustAttn" id="custAttn">
+        <result property="cuCode" jdbcType="VARCHAR" column="cu_code"/>
+        <result property="attention" jdbcType="VARCHAR" column="attention"/>
+    </resultMap>
+
+    <insert id="insertCustAttn" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into
+		cust_attn (
+			`cu_code`,
+			`attention`
+		)
+		values (
+			#{cuCode},
+			#{attention}
+		)
+	</insert>
+
+    <delete id="delCustAttns" parameterType="map">
+		delete
+		from
+			cust_attn
+		where 
+			cu_code = #{cuCode}
+	</delete>
+
+    <select id="getCustomerNameByCuCode" parameterType="map" resultType="java.lang.String">
+		select 
+			cu_name
+		from
+			cust
+		where
+			cu_code = #{fkCuCode}
+	</select>
+</mapper>

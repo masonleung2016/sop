@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.PackingDetailMapper">
+    <sql id="Base_Column_List">
+		pd_no,
+		category,
+		template,
+		pd_detail,
+		co_code,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date
+
+	</sql>
+    <!-- 查询charge列表 -->
+    <select id="getPackingDetailByCondition" resultMap="packingDetailMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        packing_detail
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                pd_no LIKE "%"#{keywords}"%"
+                or category LIKE "%"#{keywords}"%"
+                or template LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by pd_no ASC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getPackingDetailNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(1) as c
+        from
+        packing_detail
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                pd_no LIKE "%"#{keywords}"%"
+                or category LIKE "%"#{keywords}"%"
+                or template LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <!-- 获取所有charges -->
+    <select id="getAllPackingDetail" resultMap="packingDetailMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        packing_detail
+        order by pd_no asc
+    </select>
+    <resultMap id="packingDetailMap" type="sop.persistence.beans.PackingDetail">
+        <result property="pdNo" jdbcType="VARCHAR" column="pd_no"/>
+        <result property="category" jdbcType="VARCHAR" column="category"/>
+        <result property="template" jdbcType="VARCHAR" column="template"/>
+        <result property="pdDetail" jdbcType="VARCHAR" column="pd_detail"/>
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 根据pdNo获取packing_detail -->
+    <select id="getPackingDetailByNo" resultMap="packingDetailMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        packing_detail
+        where
+        pd_no = #{pdNo}
+    </select>
+
+
+    <!-- 更新packing_detail -->
+    <update id="updatePackingDetail" parameterType="map">
+		update
+			packing_detail
+		set
+			category = #{category},
+			template = #{template},
+			pd_detail = #{pdDetail},
+			co_code = #{coCode},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where 
+			pd_no = #{pdNo}
+	</update>
+
+    <!-- 增加company -->
+    <insert id="insertPackingDetail" parameterType="map">
+        insert into packing_detail(
+        <include refid="Base_Column_List"/>
+        ) values (
+        #{pdNo},
+        #{category},
+        #{template},
+        #{pdDetail},
+        #{coCode},
+        #{crtUsr},
+        #{crtDate},
+        #{modUsr},
+        #{modDate}
+        )
+    </insert>
+
+    <delete id="deletePackingDetail" parameterType="map">
+		delete
+		from
+			packing_detail
+		where
+			pd_no = #{pdNo}
+	</delete>
+</mapper>

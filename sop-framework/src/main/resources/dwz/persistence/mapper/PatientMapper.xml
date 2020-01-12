@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.PatientMapper">
+    <resultMap id="rm" type="dwz.persistence.beans.Patient">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="patientId" jdbcType="VARCHAR" column="patientID"/>
+        <result property="name" jdbcType="VARCHAR" column="name"/>
+    </resultMap>
+    <resultMap id="patientInfo" type="dwz.persistence.beans.Patient">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="patientId" jdbcType="VARCHAR" column="patientID"/>
+        <result property="title" jdbcType="VARCHAR" column="title"/>
+        <result property="name" jdbcType="VARCHAR" column="name"/>
+        <result property="address1_1" jdbcType="VARCHAR" column="address1_1"/>
+        <result property="address1_pc" jdbcType="VARCHAR" column="address1_pc"/>
+        <result property="email" jdbcType="VARCHAR" column="email"/>
+        <result property="phone" jdbcType="VARCHAR" column="phone"/>
+        <result property="phone2" jdbcType="VARCHAR" column="phone2"/>
+        <result property="donor_anon_receive" jdbcType="BIT" column="donor_anon_receive"/>
+        <result property="donor_known_receive" jdbcType="BIT" column="donor_known_receive"/>
+        <result property="donor_known_donate" jdbcType="BIT" column="donor_known_donate"/>
+        <result property="male" jdbcType="BIT" column="male"/>
+        <result property="dob" jdbcType="DATE" column="dob"/>
+        <result property="moddatetime" jdbcType="DATE" column="moddatetime"/>
+        <result property="deleted" jdbcType="BIT" column="deleted"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		patientID,
+		name
+	</sql>
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="dwz.persistence.beans.Patient">
+		INSERT INTO patients(
+			patientID,
+			title,
+			name,
+			name_pinyin,
+			address1_1,
+			address1_pc,
+			email,
+			phone,
+			phone2,
+			donor_anon_receive,
+			donor_known_receive,
+			donor_known_donate,
+			male,
+			dob,
+			moddatetime,
+			deleted,
+			modoperator
+		) VALUES (
+			#{patientId},
+			#{title},
+			#{name},
+			#{name_pinyin},
+			#{address1_1},
+			#{address1_pc},
+			#{email},
+			#{phone},
+			#{phone2},
+			#{donor_anon_receive},
+			#{donor_known_receive},
+			#{donor_known_donate},
+			#{male},
+			#{dob},
+			#{moddatetime},
+			#{deleted},
+			#{modoperator}
+		)
+	</insert>
+
+    <!-- 更新 -->
+    <update id="updateSelective" parameterType="dwz.persistence.beans.Patient">
+        UPDATE patients
+        <set>
+            <if test="patientId!=null">
+                patientId = #{patientId},
+            </if>
+            <if test="male!=null">
+                male = #{male},
+            </if>
+            <if test="title!=null">
+                title = #{title},
+            </if>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="dob!=null">
+                dob = #{dob},
+            </if>
+            <if test="donor_anon_receive!=null">
+                donor_anon_receive = #{donor_anon_receive},
+            </if>
+            <if test="donor_known_receive!=null">
+                donor_known_receive = #{donor_known_receive},
+            </if>
+            <if test="donor_known_donate!=null">
+                donor_known_donate = #{donor_known_donate},
+            </if>
+            <if test="address1_1!=null">
+                address1_1 = #{address1_1},
+            </if>
+            <if test="address1_pc!=null">
+                address1_pc = #{address1_pc},
+            </if>
+            <if test="phone!=null">
+                phone = #{phone},
+            </if>
+            <if test="phone2!=null">
+                phone2 = #{phone2}
+            </if>
+        </set>
+        WHERE
+        ID = #{id}
+    </update>
+
+    <select id="getPatientById" resultMap="patientInfo" parameterType="int">
+        select * from patients
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            id = #{id}
+        </trim>
+    </select>
+
+    <select id="checkRepeatPatient" resultType="java.lang.Integer" parameterType="map">
+        select count(0) as c from patients
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            patientID = #{patientId}
+            <if test="id != null">
+                AND (
+                id != #{id}
+                )
+            </if>
+        </trim>
+    </select>
+
+    <select id="checkPatientByIdMale" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        patients a
+        left join
+        partners b
+        <choose>
+            <when test="male == true">
+                on a.id = b.fk_male
+            </when>
+            <otherwise>
+                on a.id = b.fk_female
+            </otherwise>
+        </choose>
+        where
+        a.id = #{id}
+        and
+        <choose>
+            <when test="male == true">
+                b.fk_female is null
+            </when>
+            <otherwise>
+                b.fk_male is null
+            </otherwise>
+        </choose>
+    </select>
+    <!-- 按Id删除 -->
+    <delete id="delete" parameterType="int">
+		DELETE FROM patients WHERE
+		ID = #{id} 
+	</delete>
+    <select id="findPageBreakByCondition" resultMap="rm" parameterType="map">
+        SELECT
+        *
+        from patients
+
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                patientId LIKE "%"#{keywords}"%"
+                or name LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by id DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+        select count(0) as c from patients
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                patientId LIKE "%"#{keywords}"%"
+                or name LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <!-- 查询未配对patient -->
+    <select id="findPartnerNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+        select count(0) as c
+        from
+        patients as a
+        where
+        a.male = #{male}
+        and
+        a.id in
+        (
+        select
+        <choose>
+            <when test="male == true">
+                b.fk_male
+            </when>
+            <otherwise>
+                b.fk_female
+            </otherwise>
+        </choose>
+        from partners as b
+        where
+        <choose>
+            <when test="male == true">
+                b.fk_female is null
+                <if test="id != null">
+                    or
+                    b.fk_male = #{id}
+                </if>
+            </when>
+            <otherwise>
+                b.fk_male is null
+                <if test="id != null">
+                    or
+                    b.fk_female = #{id}
+                </if>
+            </otherwise>
+        </choose>
+
+        )
+        <if test="keywords != null">
+            AND (
+            patientId LIKE "%"#{keywords}"%"
+            or name LIKE "%"#{keywords}"%"
+            )
+        </if>
+    </select>
+    <select id="findPartnerByCondition" resultMap="rm" parameterType="map">
+        select
+        id,
+        patientID,
+        name
+        from
+        patients as a
+        where
+        a.male = #{male}
+        and
+        a.id in
+        (
+        select
+        <choose>
+            <when test="male == true">
+                b.fk_male
+            </when>
+            <otherwise>
+                b.fk_female
+            </otherwise>
+        </choose>
+        from partners as b
+        where
+        <choose>
+            <when test="male == true">
+                b.fk_female is null
+                <if test="id != null">
+                    or
+                    b.fk_male = #{id}
+                </if>
+            </when>
+            <otherwise>
+                b.fk_male is null
+                <if test="id != null">
+                    or
+                    b.fk_female = #{id}
+                </if>
+            </otherwise>
+        </choose>
+
+        )
+        <if test="keywords != null">
+            AND (
+            patientId LIKE "%"#{keywords}"%"
+            or name LIKE "%"#{keywords}"%"
+            )
+        </if>
+    </select>
+    <!-- 用于添加病人功能的查询未配对的病人 -->
+    <select id="findPartnerForAddByCondition" resultMap="rm" parameterType="map">
+        select
+        id,
+        patientID,
+        name
+        from patients as a
+        where a.male != #{male}
+        and a.id not in
+        (select
+        <choose>
+            <when test="male == true">
+                b.fk_female
+            </when>
+            <otherwise>
+                b.fk_male
+            </otherwise>
+        </choose>
+        from partners as b
+        )
+        <if test="keywords != null">
+            AND (
+            patientId LIKE "%"#{keywords}"%"
+            or name LIKE "%"#{keywords}"%"
+            )
+        </if>
+    </select>
+
+    <!-- workarea 模糊查找病人 -->
+    <select id="findByNamePatientId" resultMap="patientsForWorkarea" parameterType="java.lang.String">
+		select distinct
+		a.id as id,
+		a.patientID as patientId,
+		a.name as patientName,
+		a.male as male,
+		a.dob as dob,
+		b.id as fkcouple
+		from patients as a,
+			 partners as b,
+			 treatmentcycles as c
+		where
+				c.fkcouple = b.id
+		and
+			(
+				b.fk_male = a.id
+				or
+				b.fk_female = a.id
+			)
+		and
+			(
+				a.patientId LIKE "%"#{keywords}"%"
+				or 
+				a.name LIKE "%"#{keywords}"%"
+				or 
+				a.name_pinyin LIKE "%"#{keywords}"%"
+			)
+	</select>
+
+    <resultMap id="patientsForWorkarea" type="match.vo.PatientWorkareaVo">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="fkcouple" property="fkcouple" jdbcType="INTEGER"/>
+        <result column="patientId" property="patientId" jdbcType="VARCHAR"/>
+        <result column="patientName" property="patientName" jdbcType="VARCHAR"/>
+        <result column="male" property="male" jdbcType="BIT"/>
+        <result column="dob" property="dob" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- workarea 查找夫妇 -->
+    <select id="getCouleById" resultMap="coule" parameterType="java.lang.Integer">
+		select 
+			a.id as id,
+			b.id as husbandId,
+			b.patientId as husbandPatientId,
+			b.name as husbandName,
+			b.male as husbandMale,
+			b.dob as husbandDob,
+			c.id as wifeId,
+			c.patientId as wifePatientId,
+			c.name as wifeName,
+			c.male as wifeMale,
+			c.dob as wifeDob
+		from partners as a,
+			 patients as b,
+			 patients as c
+		where
+			a.fk_male = b.id
+		and
+			a.fk_female = c.id
+		and
+			a.id = #{id}
+	</select>
+
+    <resultMap id="coule" type="match.vo.CoupleVo">
+        <result column="id" property="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        <result column="husbandId" property="husbandId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        <result column="husbandPatientId" property="husbandPatientId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="husbandName" property="husbandName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="husbandMale" property="husbandMale" jdbcType="BIT" javaType="boolean"/>
+        <result column="husbandDob" property="husbandDob" jdbcType="DATE" javaType="java.lang.String"/>
+        <result column="wifeId" property="wifeId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        <result column="wifePatientId" property="wifePatientId" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="wifeName" property="wifeName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="wifeMale" property="wifeMale" jdbcType="BIT" javaType="boolean"/>
+        <result column="wifeDob" property="wifeDob" jdbcType="DATE" javaType="java.lang.String"/>
+    </resultMap>
+
+    <select id="getLastId" resultType="java.lang.Integer">
+		select 
+			id
+		from 
+			patients
+		order by id DESC
+		limit 1
+	</select>
+
+    <select id="checkPatientId" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(0) as c
+		from 
+			patients a
+		where
+			a.deleted = false
+		and
+			a.patientId = #{patientId}
+	</select>
+
+    <select id="checkRepeatPatientVo" resultType="java.lang.Integer" parameterType="map">
+        select count(0) as c from patients
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            patientID = #{partnerpatientId}
+            <if test="partnerid != null">
+                AND (
+                id != #{partnerid}
+                )
+            </if>
+            <if test="id != null">
+                AND (
+                id != #{id}
+                )
+            </if>
+        </trim>
+    </select>
+</mapper>
+

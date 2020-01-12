@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.ContainerMapper">
+    <resultMap id="rm" type="dwz.persistence.beans.Container">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="type" jdbcType="VARCHAR" column="type"/>
+        <result property="imageIndex" jdbcType="VARCHAR" column="imageindex"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		type,
+		imageindex
+	</sql>
+
+    <select id="load" parameterType="java.lang.Integer" resultMap="rm">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM container
+        WHERE
+        ID = #{id}
+    </select>
+
+    <select id="findPageBreakByCondition" resultMap="rm" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from container
+        where
+        deleted = false
+        <if test="keywords != null">
+            AND (
+            type LIKE "%"#{keywords}"%"
+            )
+        </if>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by id DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        container
+        where
+        deleted = false
+        <if test="keywords != null">
+            AND (
+            type LIKE "%"#{keywords}"%"
+            )
+        </if>
+    </select>
+
+    <select id="isUniqueContainerType" parameterType="map" resultType="java.lang.Integer">
+		select count(0) as c
+		from container where id != #{id} and type = #{type} and deleted ='false'
+	</select>
+
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO container (
+			ID,
+			TYPE,
+			IMAGEINDEX,
+			DELETED,
+			GUID,
+			MODDATETIME,
+			MODOPERATOR,
+			MODNEXTRECORD
+		) VALUES (
+			#{id},
+			#{type},
+			#{imageIndex},
+			#{deleted},
+			#{guid},
+			#{modDatetime},
+			#{modOperator},
+			#{modNextRecord}
+		)
+	</insert>
+
+    <!-- 更新 -->
+    <update id="updateSelective" parameterType="dwz.persistence.beans.Container">
+        UPDATE container
+        <set>
+            <if test="type!=null">
+                type = #{type},
+            </if>
+            <if test="imageIndex!=null">
+                imageindex = #{imageIndex}
+            </if>
+        </set>
+        WHERE
+        ID = #{id}
+    </update>
+
+    <update id="update" parameterType="dwz.persistence.beans.Container">
+		UPDATE container SET
+			type = #{type},
+			imageindex = #{imageIndex}
+		WHERE 
+			ID = #{id} 
+	</update>
+
+    <update id="updateStatus" parameterType="map">
+		UPDATE container SET
+			deleted = #{deleted},
+			moddatetime = #{moddatetime}
+		WHERE 
+			ID = #{id}
+	</update>
+    <!-- 获取所有活动的container -->
+    <select id="getAllWorkingContainers" resultMap="rm">
+		select 
+	        distinct
+	        b.id,
+	        b.type
+		from 
+			nodes a
+		inner join container b
+			on a.resultContainerId = b.id
+	</select>
+    <!-- 获取所有的container -->
+    <select id="getAllContainers" resultMap="rm">
+		select 
+	        b.id,
+	        b.type
+		from 
+			container b
+		where
+			b.deleted = false
+	</select>
+
+    <!-- 检验标签是否被使用到流程图中 -->
+    <select id="checkContainer" parameterType="map" resultType="java.lang.Integer">
+		select count(0) as c
+		from 
+			nodes a
+		where 
+			a.resultContainerId = #{containerId}
+	</select>
+</mapper>
+

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.TagMapper">
+
+    <resultMap id="rm" type="dwz.persistence.beans.Tag">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="tagId" jdbcType="VARCHAR" column="tagId"/>
+        <result property="fkpatient" jdbcType="INTEGER" column="fkpatient"/>
+        <result property="patientId" jdbcType="VARCHAR" column="patientId"/>
+        <result property="patientName" jdbcType="VARCHAR" column="patientName"/>
+        <result property="fkcontainer" jdbcType="INTEGER" column="fkcontainer"/>
+        <result property="containerName" jdbcType="VARCHAR" column="containerName"/>
+        <result property="imageindex" jdbcType="INTEGER" column="imageindex"/>
+        <result property="fkcouple" jdbcType="INTEGER" column="fkcouple"/>
+        <result property="sex" jdbcType="BIT" column="sex"/>
+        <result property="container_count" jdbcType="INTEGER" column="container_count"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		id,
+		type,
+		imageindex
+	</sql>
+
+    <select id="getTagByTagId" parameterType="java.lang.String" resultMap="rm" resultType="dwz.persistence.beans.Tag">
+		SELECT 
+			a.id as id,
+			a.tagId as tagId,
+			a.fkpatient as fkpatient,
+			b.patientId as patientId,
+			b.name as patientName,
+			a.fkcontainer as fkcontainer,
+			c.type as containerName,
+			c.imageindex as imageindex,
+			a.fkcouple as fkcouple,
+			b.male as sex,
+			a.container_count as container_count
+		FROM
+			tags a
+			left join patients b
+				on a.fkpatient = b.id
+			left join container c
+				on a.fkcontainer = c.id
+		WHERE 
+			tagId = #{tagId}
+		AND 
+			disposed = 0
+	</select>
+
+    <!-- 增加tag -->
+    <insert id="addTag" useGeneratedKeys="true" keyProperty="id" parameterType="match.vo.WitnessVo">
+		INSERT INTO tags (
+			`tagId`,
+			`fkpatient`,
+			`fkcontainer`,
+			`fkcouple`,
+			`fkcycle`,
+			`disposed`
+		) VALUES (
+			#{tagId},
+			#{fkpatient},
+			#{resultContainerId},
+			#{fkcouple},
+			#{fkcycle},
+			0
+		)
+	</insert>
+
+    <!-- 更新 tag-->
+    <update id="updateTag" parameterType="match.vo.WitnessVo">
+        UPDATE tags
+        <set>
+            <if test="fkpatient!=null">
+                fkpatient = #{fkpatient},
+            </if>
+            <if test="resultContainerId!=null">
+                fkcontainer = #{resultContainerId},
+            </if>
+            <if test="fkcouple!=null">
+                fkcouple = #{fkcouple},
+            </if>
+            <if test="fkcycle!=null">
+                fkcycle = #{fkcycle},
+            </if>
+            container_count = container_count + 1
+        </set>
+        WHERE
+        tagId = #{tagId}
+    </update>
+
+    <!-- assign tag更改tag状态-->
+    <update id="assign" parameterType="map">
+		UPDATE 
+			tags 
+		SET
+			disposed = 1,
+			moddatetime = #{importdatetime}
+		WHERE 
+			tagId = #{tagId}
+		AND
+			disposed = 0
+	</update>
+
+    <!-- 获取核对点前获取病人该芯片的总数 -->
+    <select id="getContainerCount" resultType="java.lang.Integer"
+            parameterType="match.vo.WitnessVo">
+		select
+		container_count
+		from
+		tags
+		where
+		fkpatient = #{fkpatient}
+		and
+		fkcontainer = #{resultContainerId}
+		order by
+		container_count desc
+		limit 1
+	</select>
+
+    <!-- 获取该病人的芯片及其数量-->
+    <select id="getContainersByFkpatient" resultMap="containerCount"
+            parameterType="match.vo.WitnessVo">
+		select
+			b.type as containerName,
+			a.container_count as count
+		from
+			tags a
+		left join 
+			container b
+		on a.fkcontainer = b.id
+		where
+			fkpatient = #{fkpatient}
+		and disposed = 0
+	</select>
+
+    <!-- 芯片及其数量 -->
+    <resultMap id="containerCount" type="dwz.framework.vo.ContainerCount">
+        <result property="containerName" jdbcType="VARCHAR" column="containerName"/>
+        <result property="count" jdbcType="INTEGER" column="count"/>
+    </resultMap>
+
+    <!-- 插入 -->
+    <insert id="addAssignTag" useGeneratedKeys="true" keyProperty="id" parameterType="dwz.persistence.beans.Tag">
+		INSERT INTO tags (
+			`tagId`,
+			`container_count`,
+			`fkpatient`,
+			`fkcontainer`,
+			`fkcouple`,
+			`disposed`,
+			`importdatetime`,
+			`moddatetime`
+		) VALUES (
+			#{tagId},
+			#{container_count},
+			#{fkpatient},
+			#{fkcontainer},
+			#{fkcouple},
+			0,
+			#{importdatetime},
+			#{modatetime}
+		)
+	</insert>
+
+    <!-- 根据tagId获取数量-->
+    <select id="getTagCountByTagId" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select count(0) as c 
+		from 
+			tags
+		where
+			tagId = #{tagId}
+	</select>
+
+    <!-- 获取已使用tag的数量 -->
+    <select id="getUsedTagsCount" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(distinct a.tagId)
+        from
+        tags a
+        where
+        1=1
+        <if test="startDate != null">
+            and
+            a.importdatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.importdatetime &lt;= #{endDate}
+        </if>
+    </select>
+</mapper>
+

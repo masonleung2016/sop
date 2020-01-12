@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.TxnMapper">
+    <sql id="Base_Column_List">
+		id
+	</sql>
+
+    <!-- 获取所有的offersheet种类 -->
+    <select id="getAllTxns" resultMap="txnVoListMap">
+		select 
+			txt_code,
+			txt_desc
+		from
+			txtype
+		order by txt_code asc
+	</select>
+
+    <!-- 查询txn列表 -->
+    <select id="getTxnListByCondition" resultMap="txnVoListMap" parameterType="map">
+        select
+        txt_code,
+        txt_desc
+        from
+        txtype
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                txt_code LIKE "%"#{keywords}"%"
+                or txt_desc LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by mod_date DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getTxnListNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        txtype
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                txt_code LIKE "%"#{keywords}"%"
+                or txt_desc LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <resultMap id="txnVoListMap" type="sop.vo.TxnVo">
+        <result property="txtCode" jdbcType="CHAR" column="txt_code"/>
+        <result property="txtDesc" jdbcType="VARCHAR" column="txt_desc"/>
+    </resultMap>
+    <!-- 根据fkChgCode获取txn -->
+    <select id="getTxnByFkTxtCode" resultMap="txn" parameterType="map">
+		select 
+			txt_code,
+			txt_in,
+			txt_out,
+			txt_desc,
+			txt_def_loc_in,
+			txt_def_loc_out,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		from
+			txtype
+		where
+			txt_code = #{fkTxtCode}
+	</select>
+    <resultMap id="txn" type="sop.persistence.beans.Txn">
+        <result property="txtCode" jdbcType="CHAR" column="txt_code"/>
+        <result property="txtIn" jdbcType="CHAR" column="txt_in"/>
+        <result property="txtOut" jdbcType="CHAR" column="txt_out"/>
+        <result property="txtDesc" jdbcType="VARCHAR" column="txt_desc"/>
+        <result property="txtDefLocIn" jdbcType="VARCHAR" column="txt_def_loc_in"/>
+        <result property="txtDefLocOut" jdbcType="VARCHAR" column="txt_def_loc_out"/>
+
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+
+    <!-- 更新company -->
+    <update id="updateTxn" parameterType="map">
+		UPDATE
+			txtype
+		SET
+			txt_desc = #{txtDesc},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		WHERE 
+			txt_code = #{txtCode}
+	</update>
+    <!-- 获取指定uCode数量 -->
+    <select id="getCountByFkTxtCode" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(1) as c
+		from
+			txtype a
+		where
+			a.txt_code = #{fkTxtCode}
+	</select>
+    <!-- 增加company -->
+    <insert id="insertTxn" parameterType="map">
+		INSERT INTO txtype(
+			txt_code,
+			txt_in,
+			txt_out,
+			txt_desc,
+			txt_def_loc_in,
+			txt_def_loc_out,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) VALUES (
+			#{txtCode},
+			#{txtIn},
+			#{txtOut},
+			#{txtDesc},
+			#{txtDefLocIn},
+			#{txtDefLocOut},
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+
+    <delete id="deleteTxn" parameterType="map">
+		delete
+		from
+			txtype
+		where
+			txt_code = #{fkTxtCode}
+	</delete>
+</mapper>

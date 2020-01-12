@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.CurrencyMapper">
+    <resultMap id="rm" type="sop.persistence.beans.Currency">
+        <result property="ccyCode" jdbcType="VARCHAR" column="ccy_code"/>
+        <result property="ccyDesc" jdbcType="VARCHAR" column="ccy_desc"/>
+        <result property="ccyChn" jdbcType="INTEGER" column="ccy_chn"/>
+        <result property="ccyRate" jdbcType="DECIMAL" column="ccy_rate"/>
+        <result property="ccyRef" jdbcType="VARCHAR" column="ccy_ref"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		ccy_code,
+		ccy_desc,
+		ccy_chn,
+		ccy_rate,
+		ccy_ref,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date
+	</sql>
+
+    <sql id="Insert_Column_List">
+		ccy_code,
+		ccy_desc,
+		ccy_chn,
+		ccy_rate,
+		ccy_ref,
+		crt_usr,
+		crt_date
+	</sql>
+    <select id="getCurrencyByName" resultMap="rm" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from curr where ccy_code = #{ccyCode}
+
+    </select>
+    <select id="findPageBreakByCondition" resultMap="rm" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from
+        curr
+        where
+        1 = 1
+        <if test="keywords != null">
+            AND (
+            ccy_code LIKE "%"#{keywords}"%"
+            or ccy_desc LIKE "%"#{keywords}"%"
+            or ccy_chn LIKE "%"#{keywords}"%"
+            )
+        </if>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by mod_date DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="findNumberByCondition" resultType="java.lang.Integer"
+            parameterType="map">
+		select count(0) as c from curr 
+
+	</select>
+
+
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO curr (
+        <include refid="Insert_Column_List"/>
+        ) VALUES (
+        #{ccyCode},
+        #{ccyDesc},
+        #{ccyChn},
+        #{ccyRate},
+        #{ccyRef},
+        #{crtUsr},
+        #{crtDate}
+        )
+    </insert>
+
+    <!-- 更新 -->
+    <update id="updateSelective" parameterType="sop.persistence.beans.Currency">
+        UPDATE curr
+        <set>
+            <if test="ccyCode!=null">
+                ccy_code = #{ccyCode},
+            </if>
+            <if test="ccyDesc!=null">
+                ccy_desc = #{ccyDesc},
+            </if>
+            <if test="ccyChn!=null">
+                ccy_chn = #{ccyChn},
+            </if>
+            <if test="ccyRate!=null">
+                ccy_rate = #{ccyRate},
+            </if>
+            <if test="modUsr!=null">
+                mod_usr = #{modUsr},
+            </if>
+            <if test="modDate!=null">
+                mod_date = #{modDate}
+            </if>
+        </set>
+        WHERE
+        ccy_code = #{ccyCode}
+    </update>
+
+    <update id="updateStatus" parameterType="map">
+		UPDATE curr SET
+		mod_usr = #{modUsr},
+		mod_date = #{modDate}
+		WHERE
+		ccy_code = #{ccyCode}
+	</update>
+
+    <delete id="deleteCurrency" parameterType="map">
+		delete
+		from
+			curr
+		where
+			ccy_code = #{fkCcyCode}
+	</delete>
+
+    <select id="getCountByFkCcyCode" parameterType="map" resultType="java.lang.Integer">
+		select
+			count(0)
+		from
+			curr
+		where
+			ccy_code = #{fkCcyCode}
+	</select>
+
+    <select id="getAllCurrs" resultMap="curr">
+		select 
+			ccy_code,
+			ccy_desc
+		from
+			curr
+	</select>
+
+    <resultMap id="curr" type="sop.persistence.beans.Currency">
+        <result property="ccyCode" jdbcType="VARCHAR" column="ccy_code"/>
+        <result property="ccyDesc" jdbcType="VARCHAR" column="ccy_desc"/>
+    </resultMap>
+</mapper>
+

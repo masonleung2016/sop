@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.ItemDocMapper">
+    <sql id="Base_Column_List">
+		doc_no,
+		of_no,
+		so_no,
+		po_no,
+		qc_no,
+		category,
+		doc_type,
+		short_name,
+		path,
+		co_code,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date
+
+	</sql>
+    <!-- 查询charge列表 -->
+    <select id="getItemDocByCondition" resultMap="itemDocMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        item_doc
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                doc_no LIKE "%"#{keywords}"%"
+                or category LIKE "%"#{keywords}"%"
+                or short_name LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by doc_no ASC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getItemDocNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(1) as c
+        from
+        item_doc
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                doc_no LIKE "%"#{keywords}"%"
+                or category LIKE "%"#{keywords}"%"
+                or short_name LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <!-- 获取所有charges -->
+    <select id="getAllItemDoc" resultMap="itemDocMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        item_doc
+        order by doc_no asc
+    </select>
+    <resultMap id="itemDocMap" type="sop.persistence.beans.ItemDoc">
+        <result property="docNo" jdbcType="VARCHAR" column="doc_no"/>
+        <result property="ofNo" jdbcType="VARCHAR" column="of_no"/>
+        <result property="soNo" jdbcType="VARCHAR" column="so_no"/>
+        <result property="poNo" jdbcType="VARCHAR" column="po_no"/>
+        <result property="qcNo" jdbcType="VARCHAR" column="qc_no"/>
+        <result property="docType" jdbcType="VARCHAR" column="doc_type"/>
+        <result property="category" jdbcType="VARCHAR" column="category"/>
+        <result property="shortName" jdbcType="VARCHAR" column="short_name"/>
+        <result property="path" jdbcType="VARCHAR" column="path"/>
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 根据docNo获取item_doc -->
+    <select id="getItemDocByNo" resultMap="itemDocMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        item_doc
+        where
+        doc_no = #{docNo}
+    </select>
+
+
+    <!-- 更新item_doc -->
+    <update id="updateItemDoc" parameterType="map">
+		update
+			item_doc
+		set
+			of_no = #{ofNo},
+			so_no = #{soNo},
+			po_no = #{poNo},
+			qc_no = #{qcNo},
+			category = #{category},
+			doc_type = #{docType},
+			short_name = #{shortName},
+			path = #{path},
+			co_code = #{coCode},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where 
+			doc_no = #{docNo}
+	</update>
+
+    <!-- 增加company -->
+    <insert id="insertItemDoc" parameterType="map">
+        insert into item_doc(
+        <include refid="Base_Column_List"/>
+        ) values (
+        #{docNo},
+        #{ofNo},
+        #{soNo},
+        #{poNo},
+        #{qcNo},
+        #{category},
+        #{docType},
+        #{shortName},
+        #{path},
+        #{coCode},
+        #{crtUsr},
+        #{crtDate},
+        #{modUsr},
+        #{modDate}
+        )
+    </insert>
+
+    <delete id="deleteItemDoc" parameterType="map">
+		delete
+		from
+			item_doc
+		where
+			doc_no = #{value}
+	</delete>
+</mapper>

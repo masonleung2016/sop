@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.PayTermMapper">
+    <resultMap id="rm" type="sop.persistence.beans.PayTerm">
+        <result property="payCode" jdbcType="VARCHAR" column="pay_code"/>
+        <result property="payDesc" jdbcType="VARCHAR" column="pay_desc"/>
+        <result property="payDays" jdbcType="DECIMAL" column="pay_days"/>
+        <result property="payDate" jdbcType="DOUBLE" column="pay_days"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="type"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+
+    <resultMap id="payTermVo" type="sop.vo.PayTermVo">
+        <result property="payCode" jdbcType="VARCHAR" column="pay_code"/>
+        <result property="payDesc" jdbcType="VARCHAR" column="pay_desc"/>
+        <result property="payDays" jdbcType="DECIMAL" column="pay_days"/>
+        <result property="payDate" jdbcType="DOUBLE" column="pay_date"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		pay_code,
+		pay_desc,
+		pay_days,
+		pay_date,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date
+	</sql>
+
+    <select id="load" parameterType="java.lang.Integer" resultMap="rm">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM paytm
+        WHERE
+        pay_code = #{payCode}
+    </select>
+
+    <select id="findPageBreakByCondition" resultMap="payTermVo"
+            parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from paytm
+
+        <if test="keywords != null">
+            where
+            pay_code LIKE "%"#{keywords}"%"
+        </if>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by crt_date DESC
+            </otherwise>
+        </choose>
+
+    </select>
+    <select id="findNumberByCondition" resultType="java.lang.Integer"
+            parameterType="map">
+		select count(0) as c from paytm 
+	</select>
+
+
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+        INSERT INTO paytm (
+        <include refid="Base_Column_List"/>
+        ) VALUES (
+        #{payCode},
+        #{payDesc},
+        #{payDays},
+        #{payDate},
+        #{crtUsr},
+        #{crtDate},
+        #{modUsr},
+        #{modDate}
+        )
+    </insert>
+
+    <!-- 更新 -->
+    <update id="updateSelective" parameterType="sop.persistence.beans.PayTerm">
+        UPDATE paytm
+        <set>
+            <if test="payCode != null">
+                pay_code = #{payCode},
+            </if>
+            <if test="payDesc != null">
+                pay_desc = #{payDesc},
+            </if>
+            <if test="payDays != null">
+                pay_days = #{payDays},
+            </if>
+            <if test="modUsr != null">
+                mod_usr = #{modUsr},
+            </if>
+            <if test="modDate != null">
+                mod_date = #{modDate}
+            </if>
+        </set>
+        WHERE
+        pay_code = #{payCode}
+    </update>
+
+    <update id="updateStatus" parameterType="map">
+		UPDATE paytm SET
+		mod_usr = #{modUsr},
+		mod_date = #{modDate}
+		WHERE
+		pay_code = #{payCode}
+	</update>
+
+    <!-- 根据pay code 查询数量 -->
+    <select id="getCountByFkPayCode" resultType="java.lang.Integer" parameterType="map">
+		select
+			count(0)
+		from
+			paytm
+		where
+			pay_code = #{payCode}
+	</select>
+
+    <!-- 根据pay code 删除payment term -->
+    <delete id="deletePaymentTerm" parameterType="map">
+		delete
+		from
+			paytm
+		where
+			pay_code = #{payCode}
+	</delete>
+
+    <!-- 获取所有的PayTermVo -->
+    <select id="getAllPayTermVo" resultMap="payTermVo">
+		select
+			pay_code,
+			pay_desc,
+			pay_days
+		from
+			paytm
+	</select>
+</mapper>
+

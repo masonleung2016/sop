@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.QcDocFlowMapper">
+    <sql id="Base_Column_List">
+		seq_no,
+		doc_name,
+		doc_type,
+		path,
+		system,
+		material_object,
+		support_upload,
+		photo_required,
+		co_code,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date
+
+	</sql>
+    <!-- 查询charge列表 -->
+    <select id="getQcDocFlowByCondition" resultMap="qcDocFlowMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        qc_doc_flow
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                seq_no LIKE "%"#{keywords}"%"
+                or doc_name LIKE "%"#{keywords}"%"
+                or doc_type LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by seq_no ASC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getQcDocFlowNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(1) as c
+        from
+        qc_doc_flow
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                seq_no LIKE "%"#{keywords}"%"
+                or doc_name LIKE "%"#{keywords}"%"
+                or doc_type LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <!-- 获取所有charges -->
+    <select id="getAllQcDocFlow" resultMap="qcDocFlowMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        qc_doc_flow
+        order by seq_no asc
+    </select>
+    <resultMap id="qcDocFlowMap" type="sop.persistence.beans.QcDocFlow">
+        <result property="seqNo" jdbcType="VARCHAR" column="seq_no"/>
+        <result property="docName" jdbcType="VARCHAR" column="doc_name"/>
+        <result property="docType" jdbcType="VARCHAR" column="doc_type"/>
+        <result property="path" jdbcType="VARCHAR" column="path"/>
+        <result property="system" jdbcType="CHAR" column="system" javaType="Boolean"/>
+        <result property="merterialObject" jdbcType="CHAR" column="merterial_Object" javaType="Boolean"/>
+        <result property="supportUpload" jdbcType="VARCHAR" column="support_upload" javaType="Boolean"/>
+        <result property="photoRequired" jdbcType="VARCHAR" column="photo_required" javaType="Boolean"/>
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 根据seqNo获取qc_doc_flow -->
+    <select id="getQcDocFlowByNo" resultMap="qcDocFlowMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        qc_doc_flow
+        where
+        seq_no = #{seqNo}
+    </select>
+
+
+    <!-- 更新qc_doc_flow -->
+    <update id="updateQcDocFlow" parameterType="map">
+		update
+			qc_doc_flow
+		set
+			doc_name = #{docName},
+			doc_type = #{docType},
+			path = #{path},
+			system = #{system},
+			material_object = #{materialObject},
+			support_upload = #{supportUpload},
+			photo_required = #{photoRequired},			
+			co_code = #{coCode},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where 
+			seq_no = #{seqNo}
+	</update>
+
+    <!-- 增加company -->
+    <insert id="insertQcDocFlow" parameterType="map">
+        insert into qc_doc_flow(
+        <include refid="Base_Column_List"/>
+        ) values (
+        #{seqNo},
+        #{docName},
+        #{docType},
+        #{path},
+        #{system},
+        #{materialObject},
+        #{supportUpload},
+        #{photoRequired},
+        #{coCode},
+        #{crtUsr},
+        #{crtDate},
+        #{modUsr},
+        #{modDate}
+        )
+    </insert>
+
+    <delete id="deleteQcDocFlow" parameterType="map">
+		delete
+		from
+			qc_doc_flow
+		where
+			seq_no = #{seqNo}
+	</delete>
+</mapper>

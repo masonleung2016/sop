@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.SupplierMapper">
+    <resultMap id="rm" type="sop.persistence.beans.Supplier">
+        <result property="code" jdbcType="VARCHAR" column="su_code"/>
+        <result property="name" jdbcType="VARCHAR" column="su_name"/>
+        <result property="email" jdbcType="VARCHAR" column="su_chn"/>
+        <result property="contactPerson" jdbcType="VARCHAR" column="su_con_per"/>
+        <result property="address" jdbcType="VARCHAR" column="su_add"/>
+        <result property="tel" jdbcType="VARCHAR" column="su_tel"/>
+        <result property="fax" jdbcType="VARCHAR" column="su_fax"/>
+        <result property="payTerm" jdbcType="VARCHAR" column="su_pay_tm"/>
+        <result property="credit" jdbcType="VARCHAR" column="su_credit"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="type" jdbcType="VARCHAR" column="su_type"/>
+        <result property="websiteUrl" jdbcType="VARCHAR" column="su_website_url"/>
+        <result property="fscCertCode" jdbcType="VARCHAR" column="su_FSC_cert_code"/>
+        <result property="fscValidFm" jdbcType="TIMESTAMP" column="su_FSC_valid_fm"/>
+        <result property="fscValidTo" jdbcType="TIMESTAMP" column="su_FSC_valid_to"/>
+        <result property="bsciCertCode" jdbcType="VARCHAR" column="su_BSCI_cert_code"/>
+        <result property="bsciValidFm" jdbcType="TIMESTAMP" column="su_BSCI_valid_fm"/>
+        <result property="bsciValidTo" jdbcType="TIMESTAMP" column="su_BSCI_valid_to"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+		su_code,
+		su_name,
+		su_chn,
+		su_con_per,
+		su_add,
+		su_tel,
+		su_fax,
+		su_pay_tm,
+		su_credit,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date,
+		su_type,
+		su_website_url,
+		su_FSC_cert_code,
+		su_FSC_valid_fm,
+		su_FSC_valid_to,
+		su_BSCI_cert_code,
+		su_BSCI_valid_fm,
+		su_BSCI_valid_to
+	</sql>
+
+    <sql id="Insert_Column_List">
+		su_code,
+		su_name,
+		su_chn,
+		su_con_per,
+		su_add,
+		su_tel,
+		su_fax,
+		su_pay_tm,
+		su_credit,
+		crt_usr,
+		crt_date,
+		su_type,
+		su_website_url,
+		su_FSC_cert_code,
+		su_FSC_valid_fm,
+		su_FSC_valid_to,
+		su_BSCI_cert_code,
+		su_BSCI_valid_fm,
+		su_BSCI_valid_to
+	</sql>
+    <select id="getSupplierByCode" resultMap="rm" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from supp where su_code = #{code}
+
+    </select>
+    <select id="findPageBreakByCondition" resultMap="rm"
+            parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from supp
+
+        <if test="keywords != null">
+            Where
+            su_code LIKE "%"#{keywords}"%"
+        </if>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by su_code DESC
+            </otherwise>
+        </choose>
+
+    </select>
+    <select id="findNumberByCondition" resultType="java.lang.Integer"
+            parameterType="map">
+		select count(0) as c from supp 
+	</select>
+
+
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO supp (
+        <include refid="Insert_Column_List"/>
+        ) VALUES (
+        #{code},
+        #{name},
+        #{contactPerson},
+        #{email},
+        #{address},
+        #{tel},
+        #{fax},
+        #{payTerm},
+        #{credit},
+        #{crtUsr},
+        #{crtDate},
+        #{type},
+        #{websiteUrl},
+        #{fscCertCode},
+        #{fscValidFm},
+        #{fscValidTo},
+        #{bsciCertCode},
+        #{bsciValidFm},
+        #{bsciValidTo}
+        )
+    </insert>
+
+    <!-- 更新 -->
+    <update id="updateSelective" parameterType="sop.persistence.beans.Supplier">
+        UPDATE supp
+        <set>
+            <if test="code!=null">
+                su_code = #{code},
+            </if>
+            <if test="name!=null">
+                su_name = #{name},
+            </if>
+            <if test="email!=null">
+                su_chn = #{email},
+            </if>
+            <if test="contactPerson!=null">
+                su_con_per = #{contactPerson},
+            </if>
+            <if test="address!=null">
+                su_add = #{address},
+            </if>
+            <if test="tel!=null">
+                su_tel = #{tel},
+            </if>
+            <if test="fax!=null">
+                su_fax = #{fax},
+            </if>
+            <if test="payTerm!=null">
+                su_pay_tm = #{payTerm},
+            </if>
+            <if test="credit!=null">
+                su_credit = #{credit},
+            </if>
+            <if test="modUsr!=null">
+                mod_usr = #{modUsr},
+            </if>
+            <if test="modDate!=null">
+                mod_date = #{modDate},
+            </if>
+            <if test="type!=null">
+                su_type = #{type},
+            </if>
+            <if test="websiteUrl!=null">
+                su_website_url = #{websiteUrl},
+            </if>
+            <if test="fscCertCode!=null">
+                su_FSC_cert_code = #{fscCertCode},
+            </if>
+            <if test="fscValidFm!=null">
+                su_FSC_valid_fm = #{fscValidFm},
+            </if>
+            <if test="fscValidTo!=null">
+                su_FSC_valid_to = #{fscValidTo},
+            </if>
+            <if test="bsciCertCode!=null">
+                su_BSCI_cert_code = #{bsciCertCode},
+            </if>
+            <if test="bsciValidFm!=null">
+                su_BSCI_valid_fm = #{bsciValidFm},
+            </if>
+            <if test="bsciValidTo!=null">
+                su_BSCI_valid_to = #{bsciValidTo}
+            </if>
+        </set>
+        WHERE
+        su_code = #{code}
+    </update>
+
+    <update id="updateStatus" parameterType="map">
+		UPDATE supp SET
+		mod_usr = #{modUsr},
+		mod_date = #{modDate},
+		deleted = #{deleted}
+		WHERE
+		su_code = #{code}
+	</update>
+</mapper>

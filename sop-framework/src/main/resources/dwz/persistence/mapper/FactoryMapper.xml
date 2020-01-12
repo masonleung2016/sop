@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.FactoryMapper">
+    <resultMap id="rm" type="sop.persistence.beans.Factory">
+        <result property="suCode" jdbcType="VARCHAR" column="su_code"/>
+        <result property="suName" jdbcType="VARCHAR" column="su_name"/>
+        <result property="suChn" jdbcType="VARCHAR" column="su_chn"/>
+        <result property="suConPer" jdbcType="VARCHAR" column="su_con_per"/>
+        <result property="suAdd" jdbcType="VARCHAR" column="su_add"/>
+        <result property="suTel" jdbcType="VARCHAR" column="su_tel"/>
+        <result property="suFax" jdbcType="VARCHAR" column="su_fax"/>
+        <result property="suPayTm" jdbcType="VARCHAR" column="su_pay_tm"/>
+        <result property="suCredit" jdbcType="DECIMAL" column="su_credit"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="suType" jdbcType="VARCHAR" column="su_type"/>
+        <result property="suWebsiteUrl" jdbcType="VARCHAR" column="su_website_url"/>
+        <result property="suFSCCertCode" jdbcType="VARCHAR" column="su_FSC_cert_code"/>
+        <result property="suFSCValidFm" jdbcType="TIMESTAMP" column="su_FSC_valid_fm"/>
+        <result property="suFSCValidTo" jdbcType="TIMESTAMP" column="su_FSC_valid_to"/>
+        <result property="suBSCICertCode" jdbcType="VARCHAR" column="su_BSCI_cert_code"/>
+        <result property="suBSCIValidFm" jdbcType="TIMESTAMP" column="su_BSCI_valid_fm"/>
+        <result property="suBSCIValidTo" jdbcType="TIMESTAMP" column="su_BSCI_valid_to"/>
+    </resultMap>
+
+    <resultMap type="sop.vo.FactoryVo" id="factoryVo">
+        <result property="suCode" jdbcType="VARCHAR" column="su_code"/>
+        <result property="suName" jdbcType="VARCHAR" column="su_name"/>
+        <result property="suChn" jdbcType="VARCHAR" column="su_chn"/>
+        <result property="suConPer" jdbcType="VARCHAR" column="su_con_per"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		su_code,
+		su_name,
+		su_chn,
+		su_con_per,
+		su_add,
+		su_tel,
+		su_fax,
+		su_pay_tm,
+		su_credit,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date,
+		su_type,
+		su_website_url,
+		su_FSC_cert_code,
+		su_FSC_valid_fm,
+		su_FSC_valid_to,
+		su_BSCI_cert_code,
+		su_BSCI_valid_fm,
+		su_BSCI_valid_to
+	</sql>
+
+    <sql id="Insert_Column_List">
+		su_code,
+		su_name,
+		su_chn,
+		su_con_per,
+		su_add,
+		su_tel,
+		su_fax,
+		su_pay_tm,
+		su_credit,
+		crt_usr,
+		crt_date,
+		su_type,
+		su_website_url,
+		su_FSC_cert_code,
+		su_FSC_valid_fm,
+		su_FSC_valid_to,
+		su_BSCI_cert_code,
+		su_BSCI_valid_fm,
+		su_BSCI_valid_to
+	</sql>
+
+    <select id="getAllFactories" resultMap="factoryVo">
+		select 
+			su_code,
+			su_name
+		from
+			supp
+		order by su_name asc
+	</select>
+
+    <select id="getFactoryBySuCode" resultMap="rm" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from
+        supp
+        where
+        su_code = #{suCode}
+    </select>
+    <select id="findPageBreakByCondition" resultMap="factoryVo"
+            parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from
+        supp
+        where
+        su_code is not null
+        and
+        replace(su_code, ' ', '') != ''
+        <if test="fromNo != null and fromNo != ''">
+            <!-- 大于等于 &gt;=  -->
+            <!-- 小于等于 &lt;= -->
+            and
+            su_code &gt;= #{fromNo}
+        </if>
+        <if test="toNo != null and toNo != ''">
+            and
+            su_code &lt;= #{toNo}
+        </if>
+        <if test="keywords != null and keywords != ''">
+            and
+            su_name like "%"#{keywords}"%"
+        </if>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by su_name DESC
+            </otherwise>
+        </choose>
+
+    </select>
+    <select id="findNumberByCondition" resultType="java.lang.Integer"
+            parameterType="map">
+        select
+        count(0) as c
+        from
+        supp
+        where
+        su_code is not null
+        and
+        replace(su_code, ' ', '') != ''
+        <if test="fromNo != null and fromNo != ''">
+            <!-- 大于等于 &gt;=  -->
+            <!-- 小于等于 &lt;= -->
+            and
+            su_code &gt;= #{fromNo}
+        </if>
+        <if test="toNo != null and toNo != ''">
+            and
+            su_code &lt;= #{toNo}
+        </if>
+        <if test="keywords != null and keywords != ''">
+            and
+            su_name like "%"#{keywords}"%"
+        </if>
+    </select>
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        supp
+        (
+        <include refid="Insert_Column_List"/>
+        )
+        VALUES (
+        #{suCode},
+        #{suName},
+        #{suChn},
+        #{suConPer},
+        #{suAdd},
+        #{suTel},
+        #{suFax},
+        #{suPayTm},
+        #{suCredit},
+        #{crtUsr},
+        #{crtDate},
+        #{suType},
+        #{suWebsiteUrl},
+        #{suFSCCertCode},
+        #{suFSCValidFm},
+        #{suFSCValidTo},
+        #{suBSCICertCode},
+        #{suBSCIValidFm},
+        #{suBSCIValidTo}
+        )
+    </insert>
+
+    <!-- 更新 -->
+    <update id="updateSelective" parameterType="sop.persistence.beans.Factory">
+        UPDATE supp
+        <set>
+            <if test="suCode != null">
+                su_code = #{suCode},
+            </if>
+            <if test="suName != null">
+                su_name = #{suName},
+            </if>
+            <if test="suChn != null">
+                su_chn = #{suChn},
+            </if>
+            <if test="suConPer != null">
+                su_con_per = #{suConPer},
+            </if>
+            <if test="suAdd != null">
+                su_add = #{suAdd},
+            </if>
+            <if test="suTel != null">
+                su_tel = #{suTel},
+            </if>
+            <if test="suFax != null">
+                su_fax = #{suFax},
+            </if>
+            <if test="suPayTm != null">
+                su_pay_tm = #{suPayTm},
+            </if>
+            <if test="suCredit != null">
+                su_credit = #{suCredit},
+            </if>
+            <if test="modUsr != null">
+                mod_usr = #{modUsr},
+            </if>
+            <if test="modDate != null">
+                mod_date = #{modDate},
+            </if>
+            <if test="suType != null">
+                su_type = #{suType},
+            </if>
+            <if test="suWebsiteUrl != null">
+                su_website_url = #{suWebsiteUrl},
+            </if>
+            <if test="suFSCCertCode != null">
+                su_FSC_cert_code = #{suFSCCertCode},
+            </if>
+            <if test="suFSCValidFm != null">
+                su_FSC_valid_fm = #{suFSCValidFm},
+            </if>
+            <if test="suFSCValidTo != null">
+                su_FSC_valid_to = #{suFSCValidTo},
+            </if>
+            <if test="suBSCICertCode != null">
+                su_BSCI_cert_code = #{suBSCICertCode},
+            </if>
+            <if test="suBSCIValidFm != null">
+                su_BSCI_valid_fm = #{suBSCIValidFm},
+            </if>
+            <if test="suBSCIValidTo != null">
+                su_BSCI_valid_to = #{suBSCIValidTo}
+            </if>
+        </set>
+        WHERE
+        su_code = #{suCode}
+    </update>
+
+    <update id="updateStatus" parameterType="map">
+		UPDATE 
+			supp 
+		SET
+			mod_usr = #{modUsr},
+			mod_date = #{modDate},
+			deleted = #{deleted}
+		WHERE
+			su_code = #{suCode}
+	</update>
+
+    <delete id="deleteFactory" parameterType="map">
+		delete
+		from
+			supp
+		where
+			su_code = #{fkSuCode}
+	</delete>
+
+    <select id="getCountByFkSuCode" resultType="java.lang.Integer" parameterType="map">
+		select
+			count(0)
+		from
+			supp
+		where
+			su_code = #{fkSuCode}
+	</select>
+
+    <select id="getLatestFactoryCodeByPrefix" resultType="java.lang.String" parameterType="map">
+		select
+			su_code
+		from
+			supp
+		where
+			length(su_code) = 10
+		and
+			su_code like CONCAT(#{getCodeByPrefix},'%')
+		order by su_code desc
+		limit 1
+	</select>
+</mapper>

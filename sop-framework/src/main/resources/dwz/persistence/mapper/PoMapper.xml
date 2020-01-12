@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.PoMapper">
+    <resultMap id="purchaseOrder" type="sop.persistence.beans.PurchaseOrder">
+        <result property="poArtArtNo" jdbcType="VARCHAR" column="po_art_art_no"/>
+        <result property="poArtEanNo" jdbcType="VARCHAR" column="po_art_ean_no"/>
+        <result property="poArtGeneral" jdbcType="VARCHAR" column="po_art_general"/>
+        <result property="poArtGrnPoint" jdbcType="VARCHAR" column="po_art_grn_point"/>
+        <result property="poArtLang" jdbcType="VARCHAR" column="po_art_lang"/>
+        <result property="poArtOther" jdbcType="VARCHAR" column="po_art_other"/>
+        <result property="poArtResy" jdbcType="VARCHAR" column="po_art_resy"/>
+        <result property="poCnf" jdbcType="CHAR" column="po_cnf"/>
+        <result property="poCnfPort" jdbcType="VARCHAR" column="po_cnf_port"/>
+        <result property="poContReq" jdbcType="VARCHAR" column="po_cont_req"/>
+        <result property="poCtnPkgDesc" jdbcType="VARCHAR" column="po_ctn_pkg_desc"/>
+        <result property="poCurr" jdbcType="CHAR" column="po_curr"/>
+        <result property="poDate" jdbcType="DATE" column="po_date"/>
+        <result property="poDelDetails" jdbcType="VARCHAR" column="po_del_details"/>
+        <result property="poDepDate" jdbcType="DATE" column="po_dep_date"/>
+        <result property="poDepPaid" jdbcType="DECIMAL" column="po_dep_paid"/>
+        <result property="poDepRatio" jdbcType="DECIMAL" column="po_dep_ratio"/>
+        <result property="poDest" jdbcType="VARCHAR" column="po_dest"/>
+        <result property="poDtlArtNo" jdbcType="VARCHAR" column="po_dtl_art_no"/>
+        <result property="poDtlEanNo" jdbcType="VARCHAR" column="po_dtl_ean_no"/>
+        <result property="poDtlGeneral" jdbcType="VARCHAR" column="po_dtl_general"/>
+        <result property="poDtlGrnPoint" jdbcType="VARCHAR" column="po_dtl_grn_point"/>
+        <result property="poDtlLang" jdbcType="VARCHAR" column="po_dtl_lang"/>
+        <result property="poDtlOther" jdbcType="VARCHAR" column="po_dtl_other"/>
+        <result property="poDtlResy" jdbcType="VARCHAR" column="po_dtl_resy"/>
+        <result property="poEtdDate" jdbcType="DATE" column="po_etd_date"/>
+        <result property="poFob" jdbcType="CHAR" column="po_fob"/>
+        <result property="poFobPort" jdbcType="VARCHAR" column="po_fob_port"/>
+        <result property="poIartInsSh" jdbcType="VARCHAR" column="po_iart_ins_sh"/>
+        <result property="poIartLabel" jdbcType="VARCHAR" column="po_iart_label"/>
+        <result property="poIartOther" jdbcType="VARCHAR" column="po_iart_other"/>
+        <result property="poIdtlInsSh" jdbcType="VARCHAR" column="po_idtl_ins_sh"/>
+        <result property="poIdtlLabel" jdbcType="VARCHAR" column="po_idtl_label"/>
+        <result property="poIdtlOther" jdbcType="VARCHAR" column="po_idtl_other"/>
+        <result property="poIpkgInsSh" jdbcType="CHAR" column="po_ipkg_ins_sh"/>
+        <result property="poIpkgLabel" jdbcType="CHAR" column="po_ipkg_label"/>
+        <result property="poIpkgOther" jdbcType="CHAR" column="po_ipkg_other"/>
+        <result property="poLshpDate" jdbcType="DATE" column="po_lshp_date"/>
+        <result property="poNo" jdbcType="VARCHAR" column="po_no"/>
+        <result property="poOdtl" jdbcType="VARCHAR" column="po_odtl"/>
+        <result property="poOrdAmtWord" jdbcType="VARCHAR" column="po_ord_amt_word"/>
+        <result property="poOrdTotAmt" jdbcType="DECIMAL" column="po_ord_tot_amt"/>
+        <result property="poOrdTotChg" jdbcType="DECIMAL" column="po_ord_tot_chg"/>
+        <result property="poOrdTotNet" jdbcType="DECIMAL" column="po_ord_tot_net"/>
+        <result property="poPkgArtNo" jdbcType="CHAR" column="po_pkg_art_no"/>
+        <result property="poPkgEanNo" jdbcType="CHAR" column="po_pkg_ean_no"/>
+        <result property="poPkgGeneral" jdbcType="CHAR" column="po_pkg_general"/>
+        <result property="poPkgGrnPoint" jdbcType="CHAR" column="po_pkg_grn_point"/>
+        <result property="poPkgLang" jdbcType="CHAR" column="po_pkg_lang"/>
+        <result property="poPkgOther" jdbcType="CHAR" column="po_pkg_other"/>
+        <result property="poPkgResy" jdbcType="CHAR" column="po_pkg_resy"/>
+        <result property="poPterm" jdbcType="VARCHAR" column="po_pterm"/>
+        <result property="poPtermDays" jdbcType="DECIMAL" column="po_pterm_days"/>
+        <result property="poRouting" jdbcType="VARCHAR" column="po_routing"/>
+        <result property="poSoNoRef" jdbcType="VARCHAR" column="po_so_no_ref"/>
+        <result property="poSpMainMark" jdbcType="VARCHAR" column="po_sp_main_mark"/>
+        <result property="poSpSideMark" jdbcType="VARCHAR" column="po_sp_side_mark"/>
+        <result property="poSuCode" jdbcType="VARCHAR" column="po_su_code"/>
+        <result property="poSuPterm" jdbcType="VARCHAR" column="po_su_pterm"/>
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <resultMap id="purchaseOrderVo" type="sop.vo.PurchaseOrderVo">
+        <result property="poNo" jdbcType="VARCHAR" column="po_no"/>
+        <result property="poSoNoRef" jdbcType="VARCHAR" column="po_so_no_ref"/>
+        <result property="poDate" jdbcType="VARCHAR" column="po_date"/>
+        <result property="poLshpDate" jdbcType="DATE" column="po_lshp_date"/>
+        <result property="poEtdDate" jdbcType="DATE" column="po_etd_date"/>
+    </resultMap>
+    <resultMap id="purchaseOrderItem" type="sop.persistence.beans.PurchaseOrderItem">
+        <result property="po2Amt" jdbcType="DECIMAL" column="po2_amt"/>
+        <result property="po2Appendix" jdbcType="VARCHAR" column="po2_appendix"/>
+        <result property="po2Article" jdbcType="VARCHAR" column="po2_article"/>
+        <result property="po2Ean" jdbcType="VARCHAR" column="po2_ean"/>
+        <result property="po2ExpCtnPcs" jdbcType="VARCHAR" column="po2_exp_ctn_pcs"/>
+        <result property="po2ExpUom" jdbcType="CHAR" column="po2_exp_uom"/>
+        <result property="po2InnCtnPcs" jdbcType="VARCHAR" column="po2_inn_ctn_pcs"/>
+        <result property="po2InnUom" jdbcType="CHAR" column="po2_inn_uom"/>
+        <result property="po2ItCat" jdbcType="CHAR" column="po2_it_cat"/>
+        <result property="po2ItDetails" jdbcType="VARCHAR" column="po2_it_details"/>
+        <result property="po2ItName" jdbcType="VARCHAR" column="po2_it_name"/>
+        <result property="po2ItNo" jdbcType="VARCHAR" column="po2_it_no"/>
+        <result property="po2ItSuffix" jdbcType="CHAR" column="po2_it_suffix"/>
+        <result property="po2No" jdbcType="VARCHAR" column="po2_no"/>
+        <result property="po2OrdQty" jdbcType="DECIMAL" column="po2_ord_qty"/>
+        <result property="po2Remk" jdbcType="VARCHAR" column="po2_remk"/>
+        <result property="po2ShdQty" jdbcType="DECIMAL" column="po2_shd_qty"/>
+        <result property="po2SoNo" jdbcType="VARCHAR" column="po2_so_no"/>
+        <result property="po2Uom" jdbcType="CHAR" column="po2_uom"/>
+        <result property="po2Uprice" jdbcType="DECIMAL" column="po2_uprice"/>
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="po2ItCatNoSuffix" jdbcType="VARCHAR" column="po2_it_cat_no_suffix"/>
+    </resultMap>
+    <resultMap type="sop.reports.vo.PurchaseOrderReport" id="purchaseOrderReport">
+        <result property="pono" jdbcType="VARCHAR" column="pono"/>
+        <result property="podate" jdbcType="VARCHAR" column="podate"/>
+        <result property="suppname" jdbcType="VARCHAR" column="suppname"/>
+        <result property="cntreq" jdbcType="VARCHAR" column="cntreq"/>
+        <result property="scno" jdbcType="VARCHAR" column="scno"/>
+        <result property="shipment" jdbcType="VARCHAR" column="shipment"/>
+        <result property="etd" jdbcType="VARCHAR" column="etd"/>
+        <result property="dest" jdbcType="VARCHAR" column="dest"/>
+        <result property="payment" jdbcType="VARCHAR" column="payment"/>
+        <result property="fobport" jdbcType="VARCHAR" column="fobport"/>
+        <result property="itno" jdbcType="VARCHAR" column="itno"/>
+        <result property="itname" jdbcType="VARCHAR" column="itname"/>
+        <result property="article" jdbcType="VARCHAR" column="article"/>
+        <result property="ean" jdbcType="VARCHAR" column="ean"/>
+        <result property="appendix" jdbcType="VARCHAR" column="appendix"/>
+        <result property="unit1" jdbcType="CHAR" column="unit1"/>
+        <result property="unit2" jdbcType="CHAR" column="unit2"/>
+        <result property="qty" jdbcType="DECIMAL" column="qty"/>
+        <result property="uom" jdbcType="CHAR" column="uom"/>
+        <result property="uprice" jdbcType="DECIMAL" column="uprice"/>
+        <result property="curr" jdbcType="CHAR" column="curr"/>
+        <result property="amt" jdbcType="DECIMAL" column="amt"/>
+        <result property="detail" jdbcType="VARCHAR" column="detail"/>
+        <result property="pkggenflag" jdbcType="CHAR" column="pkggenflag"/>
+        <result property="pkggenart" jdbcType="VARCHAR" column="pkggenart"/>
+        <result property="pkggendtl" jdbcType="VARCHAR" column="pkggendtl"/>
+        <result property="pkggpflag" jdbcType="CHAR" column="pkggpflag"/>
+        <result property="pkggpart" jdbcType="VARCHAR" column="pkggpart"/>
+        <result property="pkggpdtl" jdbcType="VARCHAR" column="pkggpdtl"/>
+        <result property="pkgresyflag" jdbcType="CHAR" column="pkgresyflag"/>
+        <result property="pkgresyart" jdbcType="VARCHAR" column="pkgresyart"/>
+        <result property="pkgresydtl" jdbcType="VARCHAR" column="pkgresydtl"/>
+        <result property="pkgartnoflag" jdbcType="CHAR" column="pkgartnoflag"/>
+        <result property="pkgartnoart" jdbcType="VARCHAR" column="pkgartnoart"/>
+        <result property="pkgartnodtl" jdbcType="VARCHAR" column="pkgartnodtl"/>
+        <result property="pkgeanflag" jdbcType="CHAR" column="pkgeanflag"/>
+        <result property="pkgeanart" jdbcType="VARCHAR" column="pkgeanart"/>
+        <result property="pkgeandtl" jdbcType="VARCHAR" column="pkgeandtl"/>
+        <result property="pkglangflag" jdbcType="CHAR" column="pkglangflag"/>
+        <result property="pkglangart" jdbcType="VARCHAR" column="pkglangart"/>
+        <result property="pkglangdtl" jdbcType="VARCHAR" column="pkglangdtl"/>
+        <result property="pkgotherflag" jdbcType="CHAR" column="pkgotherflag"/>
+        <result property="pkgotherart" jdbcType="VARCHAR" column="pkgotherart"/>
+        <result property="pkgotherdtl" jdbcType="VARCHAR" column="pkgotherdtl"/>
+        <result property="pkginsflag" jdbcType="CHAR" column="pkginsflag"/>
+        <result property="pkginsart" jdbcType="VARCHAR" column="pkginsart"/>
+        <result property="pkginsdtl" jdbcType="VARCHAR" column="pkginsdtl"/>
+        <result property="pkgilablflag" jdbcType="CHAR" column="pkgilablflag"/>
+        <result property="pkgilablart" jdbcType="VARCHAR" column="pkgilablart"/>
+        <result property="pkgilabldtl" jdbcType="VARCHAR" column="pkgilabldtl"/>
+        <result property="pkgiotherflag" jdbcType="CHAR" column="pkgiotherflag"/>
+        <result property="pkgiotherart" jdbcType="VARCHAR" column="pkgiotherart"/>
+        <result property="pkgiotherdtl" jdbcType="VARCHAR" column="pkgiotherdtl"/>
+        <result property="mainmark" jdbcType="VARCHAR" column="mainmark"/>
+        <result property="sidemark" jdbcType="VARCHAR" column="sidemark"/>
+        <result property="remark" jdbcType="VARCHAR" column="remark"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		co_code,
+		so_no,
+		so_cu_code,
+		so_cu_po_no,
+		so_date,
+		so_lshp_date,
+		so_etd,
+		so_curr,
+		so_fob,
+		so_fob_port,
+		so_cnf,
+		so_cnf_port,
+		so_su_code,
+		so_cont_req,
+		so_dest,
+		so_routing,
+		so_su_con_no,
+		so_su_pterm,
+		so_del_details,
+		so_pay_term,
+		so_odtl_prof,
+		so_ord_tot_amt,
+		so_ord_amt_word,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date,
+		so_ord_tot_chg,
+		so_ord_tot_net,
+		so_handle,
+		so_paid_status,
+		so_bnk_elc,
+		so_bnk_tf,
+		so_status,
+		so_pterm,
+		so_pterm_days,
+		so_dep_paid
+	</sql>
+
+    <sql id="Vo_Column_List">
+		po_no,
+		po_so_no_ref,
+		po_date,
+		po_lshp_date,
+		po_etd_date
+	</sql>
+
+    <select id="findPageBreakByCondition" resultMap="purchaseOrderVo" parameterType="map">
+        select
+        <include refid="Vo_Column_List"/>
+        from
+        potx1
+        where
+        1 = 1
+        <choose>
+            <when test="fromNo != null and fromNo != ''">
+                <choose>
+                    <when test="toNo != null and toNo != ''">
+                        and
+                        po_no &gt;= #{fromNo}
+                        and
+                        po_no &lt;= #{toNo}
+                    </when>
+                    <otherwise>
+                        and
+                        po_no = #{fromNo}
+                    </otherwise>
+                </choose>
+            </when>
+        </choose>
+
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                ORDER BY po_no, crt_date DESC
+            </otherwise>
+        </choose>
+
+    </select>
+
+    <select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        potx1
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            replace(po_no, ' ', '') != ''
+            <if test="fromNo != null">
+                <if test="fromNo != ''">
+                    AND
+                    po_no &gt;= #{fromNo}
+                </if>
+            </if>
+            <if test="toNo != null">
+                <if test="toNo != ''">
+                    AND
+                    po_no &lt;= #{toNo}
+                </if>
+            </if>
+        </trim>
+    </select>
+    <!-- 获取所有的offersheet种类 -->
+    <select id="getAllTxns" resultMap="txn">
+		select 
+			txt_code,
+			txt_desc
+		from
+			txtype
+	</select>
+    <!-- 获取所有的customer-->
+    <select id="getAllCustomers" resultMap="cust">
+		select 
+			cu_code,
+			cu_name
+		from
+			cust
+	</select>
+    <resultMap id="txn" type="sop.vo.TxnVo">
+        <result property="txtCode" jdbcType="VARCHAR" column="txt_code"/>
+        <result property="txtDesc" jdbcType="VARCHAR" column="txt_desc"/>
+    </resultMap>
+    <resultMap id="cust" type="sop.vo.CustomerVo">
+        <result property="cuCode" jdbcType="VARCHAR" column="cu_code"/>
+        <result property="cuName" jdbcType="VARCHAR" column="cu_name"/>
+    </resultMap>
+    <!--  -->
+    <select id="getCountByPurchaseOrder" resultType="java.lang.Integer" parameterType="map">
+		select
+			count(0)
+		from
+			potx1
+		where
+			po_no = #{poNo}
+	</select>
+    <!-- 增加PurchaseOrder -->
+    <insert id="insertPurchaseOrder" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into potx1(
+			po_art_art_no,
+			po_art_ean_no,
+			po_art_general,
+			po_art_grn_point,
+			po_art_lang,
+			po_art_other,
+			po_art_resy,
+			po_cnf,
+			po_cnf_port,
+			po_cont_req,
+			po_ctn_pkg_desc,
+			po_curr,
+			po_date,
+			po_del_details,
+			po_dep_date,
+			po_dep_paid,
+			po_dep_ratio,
+			po_dest,
+			po_dtl_art_no,
+			po_dtl_ean_no,
+			po_dtl_general,
+			po_dtl_grn_point,
+			po_dtl_lang,
+			po_dtl_other,
+			po_dtl_resy,
+			po_etd_date,
+			po_fob,
+			po_fob_port,
+			po_iart_ins_sh,
+			po_iart_label,
+			po_iart_other,
+			po_idtl_ins_sh,
+			po_idtl_label,
+			po_idtl_other,
+			po_ipkg_ins_sh,
+			po_ipkg_label,
+			po_ipkg_other,
+			po_lshp_date,
+			po_no,
+			po_odtl,
+			po_ord_amt_word,
+			po_ord_tot_amt,
+			po_ord_tot_chg,
+			po_ord_tot_net,
+			po_pkg_art_no,
+			po_pkg_ean_no,
+			po_pkg_general,
+			po_pkg_grn_point,
+			po_pkg_lang,
+			po_pkg_other,
+			po_pkg_resy,
+			po_pterm,
+			po_pterm_days,
+			po_routing,
+			po_so_no_ref,
+			po_sp_main_mark,
+			po_sp_side_mark,
+			po_su_code,
+			po_su_pterm,
+			co_code,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) VALUES (
+			#{poArtArtNo},
+			#{poArtEanNo},
+			#{poArtGeneral},
+			#{poArtGrnPoint},
+			#{poArtLang},
+			#{poArtOther},
+			#{poArtResy},
+			#{poCnf},
+			#{poCnfPort},
+			#{poContReq},
+			#{poCtnPkgDesc},
+			#{poCurr},
+			#{poDate},
+			#{poDelDetails},
+			#{poDepDate},
+			#{poDepPaid},
+			#{poDepRatio},
+			#{poDest},
+			#{poDtlArtNo},
+			#{poDtlEanNo},
+			#{poDtlGeneral},
+			#{poDtlGrnPoint},
+			#{poDtlLang},
+			#{poDtlOther},
+			#{poDtlResy},
+			#{poEtdDate},
+			#{poFob},
+			#{poFobPort},
+			#{poIartInsSh},
+			#{poIartLabel},
+			#{poIartOther},
+			#{poIdtlInsSh},
+			#{poIdtlLabel},
+			#{poIdtlOther},
+			#{poIpkgInsSh},
+			#{poIpkgLabel},
+			#{poIpkgOther},
+			#{poLshpDate},
+			#{poNo},
+			#{poOdtl},
+			#{poOrdAmtWord},
+			#{poOrdTotAmt},
+			#{poOrdTotChg},
+			#{poOrdTotNet},
+			#{poPkgArtNo},
+			#{poPkgEanNo},
+			#{poPkgGeneral},
+			#{poPkgGrnPoint},
+			#{poPkgLang},
+			#{poPkgOther},
+			#{poPkgResy},
+			#{poPterm},
+			#{poPtermDays},
+			#{poRouting},
+			#{poSoNoRef},
+			#{poSpMainMark},
+			#{poSpSideMark},
+			#{poSuCode},
+			#{poSuPterm},
+			#{coCode},
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+    <!-- 增加PurchaseOrderItem -->
+    <insert id="insertPurchaseOrderItem" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into potx2(
+			po2_amt,
+			po2_appendix,
+			po2_article,
+			po2_ean,
+			po2_exp_ctn_pcs,
+			po2_exp_uom,
+			po2_inn_ctn_pcs,
+			po2_inn_uom,
+			po2_it_cat,
+			po2_it_details,
+			po2_it_name,
+			po2_it_no,
+			po2_it_suffix,
+			po2_no,
+			po2_ord_qty,
+			po2_remk,
+			po2_shd_qty,
+			po2_so_no,
+			po2_uom,
+			po2_uprice,
+			co_code,
+			crt_date,
+			crt_usr,
+			mod_date,
+			mod_usr
+		) VALUES (
+			#{po2Amt},
+			#{po2Appendix},
+			#{po2Article},
+			#{po2Ean},
+			#{po2ExpCtnPcs},
+			#{po2ExpUom},
+			#{po2InnCtnPcs},
+			#{po2InnUom},
+			#{po2ItCat},
+			#{po2ItDetails},
+			#{po2ItName},
+			#{po2ItNo},
+			#{po2ItSuffix},
+			#{po2No},
+			#{po2OrdQty},
+			#{po2Remk},
+			#{po2ShdQty},
+			#{po2SoNo},
+			#{po2Uom},
+			#{po2Uprice},
+			#{coCode},
+			#{crtDate},
+			#{crtUsr},
+			#{modDate},
+			#{modUsr}
+		)
+	</insert>
+    <!-- 获取purchaseOrder -->
+    <select id="getPurchaseOrderByPurchaseOrderVo" resultMap="purchaseOrder" parameterType="map">
+		select
+			co_code,
+			off_sh_no_pfix,
+			off_sh_no,
+			off_date,
+			off_cust,
+			off_cust_attn,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		from
+			offsheet1
+		where
+			co_code = #{coCode}
+		and
+			off_sh_no_pfix = #{offShNoPfix}
+		and
+			off_sh_no = #{offShNo}
+	</select>
+    <!-- 获取purchaseOrderItemList -->
+    <select id="getPurchaseOrderItemListByFkPoNo" resultMap="purchaseOrderItem" parameterType="map">
+		select
+			concat(po2_it_cat,po2_it_no,po2_it_suffix) po2_it_cat_no_suffix,
+			b.*
+		from(
+			select
+				*
+			from
+				potx2 a
+			where
+				a.po2_no = #{fkPoNo}
+		) b
+	</select>
+    <!-- update potx1 -->
+    <update id="updatePurchaseOrder" parameterType="map">
+		update
+			 potx1
+		set
+			po_art_art_no = #{poArtArtNo},
+			po_art_ean_no = #{poArtEanNo},
+			po_art_general = #{poArtGeneral},
+			po_art_grn_point = #{poArtGrnPoint},
+			po_art_lang = #{poArtLang},
+			po_art_other = #{poArtOther},
+			po_art_resy = #{poArtResy},
+			po_cnf = #{poCnf},
+			po_cnf_port = #{poCnfPort},
+			po_cont_req = #{poContReq},
+			po_ctn_pkg_desc = #{poCtnPkgDesc},
+			po_curr = #{poCurr},
+			po_date = #{poDate},
+			po_del_details = #{poDelDetails},
+			po_dep_date = #{poDepDate},
+			po_dep_paid = #{poDepPaid},
+			po_dep_ratio = #{poDepRatio},
+			po_dest = #{poDest},
+			po_dtl_art_no = #{poDtlArtNo},
+			po_dtl_ean_no = #{poDtlEanNo},
+			po_dtl_general = #{poDtlGeneral},
+			po_dtl_grn_point = #{poDtlGrnPoint},
+			po_dtl_lang = #{poDtlLang},
+			po_dtl_other = #{poDtlOther},
+			po_dtl_resy = #{poDtlResy},
+			po_etd_date = #{poEtdDate},
+			po_fob = #{poFob},
+			po_fob_port = #{poFobPort},
+			po_iart_ins_sh = #{poIartInsSh},
+			po_iart_label = #{poIartLabel},
+			po_iart_other = #{poIartOther},
+			po_idtl_ins_sh = #{poIdtlInsSh},
+			po_idtl_label = #{poIdtlLabel},
+			po_idtl_other = #{poIdtlOther},
+			po_ipkg_ins_sh = #{poIpkgInsSh},
+			po_ipkg_label = #{poIpkgLabel},
+			po_ipkg_other = #{poIpkgOther},
+			po_lshp_date = #{poLshpDate},
+			po_no = #{poNo},
+			po_odtl = #{poOdtl},
+			po_ord_amt_word = #{poOrdAmtWord},
+			po_ord_tot_amt = #{poOrdTotAmt},
+			po_ord_tot_chg = #{poOrdTotChg},
+			po_ord_tot_net = #{poOrdTotNet},
+			po_pkg_art_no = #{poPkgArtNo},
+			po_pkg_ean_no = #{poPkgEanNo},
+			po_pkg_general = #{poPkgGeneral},
+			po_pkg_grn_point = #{poPkgGrnPoint},
+			po_pkg_lang = #{poPkgLang},
+			po_pkg_other = #{poPkgOther},
+			po_pkg_resy = #{poPkgResy},
+			po_pterm = #{poPterm},
+			po_pterm_days = #{poPtermDays},
+			po_routing = #{poRouting},
+			po_so_no_ref = #{poSoNoRef},
+			po_sp_main_mark = #{poSpMainMark},
+			po_sp_side_mark = #{poSpSideMark},
+			po_su_code = #{poSuCode},
+			po_su_pterm = #{poSuPterm},
+			co_code = #{coCode},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where
+			po_no = #{poNo}
+	</update>
+    <!-- delete potx2 -->
+    <delete id="deletePurchaseOrderItems" parameterType="map">
+		delete
+		from
+			potx2
+		where
+			po2_no = #{fkPoNo}
+	</delete>
+    <!-- delete purchaseOrder1 -->
+    <delete id="deletePurchaseOrder" parameterType="map">
+		delete
+		from
+			potx1
+		where
+			po_no = #{fkPoNo}
+	</delete>
+    <!-- 获取PurchaseOrder -->
+    <select id="getPurchaseOrderByFkPoNo" resultMap="purchaseOrder" parameterType="map">
+		select
+			*
+		from
+			potx1
+		where
+			po_no = #{fkPoNo}
+	</select>
+    <!-- 获取 Purchase Order Charge -->
+    <select id="getPurchaseOrderChargeListByFkPoNo" resultMap="purchaseOrderCharge" parameterType="map">
+		select
+			*
+		from
+			potx5
+		where
+			po5_no = #{fkPoNo}
+	</select>
+    <resultMap id="purchaseOrderCharge" type="sop.persistence.beans.PurchaseOrderCharge">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="po5Ccy" jdbcType="VARCHAR" column="po5_ccy"/>
+        <result property="po5ChgAmt" jdbcType="DECIMAL" column="po5_chg_amt"/>
+        <result property="po5ChgCode" jdbcType="VARCHAR" column="po5_chg_code"/>
+        <result property="po5ChgDesc" jdbcType="VARCHAR" column="po5_chg_desc"/>
+        <result property="po5ChgRate" jdbcType="DECIMAL" column="po5_chg_rate"/>
+        <result property="po5ExRate" jdbcType="DECIMAL" column="po5_ex_rate"/>
+        <result property="po5No" jdbcType="VARCHAR" column="po5_no"/>
+        <result property="po5Remk" jdbcType="VARCHAR" column="po5_remk"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 获取 Purchase Order Sbk -->
+    <select id="getPurchaseOrderSbkListByFkPoNo" resultMap="purchaseOrderSbk" parameterType="map">
+		select
+			*
+		from
+			potx3sbk
+		where
+			po3_no = #{fkPoNo}
+	</select>
+    <resultMap id="purchaseOrderSbk" type="sop.persistence.beans.PurchaseOrderSbk">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="po3No" jdbcType="VARCHAR" column="po3_no"/>
+        <result property="po3ExpShpDate" jdbcType="DATE" column="po3_exp_shp_date"/>
+        <result property="po3ExpShpQty" jdbcType="DECIMAL" column="po3_exp_shp_qty"/>
+        <result property="po3Remk" jdbcType="VARCHAR" column="po3_remk"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 获取 Purchase Order Lc -->
+    <select id="getPurchaseOrderLcListByFkPoNo" resultMap="purchaseOrderLc" parameterType="map">
+		select
+			*
+		from
+			potx4lc
+		where
+			po4_no = #{fkPoNo}
+	</select>
+    <resultMap id="purchaseOrderLc" type="sop.persistence.beans.PurchaseOrderLc">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="po4No" jdbcType="VARCHAR" column="po4_no"/>
+        <result property="po4LcNo" jdbcType="VARCHAR" column="po4_lc_no"/>
+        <result property="po4ExpDate" jdbcType="DATE" column="po4_exp_date"/>
+        <result property="po4LcAmt" jdbcType="DECIMAL" column="po4_lc_amt"/>
+        <result property="po4PaidDate" jdbcType="DATE" column="po4_paid_date"/>
+        <result property="po4PaidAmt" jdbcType="DECIMAL" column="po4_paid_amt"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 根据pono 删除Purchase Order Charge -->
+    <delete id="deletePurchaseOrderCharges" parameterType="map">
+		delete
+		from
+			potx5
+		where
+			po5_no = #{fkPoNo}
+	</delete>
+
+    <insert id="insertPurchaseOrderCharge" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into potx5(
+			po5_ccy,
+			po5_chg_amt,
+			po5_chg_code,
+			po5_chg_desc,
+			po5_chg_rate,
+			po5_ex_rate,
+			po5_no,
+			po5_remk,
+			co_code,
+			crt_date,
+			crt_usr,
+			mod_date,
+			mod_usr
+		) VALUES (
+			#{po5Ccy},
+			#{po5ChgAmt},
+			#{po5ChgCode},
+			#{po5ChgDesc},
+			#{po5ChgRate},
+			#{po5ExRate},
+			#{po5No},
+			#{po5Remk},
+			#{coCode},
+			#{crtDate},
+			#{crtUsr},
+			#{modDate},
+			#{modUsr}
+		)
+	</insert>
+
+    <!-- 根据po no. 删除Purchase Order Sbk -->
+    <delete id="deletePurchaseOrderSbks" parameterType="map">
+		delete
+		from
+			potx3sbk
+		where
+			po3_no = #{fkPoNo}
+	</delete>
+    <insert id="insertPurchaseOrderSbk" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into potx3sbk(
+			po3_exp_shp_date,
+			po3_exp_shp_qty,
+			po3_no,
+			po3_remk,
+			co_code,
+			crt_date,
+			crt_usr,
+			mod_date,
+			mod_usr
+		) VALUES (
+			#{po3ExpShpDate},
+			#{po3ExpShpQty},
+			#{po3No},
+			#{po3Remk},
+			#{coCode},
+			#{crtDate},
+			#{crtUsr},
+			#{modDate},
+			#{modUsr}
+		)
+	</insert>
+
+    <!-- 根据sono 删除Purchase Order Lc -->
+    <delete id="deletePurchaseOrderLcs" parameterType="map">
+		delete
+		from
+			potx4lc
+		where
+			po4_no = #{fkPoNo}
+	</delete>
+    <insert id="insertPurchaseOrderLc" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into potx4lc(
+			po4_exp_date,
+			po4_lc_amt,
+			po4_lc_no,
+			po4_no,
+			po4_paid_amt,
+			po4_paid_date,
+			co_code,
+			crt_date,
+			crt_usr,
+			mod_date,
+			mod_usr
+		) VALUES (
+			#{po4ExpDate},
+			#{po4LcAmt},
+			#{po4LcNo},
+			#{po4No},
+			#{po4PaidAmt},
+			#{po4PaidDate},
+			#{coCode},
+			#{crtDate},
+			#{crtUsr},
+			#{modDate},
+			#{modUsr}
+		)
+	</insert>
+    <!-- Order follow shipment schedule ( P/O NO.) -->
+    <select id="getOrderFollowShipmentSchedulePo" resultMap="orderFollowShipmentSchedulePo" parameterType="map">
+        select
+        a.co_code,
+        a.po_no,
+        c.so_cu_name,
+        d.su_name,
+        concat(b.po2_it_cat, '-', b.po2_it_no, '-', b.po2_it_suffix) as it_cat_no_suffix,
+        b.po2_it_name,
+        a.po_cont_req,
+        b.po2_ord_qty,
+        b.po2_uom,
+        a.po_fob_port,
+        a.po_curr,
+        b.po2_uprice,
+        b.po2_amt,
+        a.po_etd_date,
+        c.so_handle
+        from
+        potx1 as a
+        left join
+        potx2 as b
+        on
+        a.po_no = b.po2_no
+        left join
+        sotx1 as c
+        on
+        c.so_no = a.po_so_no_ref
+        left join
+        supp as d
+        on
+        a.po_su_code = d.su_code
+        where
+        c.so_no != ''
+        and
+        a.po_no between #{fromNo} and #{toNo}
+        <if test="fromDate != null">
+            and
+            a.po_date &gt;= #{fromDate}
+        </if>
+        <if test="toDate != null">
+            and
+            a.po_date &lt;= #{toDate}
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            and
+            c.so_status &lt;= #{orderStatus}
+        </if>
+        <if test="handleUserId != null and handleUserId != ''">
+            and
+            c.so_handle = #{handleUserId}
+        </if>
+    </select>
+    <resultMap id="orderFollowShipmentSchedulePo" type="sop.reports.vo.OrderFollowShipmentSchedulePo">
+        <result property="co_code" jdbcType="CHAR" column="co_code"/>
+        <result property="po_no" jdbcType="VARCHAR" column="po_no"/>
+        <result property="so_cu_name" jdbcType="VARCHAR" column="so_cu_name"/>
+        <result property="su_name" jdbcType="VARCHAR" column="su_name"/>
+        <result property="it_cat_no_suffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="po2_it_name" jdbcType="VARCHAR" column="po2_it_name"/>
+        <result property="po_cont_req" jdbcType="VARCHAR" column="po_cont_req"/>
+        <result property="po2_ord_qty" jdbcType="DECIMAL" column="po2_ord_qty"/>
+        <result property="po2_uom" jdbcType="VARCHAR" column="po2_uom"/>
+        <result property="po_fob_port" jdbcType="VARCHAR" column="po_fob_port"/>
+        <result property="po_curr" jdbcType="VARCHAR" column="po_curr"/>
+        <result property="po2_uprice" jdbcType="DECIMAL" column="po2_uprice"/>
+        <result property="po2_amt" jdbcType="DECIMAL" column="po2_amt"/>
+        <result property="po_etd_date" jdbcType="TIMESTAMP" column="po_etd_date"/>
+        <result property="so_handle" jdbcType="VARCHAR" column="so_handle"/>
+    </resultMap>
+
+    <!-- 获取报表数量 -->
+    <select id="getPoReportsCount" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        potx1 as a
+        left join
+        sotx1 as b
+        on
+        a.po_so_no_ref = b.so_no
+        where
+        replace(a.po_no, ' ', '') != ''
+        <if test="fromNo != null and fromNo != ''">
+            and
+            a.po_no &gt;= #{fromNo}
+        </if>
+        <if test="toNo != null and toNo != ''">
+            and
+            a.po_no &lt;= #{toNo}
+        </if>
+        <if test="fromDate != null">
+            and
+            a.po_date &gt;= #{fromDate}
+        </if>
+        <if test="toDate != null">
+            and
+            a.po_date &lt;= #{toDate}
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            and
+            b.so_status = #{orderStatus}
+        </if>
+        <if test="handleUserId != null and handleUserId != ''">
+            and
+            b.so_handle = #{handleUserId}
+        </if>
+    </select>
+
+    <!-- P/O shipmnet schedule (purchase order NO.) -->
+    <select id="getPoShipmentScheduleReport" resultMap="poShipmentScheduleReport" parameterType="map">
+        select
+        a.co_code,
+        a.po_no,
+        a.po_su_code,
+        c.su_name,
+        concat(b.po2_it_cat, '-',b.po2_it_no, '-',b.po2_it_suffix) as it_cat_no_suffix,
+        b.po2_it_name,
+        a.po_cont_req,
+        b.po2_ord_qty,
+        b.po2_uom,
+        b.po2_uprice,
+        a.po_routing,
+        b.po2_amt,
+        a.po_etd_date,
+        a.po_lshp_date,
+        a.po_fob_port,
+        b.po2_shd_qty
+        from
+        potx1 as a
+        left join
+        potx2 as b
+        on
+        a.po_no = b.po2_no
+        left join
+        supp as c
+        on
+        c.su_code = a.po_su_code
+        where
+        a.po_no between #{fromNo} and #{toNo}
+        <if test="fromDate != null">
+            and
+            a.po_date &gt;= #{fromDate}
+        </if>
+        <if test="toDate != null">
+            and
+            a.po_date &lt;= #{toDate}
+        </if>
+    </select>
+    <resultMap id="poShipmentScheduleReport" type="sop.reports.vo.PoShipmentSchedule">
+        <result property="co_code" jdbcType="CHAR" column="co_code"/>
+        <result property="po_no" jdbcType="VARCHAR" column="po_no"/>
+        <result property="po_su_code" jdbcType="VARCHAR" column="po_su_code"/>
+        <result property="so_su_name" jdbcType="VARCHAR" column="su_name"/>
+        <result property="it_cat_no_suffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="po2_it_name" jdbcType="VARCHAR" column="po2_it_name"/>
+        <result property="po_cont_req" jdbcType="VARCHAR" column="po_cont_req"/>
+        <result property="po2_ord_qty" jdbcType="DECIMAL" column="po2_ord_qty"/>
+        <result property="po2_uom" jdbcType="VARCHAR" column="po2_uom"/>
+        <result property="po2_uprice" jdbcType="DECIMAL" column="po2_uprice"/>
+        <result property="po2_shd_qty" jdbcType="DECIMAL" column="po2_shd_qty"/>
+        <result property="po_routing" jdbcType="VARCHAR" column="po_routing"/>
+        <result property="po2_amt" jdbcType="DECIMAL" column="po2_amt"/>
+        <result property="po_etd_date" jdbcType="TIMESTAMP" column="po_etd_date"/>
+        <result property="po_lshp_date" jdbcType="TIMESTAMP" column="po_lshp_date"/>
+        <result property="po_fob_port" jdbcType="VARCHAR" column="po_fob_port"/>
+    </resultMap>
+
+    <select id="getPurchaseOrderReport" resultMap="purchaseOrderReport" parameterType="map">
+        SELECT
+        potx1.po_no pono,
+        DATE_FORMAT(potx1.po_date, '%d/%m/%Y') podate,
+        supp.su_name suppname,
+        potx1.po_cont_req cntreq,
+        potx1.po_su_code scno,
+        DATE_FORMAT(potx1.po_lshp_date, '%d/%m/%Y') shipment,
+        DATE_FORMAT(potx1.po_etd_date, '%d/%m/%Y') etd,
+        potx1.po_dest dest,
+        paytm.pay_desc payment,
+        potx1.po_fob_port fobport,
+        CONCAT(potx2.po2_it_cat,
+        potx2.po2_it_no,
+        potx2.po2_it_suffix) itno,
+        potx2.po2_it_name itname,
+        potx2.po2_article article,
+        potx2.po2_ean ean,
+        potx2.po2_appendix appendix,
+        potx2.po2_exp_uom unit1,
+        potx2.po2_inn_uom unit2,
+        potx2.po2_ord_qty qty,
+        potx2.po2_uom uom,
+        potx2.po2_uprice uprice,
+        potx1.po_curr curr,
+        potx2.po2_amt amt,
+        potx2.po2_it_details detail,
+        potx1.po_pkg_general pkggenflag,
+        potx1.po_art_general pkggenart,
+        potx1.po_dtl_general pkggendtl,
+        potx1.po_pkg_grn_point pkggpflag,
+        potx1.po_art_grn_point pkggpart,
+        potx1.po_dtl_grn_point pkggpdtl,
+        potx1.po_pkg_resy pkgresyflag,
+        potx1.po_art_resy pkgresyart,
+        potx1.po_dtl_resy pkgresydtl,
+        potx1.po_pkg_art_no pkgartnoflag,
+        potx1.po_art_art_no pkgartnoart,
+        potx1.po_dtl_art_no pkgartnodtl,
+        potx1.po_pkg_ean_no pkgeanflag,
+        potx1.po_art_ean_no pkgeanart,
+        potx1.po_dtl_ean_no pkgeandtl,
+        potx1.po_pkg_lang pkglangflag,
+        potx1.po_art_lang pkglangart,
+        potx1.po_dtl_lang pkglangdtl,
+        potx1.po_pkg_other pkgotherflag,
+        potx1.po_art_other pkgotherart,
+        potx1.po_dtl_other pkgotherdtl,
+        potx1.po_ipkg_ins_sh pkginsflag,
+        potx1.po_iart_ins_sh pkginsart,
+        potx1.po_idtl_ins_sh pkginsdtl,
+        potx1.po_ipkg_label pkgilablflag,
+        potx1.po_iart_label pkgilablart,
+        potx1.po_idtl_label pkgilabldtl,
+        potx1.po_ipkg_other pkgiotherflag,
+        potx1.po_iart_other pkgiotherart,
+        potx1.po_idtl_other pkgiotherdtl,
+        potx1.po_sp_main_mark mainmark,
+        potx1.po_sp_side_mark sidemark,
+        potx1.po_odtl remark
+        FROM
+        potx1
+        LEFT JOIN
+        supp ON supp.su_code = potx1.po_su_code
+        LEFT JOIN
+        paytm ON paytm.pay_code = supp.su_pay_tm,
+        potx2
+        WHERE
+        potx1.po_no = potx2.po2_no
+        <choose>
+            <when test="fromPoNo!=null and fromNo!=''">
+                <choose>
+                    <when test="toPoNo!=null and toPoNo!=''">
+                        and potx1.po_no &gt;=#{fromPoNo}
+                        and potx1.po_no &lt;=#{toPoNo}
+                    </when>
+                    <otherwise>
+                        and potx1.po_no = #{fromPoNo}
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                and 1=2
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

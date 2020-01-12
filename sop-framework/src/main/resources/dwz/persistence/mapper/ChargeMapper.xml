@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.ChargeMapper">
+    <sql id="Base_Column_List">
+		id,
+		barcodeval,
+		fkpatient,
+		importdatetime,
+		moddatetime,
+		freezed,
+		actived
+	</sql>
+    <!-- 查询charge列表 -->
+    <select id="getChargeListByCondition" resultMap="chargeVoListMap" parameterType="map">
+        select
+        chg_code,
+        chg_desc,
+        chg_rate,
+        chg_amt,
+        chg_gl_inf
+        from
+        charge
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                chg_code LIKE "%"#{keywords}"%"
+                or chg_desc LIKE "%"#{keywords}"%"
+                or chg_gl_inf LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by mod_date DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getChargeListNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        charge
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                chg_code LIKE "%"#{keywords}"%"
+                or chg_desc LIKE "%"#{keywords}"%"
+                or chg_gl_inf LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <!-- 获取所有charges -->
+    <select id="getAllCharges" resultMap="chargeVoListMap" parameterType="map">
+		select 
+			*
+		from
+			charge
+		order by mod_date desc
+	</select>
+    <resultMap id="chargeVoListMap" type="sop.vo.ChargeVo">
+        <result property="chgCode" jdbcType="CHAR" column="chg_code"/>
+        <result property="chgDesc" jdbcType="VARCHAR" column="chg_desc"/>
+        <result property="chgRate" jdbcType="DECIMAL" column="chg_rate"/>
+        <result property="chgAmt" jdbcType="DECIMAL" column="chg_amt"/>
+        <result property="chgGlInf" jdbcType="VARCHAR" column="chg_gl_inf"/>
+    </resultMap>
+    <!-- 根据fkChgCode获取charge -->
+    <select id="getChargeByFkChgCode" resultMap="charge" parameterType="map">
+		select 
+			chg_code,
+			chg_desc,
+			chg_rate,
+			chg_amt,
+			chg_gl_inf,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		from
+			charge
+		where
+			chg_code = #{fkChgCode}
+	</select>
+    <resultMap id="charge" type="sop.persistence.beans.Charge">
+        <result property="chgCode" jdbcType="CHAR" column="chg_code"/>
+        <result property="chgDesc" jdbcType="VARCHAR" column="chg_desc"/>
+        <result property="chgGlInf" jdbcType="VARCHAR" column="chg_gl_inf"/>
+        <result property="chgRate" jdbcType="DECIMAL" column="chg_rate"/>
+        <result property="chgAmt" jdbcType="DECIMAL" column="chg_amt"/>
+
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+
+    <!-- 更新company -->
+    <update id="updateCharge" parameterType="map">
+		update
+			charge
+		set
+			chg_desc = #{chgDesc},
+			chg_gl_inf = #{chgGlInf},
+			chg_rate = #{chgRate},
+			chg_amt = #{chgAmt},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where 
+			chg_code = #{chgCode}
+	</update>
+    <!-- 获取指定uCode数量 -->
+    <select id="getCountByFkChgCode" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(1) as c
+		from
+			charge a
+		where
+			a.chg_code = #{fkChgCode}
+	</select>
+    <!-- 增加company -->
+    <insert id="insertCharge" parameterType="map">
+		insert into charge(
+			chg_code,
+			chg_desc,
+			chg_rate,
+			chg_amt,
+			chg_gl_inf,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) values (
+			#{chgCode},
+			#{chgDesc},
+			#{chgRate},
+			#{chgAmt},
+			#{chgGlInf},
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+
+    <delete id="deleteCharge" parameterType="map">
+		delete
+		from
+			charge
+		where
+			chg_code = #{fkChgCode}
+	</delete>
+</mapper>

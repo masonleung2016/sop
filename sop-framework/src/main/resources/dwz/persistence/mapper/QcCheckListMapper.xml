@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.QcCheckListMapper">
+    <sql id="Base_Column_List">
+		qct_no,
+		category,
+		template,
+		qct_detail,
+		co_code,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date
+
+	</sql>
+    <!-- 查询charge列表 -->
+    <select id="getQcCheckListByCondition" resultMap="QcCheckListMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        qcchecklist
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                qct_no LIKE "%"#{keywords}"%"
+                or category LIKE "%"#{keywords}"%"
+                or template LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by qct_no ASC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getQcCheckListNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(1) as c
+        from
+        qcchecklist
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                qct_no LIKE "%"#{keywords}"%"
+                or category LIKE "%"#{keywords}"%"
+                or template LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <!-- 获取所有charges -->
+    <select id="getAllQcCheckList" resultMap="QcCheckListMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        qcchecklist
+        order by qct_no asc
+    </select>
+    <resultMap id="QcCheckListMap" type="sop.persistence.beans.QcCheckList">
+        <result property="qctNo" jdbcType="VARCHAR" column="qct_no"/>
+        <result property="category" jdbcType="VARCHAR" column="category"/>
+        <result property="template" jdbcType="VARCHAR" column="template"/>
+        <result property="qctDetail" jdbcType="VARCHAR" column="qct_detail"/>
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 根据qctNo获取qcchecklist -->
+    <select id="getQcCheckListByNo" resultMap="QcCheckListMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        qcchecklist
+        where
+        qct_no = #{qctNo}
+    </select>
+
+    <select id="getQcCheckListByItemType" resultMap="QcCheckListMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        qcchecklist
+        where
+        category = #{value}
+    </select>
+    <!-- 更新qcchecklist -->
+    <update id="updateQcCheckList" parameterType="map">
+		update
+			qcchecklist
+		set
+			category = #{category},
+			template = #{template},
+			qct_detail = #{qctDetail},
+			co_code = #{coCode},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where 
+			qct_no = #{qctNo}
+	</update>
+
+    <!-- 增加company -->
+    <insert id="insertQcCheckList" parameterType="map">
+        insert into qcchecklist(
+        <include refid="Base_Column_List"/>
+        ) values (
+        #{qctNo},
+        #{category},
+        #{template},
+        #{qctDetail},
+        #{coCode},
+        #{crtUsr},
+        #{crtDate},
+        #{modUsr},
+        #{modDate}
+        )
+    </insert>
+
+    <delete id="deleteQcCheckList" parameterType="map">
+		delete
+		from
+			qcchecklist
+		where
+			qct_no = #{qctNo}
+	</delete>
+</mapper>

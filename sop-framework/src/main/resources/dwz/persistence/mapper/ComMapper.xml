@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.ComMapper">
+    <sql id="Base_Column_List">
+		id,
+		barcodeval,
+		fkpatient,
+		importdatetime,
+		moddatetime,
+		freezed,
+		actived
+	</sql>
+
+    <!-- 查询company列表 -->
+    <select id="getComListByCondition" resultMap="comVoListMap" parameterType="map">
+        select
+        co_code,
+        co_name,
+        co_chn
+        from
+        comp
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                co_code LIKE "%"#{keywords}"%"
+                or co_name LIKE "%"#{keywords}"%"
+                or co_chn LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+        </choose>
+    </select>
+    <select id="getComListNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        comp
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                co_code LIKE "%"#{keywords}"%"
+                or co_name LIKE "%"#{keywords}"%"
+                or co_chn LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <resultMap id="comVoListMap" type="sop.vo.CompanyVo">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="coName" jdbcType="VARCHAR" column="co_name"/>
+        <result property="coChn" jdbcType="VARCHAR" column="co_chn"/>
+    </resultMap>
+    <!-- 根据fkCoCode获取company -->
+    <select id="getCompanyByFkCoCode" resultMap="company" parameterType="map">
+		select 
+			co_code,
+			co_name,
+			co_chn,
+			co_add,
+			co_chn_add,
+			co_tel,
+			co_fax,
+			co_ly_beg,
+			co_ly_end,
+			co_cy_beg,
+			co_cy_end,
+			co_fax2,
+			co_tel2,
+			co_fax1,
+			co_tel1
+		from
+			comp
+		where
+			co_code = #{fkCoCode}
+	</select>
+    <resultMap id="company" type="sop.persistence.beans.Company">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="coName" jdbcType="VARCHAR" column="co_name"/>
+        <result property="coChn" jdbcType="VARCHAR" column="co_chn"/>
+        <result property="coAdd" jdbcType="VARCHAR" column="co_add"/>
+        <result property="coChnAdd" jdbcType="VARCHAR" column="co_chn_add"/>
+        <result property="coTel" jdbcType="VARCHAR" column="co_tel"/>
+        <result property="coFax" jdbcType="VARCHAR" column="co_fax"/>
+        <result property="coLyBeg" jdbcType="DATE" column="co_ly_beg"/>
+        <result property="coLyEnd" jdbcType="DATE" column="co_ly_end"/>
+        <result property="coCyBeg" jdbcType="DATE" column="co_cy_beg"/>
+        <result property="coCyEnd" jdbcType="DATE" column="co_cy_end"/>
+        <result property="coFax2" jdbcType="VARCHAR" column="co_fax2"/>
+        <result property="coTel2" jdbcType="VARCHAR" column="co_tel2"/>
+        <result property="coFax1" jdbcType="VARCHAR" column="co_fax1"/>
+        <result property="coTel1" jdbcType="VARCHAR" column="co_tel1"/>
+    </resultMap>
+
+    <!-- 更新company -->
+    <update id="updateCompany" parameterType="map">
+		UPDATE
+			comp
+		SET
+			co_name = #{coName},
+			co_chn = #{coChn},
+			co_add = #{coAdd},
+			co_chn_add = #{coChnAdd},
+			co_tel = #{coTel},
+			co_fax = #{coFax},
+			co_ly_beg = #{coLyBeg},
+			co_ly_end = #{coLyEnd},
+			co_cy_beg = #{coCyBeg},
+			co_cy_end = #{coCyEnd},
+			co_fax2 = #{coFax2},
+			co_tel2 = #{coTel2},
+			co_fax1 = #{coFax1},
+			co_tel1 = #{coTel1}
+		WHERE 
+			co_code = #{coCode}
+	</update>
+    <!-- 获取指定coCode数量 -->
+    <select id="getCountByFkCoCode" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(1) as c
+		from
+			comp a
+		where
+			a.co_code = #{fkCoCode}
+	</select>
+    <!-- 增加company -->
+    <insert id="insertCompany" parameterType="map">
+        INSERT INTO comp(
+        co_code,
+        co_name,
+        co_chn,
+        co_add,
+        co_chn_add,
+        co_tel,
+        co_fax,
+        co_ly_beg,
+        co_ly_end,
+        co_cy_beg,
+        co_cy_end,
+        co_fax2,
+        co_tel2,
+        co_fax1,
+        co_tel1
+        ) VALUES (
+        #{coCode},
+        #{coName},
+        #{coChn},
+        #{coAdd},
+        #{coChnAdd},
+        #{coTel},
+        #{coFax},
+        <choose>
+            <when test="coLyBeg == ''">
+                null,
+            </when>
+            <otherwise>
+                #{coLyBeg},
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="coLyEnd == ''">
+                null,
+            </when>
+            <otherwise>
+                #{coLyEnd},
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="coCyBeg == ''">
+                null,
+            </when>
+            <otherwise>
+                #{coCyBeg},
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="coCyEnd == ''">
+                null,
+            </when>
+            <otherwise>
+                #{coCyEnd},
+            </otherwise>
+        </choose>
+        #{coFax2},
+        #{coTel2},
+        #{coFax1},
+        #{coTel1}
+        )
+    </insert>
+    <delete id="deleteCompany" parameterType="map">
+		delete
+		from
+			comp
+		where
+			co_code = #{fkCoCode}
+	</delete>
+</mapper>

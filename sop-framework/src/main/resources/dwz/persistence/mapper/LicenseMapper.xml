@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.LicenseMapper">
+    <resultMap id="rm" type="dwz.persistence.beans.License">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="hospitalName" jdbcType="VARCHAR" column="hospitalName"/>
+        <result property="value" jdbcType="VARCHAR" column="value"/>
+        <result property="notifyDateInAdvance" jdbcType="INTEGER" column="notifyDateInAdvance"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		hospitalName,
+		value,
+		notifyDateInAdvance
+	</sql>
+
+    <select id="loadLatestLicense" parameterType="java.lang.Integer" resultMap="rm">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM license
+        WHERE
+        1 = 1
+        order by id desc
+        limit 1
+    </select>
+
+
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO license (
+			id,
+			hospitalName,
+			value,
+			notifyDateInAdvance
+		) VALUES (
+			#{id},
+			#{hospitalName},
+			#{value},
+			#{notifyDateInAdvance}
+		)
+	</insert>
+</mapper>
+

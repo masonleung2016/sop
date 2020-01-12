@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.SysUserMapper">
+    <resultMap id="rm" type="sop.persistence.beans.SysUser">
+        <result property="coCode" jdbcType="CHAR" column="CO_CODE"/>
+        <result property="usrId" jdbcType="VARCHAR" column="USR_ID"/>
+        <result property="usrName" jdbcType="VARCHAR" column="USR_NAME"/>
+        <result property="usrPass" jdbcType="VARCHAR" column="USR_PASS"/>
+        <result property="usrLevel" jdbcType="VARCHAR" column="USR_LEVEL"/>
+        <result property="usrRole" jdbcType="VARCHAR" column="USR_ROLE"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		CO_CODE,
+		USR_ID,
+		USR_NAME,
+		USR_PASS,
+		USR_LEVEL,
+		USR_ROLE
+	</sql>
+
+
+    <!-- 按Id删除 -->
+    <delete id="deleteUser" parameterType="map">
+		DELETE FROM users WHERE
+		USR_ID=#{usrId} and CO_CODE=#{coCode}
+	</delete>
+
+    <!-- 插入 -->
+    <insert id="insertUsr" parameterType="map">
+		INSERT INTO users (
+			CO_CODE,
+			USR_ID,
+			USR_NAME,
+			USR_PASS,
+			USR_LEVEL,
+			USR_ROLE 
+		) VALUES (
+			#{coCode},
+			#{usrId},
+			#{usrName},
+			#{usrPass},
+			#{usrLevel},
+			#{usrRole}
+		)
+	</insert>
+
+
+    <!-- 更新 -->
+    <update id="updateUsr" parameterType="map">
+        UPDATE users
+        <set>
+            <if test="usrName!=null">
+                USR_NAME = #{usrName},
+            </if>
+            <if test="usrPass!=null">
+                USR_PASS = #{usrPass},
+            </if>
+            <if test="usrLevel!=null">
+                USR_PASS = #{usrLevel},
+            </if>
+            <if test="usrRole!=null">
+                USR_ROLE = #{usrRole}
+            </if>
+        </set>
+        WHERE
+        USR_ID=#{usrId} and CO_CODE=#{coCode}
+    </update>
+
+
+    <select id="findByUsername" parameterType="java.lang.String"
+            resultMap="rm">
+        select
+        <include refid="Base_Column_List"/>
+        from users where USR_ID = #{usrId} limit 1
+    </select>
+
+
+    <select id="getCoCodes" resultType="string">
+		select 
+			distinct CO_CODE
+		from users
+	</select>
+
+    <select id="getUserByUsernameAndCocode" parameterType="map"
+            resultMap="rm">
+        select
+        <include refid="Base_Column_List"/>
+        from users where USR_ID = #{usrId} and CO_CODE=#{coCode} limit 1
+    </select>
+
+    <select id="isUniqueUsername" parameterType="map" resultType="java.lang.Integer">
+		select count(0) as c
+		from users where USR_ID = #{username} 
+	</select>
+    <select id="findAllByRole" resultMap="rm" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from
+        users
+        where USR_ROLE=#{value}
+    </select>
+    <select id="findAll" resultMap="rm">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from
+        users
+    </select>
+    <select id="findPageBreakByCondition" resultMap="rm"
+            parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from
+        users
+        Where
+        1 = 1
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+        </choose>
+    </select>
+    <select id="searchUserNum" resultType="java.lang.Integer"
+            parameterType="map">
+		select
+			count(0) as c
+		from
+			users		
+	</select>
+
+
+</mapper>
+

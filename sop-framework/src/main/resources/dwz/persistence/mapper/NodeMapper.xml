@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.NodeMapper">
+    <resultMap id="rm" type="dwz.persistence.beans.Node">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="key" jdbcType="VARCHAR" column="nodeKey"/>
+        <result property="name" jdbcType="VARCHAR" column="name"/>
+        <result property="left" jdbcType="INTEGER" column="nodeLeft"/>
+        <result property="top" jdbcType="INTEGER" column="nodeTop"/>
+        <result property="width" jdbcType="INTEGER" column="width"/>
+        <result property="height" jdbcType="INTEGER" column="height"/>
+        <result property="type" jdbcType="VARCHAR" column="type"/>
+        <result property="alt" jdbcType="BOOLEAN" column="alt"/>
+    </resultMap>
+    <resultMap id="nodevo" type="dwz.framework.vo.NodeVo">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="key" jdbcType="VARCHAR" column="nodeKey"/>
+        <result property="name" jdbcType="VARCHAR" column="name"/>
+        <result property="left" jdbcType="INTEGER" column="nodeLeft"/>
+        <result property="top" jdbcType="INTEGER" column="nodeTop"/>
+        <result property="width" jdbcType="INTEGER" column="width"/>
+        <result property="height" jdbcType="INTEGER" column="height"/>
+        <result property="type" jdbcType="VARCHAR" column="type"/>
+        <result property="alt" jdbcType="BOOLEAN" column="alt"/>
+        <result property="cycle" jdbcType="BOOLEAN" column="cycle"/>
+        <result property="double_witness" jdbcType="BOOLEAN" column="double_witness"/>
+        <result property="barcode" jdbcType="BOOLEAN" column="barcode"/>
+        <result property="donor" jdbcType="BOOLEAN" column="donor"/>
+        <result property="unAssigned" jdbcType="BOOLEAN" column="unAssigned"/>
+        <result property="resultContainerId" jdbcType="INTEGER" column="resultContainerId"/>
+        <result property="resultContainerType" jdbcType="VARCHAR" column="resultContainerType"/>
+        <result property="usedReqNodeKey" jdbcType="VARCHAR" column="usedReqNodeKey"/>
+        <result property="questionstatus" jdbcType="VARCHAR" column="questionstatus"/>
+        <result property="questiontext" jdbcType="VARCHAR" column="questiontext"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		nodeKey,
+		name,
+		nodeLeft,
+		nodeTop,
+		width,
+		height,
+		type,
+		alt
+	</sql>
+
+    <select id="findAllNodes" resultMap="rm" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM nodes
+    </select>
+
+    <select id="findAllNodeVo" resultMap="nodevo" parameterType="map">
+		SELECT 
+		a.id,
+		a.nodeKey,
+		a.name,
+		a.nodeLeft,
+		a.nodeTop,
+		a.width,
+		a.height,
+		a.type,
+		a.alt,
+		a.double_witness,
+		a.barcode,
+		donor,
+		a.cycle,
+		a.unAssigned,
+		a.resultContainerId as resultContainerId,
+		b.type as resultContainerType,
+		a.usedReqNodeKey,
+		a.questionstatus,
+		a.questiontext
+		FROM nodes a
+		LEFT JOIN container b
+		ON a.resultContainerId = b.id
+	</select>
+
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO nodes (
+			`ID`,
+			`NODEKEY`,
+			`NAME`,
+			`NODELEFT`,
+			`NODETOP`,
+			`WIDTH`,
+			`HEIGHT`,
+			`TYPE`,
+			`unAssigned`,
+			`resultContainerId`,
+			`usedReqNodeKey`,
+			`double_witness`,
+			`barcode`,
+			`donor`,
+			`cycle`,
+			`ALT`,
+			`moddatetime`,
+			`questionstatus`,
+			`questiontext`
+		) VALUES (
+			#{id},
+			#{key},
+			#{name},
+			#{left},
+			#{top},
+			#{width},
+			#{height},
+			#{type},
+			#{unAssigned},
+			#{resultContainerId},
+			#{usedReqNodeKey},
+			#{double_witness},
+			#{barcode},
+			#{donor},
+			#{cycle},
+			#{alt},
+			#{moddatetime},
+			#{questionstatus},
+			#{questiontext}
+		)
+	</insert>
+
+    <!--删除所有的数据-->
+    <update id="truncateTable">
+		truncate table nodes
+	</update>
+
+    <select id="getPreNodes" resultMap="nodeId" parameterType="map">
+		select
+			f.nodeId
+		from
+		(
+			select 
+				count(b.linkFrom) e, a.id nodeId 
+			from
+				nodes a 
+				left join links b
+				on a.nodeKey = b.linkTo
+				left join nodes c
+				on b.linkFrom = c.nodeKey
+				left join container d
+				on c.resultContainerId = d.id
+			where a.unAssigned = #{unAssigned}
+			group by a.id
+		) f
+		where f.e = #{containersCount}
+	</select>
+
+    <resultMap id="nodeId" type="java.lang.Integer">
+        <result property="nodeId" jdbcType="INTEGER" column="nodeId"/>
+    </resultMap>
+
+    <select id="getPreContainerIds" resultMap="containerId" parameterType="java.lang.Integer">
+		select 
+			d.id containerId 
+		from
+			nodes a 
+			left join links b
+			on a.nodeKey = b.linkTo
+			left join nodes c
+			on b.linkFrom = c.nodeKey
+			left join container d
+			on c.resultContainerId = d.id
+		where 
+			a.id = #{preNodeId}
+		order by 
+			d.id
+	</select>
+
+    <resultMap id="containerId" type="java.lang.Integer">
+        <result property="containerId" jdbcType="INTEGER" column="containerId"/>
+    </resultMap>
+
+    <select id="getWitness" resultMap="witness" parameterType="map">
+		select
+			a.name witnessName,
+			a.double_witness doubleWitness,
+			a.barcode barcode,
+			a.question question,
+			a.resultContainerId resultContainerId,
+			c.type resultContainerName,
+			a.unAssigned,
+			d.resultContainerId usedReqContainerId,
+			1 status
+		from
+			nodes a
+		left join container c
+			on a.resultContainerId = c.id
+		left join nodes d
+			on a.usedReqNodeKey = d.nodeKey
+		where 
+			a.id = #{preNodeId}
+	</select>
+
+    <!-- 根据预备的当前nodeId查找前面的node -->
+    <select id="getWitnessByPreNodeId" resultMap="witness" parameterType="java.lang.Integer">
+		select
+			a.name witnessName,
+			a.double_witness doubleWitness,
+			a.barcode barcode,
+			a.questionstatus questionstatus,
+			a.questiontext questiontext,
+			a.resultContainerId resultContainerId,
+			c.type resultContainerName,
+			a.unAssigned,
+			d.resultContainerId usedReqContainerId,
+			1 status
+		from
+			nodes a
+		left join container c
+			on a.resultContainerId = c.id
+		left join nodes d
+			on a.usedReqNodeKey = d.nodeKey
+		where 
+			a.id = #{preNodeId}
+	</select>
+
+    <resultMap id="witness" type="match.vo.WitnessVo">
+        <result property="witnessName" jdbcType="VARCHAR" column="witnessName"/>
+        <result property="doubleWitness" jdbcType="BOOLEAN" column="doubleWitness"/>
+        <result property="barcode" jdbcType="BOOLEAN" column="barcode"/>
+        <result property="question" jdbcType="VARCHAR" column="question"/>
+        <result property="resultContainerId" jdbcType="INTEGER" column="resultContainerId"/>
+        <result property="resultContainerName" jdbcType="VARCHAR" column="resultContainerName"/>
+        <result property="unAssigned" jdbcType="BOOLEAN" column="unAssigned"/>
+        <result property="usedReqContainerId" jdbcType="INTEGER" column="usedReqContainerId"/>
+        <result property="status" jdbcType="VARCHAR" column="status"/>
+        <result property="questionstatus" jdbcType="VARCHAR" column="questionstatus"/>
+        <result property="questiontext" jdbcType="VARCHAR" column="questiontext"/>
+    </resultMap>
+
+    <!-- <select id="getAllWitness" resultMap="witness" parameterType="map">
+        select
+            b.fkcycle fkcycle,
+            a.name witnessName,
+            a.double_witness doubleWitness,
+            a.barcode barcode,
+            a.question question,
+            a.resultContainerId resultContainerId,
+            a.unAssigned,
+            2 status
+        from
+            nodes a
+        left join nodeschecklist b
+            on a.id = b.nodesid
+        where
+            b.fkcycle = #{fkcycle}
+    </select> -->
+
+    <!-- 获取所有node名称 -->
+    <select id="getAllNodeNames" resultMap="nodeNames">
+		select distinct
+			a.name as nodeName
+		from
+			nodes a
+	</select>
+
+    <resultMap id="nodeNames" type="java.lang.String">
+        <result property="nodeName" jdbcType="VARCHAR" column="nodeName"/>
+    </resultMap>
+</mapper>
+

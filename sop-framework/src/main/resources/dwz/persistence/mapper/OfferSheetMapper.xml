@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.OfferSheetMapper">
+    <resultMap id="rm" type="sop.persistence.beans.OfferSheet">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="offShNoPfix" jdbcType="VARCHAR" column="off_sh_no_pfix"/>
+        <result property="offShNo" jdbcType="VARCHAR" column="off_sh_no"/>
+        <result property="offShNoPfixNo" jdbcType="VARCHAR" column="off_sh_no_pfix_no"/>
+        <result property="offCust" jdbcType="VARCHAR" column="off_cust"/>
+        <result property="offCustAttn" jdbcType="VARCHAR" column="off_cust_attn"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <resultMap id="offerSheetVo" type="sop.vo.OfferSheetVo">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="offShNoPfix" jdbcType="VARCHAR" column="off_sh_no_pfix"/>
+        <result property="offShNo" jdbcType="VARCHAR" column="off_sh_no"/>
+        <result property="offShNoPfixNo" jdbcType="VARCHAR" column="off_sh_no_pfix_no"/>
+        <result property="offCust" jdbcType="VARCHAR" column="off_cust"/>
+        <result property="offCustAttn" jdbcType="VARCHAR" column="off_cust_attn"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <resultMap id="offerSheet" type="sop.persistence.beans.OfferSheet">
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="offShNoPfix" jdbcType="VARCHAR" column="off_sh_no_pfix"/>
+        <result property="offShNo" jdbcType="VARCHAR" column="off_sh_no"/>
+        <result property="offShNoPfixNo" jdbcType="VARCHAR" column="off_sh_no_pfix_no"/>
+        <result property="offDate" jdbcType="TIMESTAMP" column="off_date"/>
+        <result property="offCust" jdbcType="VARCHAR" column="off_cust"/>
+        <result property="offCustAttn" jdbcType="VARCHAR" column="off_cust_attn"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <resultMap id="offerSheetItem" type="sop.persistence.beans.OfferSheetItem">
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="off2ShNoPfix" jdbcType="VARCHAR" column="off2_sh_no_pfix"/>
+        <result property="off2ShNo" jdbcType="VARCHAR" column="off2_sh_no"/>
+        <result property="off2ShNoPfixNo" jdbcType="VARCHAR" column="off2_sh_no_pfix_no"/>
+        <result property="off2ItCat" jdbcType="VARCHAR" column="off2_it_cat"/>
+        <result property="off2ItNo" jdbcType="VARCHAR" column="off2_it_no"/>
+        <result property="off2ItSuffix" jdbcType="VARCHAR" column="off2_it_suffix"/>
+        <result property="off2DescOfferSh" jdbcType="VARCHAR" column="off2_desc_offer_sh"/>
+        <result property="off2ItName" jdbcType="VARCHAR" column="off2_it_name"/>
+        <result property="off2ItRemark" jdbcType="VARCHAR" column="off2_it_remark"/>
+        <result property="off2CertOrigin" jdbcType="VARCHAR" column="off2_cert_origin"/>
+        <result property="off2FormA" jdbcType="VARCHAR" column="off2_form_a"/>
+        <result property="off2CnfPrice" jdbcType="DECIMAL" column="off2_cnf_price"/>
+        <result property="off2FobPort" jdbcType="VARCHAR" column="off2_fob_port"/>
+        <result property="off2CnfPort" jdbcType="VARCHAR" column="off2_cnf_port"/>
+        <result property="off2CurrCode" jdbcType="VARCHAR" column="off2_curr_code"/>
+        <result property="off2FobPrice" jdbcType="DECIMAL" column="off2_fob_price"/>
+        <result property="off2FobCost" jdbcType="DECIMAL" column="off2_fob_cost"/>
+        <result property="off2FobCostB" jdbcType="DECIMAL" column="off2_fob_cost_b"/>
+        <result property="off2MoqA" jdbcType="INTEGER" column="off2_moq_a"/>
+        <result property="off2MoqB" jdbcType="INTEGER" column="off2_moq_b"/>
+        <result property="off2MarkupRate" jdbcType="DECIMAL" column="off2_markup_rate"/>
+        <result property="off2FobPriceB" jdbcType="DECIMAL" column="off2_fob_price_b"/>
+        <result property="off2MarkupRateB" jdbcType="DECIMAL" column="off2_markup_rate_b"/>
+        <result property="off2PriceTradeUnit" jdbcType="VARCHAR" column="off2_price_trade_unit"/>
+        <result property="off2Price" jdbcType="DECIMAL" column="off2_price"/>
+        <result property="off2PricePort" jdbcType="VARCHAR" column="off2_price_port"/>
+        <result property="off2Moq" jdbcType="DECIMAL" column="off2_moq"/>
+        <result property="off2MoqUom" jdbcType="VARCHAR" column="off2_moq_uom"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="off2ItCatNoSuffix" jdbcType="VARCHAR" column="off2_it_cat_no_suffix"/>
+    </resultMap>
+
+    <resultMap id="abCostPriceHead" type="sop.reports.vo.OffAbCostPriceHead">
+        <result property="offShNoPfixNo" jdbcType="VARCHAR" column="off_sh_no_pfix_no"/>
+        <result property="offShNoPfix" jdbcType="VARCHAR" column="off_sh_no_pfix"/>
+        <result property="offShNo" jdbcType="VARCHAR" column="off_sh_no"/>
+        <result property="offDate" jdbcType="TIMESTAMP" column="off_date"/>
+        <result property="cuName" jdbcType="VARCHAR" column="cu_name"/>
+        <result property="offCustAttn" jdbcType="VARCHAR" column="off_cust_attn"/>
+    </resultMap>
+
+    <resultMap id="offAbCostPrice" type="sop.reports.vo.OffAbCostPrice">
+        <result property="off_sh_no_pfix_no" jdbcType="VARCHAR" column="off_sh_no_pfix_no"/>
+        <result property="off_sh_no_pfix" jdbcType="VARCHAR" column="off_sh_no_pfix"/>
+        <result property="off_sh_no" jdbcType="VARCHAR" column="off_sh_no"/>
+        <result property="off_date" jdbcType="TIMESTAMP" column="off_date"/>
+        <result property="cu_name" jdbcType="VARCHAR" column="cu_name"/>
+        <result property="off_cust_attn" jdbcType="VARCHAR" column="off_cust_attn"/>
+        <result property="it_cat_no_suffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="off2_it_name" jdbcType="VARCHAR" column="off2_it_name"/>
+        <result property="it_pkg_20_qty" jdbcType="DECIMAL" column="it_pkg_20_qty"/>
+        <result property="it_pkg_40_qty" jdbcType="DECIMAL" column="it_pkg_40_qty"/>
+        <result property="off2_curr_code" jdbcType="VARCHAR" column="off2_curr_code"/>
+        <result property="off2_fob_price" jdbcType="DECIMAL" column="off2_fob_price"/>
+        <result property="off2_fob_price_b" jdbcType="DECIMAL" column="off2_fob_price_b"/>
+        <result property="off2_fob_cost" jdbcType="DECIMAL" column="off2_fob_cost"/>
+        <result property="off2_fob_cost_b" jdbcType="DECIMAL" column="off2_fob_cost_b"/>
+        <result property="off2_fob_port" jdbcType="VARCHAR" column="off2_fob_port"/>
+        <result property="it_fty_cost_last_update" jdbcType="DATE" column="it_fty_cost_last_update"/>
+        <result property="it_fty_item_no" jdbcType="VARCHAR" column="it_fty_item_no"/>
+        <result property="it_fty_code" jdbcType="VARCHAR" column="it_fty_code"/>
+        <result property="it_fty_name" jdbcType="VARCHAR" column="it_fty_name"/>
+        <result property="it_image_1" jdbcType="VARCHAR" column="it_image_1"/>
+    </resultMap>
+
+    <resultMap type="sop.reports.vo.OffListItem" id="offListItem">
+        <result property="off_sh_no_pfix" jdbcType="VARCHAR" column="off_sh_no_pfix"/>
+        <result property="off_sh_no" jdbcType="VARCHAR" column="off_sh_no"/>
+        <result property="it_no" jdbcType="VARCHAR" column="it_no"/>
+        <result property="off2_it_name" jdbcType="VARCHAR" column="off2_it_name"/>
+        <result property="off2_curr_code" jdbcType="VARCHAR" column="off2_curr_code"/>
+        <result property="of_fob" jdbcType="VARCHAR" column="of_fob"/>
+        <result property="of_cnf" jdbcType="VARCHAR" column="of_cnf"/>
+    </resultMap>
+
+    <resultMap type="sop.reports.vo.CostPriceList" id="costPriceList">
+        <result property="no" jdbcType="VARCHAR" column="no"/>
+        <result property="date" jdbcType="VARCHAR" column="date"/>
+        <result property="vto" jdbcType="VARCHAR" column="vto"/>
+        <result property="attn" jdbcType="VARCHAR" column="attn"/>
+        <result property="itno" jdbcType="VARCHAR" column="itno"/>
+        <result property="itname" jdbcType="VARCHAR" column="itname"/>
+        <result property="it_pkg_20_qty" jdbcType="DECIMAL" column="it_pkg_20_qty"/>
+        <result property="it_pkg_40_qty" jdbcType="DECIMAL" column="it_pkg_40_qty"/>
+        <result property="it_fty_fob_cost" jdbcType="DECIMAL" column="it_fty_fob_cost"/>
+        <result property="it_fty_fob_port" jdbcType="VARCHAR" column="it_fty_fob_port"/>
+        <result property="it_image_1" jdbcType="VARCHAR" column="it_image_1"/>
+        <result property="it_fty_code" jdbcType="VARCHAR" column="it_fty_code"/>
+        <result property="it_fty_name" jdbcType="VARCHAR" column="it_fty_name"/>
+        <result property="it_fty_item_no" jdbcType="VARCHAR" column="it_fty_item_no"/>
+    </resultMap>
+
+    <resultMap type="sop.reports.vo.ABPriceList" id="abPriceList">
+        <result property="no" jdbcType="VARCHAR" column="no"/>
+        <result property="date" jdbcType="VARCHAR" column="date"/>
+        <result property="vto" jdbcType="VARCHAR" column="vto"/>
+        <result property="attn" jdbcType="VARCHAR" column="attn"/>
+        <result property="itno" jdbcType="VARCHAR" column="itno"/>
+        <result property="itname" jdbcType="VARCHAR" column="itname"/>
+        <result property="it_pkg_20_qty" jdbcType="DECIMAL" column="it_pkg_20_qty"/>
+        <result property="it_pkg_40_qty" jdbcType="DECIMAL" column="it_pkg_40_qty"/>
+        <result property="it_image_1" jdbcType="VARCHAR" column="it_image_1"/>
+        <result property="off2_fob_port" jdbcType="VARCHAR" column="off2_fob_port"/>
+        <result property="price" jdbcType="DECIMAL" column="price"/>
+        <result property="priceb" jdbcType="DECIMAL" column="priceb"/>
+        <result property="off2_curr_code" jdbcType="VARCHAR" column="off2_curr_code"/>
+    </resultMap>
+
+    <resultMap type="sop.reports.vo.SimplifiedOff" id="simplifiedOffreport">
+        <result property="no" jdbcType="VARCHAR" column="no"/>
+        <result property="date" jdbcType="VARCHAR" column="date"/>
+        <result property="vto" jdbcType="VARCHAR" column="vto"/>
+        <result property="attn" jdbcType="VARCHAR" column="attn"/>
+        <result property="code" jdbcType="VARCHAR" column="code"/>
+        <result property="price" jdbcType="DECIMAL" column="price"/>
+        <result property="fob" jdbcType="VARCHAR" column="fob"/>
+        <result property="itno" jdbcType="VARCHAR" column="itno"/>
+        <result property="itname" jdbcType="VARCHAR" column="itname"/>
+        <result property="it_pkg_20_qty" jdbcType="DECIMAL" column="it_pkg_20_qty"/>
+        <result property="it_pkg_40_qty" jdbcType="DECIMAL" column="it_pkg_40_qty"/>
+        <result property="it_pkg_40HQ_qty" jdbcType="DECIMAL" column="it_pkg_40HQ_qty"/>
+        <result property="off2_desc_offer_sh" jdbcType="VARCHAR" column="off2_desc_offer_sh"/>
+        <result property="cbm" jdbcType="DECIMAL" column="cbm"/>
+        <result property="it_uom" jdbcType="VARCHAR" column="it_uom"/>
+        <result property="it_pkg_exp_pcs" jdbcType="VARCHAR" column="it_pkg_exp_pcs"/>
+        <result property="it_image_1" jdbcType="VARCHAR" column="it_image_1"/>
+        <result property="it_pkg_detail" jdbcType="VARCHAR" column="it_pkg_detail"/>
+        <result property="it_desc_of_sh" jdbcType="VARCHAR" column="it_desc_of_sh"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		co_code,
+		off_sh_no_pfix,
+		off_sh_no,
+		off_sh_no_pfix_no,
+		off_cust,
+		off_cust_attn,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date
+	</sql>
+
+    <select id="findAll" resultMap="rm">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        offsheet1
+    </select>
+    <!-- TODO: No finish  -->
+    <select id="findPageBreakByCondition" resultMap="offerSheetVo" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        offsheet1
+        where
+        1 = 1
+        <choose>
+            <when test="from != null">
+                <choose>
+                    <when test="to != null">
+                        and
+                        off_sh_no_pfix_no &gt;= #{from}
+                        and
+                        off_sh_no_pfix_no &lt;= #{to}
+                    </when>
+                    <otherwise>
+                        and off_sh_no_pfix_no = #{from}
+                    </otherwise>
+                </choose>
+            </when>
+        </choose>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                ORDER BY off_sh_no_pfix_no, crt_date DESC
+            </otherwise>
+        </choose>
+
+
+    </select>
+
+    <select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0)
+        from
+        offsheet1
+        where
+        1 = 1
+        <choose>
+            <when test="from != null">
+                <choose>
+                    <when test="to != null">
+                        and
+                        off_sh_no_pfix_no &gt;= #{from}
+                        and
+                        off_sh_no_pfix_no &lt;= #{to}
+                    </when>
+                    <otherwise>
+                        and
+                        off_sh_no_pfix_no = #{from}
+                    </otherwise>
+                </choose>
+            </when>
+        </choose>
+
+    </select>
+
+    <resultMap id="cust" type="sop.vo.CustomerVo">
+        <result property="cuCode" jdbcType="VARCHAR" column="cu_code"/>
+        <result property="cuName" jdbcType="VARCHAR" column="cu_name"/>
+    </resultMap>
+    <!--  -->
+    <select id="getCountByOfferSheet" resultType="java.lang.Integer" parameterType="map">
+		select
+			count(0)
+		from
+			offsheet1
+		where
+			off_sh_no_pfix = #{offShNoPfix}
+		and
+			off_sh_no = #{offShNo}
+	</select>
+    <!-- 增加OfferSheet -->
+    <insert id="insertOfferSheet" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		INSERT INTO offsheet1(
+			co_code,
+			off_sh_no_pfix,
+			off_sh_no,
+			off_sh_no_pfix_no,
+			off_date,
+			off_cust,
+			off_cust_attn,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) VALUES (
+			#{coCode},
+			#{offShNoPfix},
+			#{offShNo},
+			#{offShNoPfixNo},
+			#{offDate},
+			#{offCust},
+			#{offCustAttn},
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+    <!-- 增加OfferSheetItem -->
+    <insert id="insertOfferSheetItem" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		INSERT INTO offsheet2(
+			co_code,
+			off2_sh_no_pfix,
+			off2_sh_no,
+			off2_sh_no_pfix_no,
+			off2_it_cat,
+			off2_it_no,
+			off2_it_suffix,
+			off2_desc_offer_sh,
+			off2_it_name,
+			off2_it_remark,
+			off2_cert_origin,
+			off2_form_a,
+			off2_cnf_price,
+			off2_fob_port,
+			off2_cnf_port,
+			off2_curr_code,
+			off2_fob_price,
+			off2_fob_cost,
+			off2_fob_cost_b,
+			off2_moq_a,
+			off2_moq_b,
+			off2_markup_rate,
+			off2_fob_price_b,
+			off2_markup_rate_b,
+			off2_price_trade_unit,
+			off2_price,
+			off2_price_port,
+			off2_moq,
+			off2_moq_uom,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) VALUES (
+			#{coCode},
+			#{off2ShNoPfix},
+			#{off2ShNo},
+			#{off2ShNoPfixNo},
+			#{off2ItCat},
+			#{off2ItNo},
+			#{off2ItSuffix},
+			#{off2DescOfferSh},
+			#{off2ItName},
+			#{off2ItRemark},
+			#{off2CertOrigin},
+			#{off2FormA},
+			#{off2CnfPrice},
+			#{off2FobPort},
+			#{off2CnfPort},
+			#{off2CurrCode},
+			#{off2FobPrice},
+			#{off2FobCost},
+			#{off2FobCostB},
+			#{off2MoqA},
+			#{off2MoqB},
+			#{off2MarkupRate},
+			#{off2FobPriceB},
+			#{off2MarkupRateB},
+			#{off2PriceTradeUnit},
+			#{off2Price},
+			#{off2PricePort},
+			#{off2Moq},
+			#{off2MoqUom},
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+    <!-- 获取offerSheet -->
+    <select id="getOfferSheetByOfferSheetVo" resultMap="offerSheet" parameterType="map">
+		select
+			co_code,
+			off_sh_no_pfix,
+			off_sh_no,
+			off_sh_no_pfix_no,
+			off_date,
+			off_cust,
+			off_cust_attn,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		from
+			offsheet1
+		where
+			co_code = #{coCode}
+		and
+			off_sh_no_pfix = #{offShNoPfix}
+		and
+			off_sh_no = #{offShNo}
+	</select>
+    <!-- 获取offerSheetItemList -->
+    <select id="getOfferSheetItemListByOfferSheetVo" resultMap="offerSheetItem" parameterType="map">
+		select
+			co_code,
+			off2_sh_no_pfix,
+			off2_sh_no,
+			off2_sh_no_pfix_no,
+			off2_it_cat,
+			off2_it_no,
+			off2_it_suffix,
+			concat(off2_it_cat,off2_it_no,off2_it_suffix) off2_it_cat_no_suffix,
+			off2_desc_offer_sh,
+			off2_it_name,
+			off2_it_remark,
+			off2_cert_origin,
+			off2_form_a,
+			off2_cnf_price,
+			off2_fob_port,
+			off2_cnf_port,
+			off2_curr_code,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date,
+			off2_fob_price,
+			off2_fob_cost,
+			off2_fob_cost_b,
+			off2_moq_a,
+			off2_moq_b,
+			off2_markup_rate,
+			off2_fob_price_b,
+			off2_markup_rate_b,
+			off2_price_trade_unit,
+			off2_price,
+			off2_price_port,
+			off2_moq,
+			off2_moq_uom
+		from
+			offsheet2
+		where
+			co_code = #{coCode}
+		and
+			off2_sh_no_pfix = #{offShNoPfix}
+		and
+			off2_sh_no = #{offShNo}
+	</select>
+    <!-- update offerSheet1 -->
+    <update id="updateOfferSheet" parameterType="map">
+		update
+			 offsheet1
+		set
+			off_date = #{offDate},
+			off_cust = #{offCust},
+			off_cust_attn = #{offCustAttn},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where
+			co_code = #{coCode}
+		and
+			off_sh_no = #{offShNo}
+		and
+			off_sh_no_pfix = #{offShNoPfix}
+	</update>
+    <!-- delete offerSheet2 -->
+    <delete id="deleteOfferItem" parameterType="map">
+		delete
+		from
+			offsheet2
+		where
+			co_code = #{coCode}
+		and
+			off2_sh_no = #{offShNo}
+		and
+			off2_sh_no_pfix = #{offShNoPfix}
+	</delete>
+
+    <delete id="deleteOfferItemByOffShNoPfixNo" parameterType="map">
+		delete
+		from
+			offsheet2
+		where
+			off2_sh_no_pfix_no = #{offShNoPfixNo}
+	</delete>
+    <!-- delete offerSheet1 -->
+    <delete id="deleteOfferSheet" parameterType="map">
+		delete
+		from
+			offsheet1
+		where
+			co_code = #{coCode}
+		and
+			off_sh_no = #{offShNo}
+		and
+			off_sh_no_pfix = #{offShNoPfix}
+	</delete>
+
+    <delete id="deleteOfferSheetByOffShNoPfixNo" parameterType="map">
+		delete
+		from
+			offsheet1
+		where
+			off_sh_no_pfix_no = #{offShNoPfixNo}
+	</delete>
+
+    <select id="getOfferSheetByOffShNoPfixNo" resultMap="offerSheet" parameterType="map">
+		select
+			co_code,
+			off_sh_no_pfix,
+			off_sh_no,
+			off_sh_no_pfix_no,
+			off_date,
+			off_cust,
+			off_cust_attn,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		from
+			offsheet1
+		where
+			off_sh_no_pfix_no = #{offShNoPfixNo}
+	</select>
+
+    <select id="getOfferSheetItemListByOffShNoPfixNo" resultMap="offerSheetItem" parameterType="map">
+		select
+			co_code,
+			off2_sh_no_pfix,
+			off2_sh_no,
+			off2_sh_no_pfix_no,
+			off2_it_cat,
+			off2_it_no,
+			off2_it_suffix,
+			concat(off2_it_cat,off2_it_no,off2_it_suffix) off2_it_cat_no_suffix,
+			off2_desc_offer_sh,
+			off2_it_name,
+			off2_it_remark,
+			off2_cert_origin,
+			off2_form_a,
+			off2_cnf_price,
+			off2_fob_port,
+			off2_cnf_port,
+			off2_curr_code,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date,
+			off2_fob_price,
+			off2_fob_cost,
+			off2_fob_cost_b,
+			off2_moq_a,
+			off2_moq_b,
+			off2_markup_rate,
+			off2_fob_price_b,
+			off2_markup_rate_b,
+			off2_price_trade_unit,
+			off2_price,
+			off2_price_port,
+			off2_moq,
+			off2_moq_uom
+		from
+			offsheet2
+		where
+			off2_sh_no_pfix_no = #{offShNoPfixNo}
+	</select>
+
+    <select id="getAbCostPriceReport" resultMap="abCostPriceHead" parameterType="map">
+		select 
+			concat(a.off_sh_no_pfix, ' ', a.off_sh_no) off_sh_no_pfix_no,
+			a.off_sh_no_pfix,
+			a.off_sh_no,
+			a.off_date,
+			b.cu_name,
+			a.off_cust_attn
+		from 
+			offsheet1 a 
+		left join
+			cust b
+		on 
+			a.off_cust = b.cu_code
+		where
+			off_sh_no_pfix = #{fromPrefix}
+		and
+			off_sh_no = #{fromNo}
+	</select>
+
+    <select id="getOffAbCostPrice" resultMap="offAbCostPrice" parameterType="map">
+		select 
+			a.off_sh_no_pfix,
+			a.off_sh_no,
+			a.off_sh_no_pfix_no,
+			a.off_date,
+			b.cu_name,
+			a.off_cust_attn,
+			concat(c.off2_it_cat, '-', c.off2_it_no, '-', c.off2_it_suffix) as it_cat_no_suffix,
+			c.off2_it_name,
+			d.it_pkg_20_qty,
+			d.it_pkg_40_qty,
+			c.off2_curr_code,
+			c.off2_fob_price,
+			c.off2_fob_price_b,
+			c.off2_fob_cost,
+			c.off2_fob_cost_b,
+			c.off2_fob_port,
+			d.it_fty_cost_last_update,
+			d.it_fty_item_no,
+			d.it_fty_code,
+			d.it_fty_name,
+			d.it_image_1
+		from 
+			offsheet1 a 
+		left join
+			cust b
+		on 
+			a.off_cust = b.cu_code
+		left join
+			offsheet2 c
+		on
+			a.off_sh_no_pfix_no = c.off2_sh_no_pfix_no
+		left join
+			itmast d
+		on 
+			c.off2_it_cat = d.it_cat
+		and
+			c.off2_it_no = d.it_no
+		and 
+			c.off2_it_suffix = d.it_suffix
+		where 
+			a.off_sh_no_pfix = #{fromPrefix}
+		and
+			a.off_sh_no = #{fromNo}
+	</select>
+
+    <select id="getOffListItem" resultMap="offListItem" parameterType="map">
+        SELECT
+        offsheet1.off_sh_no_pfix,
+        offsheet1.off_sh_no,
+        CONCAT(offsheet2.off2_it_cat,
+        '-',
+        offsheet2.off2_it_no,
+        '-',
+        offsheet2.off2_it_suffix) it_no,
+        offsheet2.off2_it_name,
+        offsheet2.off2_curr_code,
+        CONCAT(IFNULL(ROUND(offsheet2.off2_fob_price, 2),
+        ' '),
+        ' ',
+        CASE
+        WHEN offsheet2.off2_cnf_port = '' THEN '---Nil---'
+        ELSE IFNULL(offsheet2.off2_cnf_port, '---Nil---')
+        END) of_fob,
+        CONCAT(IFNULL(ROUND(offsheet2.off2_cnf_price, 2),
+        ' '),
+        ' ',
+        CASE
+        WHEN offsheet2.off2_cnf_port = '' THEN '---Nil---'
+        ELSE IFNULL(offsheet2.off2_cnf_port, '---Nil---')
+        END) of_cnf
+        FROM
+        offsheet1,
+        offsheet2
+        WHERE
+        offsheet1.off_sh_no = offsheet2.off2_sh_no
+        AND offsheet1.off_sh_no_pfix = offsheet2.off2_sh_no_pfix
+        <choose>
+            <when test="fromNo != null and fromNo != ''">
+                <choose>
+                    <when test="toNo !=null and toNo !=''">
+                        AND CONCAT(offsheet2.off2_it_cat,
+                        offsheet2.off2_it_no,
+                        offsheet2.off2_it_suffix) &gt;= #{fromNo}
+                        AND CONCAT(offsheet2.off2_it_cat,
+                        offsheet2.off2_it_no,
+                        offsheet2.off2_it_suffix) &lt;= #{toNo}
+                    </when>
+                    <otherwise>
+                        AND CONCAT(offsheet2.off2_it_cat,
+                        offsheet2.off2_it_no,
+                        offsheet2.off2_it_suffix) = #{fromNo}
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                AND 1=0
+            </otherwise>
+        </choose>
+        ORDER BY offsheet2.off2_it_cat,offsheet2.off2_it_no,offsheet2.off2_it_suffix
+    </select>
+
+    <select id="getCostPriceList" resultMap="costPriceList" parameterType="map">
+        SELECT
+        CONCAT(offsheet1.off_sh_no_pfix,
+        ' ',
+        offsheet1.off_sh_no) no,
+        IFNULL(DATE_FORMAT(offsheet1.off_date, '%m/%d/%Y'),
+        '') date,
+        IFNULL(offsheet1.off_cust, '') vto,
+        IFNULL(offsheet1.off_cust_attn, '') attn,
+        CONCAT(itmast.it_cat,
+        '-',
+        itmast.it_no,
+        '-',
+        itmast.it_suffix) itno,
+        itmast.it_name itname,
+        itmast.it_pkg_20_qty,
+        itmast.it_pkg_40_qty,
+        itmast.it_fty_fob_cost,
+        itmast.it_fty_fob_port,
+        it_image_1,
+        it_fty_code,
+        it_fty_name,
+        IFNULL(it_fty_item_no, '') it_fty_item_no
+        FROM
+        offsheet1
+        LEFT JOIN
+        offsheet2 ON off_sh_no_pfix_no = off2_sh_no_pfix_no
+        LEFT JOIN
+        itmast ON itmast.it_cat = offsheet2.off2_it_cat
+        AND itmast.it_no = offsheet2.off2_it_no
+        AND itmast.it_suffix = offsheet2.off2_it_suffix
+        WHERE
+        1 = 1
+        <choose>
+            <when test="fromPrefix != null and fromPrefix !='' and fromNo != null and fromNo != ''">
+                AND offsheet1.off_sh_no_pfix = #{fromPrefix}
+                AND offsheet1.off_sh_no = #{fromNo}
+            </when>
+            <otherwise>
+                and 1=2
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="getABPriceList" resultMap="abPriceList" parameterType="map">
+        SELECT
+        CONCAT(offsheet1.off_sh_no_pfix,
+        ' ',
+        offsheet1.off_sh_no) no,
+        IFNULL(DATE_FORMAT(offsheet1.off_date, '%m/%d/%Y'),
+        '') date,
+        IFNULL(offsheet1.off_cust, '') vto,
+        IFNULL(offsheet1.off_cust_attn, '') attn,
+        CONCAT(itmast.it_cat,
+        '-',
+        itmast.it_no,
+        '-',
+        itmast.it_suffix) itno,
+        itmast.it_name itname,
+        itmast.it_pkg_20_qty,
+        itmast.it_pkg_40_qty,
+        it_image_1,
+        off2_fob_port,
+        off2_fob_price price,
+        off2_fob_price_b priceb,
+        off2_curr_code
+        FROM
+        offsheet1
+        LEFT JOIN
+        offsheet2 ON off_sh_no_pfix_no = off2_sh_no_pfix_no
+        LEFT JOIN
+        itmast ON itmast.it_cat = offsheet2.off2_it_cat
+        AND itmast.it_no = offsheet2.off2_it_no
+        AND itmast.it_suffix = offsheet2.off2_it_suffix
+        WHERE 1=1
+        <choose>
+            <when test="fromPrefix != null and fromPrefix !='' and fromNo != null and fromNo != ''">
+                AND offsheet1.off_sh_no_pfix = #{fromPrefix}
+                AND offsheet1.off_sh_no = #{fromNo}
+            </when>
+            <otherwise>
+                and 1=2
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="getSimplifiedOff" resultMap="simplifiedOffreport" parameterType="map">
+        SELECT
+        CONCAT(offsheet1.off_sh_no_pfix,
+        ' ',
+        offsheet1.off_sh_no) no,
+        DATE_FORMAT(offsheet1.off_date, '%m/%d/%Y') date,
+        offsheet1.off_cust vto,
+        offsheet1.off_cust_attn attn,
+        off2_curr_code code,
+        off2_fob_price price,
+        off2_fob_port fob,
+        CONCAT(itmast.it_cat,
+        '-',
+        itmast.it_no,
+        '-',
+        itmast.it_suffix) itno,
+        itmast.it_name itname,
+        itmast.it_pkg_20_qty,
+        itmast.it_pkg_40_qty,
+        it_pkg_40HQ_qty,
+        off2_desc_offer_sh,
+        it_cbm_total cbm,
+        it_uom,
+        it_pkg_exp_pcs,
+        it_image_1,
+        it_pkg_detail,
+        it_desc_of_sh
+        FROM
+        offsheet1
+        LEFT JOIN
+        offsheet2 ON off_sh_no_pfix_no = off2_sh_no_pfix_no
+        LEFT JOIN
+        itmast ON itmast.it_cat = offsheet2.off2_it_cat
+        AND itmast.it_no = offsheet2.off2_it_no
+        AND itmast.it_suffix = offsheet2.off2_it_suffix
+        WHERE
+        1 = 1
+
+        <choose>
+            <when test="fromPrefix!=null and fromPrefix!=''">
+                and offsheet1.off_sh_no_pfix = #{fromPrefix}
+            </when>
+            <otherwise>
+                and 1=2
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="fromNo!=null and fromNo!=''">
+                <choose>
+                    <when test="toNo!=null and toNo!=''">
+                        and offsheet1.off_sh_no &gt;= #{fromNo}
+                        and offsheet1.off_sh_no &lt;= #{toNo}
+                    </when>
+                    <otherwise>
+                        and offsheet1.off_sh_no = #{fromNo}
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                and 1=2
+            </otherwise>
+        </choose>
+
+    </select>
+</mapper>

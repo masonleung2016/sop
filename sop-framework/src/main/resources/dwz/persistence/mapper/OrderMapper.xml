@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.OrderMapper">
+    <resultMap id="rm" type="sop.persistence.beans.Order">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="orderNum" jdbcType="VARCHAR" column="ordernum"/>
+        <result property="importdatetime" jdbcType="TIMESTAMP" column="importdatetime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		ordernum,
+		importdatetime
+	</sql>
+
+    <select id="findAll" resultMap="rm">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM orders
+    </select>
+
+    <select id="findPageBreakByCondition" resultMap="rm" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM orders
+        <if test="keywords != null">
+            WHERE
+            ordernum LIKE "%"#{keywords}"%"
+        </if>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                ORDER BY id DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+		select count(0) as c from orders
+	</select>
+
+    <select id="load" parameterType="java.lang.Integer" resultMap="rm">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM orders
+        WHERE
+        ID = #{id}
+    </select>
+
+    <!-- ProductItem Table -->
+    <resultMap id="productRm" type="sop.persistence.beans.ProductItem">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="productEngName" jdbcType="VARCHAR" column="productengname"/>
+        <result property="productChnName" jdbcType="VARCHAR" column="productchnname"/>
+        <result property="importdatetime" jdbcType="TIMESTAMP" column="importdatetime"/>
+    </resultMap>
+
+    <sql id="Product_Base_Column_List">
+		id,
+		productengname,
+		productchnname,
+		importdatetime
+	</sql>
+
+
+    <!-- Order_product table -->
+    <resultMap id="orderRroductRm" type="sop.persistence.beans.OrderProduct">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="fkProduct" jdbcType="INTEGER" column="fkproduct"/>
+        <result property="fkOrder" jdbcType="INTEGER" column="fkOrder"/>
+        <result property="productEngName" jdbcType="VARCHAR" column="productengname"/>
+        <result property="productChnName" jdbcType="VARCHAR" column="productchnname"/>
+        <result property="importdatetime" jdbcType="TIMESTAMP" column="importdatetime"/>
+    </resultMap>
+
+    <sql id="Order_Product_Base_Column_List">
+		id,
+		fkproduct,
+		fkorder,
+		productengname,
+		productchnname,
+		importdatetime
+	</sql>
+
+    <!-- 通过order id来获取所有的product -->
+    <select id="getProducdtsByOrderId" parameterType="java.lang.Integer" resultMap="orderRroductRm">
+        SELECT
+        <include refid="Order_Product_Base_Column_List"/>
+        FROM
+        order_product
+        WHERE
+        fkorder = #{id}
+    </select>
+
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO orders (
+			id,
+			ordernum,
+			importdatetime
+		) VALUES (
+			#{id},
+			#{orderNum},
+			#{importdatetime}
+		)
+	</insert>
+
+    <!-- 插入 -->
+    <insert id="insertOrderProduct" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO order_product (
+			id,
+			fkorder,
+			fkproduct,
+			productno,
+			productchnname
+		) VALUES (
+			#{id},
+			#{fkOrder},
+			#{fkProduct},
+			#{productNo},
+			#{productChnName}
+		)
+	</insert>
+
+    <!-- 增加checklist -->
+    <insert id="addChecklist" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		INSERT INTO 
+			checklists (fkorder_product, details) 
+		SELECT
+			#{fkOrderProduct} as fkorder_product,
+			b.details as details
+		FROM 
+			productitems b
+		WHERE
+			b.id = #{fkProduct}
+
+	</insert>
+
+    <!-- 查询checklist -->
+    <select id="getDetailsByFkOrderProduct" parameterType="int" resultMap="checklist">
+		select
+			b.templateStr as templateName,
+			b.itemMasterStr as itemMasterType,
+			c.details as details
+		from
+			order_product a
+		left join
+			productitems b
+		on
+			a.fkproduct = b.id
+		left join
+			checklists c
+		on
+			a.id = c.fkorder_product
+		where
+			a.id = #{fkOrderProduct}
+	</select>
+
+    <resultMap type="sop.persistence.beans.Checklist" id="checklist">
+        <result property="templateName" jdbcType="VARCHAR" column="templateName"/>
+        <result property="itemMasterType" jdbcType="VARCHAR" column="itemMasterType"/>
+        <result property="details" jdbcType="VARCHAR" column="details"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.ProductItemMapper">
+    <resultMap id="rm" type="sop.persistence.beans.ProductItem">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="productNo" jdbcType="VARCHAR" column="productno"/>
+        <result property="productChnName" jdbcType="VARCHAR" column="productchnname"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		productno,
+		productchnname
+	</sql>
+
+
+    <select id="findPageBreakByCondition" resultMap="rm" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from productitems
+
+        <if test="keywords != null">
+            WHERE
+            productno LIKE "%"#{keywords}"%"
+        </if>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by id DESC
+            </otherwise>
+        </choose>
+    </select>
+
+</mapper>
+

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.UomMapper">
+    <sql id="Base_Column_List">
+		id,
+		barcodeval,
+		fkpatient,
+		importdatetime,
+		moddatetime,
+		freezed,
+		actived
+	</sql>
+    <!-- 查询uom列表 -->
+    <select id="getUomListByCondition" resultMap="uomVoListMap" parameterType="map">
+        select
+        u_code,
+        u_desc,
+        u_chn,
+        u_rate
+        from
+        uom
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                u_code LIKE "%"#{keywords}"%"
+                or u_desc LIKE "%"#{keywords}"%"
+                or u_chn LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by mod_date DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getUomListNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        uom
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                u_code LIKE "%"#{keywords}"%"
+                or u_desc LIKE "%"#{keywords}"%"
+                or u_chn LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <resultMap id="uomVoListMap" type="sop.vo.UomVo">
+        <result property="uCode" jdbcType="CHAR" column="u_code"/>
+        <result property="uDesc" jdbcType="VARCHAR" column="u_desc"/>
+        <result property="uChn" jdbcType="VARCHAR" column="u_chn"/>
+        <result property="uRate" jdbcType="DECIMAL" column="u_rate"/>
+    </resultMap>
+    <!-- 根据fkuCode获取uom -->
+    <select id="getUomByFkuCode" resultMap="uom" parameterType="map">
+		select 
+			u_code,
+			u_desc,
+			u_chn,
+			u_rate,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		from
+			uom
+		where
+			u_code = #{fkuCode}
+	</select>
+    <resultMap id="uom" type="sop.persistence.beans.Uom">
+        <result property="uCode" jdbcType="CHAR" column="u_code"/>
+        <result property="uDesc" jdbcType="VARCHAR" column="u_desc"/>
+        <result property="uChn" jdbcType="VARCHAR" column="u_chn"/>
+        <result property="uRate" jdbcType="DECIMAL" column="u_rate"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+
+    <!-- 更新company -->
+    <update id="updateUom" parameterType="map">
+		UPDATE
+			uom
+		SET
+			u_desc = #{uDesc},
+			u_chn = #{uChn},
+			u_rate = #{uRate},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		WHERE 
+			u_code = #{uCode}
+	</update>
+    <!-- 获取指定uCode数量 -->
+    <select id="getCountByFkuCode" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(1) as c
+		from
+			uom a
+		where
+			a.u_code = #{fkuCode}
+	</select>
+    <!-- 增加company -->
+    <insert id="insertUom" parameterType="map">
+		INSERT INTO uom(
+			u_code,
+			u_desc,
+			u_chn,
+			u_rate,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) VALUES (
+			#{uCode},
+			#{uDesc},
+			#{uChn},
+			#{uRate},
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+
+    <delete id="deleteUom" parameterType="map">
+		delete
+		from
+			uom
+		where
+			u_code = #{fkuCode}
+	</delete>
+
+    <select id="getAllUoms" resultMap="uomVoListMap">
+		select 
+			u_code,
+			u_desc
+		from
+			uom
+	</select>
+</mapper>

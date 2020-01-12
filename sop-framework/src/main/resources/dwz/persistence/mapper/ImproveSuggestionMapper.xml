@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.ImproveSuggestionMapper">
+    <sql id="Base_Column_List">
+		imp_no,
+		category,
+		template,
+		imp_detail,
+		co_code,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date
+
+	</sql>
+    <!-- 查询charge列表 -->
+    <select id="getImproveSuggestionByCondition" resultMap="packingBomMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        improve_sug
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                imp_no LIKE "%"#{keywords}"%"
+                or category LIKE "%"#{keywords}"%"
+                or template LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by imp_no ASC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getImproveSuggestionNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(1) as c
+        from
+        improve_sug
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                imp_no LIKE "%"#{keywords}"%"
+                or category LIKE "%"#{keywords}"%"
+                or template LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <!-- 获取所有charges -->
+    <select id="getAllImproveSuggestion" resultMap="packingBomMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        improve_sug
+        order by imp_no asc
+    </select>
+    <resultMap id="packingBomMap" type="sop.persistence.beans.ImproveSuggestion">
+        <result property="impNo" jdbcType="VARCHAR" column="imp_no"/>
+        <result property="category" jdbcType="VARCHAR" column="category"/>
+        <result property="template" jdbcType="VARCHAR" column="template"/>
+        <result property="impDetail" jdbcType="VARCHAR" column="imp_detail"/>
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 根据impNo获取improve_sug -->
+    <select id="getImproveSuggestionByNo" resultMap="packingBomMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        improve_sug
+        where
+        imp_no = #{impNo}
+    </select>
+
+
+    <!-- 更新improve_sug -->
+    <update id="updateImproveSuggestion" parameterType="map">
+		update
+			improve_sug
+		set
+			category = #{category},
+			template = #{template},
+			imp_detail = #{impDetail},
+			co_code = #{coCode},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where 
+			imp_no = #{impNo}
+	</update>
+
+    <!-- 增加company -->
+    <insert id="insertImproveSuggestion" parameterType="map">
+        insert into improve_sug(
+        <include refid="Base_Column_List"/>
+        ) values (
+        #{impNo},
+        #{category},
+        #{template},
+        #{impDetail},
+        #{coCode},
+        #{crtUsr},
+        #{crtDate},
+        #{modUsr},
+        #{modDate}
+        )
+    </insert>
+
+    <delete id="deleteImproveSuggestion" parameterType="map">
+		delete
+		from
+			improve_sug
+		where
+			imp_no = #{impNo}
+	</delete>
+</mapper>

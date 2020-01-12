@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.BarcodeMapper">
+    <resultMap id="barcode" type="dwz.persistence.beans.Barcode">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="barcodeval" jdbcType="VARCHAR" column="barcodeval"/>
+        <result property="fkpatient" jdbcType="INTEGER" column="fkpatient"/>
+        <result property="importdatetime" jdbcType="TIMESTAMP" column="importdatetime"/>
+        <result property="moddatetime" jdbcType="TIMESTAMP" column="moddatetime"/>
+        <result property="freezed" jdbcType="BIT" column="freezed"/>
+        <result property="actived" jdbcType="BIT" column="actived"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		barcodeval,
+		fkpatient,
+		importdatetime,
+		moddatetime,
+		freezed,
+		actived
+	</sql>
+
+    <!-- 查询最后的barcodeval -->
+    <select id="getLastBarcode" resultType="java.lang.String">
+		select
+			barcodeval
+		from
+			barcodes
+		order by
+			importdatetime desc
+		limit 1
+	</select>
+
+    <!-- 获取目标barcode数量 -->
+    <select id="getBarcodeCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select 
+			count(*)
+		from 
+			barcodes a
+		where 
+			a.barcodeval = #{barcodeval}
+	</select>
+
+    <!-- 保存barcode -->
+    <insert id="insertBarcode" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		INSERT INTO barcodes(
+			barcodeval,
+			fkpatient,
+			importdatetime,
+			moddatetime,
+			freezed,
+			actived
+		) VALUES (
+			#{barcodeval},
+			#{fkpatient},
+			#{importdatetime},
+			#{moddatetime},
+			false,
+			false
+		)
+	</insert>
+
+    <!-- 获取目标patient的barcode数量 -->
+    <select id="getPatientBarcodeCount" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(*)
+		from 
+			barcodes a
+		where 
+			a.barcodeval = #{barcodeval}
+		and
+			a.fkpatient = #{fkpatient}
+	</select>
+
+    <update id="updateBarcode" parameterType="map">
+		UPDATE
+			barcodes
+		SET
+			moddatetime = #{currentDateTime}
+		WHERE 
+			barcodeval = #{barcodeval}
+	</update>
+</mapper>

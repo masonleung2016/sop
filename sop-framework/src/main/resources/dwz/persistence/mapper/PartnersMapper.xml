@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.PartnersMapper">
+    <resultMap id="rm" type="dwz.persistence.beans.Partners">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="fk_male" jdbcType="INTEGER" column="fk_male"/>
+        <result property="fk_female" jdbcType="INTEGER" column="fk_female"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		fk_male,
+		fk_female
+	</sql>
+    <!-- 查询根据病人Id查询病人配偶的Id -->
+    <select id="getPartnerId" resultType="java.lang.Integer" parameterType="dwz.persistence.beans.Patient">
+        select
+        <choose>
+            <when test="male == true">
+                fk_female
+            </when>
+            <otherwise>
+                fk_male
+            </otherwise>
+        </choose>
+        from partners
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+                <when test="male == true">
+                    fk_male = #{id}
+                </when>
+                <otherwise>
+                    fk_female = #{id}
+                </otherwise>
+            </choose>
+        </trim>
+    </select>
+
+    <!-- 查询根据病人Id查询病人配对Id -->
+    <select id="getCoupleByFkpatient" resultMap="rm" parameterType="int">
+        select
+        <include refid="Base_Column_List"/>
+        from partners
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            fk_male = #{value}
+            OR
+            fk_female = #{value}
+        </trim>
+    </select>
+
+
+    <!-- 查询根据病人Id查询coupleId -->
+    <select id="getFkcoupleByFkpatient" resultType="java.lang.Integer" parameterType="int">
+        select
+        id
+        from partners
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            fk_male = #{value}
+            OR
+            fk_female = #{value}
+        </trim>
+    </select>
+
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="dwz.persistence.beans.Partners">
+		INSERT INTO partners(
+			fk_male,
+			fk_female,
+			moddatetime,
+			modsequence
+		) VALUES (
+			#{fk_male},
+			#{fk_female},
+			#{moddatetime},
+			#{modsequence}
+		)
+	</insert>
+    <select id="checkPartnerId" resultType="java.lang.Integer" parameterType="dwz.persistence.beans.Patient">
+        select count(0) as c from partners
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <choose>
+                <when test="male == true">
+                    and
+                    fk_male = #{id}
+                    and
+                    fk_female is not null
+                </when>
+                <otherwise>
+                    and
+                    fk_female = #{id}
+                    and
+                    fk_male is not null
+                </otherwise>
+            </choose>
+        </trim>
+    </select>
+
+    <!--
+    <select id="findPageBreakByCondition" resultMap="rm" parameterType="map">
+        SELECT
+            <include refid="Base_Column_List" />
+        from patients
+
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                    patientId LIKE "%"#{keywords}"%"
+                    or first_name LIKE "%"#{keywords}"%"
+                    or last_name LIKE "%"#{keywords}"%"
+                )
+              </if>
+          </trim>
+
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                 ORDER BY ${orderField} <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                 order by id DESC
+            </otherwise>
+        </choose>
+     选择的条件暂时不用
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            username != 'admin'
+            <choose>
+            <when test="status != null">
+                 AND STATUS=#{status}
+            </when>
+            <otherwise>
+                 AND STATUS!='DELETED'
+            </otherwise>
+            </choose>
+            <if test="startDate != null">
+                 AND INSERT_DATE &gt;= #{startDate}
+            </if>
+            <if test="endDate != null">
+                 AND INSERT_DATE &lt;= #{endDate}
+            </if>
+            <if test="keywords != null">
+                AND (
+                    USERNAME LIKE "%"#{keywords}"%"
+                    or NICKNAME LIKE "%"#{keywords}"%"
+                    or FIRST_NAME LIKE "%"#{keywords}"%"
+                    or LAST_NAME LIKE "%"#{keywords}"%"
+                    or EMAIL LIKE "%"#{keywords}"%"
+                    or PHONE LIKE "%"#{keywords}"%"
+                )
+              </if>
+          </trim>
+
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                 ORDER BY ${orderField} <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                 order by INSERT_DATE DESC
+            </otherwise>
+        </choose>
+
+    </select>
+
+    <select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+        select count(0) as c from partners
+
+    选择的条件暂时不用
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <choose>
+            <when test="status != null">
+                 AND STATUS=#{status}
+            </when>
+            <otherwise>
+                 AND STATUS!='DELETED'
+            </otherwise>
+            </choose>
+
+            <if test="startDate != null">
+                 AND INSERT_DATE &gt;= #{startDate}
+            </if>
+            <if test="endDate != null">
+                 AND INSERT_DATE &lt;= #{endDate}
+            </if>
+            <if test="keywords != null">
+                AND (
+                    USERNAME LIKE "%"#{keywords}"%"
+                    or NICKNAME LIKE "%"#{keywords}"%"
+                    or FIRST_NAME LIKE "%"#{keywords}"%"
+                    or LAST_NAME LIKE "%"#{keywords}"%"
+                    or EMAIL LIKE "%"#{keywords}"%"
+                    or PHONE LIKE "%"#{keywords}"%"
+                )
+              </if>
+          </trim>
+    </select>
+    -->
+    <update id="updateByMale" parameterType="dwz.persistence.beans.Partners">
+        UPDATE partners
+        <set>
+            fk_female = #{fk_female},
+            moddatetime = #{moddatetime},
+            modsequence = modsequence+1
+        </set>
+        WHERE
+        fk_male = #{fk_male}
+    </update>
+    <update id="updateByFemale" parameterType="dwz.persistence.beans.Partners">
+        UPDATE partners
+        <set>
+            fk_male = #{fk_male},
+            moddatetime = #{moddatetime},
+            modsequence = modsequence+1
+        </set>
+        WHERE
+        fk_female = #{fk_female}
+    </update>
+    <!-- 按maleId或femaleId删除 -->
+    <delete id="deleteByMaleOrFemale" parameterType="dwz.persistence.beans.Partners">
+        DELETE FROM partners
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="fk_male != null">
+                AND
+                fk_male = #{fk_male}
+            </if>
+            <if test="fk_female != null">
+                AND
+                fk_female = #{fk_female}
+            </if>
+        </trim>
+    </delete>
+
+    <!-- 验证是否为夫妇 -->
+    <select id="checkCouple" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(0) as c
+		from 
+			partners
+		where
+			(
+				fk_male = #{fkpatient}
+			and
+				fk_female = #{parentId}
+			)
+		or
+			(
+				fk_female = #{fkpatient}
+			and
+				fk_male = #{parentId}
+			)
+	</select>
+    <!-- doubleUpdate -->
+    <update id="doubleUpdateByMale" parameterType="dwz.persistence.beans.Partners">
+        UPDATE partners
+        <set>
+            fk_female = #{fk_female},
+            moddatetime = #{moddatetime},
+            modsequence = modsequence+1
+        </set>
+        WHERE
+        fk_male = #{fk_male}
+    </update>
+    <update id="doubleUpdateByFemale" parameterType="dwz.persistence.beans.Partners">
+        UPDATE partners
+        <set>
+            fk_male = #{fk_male},
+            moddatetime = #{moddatetime},
+            modsequence = modsequence+1
+        </set>
+        WHERE
+        fk_female = #{fk_female}
+    </update>
+
+    <select id="checkPartnerIdByPatientVo" resultType="java.lang.Integer" parameterType="map">
+        select count(0) as c from partners
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <choose>
+                <when test="partnermale == true">
+                    and
+                    fk_male = #{partnerid}
+                    and
+                    fk_female is not null
+                    and
+                    fk_female != #{id}
+                </when>
+                <otherwise>
+                    and
+                    fk_female = #{partnerid}
+                    and
+                    fk_male is not null
+                    and
+                    fk_male != #{id}
+                </otherwise>
+            </choose>
+        </trim>
+    </select>
+</mapper>
+

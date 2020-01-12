@@ -1,0 +1,1243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.SaleOrderMapper">
+    <resultMap id="saleOrder" type="sop.persistence.beans.SaleOrder">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="soNo" jdbcType="VARCHAR" column="so_no"/>
+        <result property="soCuCode" jdbcType="VARCHAR" column="so_cu_code"/>
+        <result property="soCuPoNo" jdbcType="VARCHAR" column="so_cu_po_no"/>
+        <result property="soDate" jdbcType="DATE" column="so_date"/>
+        <result property="soLshpDate" jdbcType="DATE" column="so_lshp_date"/>
+        <result property="soEtd" jdbcType="DATE" column="so_etd"/>
+        <result property="soCurr" jdbcType="VARCHAR" column="so_curr"/>
+        <result property="soFob" jdbcType="CHAR" column="so_fob"/>
+        <result property="soFobPort" jdbcType="VARCHAR" column="so_fob_port"/>
+        <result property="soCnf" jdbcType="CHAR" column="so_cnf"/>
+        <result property="soCnfPort" jdbcType="VARCHAR" column="so_cnf_port"/>
+        <result property="soSuCode" jdbcType="VARCHAR" column="so_su_code"/>
+        <result property="soContReq" jdbcType="VARCHAR" column="so_cont_req"/>
+        <result property="soDest" jdbcType="VARCHAR" column="so_dest"/>
+        <result property="soRouting" jdbcType="VARCHAR" column="so_routing"/>
+        <result property="soSuConNo" jdbcType="VARCHAR" column="so_su_con_no"/>
+        <result property="soSuPterm" jdbcType="VARCHAR" column="so_su_pterm"/>
+        <result property="soDelDetails" jdbcType="VARCHAR" column="so_del_details"/>
+        <result property="soPayTerm" jdbcType="VARCHAR" column="so_pay_term"/>
+        <result property="soOdtlProf" jdbcType="VARCHAR" column="so_odtl_prof"/>
+        <result property="soOrdTotAmt" jdbcType="DECIMAL" column="so_ord_tot_amt"/>
+        <result property="soOrdAmtWord" jdbcType="VARCHAR" column="so_ord_amt_word"/>
+        <result property="soOrdTotChg" jdbcType="DECIMAL" column="so_ord_tot_chg"/>
+        <result property="soOrdTotNet" jdbcType="DECIMAL" column="so_ord_tot_net"/>
+        <result property="soHandle" jdbcType="VARCHAR" column="so_handle"/>
+        <result property="soPaidStatus" jdbcType="VARCHAR" column="so_paid_status"/>
+        <result property="soBnkElc" jdbcType="VARCHAR" column="so_bnk_elc"/>
+        <result property="soBnkTf" jdbcType="VARCHAR" column="so_bnk_tf"/>
+        <result property="soStatus" jdbcType="CHAR" column="so_status"/>
+        <result property="soPterm" jdbcType="VARCHAR" column="so_pterm"/>
+        <result property="soPtermDays" jdbcType="DECIMAL" column="so_pterm_days"/>
+        <result property="soDepPaid" jdbcType="DECIMAL" column="so_dep_paid"/>
+        <result property="soDepRatio" jdbcType="DECIMAL" column="so_dep_ratio"/>
+        <result property="soDepDate" jdbcType="DATE" column="so_dep_date"/>
+        <result property="soDestFinal" jdbcType="VARCHAR" column="so_dest_final"/>
+        <result property="soCuName" jdbcType="VARCHAR" column="so_cu_name"/>
+        <result property="soSuName" jdbcType="VARCHAR" column="so_su_name"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <resultMap id="saleOrderVo" type="sop.vo.SaleOrderVo">
+        <result property="soNo" jdbcType="VARCHAR" column="so_no"/>
+        <result property="soCuCode" jdbcType="VARCHAR" column="so_cu_code"/>
+        <result property="soCuPoNo" jdbcType="VARCHAR" column="so_cu_po_no"/>
+        <result property="soDate" jdbcType="VARCHAR" column="so_date"/>
+        <result property="soEtd" jdbcType="DATE" column="so_etd"/>
+        <result property="soLshpDate" jdbcType="DATE" column="so_lshp_date"/>
+    </resultMap>
+    <resultMap id="saleOrderItem" type="sop.persistence.beans.SaleOrderItem">
+        <result property="coCode" jdbcType="VARCHAR" column="co_code"/>
+        <result property="so2No" jdbcType="VARCHAR" column="so2_no"/>
+        <result property="so2OffShNoPfix" jdbcType="VARCHAR" column="so2_off_sh_no_pfix"/>
+        <result property="so2OffShNo" jdbcType="VARCHAR" column="so2_off_sh_no"/>
+        <result property="so2ItCat" jdbcType="CHAR" column="so2_it_cat"/>
+        <result property="so2ItNo" jdbcType="CHAR" column="so2_it_no"/>
+        <result property="so2ItSuffix" jdbcType="CHAR" column="so2_it_suffix"/>
+        <result property="so2ItName" jdbcType="VARCHAR" column="so2_it_name"/>
+        <result property="so2OrdQty" jdbcType="DECIMAL" column="so2_ord_qty"/>
+        <result property="so2ShdQty" jdbcType="DECIMAL" column="so2_shd_qty"/>
+        <result property="so2Uom" jdbcType="CHAR" column="so2_uom"/>
+        <result property="so2Uprice" jdbcType="DECIMAL" column="so2_uprice"/>
+        <result property="so2Amt" jdbcType="DECIMAL" column="so2_amt"/>
+        <result property="so2Remk" jdbcType="VARCHAR" column="so2_remk"/>
+        <result property="so2ItDetails" jdbcType="VARCHAR" column="so2_it_details"/>
+        <result property="so2CuItNo" jdbcType="VARCHAR" column="so2_cu_it_no"/>
+        <result property="so2Ean" jdbcType="VARCHAR" column="so2_ean"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+        <result property="so2ItCatNoSuffix" jdbcType="VARCHAR" column="so2_it_cat_no_suffix"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		co_code,
+		so_no,
+		so_cu_code,
+		so_cu_po_no,
+		so_date,
+		so_lshp_date,
+		so_etd,
+		so_curr,
+		so_fob,
+		so_fob_port,
+		so_cnf,
+		so_cnf_port,
+		so_su_code,
+		so_cont_req,
+		so_dest,
+		so_routing,
+		so_su_con_no,
+		so_su_pterm,
+		so_del_details,
+		so_pay_term,
+		so_odtl_prof,
+		so_ord_tot_amt,
+		so_ord_amt_word,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date,
+		so_ord_tot_chg,
+		so_ord_tot_net,
+		so_handle,
+		so_paid_status,
+		so_bnk_elc,
+		so_bnk_tf,
+		so_status,
+		so_pterm,
+		so_pterm_days,
+		so_dep_paid
+	</sql>
+
+    <sql id="Vo_Column_List">
+		so_no,
+		so_cu_code,
+		so_cu_po_no,
+		so_date,
+		so_etd,
+		so_lshp_date
+	</sql>
+
+    <select id="findPageBreakByCondition" resultMap="saleOrderVo" parameterType="map">
+        select
+        <include refid="Vo_Column_List"/>
+        from
+        sotx1
+        where
+        1 = 1
+        <choose>
+            <when test="fromNo != null and fromNo != ''">
+                <choose>
+                    <when test="toNo != null and toNo != ''">
+                        and
+                        so_no &gt;= #{fromNo}
+                        and
+                        so_no &lt;= #{toNo}
+                    </when>
+                    <otherwise>
+                        and
+                        so_no = #{fromNo}
+                    </otherwise>
+                </choose>
+            </when>
+        </choose>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                ORDER BY so_no, crt_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        sotx1
+        where
+        1 = 1
+        <choose>
+            <when test="fromNo != null and fromNo != ''">
+                <choose>
+                    <when test="toNo != null and toNo != ''">
+                        and
+                        so_no &gt;= #{fromNo}
+                        and
+                        so_no &lt;= #{toNo}
+                    </when>
+                    <otherwise>
+                        and
+                        so_no = #{fromNo}
+                    </otherwise>
+                </choose>
+            </when>
+        </choose>
+    </select>
+    <!-- 获取所有的offersheet种类 -->
+    <select id="getAllTxns" resultMap="txn">
+		select 
+			txt_code,
+			txt_desc
+		from
+			txtype
+	</select>
+    <!-- 获取所有的customer-->
+    <select id="getAllCustomers" resultMap="cust">
+		select 
+			cu_code,
+			cu_name
+		from
+			cust
+	</select>
+    <resultMap id="txn" type="sop.vo.TxnVo">
+        <result property="txtCode" jdbcType="VARCHAR" column="txt_code"/>
+        <result property="txtDesc" jdbcType="VARCHAR" column="txt_desc"/>
+    </resultMap>
+    <resultMap id="cust" type="sop.vo.CustomerVo">
+        <result property="cuCode" jdbcType="VARCHAR" column="cu_code"/>
+        <result property="cuName" jdbcType="VARCHAR" column="cu_name"/>
+    </resultMap>
+    <!--  -->
+    <select id="getCountBySaleOrder" resultType="java.lang.Integer" parameterType="map">
+		select
+			count(0)
+		from
+			sotx1
+		where
+			so_no = #{soNo}
+	</select>
+    <!-- 增加SaleOrder -->
+    <insert id="insertSaleOrder" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into sotx1(
+			co_code,
+			so_bnk_elc,
+			so_bnk_tf,
+			so_cnf,
+			so_cnf_port,
+			so_cont_req,
+			so_cu_code,
+			so_cu_name,
+			so_cu_po_no,
+			so_curr,
+			so_date,
+			so_del_details,
+			so_dep_date,
+			so_dep_paid,
+			so_dep_ratio,
+			so_dest,
+			so_dest_final,
+			so_etd,
+			so_fob,
+			so_fob_port,
+			so_handle,
+			so_lshp_date,
+			so_no,
+			so_odtl_prof,
+			so_ord_amt_word,
+			so_ord_tot_amt,
+			so_ord_tot_chg,
+			so_ord_tot_net,
+			so_paid_status,
+			so_pay_term,
+			so_pterm,
+			so_pterm_days,
+			so_routing,
+			so_status,
+			so_su_code,
+			so_su_con_no,
+			so_su_name,
+			so_su_pterm,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) VALUES (
+			#{coCode},
+			#{soBnkElc},
+			#{soBnkTf},
+			#{soCnf},
+			#{soCnfPort},
+			#{soContReq},
+			#{soCuCode},
+			#{soCuName},
+			#{soCuPoNo},
+			#{soCurr},
+			#{soDate},
+			#{soDelDetails},
+			#{soDepDate},
+			#{soDepPaid},
+			#{soDepRatio},
+			#{soDest},
+			#{soDestFinal},
+			#{soEtd},
+			#{soFob},
+			#{soFobPort},
+			#{soHandle},
+			#{soLshpDate},
+			#{soNo},
+			#{soOdtlProf},
+			#{soOrdAmtWord},
+			#{soOrdTotAmt},
+			#{soOrdTotChg},
+			#{soOrdTotNet},
+			#{soPaidStatus},
+			#{soPayTerm},
+			#{soPterm},
+			#{soPtermDays},
+			#{soRouting},
+			#{soStatus},
+			#{soSuCode},
+			#{soSuConNo},
+			#{soSuName},
+			#{soSuPterm},
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+    <!-- 增加SaleOrderItem -->
+    <insert id="insertSaleOrderItem" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into sotx2(
+			co_code,
+			so2_amt,
+			so2_cu_it_no,
+			so2_ean,
+			so2_it_cat,
+			so2_it_details,
+			so2_it_name,
+			so2_it_no,
+			so2_it_suffix,
+			so2_no,
+			so2_off_sh_no,
+			so2_off_sh_no_pfix,
+			so2_ord_qty,
+			so2_remk,
+			so2_shd_qty,
+			so2_uom,
+			so2_uprice,
+			crt_date,
+			crt_usr,
+			mod_date,
+			mod_usr
+		) VALUES (
+			#{coCode},
+			#{so2Amt},
+			#{so2CuItNo},
+			#{so2Ean},
+			#{so2ItCat},
+			#{so2ItDetails},
+			#{so2ItName},
+			#{so2ItNo},
+			#{so2ItSuffix},
+			#{so2No},
+			#{so2OffShNo},
+			#{so2OffShNoPfix},
+			#{so2OrdQty},
+			#{so2Remk},
+			#{so2ShdQty},
+			#{so2Uom},
+			#{so2Uprice},
+			#{crtDate},
+			#{crtUsr},
+			#{modDate},
+			#{modUsr}
+		)
+	</insert>
+    <!-- 获取saleOrder -->
+    <select id="getSaleOrderBySaleOrderVo" resultMap="saleOrder" parameterType="map">
+		select
+			co_code,
+			off_sh_no_pfix,
+			off_sh_no,
+			off_date,
+			off_cust,
+			off_cust_attn,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		from
+			offsheet1
+		where
+			co_code = #{coCode}
+		and
+			off_sh_no_pfix = #{offShNoPfix}
+		and
+			off_sh_no = #{offShNo}
+	</select>
+    <!-- 获取saleOrderItemList -->
+    <select id="getSaleOrderItemListByFkSoNo" resultMap="saleOrderItem" parameterType="map">
+		select
+			concat(a.so2_it_cat,a.so2_it_no,a.so2_it_suffix) so2_it_cat_no_suffix,
+			a.*
+		from
+			sotx2 a
+		where
+			a.so2_no = #{fkSoNo}
+	</select>
+    <!-- 获取saleOrderChargeList -->
+    <select id="getSaleOrderChargeListByFkSoNo" resultMap="saleOrderCharge" parameterType="map">
+		select
+			*
+		from
+			sotx5
+		where
+			so5_no = #{fkSoNo}
+	</select>
+    <!-- 获取saleOrderSbkList -->
+    <select id="getSaleOrderSbkListByFkSoNo" resultMap="saleOrderSbk" parameterType="map">
+		select
+			*
+		from
+			sotx3sbk
+		where
+			so3_no = #{fkSoNo}
+	</select>
+    <!-- 获取saleOrderLcList -->
+    <select id="getSaleOrderLcListByFkSoNo" resultMap="saleOrderLc" parameterType="map">
+		select
+			*
+		from
+			sotx4lc
+		where
+			so4_no = #{fkSoNo}
+	</select>
+    <!-- update sotx1 -->
+    <update id="updateSaleOrder" parameterType="map">
+		update
+			 sotx1
+		set
+			co_code = #{coCode},
+			so_bnk_elc = #{soBnkElc},
+			so_bnk_tf = #{soBnkTf},
+			so_cnf = #{soCnf},
+			so_cnf_port = #{soCnfPort},
+			so_cont_req = #{soContReq},
+			so_cu_code = #{soCuCode},
+			so_cu_name = #{soCuName},
+			so_cu_po_no = #{soCuPoNo},
+			so_curr = #{soCurr},
+			so_date = #{soDate},
+			so_del_details = #{soDelDetails},
+			so_dep_date = #{soDepDate},
+			so_dep_paid = #{soDepPaid},
+			so_dep_ratio = #{soDepRatio},
+			so_dest = #{soDest},
+			so_dest_final = #{soDestFinal},
+			so_etd = #{soEtd},
+			so_fob = #{soFob},
+			so_fob_port = #{soFobPort},
+			so_handle = #{soHandle},
+			so_lshp_date = #{soLshpDate},
+			so_no = #{soNo},
+			so_odtl_prof = #{soOdtlProf},
+			so_ord_amt_word = #{soOrdAmtWord},
+			so_ord_tot_amt = #{soOrdTotAmt},
+			so_ord_tot_chg = #{soOrdTotChg},
+			so_ord_tot_net = #{soOrdTotNet},
+			so_paid_status = #{soPaidStatus},
+			so_pay_term = #{soPayTerm},
+			so_pterm = #{soPterm},
+			so_pterm_days = #{soPtermDays},
+			so_routing = #{soRouting},
+			so_status = #{soStatus},
+			so_su_code = #{soSuCode},
+			so_su_con_no = #{soSuConNo},
+			so_su_name = #{soSuName},
+			so_su_pterm = #{soSuPterm},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where
+			so_no = #{soNo}
+	</update>
+    <!-- delete sotx2 -->
+    <delete id="deleteSaleOrderItems" parameterType="map">
+		delete
+		from
+			sotx2
+		where
+			so2_no = #{fkSoNo}
+	</delete>
+    <!-- delete saleOrder1 -->
+    <delete id="deleteSaleOrder" parameterType="map">
+		delete
+		from
+			sotx1
+		where
+			so_no = #{fkSoNo}
+	</delete>
+    <!-- 获取SaleOrder -->
+    <select id="getSaleOrderByFkSoNo" resultMap="saleOrder" parameterType="map">
+		select
+			*
+		from
+			sotx1
+		where
+			so_no = #{fkSoNo}
+	</select>
+    <!-- 获取 Sale Order Charge -->
+    <select id="getSaleOrderChargeByFkSoNo" resultMap="saleOrderCharge" parameterType="map">
+		select
+			*
+		from
+			sotx5
+		where
+			so5_no = #{fkSoNo}
+	</select>
+    <resultMap id="saleOrderCharge" type="sop.persistence.beans.SaleOrderCharge">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="so5Ccy" jdbcType="VARCHAR" column="so5_ccy"/>
+        <result property="so5ChgAmt" jdbcType="DECIMAL" column="so5_chg_amt"/>
+        <result property="so5ChgCode" jdbcType="VARCHAR" column="so5_chg_code"/>
+        <result property="so5ChgDesc" jdbcType="VARCHAR" column="so5_chg_desc"/>
+        <result property="so5ChgRate" jdbcType="DECIMAL" column="so5_chg_rate"/>
+        <result property="so5ExRate" jdbcType="DECIMAL" column="so5_ex_rate"/>
+        <result property="so5No" jdbcType="VARCHAR" column="so5_no"/>
+        <result property="so5Remk" jdbcType="VARCHAR" column="so5_remk"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 获取 Sale Order Sbk -->
+    <select id="getSaleOrderSbkByFkSoNo" resultMap="saleOrderSbk" parameterType="map">
+		select
+			*
+		from
+			sotx3sbk
+		where
+			so3_no = #{fkSoNo}
+	</select>
+    <resultMap id="saleOrderSbk" type="sop.persistence.beans.SaleOrderSbk">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="so3No" jdbcType="VARCHAR" column="so3_no"/>
+        <result property="so3ExpShpDate" jdbcType="DATE" column="so3_exp_shp_date"/>
+        <result property="so3ExpShpQty" jdbcType="DECIMAL" column="so3_exp_shp_qty"/>
+        <result property="so3Remk" jdbcType="VARCHAR" column="so3_remk"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 获取 Sale Order Lc -->
+    <select id="getSaleOrderLcByFkSoNo" resultMap="saleOrderLc" parameterType="map">
+		select
+			*
+		from
+			sotx4lc
+		where
+			so4_no = #{fkSoNo}
+	</select>
+    <resultMap id="saleOrderLc" type="sop.persistence.beans.SaleOrderLc">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="so4No" jdbcType="VARCHAR" column="so4_no"/>
+        <result property="so4LcNo" jdbcType="VARCHAR" column="so4_lc_no"/>
+        <result property="so4ExpDate" jdbcType="DATE" column="so4_exp_date"/>
+        <result property="so4LcAmt" jdbcType="DECIMAL" column="so4_lc_amt"/>
+        <result property="so4SettleDate" jdbcType="DATE" column="so4_settle_date"/>
+        <result property="so4SettleAmt" jdbcType="DECIMAL" column="so4_settle_amt"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <!-- 根据sono 删除Sale Order Charge -->
+    <delete id="deleteSaleOrderCharge" parameterType="map">
+		delete
+		from
+			sotx5
+		where
+			so5_no = #{fkSoNo}
+	</delete>
+    <insert id="insertSaleOrderCharge" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into sotx5(
+			co_code,
+			so5_ccy,
+			so5_chg_amt,
+			so5_chg_code,
+			so5_chg_desc,
+			so5_chg_rate,
+			so5_ex_rate,
+			so5_no,
+			so5_remk,
+			crt_date,
+			crt_usr,
+			mod_date,
+			mod_usr
+		) VALUES (
+			#{coCode},
+			#{so5Ccy},
+			#{so5ChgAmt},
+			#{so5ChgCode},
+			#{so5ChgDesc},
+			#{so5ChgRate},
+			#{so5ExRate},
+			#{so5No},
+			#{so5Remk},
+			#{crtDate},
+			#{crtUsr},
+			#{modDate},
+			#{modUsr}
+		)
+	</insert>
+
+    <!-- 根据sono 删除Sale Order Sbk -->
+    <delete id="deleteSaleOrderSbk" parameterType="map">
+		delete
+		from
+			sotx3sbk
+		where
+			so3_no = #{fkSoNo}
+	</delete>
+    <insert id="insertSaleOrderSbk" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into sotx3sbk(
+			co_code,
+			so3_exp_shp_date,
+			so3_exp_shp_qty,
+			so3_no,
+			so3_remk,
+			crt_date,
+			crt_usr,
+			mod_date,
+			mod_usr
+		) VALUES (
+			#{coCode},
+			#{so3ExpShpDate},
+			#{so3ExpShpQty},
+			#{so3No},
+			#{so3Remk},
+			#{crtDate},
+			#{crtUsr},
+			#{modDate},
+			#{modUsr}
+		)
+	</insert>
+
+    <!-- 根据sono 删除Sale Order Lc -->
+    <delete id="deleteSaleOrderLc" parameterType="map">
+		delete
+		from
+			sotx4lc
+		where
+			so4_no = #{fkSoNo}
+	</delete>
+    <insert id="insertSaleOrderLc" useGeneratedKeys="true" keyProperty="id" parameterType="map">
+		insert into sotx4lc(
+			co_code,
+			so4_no,
+			so4_lc_no,
+			so4_exp_date,
+			so4_lc_amt,
+			so4_settle_date,
+			so4_settle_amt,
+			crt_date,
+			crt_usr,
+			mod_date,
+			mod_usr
+		) VALUES (
+			#{coCode},
+			#{so4No},
+			#{so4LcNo},
+			#{so4ExpDate},
+			#{so4LcAmt},
+			#{so4SettleDate},
+			#{so4SettleAmt},
+			#{crtDate},
+			#{crtUsr},
+			#{modDate},
+			#{modUsr}
+		)
+	</insert>
+    <!-- 获取Order follow shipment schedule ( S/O NO.) -->
+    <select id="getOrderFollowShipmentScheduleSo" resultMap="orderFollowShipmentScheduleSo" parameterType="map">
+        select
+        a.co_code,
+        a.so_no,
+        a.so_cu_name,
+        a.so_su_name,
+        concat(b.so2_it_cat, '-',b.so2_it_no, '-',b.so2_it_suffix) as it_cat_no_suffix,
+        b.so2_it_name,
+        a.so_cont_req,
+        b.so2_ord_qty,
+        b.so2_uom,
+        b.so2_uprice,
+        a.so_fob_port,
+        a.so_lshp_date,
+        a.so_handle
+        from
+        sotx1 as a
+        left join
+        sotx2 as b
+        on
+        a.so_no = b.so2_no
+        where
+        a.so_no between #{fromNo} and #{toNo}
+        <if test="fromDate != null">
+            and
+            a.so_date &gt;= #{fromDate}
+        </if>
+        <if test="toDate != null">
+            and
+            a.so_date &lt;= #{toDate}
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            and
+            a.so_status &lt;= #{orderStatus}
+        </if>
+        <if test="handleUserId != null and handleUserId != ''">
+            and
+            a.so_handle = #{handleUserId}
+        </if>
+    </select>
+    <resultMap id="orderFollowShipmentScheduleSo" type="sop.reports.vo.OrderFollowShipmentScheduleSo">
+        <result property="co_code" jdbcType="CHAR" column="co_code"/>
+        <result property="so_no" jdbcType="VARCHAR" column="so_no"/>
+        <result property="so_cu_name" jdbcType="VARCHAR" column="so_cu_name"/>
+        <result property="so_su_name" jdbcType="VARCHAR" column="so_su_name"/>
+        <result property="it_cat_no_suffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="so2_it_name" jdbcType="VARCHAR" column="so2_it_name"/>
+        <result property="so_cont_req" jdbcType="VARCHAR" column="so_cont_req"/>
+        <result property="so2_ord_qty" jdbcType="DECIMAL" column="so2_ord_qty"/>
+        <result property="so2_uom" jdbcType="VARCHAR" column="so2_uom"/>
+        <result property="so2_uprice" jdbcType="DECIMAL" column="so2_uprice"/>
+        <result property="so_fob_port" jdbcType="VARCHAR" column="so_fob_port"/>
+        <result property="so_lshp_date" jdbcType="TIMESTAMP" column="so_lshp_date"/>
+        <result property="so_handle" jdbcType="VARCHAR" column="so_handle"/>
+    </resultMap>
+
+    <resultMap type="sop.reports.vo.ProformaInvoice" id="proformaInvoicereport">
+        <result property="customer" jdbcType="VARCHAR" column="customer"/>
+        <result property="cuadd" jdbcType="VARCHAR" column="cuadd"/>
+        <result property="attn" jdbcType="VARCHAR" column="attn"/>
+        <result property="orderno" jdbcType="VARCHAR" column="orderno"/>
+        <result property="yourno" jdbcType="VARCHAR" column="yourno"/>
+        <result property="dest" jdbcType="VARCHAR" column="dest"/>
+        <result property="fob" jdbcType="VARCHAR" column="fob"/>
+        <result property="curr" jdbcType="CHAR" column="curr"/>
+        <result property="itno" jdbcType="VARCHAR" column="itno"/>
+        <result property="art" jdbcType="VARCHAR" column="art"/>
+        <result property="ean" jdbcType="VARCHAR" column="ean"/>
+        <result property="itname" jdbcType="VARCHAR" column="itname"/>
+        <result property="decription" jdbcType="VARCHAR" column="decription"/>
+        <result property="qty" jdbcType="DECIMAL" column="qty"/>
+        <result property="uom" jdbcType="CHAR" column="uom"/>
+        <result property="so2_uprice" jdbcType="DECIMAL" column="so2_uprice"/>
+        <result property="so2_amt" jdbcType="DECIMAL" column="so2_amt"/>
+        <result property="remarks" jdbcType="VARCHAR" column="remarks"/>
+        <result property="container" jdbcType="VARCHAR" column="container"/>
+        <result property="shipment" jdbcType="VARCHAR" column="shipment"/>
+        <result property="terms" jdbcType="VARCHAR" column="terms"/>
+    </resultMap>
+
+    <select id="getProformaInvoiceReport" resultMap="proformaInvoicereport" parameterType="map">
+        SELECT
+        cust.cu_name customer,
+        IFNULL(cust.cu_add, '') cuadd,
+        cust.cu_con_per attn,
+        sotx1.so_no orderno,
+        sotx1.so_cu_po_no yourno,
+        sotx1.so_dest dest,
+        sotx1.so_fob_port fob,
+        sotx1.so_curr curr,
+        CONCAT(sotx2.so2_it_cat,
+        '-',
+        sotx2.so2_it_no,
+        '-',
+        sotx2.so2_it_suffix) itno,
+        sotx2.so2_cu_it_no art,
+        sotx2.so2_ean ean,
+        sotx2.so2_it_name itname,
+        sotx2.so2_it_details decription,
+        sotx2.so2_ord_qty qty,
+        sotx2.so2_uom uom,
+        sotx2.so2_uprice,
+        sotx2.so2_amt,
+        sotx1.so_odtl_prof remarks,
+        sotx1.so_cont_req container,
+        sotx1.so_del_details shipment,
+        sotx1.so_pay_term terms
+        FROM
+        sotx1
+        INNER JOIN
+        sotx2 ON sotx1.so_no = sotx2.so2_no
+        LEFT JOIN
+        cust ON cust.cu_code = sotx1.so_cu_code
+        WHERE 1=1
+        <choose>
+            <when test="fromNo!=null and fromNo!=''">
+                <choose>
+                    <when test="toNo!=null and toNo!=''">
+                        and sotx1.so_no &gt;= #{fromNo}
+                        and sotx1.so_no &lt;= #{toNo}
+                    </when>
+                    <otherwise>
+                        and sotx1.so_no = #{fromNo}
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                1=2
+            </otherwise>
+        </choose>
+    </select>
+
+    <resultMap type="sop.reports.vo.ProformaCoHeader" id="proformaCoHeader">
+        <result property="customer" jdbcType="VARCHAR" column="customer"/>
+        <result property="cuadd" jdbcType="VARCHAR" column="cuadd"/>
+        <result property="attn" jdbcType="VARCHAR" column="attn"/>
+        <result property="orderno" jdbcType="VARCHAR" column="orderno"/>
+        <result property="yourno" jdbcType="VARCHAR" column="yourno"/>
+        <result property="dest" jdbcType="VARCHAR" column="dest"/>
+        <result property="fob" jdbcType="VARCHAR" column="fob"/>
+        <result property="curr" jdbcType="CHAR" column="curr"/>
+        <result property="itno" jdbcType="VARCHAR" column="itno"/>
+        <result property="art" jdbcType="VARCHAR" column="art"/>
+        <result property="ean" jdbcType="VARCHAR" column="ean"/>
+        <result property="itname" jdbcType="VARCHAR" column="itname"/>
+        <result property="decription" jdbcType="VARCHAR" column="decription"/>
+        <result property="qty" jdbcType="DECIMAL" column="qty"/>
+        <result property="uom" jdbcType="CHAR" column="uom"/>
+        <result property="so2_uprice" jdbcType="DECIMAL" column="so2_uprice"/>
+        <result property="so2_amt" jdbcType="DECIMAL" column="so2_amt"/>
+        <result property="remarks" jdbcType="VARCHAR" column="remarks"/>
+        <result property="container" jdbcType="VARCHAR" column="container"/>
+        <result property="shipment" jdbcType="VARCHAR" column="shipment"/>
+        <result property="terms" jdbcType="VARCHAR" column="terms"/>
+    </resultMap>
+
+    <select id="getProformaCoHeaderReport" resultMap="proformaCoHeader" parameterType="map">
+        SELECT
+        cust.cu_name customer,
+        IFNULL(cust.cu_add, '') cuadd,
+        cust.cu_con_per attn,
+        sotx1.so_no orderno,
+        sotx1.so_cu_po_no yourno,
+        sotx1.so_dest dest,
+        sotx1.so_fob_port fob,
+        sotx1.so_curr curr,
+        CONCAT(sotx2.so2_it_cat,
+        '-',
+        sotx2.so2_it_no,
+        '-',
+        sotx2.so2_it_suffix) itno,
+        sotx2.so2_cu_it_no art,
+        sotx2.so2_ean ean,
+        sotx2.so2_it_name itname,
+        sotx2.so2_it_details decription,
+        sotx2.so2_ord_qty qty,
+        sotx2.so2_uom uom,
+        sotx2.so2_uprice,
+        sotx2.so2_amt,
+        sotx1.so_odtl_prof remarks,
+        sotx1.so_cont_req container,
+        sotx1.so_del_details shipment,
+        sotx1.so_pay_term terms
+        FROM
+        sotx1
+        INNER JOIN
+        sotx2 ON sotx1.so_no = sotx2.so2_no
+        LEFT JOIN
+        cust ON cust.cu_code = sotx1.so_cu_code
+        WHERE 1=1
+        <choose>
+            <when test="fromNo!=null and fromNo!=''">
+                <choose>
+                    <when test="toNo!=null and toNo!=''">
+                        and sotx1.so_no &gt;= #{fromNo}
+                        and sotx1.so_no &lt;= #{toNo}
+                    </when>
+                    <otherwise>
+                        and sotx1.so_no = #{fromNo}
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                1=2
+            </otherwise>
+        </choose>
+    </select>
+
+    <resultMap type="sop.reports.vo.SalesItemOverview" id="salesitemoverview">
+        <result property="so_cu_code" jdbcType="VARCHAR" column="so_cu_code"/>
+        <result property="so_su_code" jdbcType="VARCHAR" column="so_su_code"/>
+        <result property="so_no" jdbcType="VARCHAR" column="so_no"/>
+        <result property="so_cu_po_no" jdbcType="VARCHAR" column="so_cu_po_no"/>
+        <result property="so_handle" jdbcType="VARCHAR" column="so_handle"/>
+        <result property="so2_ean" jdbcType="VARCHAR" column="so2_ean"/>
+        <result property="itno" jdbcType="VARCHAR" column="itno"/>
+        <result property="so2_uprice" jdbcType="DECIMAL" column="so2_uprice"/>
+        <result property="no1" jdbcType="DECIMAL" column="no1"/>
+        <result property="no2" jdbcType="DECIMAL" column="no2"/>
+        <result property="no3" jdbcType="DECIMAL" column="no3"/>
+        <result property="cu_name" jdbcType="VARCHAR" column="cu_name"/>
+        <result property="su_name" jdbcType="VARCHAR" column="su_name"/>
+        <result property="po2_no" jdbcType="VARCHAR" column="po2_no"/>
+        <result property="po2_uprice" jdbcType="DECIMAL" column="po2_uprice"/>
+        <result property="it_pkg_40HQ_qty" jdbcType="DECIMAL" column="it_pkg_40HQ_qty"/>
+        <result property="it_image_1" jdbcType="VARCHAR" column="it_image_1"/>
+        <result property="it_name" jdbcType="VARCHAR" column="it_name"/>
+        <result property="year1" jdbcType="VARCHAR" column="year1"/>
+        <result property="year2" jdbcType="VARCHAR" column="year2"/>
+        <result property="year3" jdbcType="VARCHAR" column="year3"/>
+    </resultMap>
+    <select id="getSalesItemOverviewReport" resultMap="salesitemoverview" parameterType="map" statementType="CALLABLE">
+		call pro_salesitemovrview(
+			#{p_year,mode=IN,jdbcType=VARCHAR},
+			#{p_handle,mode=IN,jdbcType=VARCHAR},
+			#{p_cu_code,mode=IN,jdbcType=VARCHAR}
+		)
+	</select>
+    <select id="findNumberByCustomer" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        sotx1 as a
+        where
+        1 = 1
+        <choose>
+            <when test="fromNo != null and fromNo != ''">
+                and
+                a.so_cu_code = #{fromNo}
+                <if test="fromDate != null">
+                    and
+                    a.so_date &gt;= #{fromDate}
+                </if>
+                <if test="toDate != null">
+                    and
+                    a.so_date &lt;= #{toDate}
+                </if>
+                <if test="orderStatus != null and orderStatus != ''">
+                    and
+                    a.so_status &lt;= #{orderStatus}
+                </if>
+            </when>
+            <otherwise>
+                and 1 = 0
+            </otherwise>
+        </choose>
+    </select>
+    <!-- 获取shipment schedule (customer NO.)-Export -->
+    <select id="getShipmentScheduleCustomerReports" resultMap="shipmentScheduleCustomer" parameterType="map">
+        select
+        a.so_no,
+        a.so_cu_po_no,
+        a.so_handle,
+        b.so2_cu_it_no,
+        b.so2_ean,
+        concat(b.so2_it_cat, '-',b.so2_it_no, '-',b.so2_it_suffix) as it_cat_no_suffix,
+        b.so2_it_name,
+        a.so_cont_req,
+        a.so_fob_port,
+        b.so2_ord_qty,
+        b.so2_uom,
+        b.so2_uprice,
+        b.so2_amt,
+        a.so_lshp_date,
+        a.so_status
+        from
+        sotx1 as a
+        left join
+        sotx2 as b
+        on
+        a.so_no = b.so2_no
+        where
+        a.so_cu_code = #{fromNo}
+        <if test="fromDate != null">
+            and
+            a.so_date &gt;= #{fromDate}
+        </if>
+        <if test="toDate != null">
+            and
+            a.so_date &lt;= #{toDate}
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            and
+            a.so_status &lt;= #{orderStatus}
+        </if>
+    </select>
+    <resultMap type="sop.reports.vo.ShipmentScheduleCustomer" id="shipmentScheduleCustomer">
+        <result property="so_no" jdbcType="VARCHAR" column="so_no"/>
+        <result property="so_cu_po_no" jdbcType="VARCHAR" column="so_cu_po_no"/>
+        <result property="so_handle" jdbcType="VARCHAR" column="so_handle"/>
+        <result property="so2_cu_it_no" jdbcType="VARCHAR" column="so2_cu_it_no"/>
+        <result property="so2_ean" jdbcType="VARCHAR" column="so2_ean"/>
+        <result property="it_cat_no_suffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="so2_it_name" jdbcType="VARCHAR" column="so2_it_name"/>
+        <result property="so_cont_req" jdbcType="VARCHAR" column="so_cont_req"/>
+        <result property="so_fob_port" jdbcType="VARCHAR" column="so_fob_port"/>
+        <result property="so2_ord_qty" jdbcType="DECIMAL" column="so2_ord_qty"/>
+        <result property="so2_uom" jdbcType="VARCHAR" column="so2_uom"/>
+        <result property="so2_uprice" jdbcType="DECIMAL" column="so2_uprice"/>
+        <result property="so2_amt" jdbcType="DECIMAL" column="so2_amt"/>
+        <result property="so_lshp_date" jdbcType="TIMESTAMP" column="so_lshp_date"/>
+        <result property="so_status" jdbcType="DECIMAL" column="so_status"/>
+    </resultMap>
+    <select id="findNumberByFactory" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        sotx1 as a
+        where
+        1 = 1
+        <choose>
+            <when test="fromNo != null and fromNo != ''">
+                and
+                a.so_su_code = #{fromNo}
+                <if test="fromDate != null">
+                    and
+                    a.so_date &gt;= #{fromDate}
+                </if>
+                <if test="toDate != null">
+                    and
+                    a.so_date &lt;= #{toDate}
+                </if>
+                <if test="orderStatus != null and orderStatus != ''">
+                    and
+                    a.so_status &lt;= #{orderStatus}
+                </if>
+            </when>
+            <otherwise>
+                and 1 = 0
+            </otherwise>
+        </choose>
+    </select>
+    <!-- 获取shipment schedule (factory NO.)-Export -->
+    <select id="getShipmentScheduleFactoryReports" resultMap="shipmentScheduleFactory" parameterType="map">
+        select
+        a.co_code,
+        a.so_no,
+        c.su_name,
+        d.cu_code,
+        d.cu_name,
+        concat(b.so2_it_cat, '-',b.so2_it_no, '-',b.so2_it_suffix) as it_cat_no_suffix,
+        b.so2_it_name,
+        a.so_cont_req,
+        b.so2_ord_qty,
+        b.so2_uom,
+        b.so2_uprice,
+        b.so2_amt,
+        a.so_fob_port,
+        a.so_lshp_date,
+        a.so_handle
+        from
+        sotx1 as a
+        left join
+        sotx2 as b
+        on
+        a.so_no = b.so2_no
+        left join
+        supp as c
+        on
+        a.so_su_code = c.su_code
+        left join
+        cust as d
+        on
+        a.so_cu_code = d.cu_code
+        where
+        a.so_su_code = #{fromNo}
+        <if test="fromDate != null">
+            and
+            a.so_date &gt;= #{fromDate}
+        </if>
+        <if test="toDate != null">
+            and
+            a.so_date &lt;= #{toDate}
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            and
+            a.so_status &lt;= #{orderStatus}
+        </if>
+    </select>
+    <resultMap type="sop.reports.vo.ShipmentScheduleFactory" id="shipmentScheduleFactory">
+        <result property="co_code" jdbcType="VARCHAR" column="co_code"/>
+        <result property="so_no" jdbcType="VARCHAR" column="so_no"/>
+        <result property="su_name" jdbcType="VARCHAR" column="su_name"/>
+        <result property="cu_code" jdbcType="VARCHAR" column="cu_code"/>
+        <result property="cu_name" jdbcType="VARCHAR" column="cu_name"/>
+        <result property="it_cat_no_suffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="so2_it_name" jdbcType="VARCHAR" column="so2_it_name"/>
+        <result property="so_cont_req" jdbcType="VARCHAR" column="so_cont_req"/>
+        <result property="so2_ord_qty" jdbcType="DECIMAL" column="so2_ord_qty"/>
+        <result property="so2_uom" jdbcType="VARCHAR" column="so2_uom"/>
+        <result property="so2_uprice" jdbcType="DECIMAL" column="so2_uprice"/>
+        <result property="so2_amt" jdbcType="DECIMAL" column="so2_amt"/>
+        <result property="so_fob_port" jdbcType="VARCHAR" column="so_fob_port"/>
+        <result property="so_lshp_date" jdbcType="TIMESTAMP" column="so_lshp_date"/>
+        <result property="so_handle" jdbcType="VARCHAR" column="so_handle"/>
+    </resultMap>
+    <!-- 获取Shipment schedule - w / ETD,ETA,Vessel etc. -->
+    <select id="getShipmentScheduleWEtdEtaVesselReports" resultMap="shipmentScheduleWEtdEtaVessel" parameterType="map">
+        select
+        a.so_no,
+        a.so_cu_po_no,
+        b.so2_cu_it_no,
+        b.so2_ean,
+        concat(b.so2_it_cat, '-',b.so2_it_no, '-',b.so2_it_suffix) as it_cat_no_suffix,
+        b.so2_it_name,
+        a.so_cont_req,
+        b.so2_ord_qty,
+        b.so2_uom,
+        b.so2_uprice,
+        b.so2_amt,
+        a.so_lshp_date,
+        a.so_status,
+        a.so_etd
+        from
+        sotx1 as a
+        left join
+        sotx2 as b
+        on
+        a.so_no = b.so2_no
+        where
+        so_cu_code = #{fromNo}
+        <if test="fromDate != null">
+            and
+            a.so_date &gt;= #{fromDate}
+        </if>
+        <if test="toDate != null">
+            and
+            a.so_date &lt;= #{toDate}
+        </if>
+        <if test="orderStatus != null and orderStatus != ''">
+            and
+            a.so_status &lt;= #{orderStatus}
+        </if>
+    </select>
+    <resultMap type="sop.reports.vo.ShipmentScheduleWEtdEtaVessel" id="shipmentScheduleWEtdEtaVessel">
+        <result property="so_no" jdbcType="VARCHAR" column="so_no"/>
+        <result property="so_cu_po_no" jdbcType="VARCHAR" column="so_cu_po_no"/>
+        <result property="so2_cu_it_no" jdbcType="VARCHAR" column="so2_cu_it_no"/>
+        <result property="so2_ean" jdbcType="VARCHAR" column="so2_ean"/>
+        <result property="it_cat_no_suffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="so2_it_name" jdbcType="VARCHAR" column="so2_it_name"/>
+        <result property="so_cont_req" jdbcType="VARCHAR" column="so_cont_req"/>
+        <result property="so2_ord_qty" jdbcType="DECIMAL" column="so2_ord_qty"/>
+        <result property="so2_uom" jdbcType="VARCHAR" column="so2_uom"/>
+        <result property="so2_uprice" jdbcType="DECIMAL" column="so2_uprice"/>
+        <result property="so2_amt" jdbcType="DECIMAL" column="so2_amt"/>
+        <result property="so_lshp_date" jdbcType="TIMESTAMP" column="so_lshp_date"/>
+        <result property="so_status" jdbcType="DECIMAL" column="so_status"/>
+        <result property="so_etd" jdbcType="TIMESTAMP" column="so_etd"/>
+    </resultMap>
+    <select id="findNumberByCustomerItems" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as d
+        from
+        sotx1 as a
+        left join
+        sotx2 as b
+        on
+        a.so_no = b.so2_no
+        left join
+        itmast as c
+        on
+        b.so2_it_cat = c.it_cat
+        and
+        b.so2_it_no = c.it_no
+        and
+        b.so2_it_suffix = c.it_suffix
+        where
+        1 = 1
+        <choose>
+            <when test="fromNo != null and fromNo != ''">
+                and
+                a.so_cu_code = #{fromNo}
+                <if test="fromItCatNoSuffix != null and fromItCatNoSuffix != ''">
+                    and
+                    c.it_cat_no_suffix &gt;= #{fromItCatNoSuffix}
+                </if>
+                <if test="toItCatNoSuffix != null and toItCatNoSuffix != ''">
+                    and
+                    c.it_cat_no_suffix &lt;= #{toItCatNoSuffix}
+                </if>
+                <if test="fromDate != null">
+                    and
+                    a.so_date &gt;= #{fromDate}
+                </if>
+                <if test="toDate != null">
+                    and
+                    a.so_date &lt;= #{toDate}
+                </if>
+                <if test="orderStatus != null and orderStatus != ''">
+                    and
+                    a.so_status &lt;= #{orderStatus}
+                </if>
+            </when>
+            <otherwise>
+                and 1 = 0
+            </otherwise>
+        </choose>
+    </select>
+    <!-- 获取Sold item summary by S/O - W/photo -->
+    <select id="getSoldItemSummaryBySoWPhotoReports" resultMap="soldItemSummaryBySoWPhoto" parameterType="map">
+        select
+        distinct
+        concat(b.so2_it_cat, '-',b.so2_it_no, '-',b.so2_it_suffix) as it_cat_no_suffix,
+        b.so2_cu_it_no,
+        c.it_image_1
+        from
+        sotx1 as a
+        left join
+        sotx2 as b
+        on
+        a.so_no = b.so2_no
+        left join
+        itmast as c
+        on
+        b.so2_it_cat = c.it_cat
+        and
+        b.so2_it_no = c.it_no
+        and
+        b.so2_it_suffix = c.it_suffix
+        where
+        1 = 1
+        <choose>
+            <when test="fromNo != null and fromNo != ''">
+                and
+                a.so_cu_code = #{fromNo}
+                <if test="fromItCatNoSuffix != null and fromItCatNoSuffix != ''">
+                    and
+                    c.it_cat_no_suffix &gt;= #{fromItCatNoSuffix}
+                </if>
+                <if test="toItCatNoSuffix != null and toItCatNoSuffix != ''">
+                    and
+                    c.it_cat_no_suffix &lt;= #{toItCatNoSuffix}
+                </if>
+                <if test="fromDate != null">
+                    and
+                    a.so_date &gt;= #{fromDate}
+                </if>
+                <if test="toDate != null">
+                    and
+                    a.so_date &lt;= #{toDate}
+                </if>
+                <if test="orderStatus != null and orderStatus != ''">
+                    and
+                    a.so_status &lt;= #{orderStatus}
+                </if>
+            </when>
+            <otherwise>
+                and 1 = 0
+            </otherwise>
+        </choose>
+    </select>
+    <resultMap type="sop.reports.vo.SoldItemSummaryBySoWPhoto" id="soldItemSummaryBySoWPhoto">
+        <result property="it_cat_no_suffix" jdbcType="VARCHAR" column="it_cat_no_suffix"/>
+        <result property="so2_cu_it_no" jdbcType="VARCHAR" column="so2_cu_it_no"/>
+        <result property="it_image_1" jdbcType="VARCHAR" column="it_image_1"/>
+    </resultMap>
+</mapper>

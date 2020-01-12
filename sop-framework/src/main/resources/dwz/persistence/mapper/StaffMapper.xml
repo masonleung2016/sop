@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.StaffMapper">
+    <resultMap type="sop.persistence.beans.Staff" id="staff">
+        <result property="sfCode" jdbcType="VARCHAR" column="sf_code"/>
+        <result property="sfName" jdbcType="VARCHAR" column="sf_name"/>
+
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+
+    <resultMap type="sop.vo.StaffVo" id="staffVo">
+        <result property="sfCode" jdbcType="VARCHAR" column="sf_code"/>
+        <result property="sfName" jdbcType="VARCHAR" column="sf_name"/>
+    </resultMap>
+
+    <select id="getAllStaffs" resultMap="staffVo">
+		select 
+			sf_code,
+			sf_name
+		from
+			staff
+		order by sf_code
+	</select>
+
+    <sql id="Base_Column_List">
+		sf_code,
+		sf_name,
+		crt_date,
+		crt_usr,
+		mod_date,
+		mod_usr
+	</sql>
+
+    <select id="getStaffListByCondition" resultMap="staffVo" parameterType="map">
+        select
+        sf_code,
+        sf_name
+        from
+        staff
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                sf_code LIKE "%"#{keywords}"%"
+                or sf_name LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by mod_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="getStaffListNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        staff
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                sf_code LIKE "%"#{keywords}"%"
+                or sf_name LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        order by mod_date desc
+    </select>
+
+    <select id="getStaffByFkSfCode" resultMap="staff" parameterType="map">
+		select 
+			sf_code,
+			sf_name,
+			crt_date,
+			crt_usr,
+			mod_date,
+			mod_usr
+		from
+			staff
+		where
+			sf_code = #{fkSfCode}
+	</select>
+
+    <update id="updateStaff" parameterType="map">
+		update
+			staff
+		set
+			sf_name = #{sfName},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where 
+			sf_code = #{sfCode}
+	</update>
+
+    <select id="getCountByFkSfCode" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(1) as c
+		from
+			staff a
+		where
+			a.sf_code = #{fkSfCode}
+	</select>
+
+    <insert id="insertStaff" parameterType="map">
+		insert into staff(
+			sf_code,
+			sf_name,
+			crt_date,
+			crt_usr,
+			mod_date,
+			mod_usr
+		) values (
+			#{sfCode},
+			#{sfName},
+			#{crtDate},
+			#{crtUsr},
+			#{modDate},
+			#{modUsr}
+		)
+	</insert>
+
+    <delete id="deleteStaff" parameterType="map">
+		delete
+		from
+			staff
+		where
+			sf_code = #{fkSfCode}
+	</delete>
+</mapper>

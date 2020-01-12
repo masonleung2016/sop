@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.GlInterfaceMapper">
+    <sql id="Base_Column_List">
+		co_code,
+		gl_inf_code,
+		gl_inf_desc,
+		gl_inf_ac_dr,
+		gl_inf_dp_dr,
+		gl_inf_cst_dr,
+		gl_inf_ac_cr,
+		gl_inf_dp_cr,
+		gl_inf_cst_cr,
+		rev_no,
+		crt_usr,
+		crt_date,
+		mod_usr,
+		mod_date
+	</sql>
+
+    <sql id="Vo_Column_List">
+		gl_inf_code,
+		gl_inf_desc
+	</sql>
+
+    <!-- 查询company列表 -->
+    <select id="getGlInterfaceListByCondition" resultMap="glInterfaceVoListMap" parameterType="map">
+        select
+        <include refid="Vo_Column_List"/>
+        from
+        glinf
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                gl_inf_code LIKE "%"#{keywords}"%"
+                or gl_inf_desc LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        order by crt_date desc
+    </select>
+    <select id="getGlInterfaceListNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        glinf
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                gl_inf_code LIKE "%"#{keywords}"%"
+                or gl_inf_desc LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+    <resultMap id="glInterfaceVoListMap" type="sop.vo.GlInterfaceVo">
+        <result property="glInfCode" jdbcType="VARCHAR" column="gl_inf_code"/>
+        <result property="glInfDesc" jdbcType="VARCHAR" column="gl_inf_desc"/>
+    </resultMap>
+    <!-- 根据fkGlInfCode获取glInterface -->
+    <select id="getfkGlInfCodeByFkGlInfCode" resultMap="glInterface" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        glinf
+        where
+        gl_inf_code = #{fkGlInfCode}
+    </select>
+    <resultMap id="glInterface" type="sop.persistence.beans.GlInterface">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="glInfCode" jdbcType="VARCHAR" column="gl_inf_code"/>
+        <result property="glInfDesc" jdbcType="VARCHAR" column="gl_inf_desc"/>
+        <result property="glInfAcDr" jdbcType="VARCHAR" column="gl_inf_ac_dr"/>
+        <result property="glInfDpDr" jdbcType="CHAR" column="gl_inf_dp_dr"/>
+        <result property="glInfCstDr" jdbcType="CHAR" column="gl_inf_cst_dr"/>
+        <result property="glInfAcCr" jdbcType="VARCHAR" column="gl_inf_ac_cr"/>
+        <result property="glInfDpCr" jdbcType="CHAR" column="gl_inf_dp_cr"/>
+        <result property="glInfCstCr" jdbcType="CHAR" column="gl_inf_cst_cr"/>
+        <result property="revNo" jdbcType="DECIMAL" column="rev_no"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+
+    <!-- 更新GlInterface -->
+    <update id="updateGlInterface" parameterType="map">
+		UPDATE
+			glinf
+		SET
+			gl_inf_desc = #{glInfDesc},
+			gl_inf_ac_dr = #{glInfAcDr},
+			gl_inf_dp_dr = #{glInfDpDr},
+			gl_inf_cst_dr = #{glInfCstDr},
+			gl_inf_ac_cr = #{glInfAcCr},
+			gl_inf_dp_cr = #{glInfDpCr},
+			gl_inf_cst_cr = #{glInfCstCr},
+			rev_no = #{revNo},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		WHERE 
+			gl_inf_code = #{glInfCode}
+	</update>
+    <!-- 获取指定glInfCode数量 -->
+    <select id="getCountByFkGlInfCode" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(1) as c
+		from
+			glinf a
+		where
+			a.gl_inf_code = #{fkGlInfCode}
+	</select>
+    <!-- 增加GlInterface -->
+    <insert id="insertGlInterface" parameterType="map">
+        INSERT INTO glinf(
+        <include refid="Base_Column_List"/>
+        ) VALUES (
+        #{coCode},
+        #{glInfCode},
+        #{glInfDesc},
+        #{glInfAcDr},
+        #{glInfDpDr},
+        #{glInfCstDr},
+        #{glInfAcCr},
+        #{glInfDpCr},
+        #{glInfCstCr},
+        #{revNo},
+        #{crtUsr},
+        #{crtDate},
+        #{modUsr},
+        #{modDate}
+        )
+    </insert>
+    <delete id="deleteGlInterface" parameterType="map">
+		delete
+		from
+			glinf
+		where
+			gl_inf_code = #{fkGlInfCode}
+	</delete>
+    <!-- 获取所有GlInterfaceVo -->
+    <select id="getAllGlInterfaceVo" resultMap="glInterfaceVoListMap">
+		select
+			*
+		from
+			glinf
+	</select>
+</mapper>

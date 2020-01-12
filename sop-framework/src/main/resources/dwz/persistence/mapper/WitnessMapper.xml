@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.WitnessMapper">
+    <resultMap id="cyclewitnesses" type="dwz.framework.vo.CycleWitnessVo">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="witnessName" jdbcType="VARCHAR" column="witnessName"/>
+        <result property="importdatetime" jdbcType="TIMESTAMP" column="importdatetime"/>
+        <result property="operatorName" jdbcType="VARCHAR" column="operatorName"/>
+        <result property="doubleOperatorName" jdbcType="VARCHAR" column="doubleOperatorName"/>
+        <result property="notes" jdbcType="VARCHAR" column="notes"/>
+        <result property="status" jdbcType="VARCHAR" column="status"/>
+        <result property="fkpatient" jdbcType="INTEGER" column="fkpatient"/>
+        <result property="patientName" jdbcType="VARCHAR" column="patientName"/>
+        <result property="patientId" jdbcType="VARCHAR" column="patientId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		fkcycle,
+		patientid,
+		coupleid,
+		nodesid,
+		status
+	</sql>
+    <!-- <insert id="init" useGeneratedKeys="true" keyProperty="id" parameterType="dwz.persistence.beans.Treatmentcycle">
+        INSERT INTO nodeschecklist( fkcycle, coupleid, nodesid, status ) SELECT #{id},
+        #{fkcouple}, id, false FROM nodes </insert> -->
+    <!-- <select id="getNodesByFkcycle" resultMap="cyclenodes" parameterType="int">
+        SELECT nodes.name as nodeName, nodeschecklist.moddatetime as moddatetime,
+        operators.name as operatorName, '芯片' as containers, nodeschecklist.notes
+        as notes FROM nodeschecklist LEFT JOIN nodes ON nodeschecklist.nodesid=nodes.id
+        LEFT JOIN operators ON nodeschecklist.modoperator = operators.id WHERE nodeschecklist.status
+        = true AND nodeschecklist.fkcycle = #{value} </select> -->
+    <!-- 通过fkpatient获取夫妇的核对点记录 -->
+    <select id="getCoupleWitnessesByFkpatient" resultMap="cyclewitnesses" parameterType="map">
+		select
+			a.id as id,
+			a.witnessName as witnessName,
+			a.importdatetime as importdatetime,
+			b.name as operatorName,
+			c.name as doubleOperatorName,
+			a.notes as notes,
+			a.status as status,
+			a.fkpatient as fkpatient
+		from 
+			witness a
+		left join 
+			operators b
+		on a.modoperator = b.id
+		left join 
+			operators c
+		on a.doubleoperator = c.id
+		where
+			a.fkcouple = (
+				select 
+					id
+				from
+					partners c
+				where 
+					c.fk_male = #{fkpatient}
+				or
+					c.fk_female = #{fkpatient}
+				limit 1
+			)
+	</select>
+
+    <!-- 通过fkcycle获取夫妇的核对点记录 -->
+    <select id="getWitnessesByFkcycle" resultMap="cyclewitnesses" parameterType="map">
+		select
+			a.id as id,
+			a.witnessName as witnessName,
+			a.importdatetime as importdatetime,
+			b.name as operatorName,
+			c.name as doubleOperatorName,
+			a.notes as notes,
+			a.status as status,
+			a.fkpatient as fkpatient
+		from 
+			witness a
+		left join 
+			operators b
+		on a.modoperator = b.id
+		left join 
+			operators c
+		on a.doubleoperator = c.id
+		where
+			a.fkcycle = #{fkcycle}
+	</select>
+
+    <!-- 通过fkwitness获取核对点记录 -->
+    <select id="getWitnessByFkwitness" resultType="dwz.framework.vo.CycleWitnessVo" parameterType="map">
+		select
+			a.id as id,
+			a.witnessName as witnessName,
+			a.importdatetime as importdatetime,
+			b.name as operatorName,
+			c.name as doubleOperatorName,
+			a.notes as notes,
+			a.status as status,
+			a.fkpatient as fkpatient,
+			d.patientId as patientId,
+			d.name as patientName
+		from 
+			witness a
+		left join 
+			operators b
+		on a.modoperator = b.id
+		left join 
+			operators c
+		on a.doubleoperator = c.id
+		left join 
+			patients d
+		on a.fkpatient = d.id
+		where
+			a.id = #{fkwitness}
+	</select>
+
+    <!-- 通过fkwitness获取核对点分配记录 -->
+    <select id="getAssigsByFkwitness" resultMap="assigns" parameterType="map">
+		select 
+	        c.type as fromContainerType,
+	        b.container_count as fromContainerCount,
+	        e.type as toContainerType,
+	        d.container_count as toContainerCount
+		from
+	        witness_assign a
+		left join 
+	        tags b
+		on a.fkfromtag = b.id
+		left join 
+	        container c
+		on b.fkcontainer = c.id
+		left join 
+	        tags d
+		on a.fktotag = d.id
+		left join 
+	        container e
+		on d.fkcontainer = e.id
+		where 
+	        a.fkwitness = #{fkwitness}
+		and
+	        a.fktotag is not null
+	</select>
+
+    <resultMap type="dwz.framework.vo.AssignVo" id="assigns">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="fromContainerType" jdbcType="VARCHAR" column="fromContainerType"/>
+        <result property="fromContainerCount" jdbcType="INTEGER" column="fromContainerCount"/>
+        <result property="toContainerType" jdbcType="VARCHAR" column="toContainerType"/>
+        <result property="toContainerCount" jdbcType="INTEGER" column="toContainerCount"/>
+    </resultMap>
+
+    <!--  -->
+    <select id="getReferContainersByFkwitness" resultMap="containerCount" parameterType="map">
+		select 
+			d.type as containerName,
+			count(c.fkcontainer) as count
+		from
+			tags c
+		left join
+			container d
+		on c.fkcontainer = d.id
+		where 
+			c.id in (
+				select 
+					a.fkfromtag as fktag
+				from
+					witness_assign a
+				where 
+					a.fkwitness = #{fkwitness}
+				and 
+					a.fkfromtag is not null
+				union all
+				select 
+					b.fktotag as fktag
+				from
+					witness_assign b
+				where
+					b.fkwitness = #{fkwitness}
+				and
+					b.fktotag is not null
+			)
+		group by c.fkcontainer
+	</select>
+
+    <!-- 芯片及其数量 -->
+    <resultMap id="containerCount" type="dwz.framework.vo.ContainerCount">
+        <result property="containerName" jdbcType="VARCHAR" column="containerName"/>
+        <result property="count" jdbcType="INTEGER" column="count"/>
+    </resultMap>
+
+    <!-- 插入witness_log -->
+    <insert id="addWitnessLog" useGeneratedKeys="true" keyProperty="id"
+            parameterType="match.vo.WitnessVo">
+		INSERT INTO witness (
+		`witnessName`,
+		`importdatetime`,
+		`notes`,
+		`modoperator`,
+		`status`,
+		`fkcycle`,
+		`doubleoperator`,
+		`fkpatient`,
+		`fkcouple`,
+		`answer`
+		) VALUES (
+		#{witnessName},
+		#{importdatetime},
+		#{notes},
+		#{modoperator},
+		#{status},
+		#{fkcycle},
+		#{doubleoperator},
+		#{fkpatient},
+		#{fkcouple},
+		#{answer}
+		)
+	</insert>
+
+
+    <!-- 批量插入核对点相关的tags -->
+    <insert id="addWitnessAssign" useGeneratedKeys="true"
+            parameterType="java.util.List">
+        insert into
+        witness_assign (fkwitness,fkfromtag,fktotag)
+        values
+        <foreach collection="list" item="item" index="index"
+                 separator=",">
+            (#{item.fkwitness},#{item.fkfromtag},#{item.fktotag})
+        </foreach>
+    </insert>
+
+    <update id="updateSeq" parameterType="java.lang.Integer">
+        UPDATE nodeschecklist
+        <set>
+            seq = seq + 1
+        </set>
+        WHERE
+        id = #{checkId}
+    </update>
+
+    <!-- 插入error_log -->
+    <!-- 已弃用 -->
+    <insert id="addErrorLog" useGeneratedKeys="true" keyProperty="id"
+            parameterType="match.vo.WitnessVo">
+		INSERT INTO witness (
+		`importdatetime`,
+		`notes`,
+		`modoperator`,
+		`status`,
+		`fkcycle`
+		) VALUES (
+		#{importdatetime},
+		#{notes},
+		#{modoperator},
+		#{status},
+		#{fkcycle}
+		)
+	</insert>
+
+    <!-- 获取核对点数量 -->
+    <select id="getWitnessesCount" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(1)
+        from
+        witness a
+        where
+        1=1
+        <if test="startDate != null">
+            and
+            a.importdatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.importdatetime &lt;= #{endDate}
+        </if>
+    </select>
+
+    <!-- 获取错误核对点数量 -->
+    <select id="getErrorWitnessesCount" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(1)
+        from
+        witness a
+        where
+        a.status = 3
+        <if test="startDate != null">
+            and
+            a.importdatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.importdatetime &lt;= #{endDate}
+        </if>
+    </select>
+
+    <!-- 获取管理员重新分配核对点数量 -->
+    <select id="getAdminAssignCount" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(1)
+        from
+        witness a
+        where
+        a.status = 2
+        <if test="startDate != null">
+            and
+            a.importdatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.importdatetime &lt;= #{endDate}
+        </if>
+    </select>
+
+    <!-- 获取已看过的病人数量 -->
+    <select id="getTrialPatientsCount" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(distinct a.fkpatient)
+        from
+        witness a
+        where
+        1=1
+        <if test="startDate != null">
+            and
+            a.importdatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.importdatetime &lt;= #{endDate}
+        </if>
+    </select>
+
+    <!-- 获取不匹配的病人数量 -->
+    <select id="getErrorPatientsCount" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(distinct a.fkpatient)
+        from
+        witness a
+        where
+        a.status = 3
+        <if test="startDate != null">
+            and
+            a.importdatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.importdatetime &lt;= #{endDate}
+        </if>
+    </select>
+
+    <!-- 获取被管理員重新分配的病人数量 -->
+    <select id="getAdminAssignPatientsCount" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(distinct a.fkpatient)
+        from
+        witness a
+        where
+        a.status = 2
+        <if test="startDate != null">
+            and
+            a.importdatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.importdatetime &lt;= #{endDate}
+        </if>
+    </select>
+
+    <select id="getWitnesses" resultMap="cyclewitnesses" parameterType="dwz.framework.vo.WitnessConditionVO">
+        select
+        a.id as id,
+        a.witnessName as witnessName,
+        a.importdatetime as importdatetime,
+        b.name as operatorName,
+        c.name as doubleOperatorName,
+        a.notes as notes,
+        a.status as status,
+        a.fkpatient as fkpatient,
+        d.patientId as patientId,
+        d.name as patientName
+        from
+        witness a
+        left join
+        operators b
+        on a.modoperator = b.id
+        left join
+        operators c
+        on a.doubleoperator = c.id
+        left join
+        patients d
+        on a.fkpatient = d.id
+        where
+        1 = 1
+        <if test="startDate != null">
+            and
+            a.importdatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.importdatetime &lt;= #{endDate}
+        </if>
+        <if test="allWitnesses == false">
+            <choose>
+                <when test="witnessNames != null">
+                    and
+                    a.witnessName in
+                    <foreach collection="witnessNames" item="item" index="index" open="(" close=")" separator=",">
+                        '${item}'
+                    </foreach>
+                </when>
+                <otherwise>
+                    and
+                    a.witnessName is null
+                </otherwise>
+            </choose>
+        </if>
+        <if test="keywords != null">
+            and (
+            d.patientId LIKE "%"#{keywords}"%"
+            or d.name LIKE "%"#{keywords}"%"
+            )
+        </if>
+        <if test="fkoperator != null">
+            and
+            a.modoperator = #{fkoperator}
+        </if>
+        order by a.importdatetime
+    </select>
+
+    <select id="searchWitnessesNum" resultType="java.lang.Integer" parameterType="dwz.framework.vo.WitnessConditionVO">
+        select count(0) as witnesscount
+        from
+        witness a
+        left join
+        operators b
+        on a.modoperator = b.id
+        left join
+        operators c
+        on a.doubleoperator = c.id
+        left join
+        patients d
+        on a.fkpatient = d.id
+        where
+        1 = 1
+        <if test="startDate != null">
+            and
+            a.importdatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.importdatetime &lt;= #{endDate}
+        </if>
+        <if test="allWitnesses == false">
+            <choose>
+                <when test="witnessNames != null">
+                    and
+                    a.witnessName in
+                    <foreach collection="witnessNames" item="item" index="index" open="(" close=")" separator=",">
+                        '${item}'
+                    </foreach>
+                </when>
+                <otherwise>
+                    and
+                    a.witnessName is null
+                </otherwise>
+            </choose>
+        </if>
+        <if test="keywords != null">
+            and (
+            d.patientId LIKE "%"#{keywords}"%"
+            or d.name LIKE "%"#{keywords}"%"
+            )
+        </if>
+        <if test="fkoperator != null">
+            and
+            a.modoperator = #{fkoperator}
+        </if>
+    </select>
+
+    <select id="getAllConditionWitnesses" resultMap="cyclewitnesses"
+            parameterType="dwz.framework.vo.WitnessConditionVO">
+        select
+        a.id as id,
+        a.witnessName as witnessName,
+        a.importdatetime as importdatetime,
+        b.name as operatorName,
+        c.name as doubleOperatorName,
+        a.notes as notes,
+        a.status as status,
+        a.fkpatient as fkpatient,
+        d.patientId as patientId,
+        d.name as patientName
+        from
+        witness a
+        left join
+        operators b
+        on a.modoperator = b.id
+        left join
+        operators c
+        on a.doubleoperator = c.id
+        left join
+        patients d
+        on a.fkpatient = d.id
+        where
+        1 = 1
+        <if test="startDate != null">
+            and
+            a.importdatetime &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            and
+            a.importdatetime &lt;= #{endDate}
+        </if>
+        <if test="allWitnesses == false">
+            <choose>
+                <when test="witnessNames != null">
+                    and
+                    a.witnessName in
+                    <foreach collection="witnessNames" item="item" index="index" open="(" close=")" separator=",">
+                        '${item}'
+                    </foreach>
+                </when>
+                <otherwise>
+                    and
+                    a.witnessName is null
+                </otherwise>
+            </choose>
+        </if>
+        <if test="keywords != null">
+            and (
+            d.patientId LIKE "%"#{keywords}"%"
+            or d.name LIKE "%"#{keywords}"%"
+            )
+        </if>
+        <if test="fkoperator != null">
+            and
+            a.modoperator = #{fkoperator}
+        </if>
+        order by a.importdatetime
+    </select>
+</mapper>
+

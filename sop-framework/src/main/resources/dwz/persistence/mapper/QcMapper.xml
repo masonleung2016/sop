@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.QcMapper">
+
+    <resultMap id="qcImage" type="sop.persistence.beans.QcImage">
+        <result property="seqNo" jdbcType="INTEGER" column="seq_no"/>
+        <result property="sample" jdbcType="VARCHAR" column="sample"/>
+        <result property="docName" jdbcType="VARCHAR" column="doc_name"/>
+        <result property="purpose" jdbcType="VARCHAR" column="purpose"/>
+        <result property="tech" jdbcType="VARCHAR" column="tech"/>
+        <result property="qty" jdbcType="VARCHAR" column="qty"/>
+        <result property="noStart" jdbcType="VARCHAR" column="no_start"/>
+        <result property="noEnd" jdbcType="VARCHAR" column="no_end"/>
+
+    </resultMap>
+
+    <resultMap id="qualityCheck" type="sop.persistence.beans.QualityCheck">
+        <result property="qcNo" jdbcType="VARCHAR" column="qc_no"/>
+        <result property="qcPoNoRef" jdbcType="VARCHAR" column="qc_po_no_ref"/>
+        <result property="qcSoNoRef" jdbcType="VARCHAR" column="qc_so_no_ref"/>
+        <result property="qcOfNoRef" jdbcType="VARCHAR" column="qc_of_no_ref"/>
+
+        <result property="assignee" jdbcType="VARCHAR" column="assignee"/>
+        <result property="comment" jdbcType="VARCHAR" column="comment"/>
+        <result property="startDate" jdbcType="VARCHAR" column="start_date"/>
+        <result property="dueDate" jdbcType="VARCHAR" column="due_date"/>
+        <result property="actualStartDate" jdbcType="TIMESTAMP" column="actual_start_date"/>
+        <result property="actualEndDate" jdbcType="TIMESTAMP" column="actual_end_date"/>
+        <result property="qcStatus" jdbcType="VARCHAR" column="qc_status"/>
+
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+
+    <resultMap id="qualityCheckVo" type="sop.vo.QualityCheckVo">
+        <result property="poNo" jdbcType="VARCHAR" column="po_no"/>
+        <result property="qcNo" jdbcType="VARCHAR" column="qc_no"/>
+        <result property="qcPoNoRef" jdbcType="VARCHAR" column="qc_po_no_ref"/>
+        <result property="qcSoNoRef" jdbcType="VARCHAR" column="qc_so_no_ref"/>
+        <result property="qcOfNoRef" jdbcType="VARCHAR" column="qc_of_no_ref"/>
+        <result property="assignee" jdbcType="VARCHAR" column="assignee"/>
+        <result property="comment" jdbcType="VARCHAR" column="comment"/>
+        <result property="startDate" jdbcType="VARCHAR" column="start_date"/>
+        <result property="dueDate" jdbcType="VARCHAR" column="due_date"/>
+        <result property="actualStartDate" jdbcType="TIMESTAMP" column="actual_start_date"/>
+        <result property="actualEndDate" jdbcType="TIMESTAMP" column="actual_end_date"/>
+        <result property="qcStatus" jdbcType="VARCHAR" column="qc_status"/>
+
+
+        <result property="poDate" jdbcType="TIMESTAMP" column="po_date"/>
+        <result property="poLshpDate" jdbcType="TIMESTAMP" column="po_lshp_date"/>
+        <result property="poEtdDate" jdbcType="TIMESTAMP" column="po_etd_date"/>
+    </resultMap>
+
+    <resultMap id="qualityCheckDetailsVo" type="sop.vo.QualityCheckDetailsVo">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="qcNo" jdbcType="VARCHAR" column="qc_no"/>
+        <result property="qcPoNoRef" jdbcType="VARCHAR" column="qc_po_no_ref"/>
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <resultMap id="qualityCheckItem" type="sop.persistence.beans.QualityCheckItem">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="qc2No" jdbcType="VARCHAR" column="qc2_no"/>
+        <result property="qc2Pic" jdbcType="VARCHAR" column="qc2_pic"/>
+        <result property="qc2PartPic" jdbcType="VARCHAR" column="qc2_part_pic"/>
+        <result property="qc2ItCat" jdbcType="CHAR" column="qc2_it_cat"/>
+        <result property="qc2ItNo" jdbcType="VARCHAR" column="qc2_it_no"/>
+        <result property="qc2ItSuffix" jdbcType="CHAR" column="qc2_it_suffix"/>
+        <result property="qc2ItCatNoSuffix" jdbcType="CHAR" column="qc2_it_cat_no_suffix"/>
+        <result property="qc2ItName" jdbcType="VARCHAR" column="qc2_it_name"/>
+        <result property="qc2ItDetails" jdbcType="VARCHAR" column="qc2_it_details"/>
+        <result property="qc2InsRep" jdbcType="VARCHAR" column="qc2_ins_rep"/>
+        <result property="qc2Jg" jdbcType="VARCHAR" column="qc2_jg"/>
+        <result property="qc2Kx" jdbcType="VARCHAR" column="qc2_kx"/>
+        <result property="qc2Lljybg" jdbcType="VARCHAR" column="qc2_lljybg"/>
+        <result property="qc2Scjhkz" jdbcType="VARCHAR" column="qc2_scjhkz"/>
+        <result property="qc2Sfcsbg" jdbcType="VARCHAR" column="qc2_sfcsbg"/>
+        <result property="qc2Sy" jdbcType="VARCHAR" column="qc2_sy"/>
+        <result property="qc2Syk" jdbcType="VARCHAR" column="qc2_syk"/>
+        <result property="qc2Tpcc" jdbcType="VARCHAR" column="qc2_tpcc"/>
+        <result property="qc2Wty" jdbcType="VARCHAR" column="qc2_wty"/>
+        <result property="qc2Ycqktzcld" jdbcType="VARCHAR" column="qc2_ycqktzcld"/>
+        <result property="qc2Ysjc" jdbcType="VARCHAR" column="qc2_ysjc"/>
+        <result property="qc2Zcjyrbg" jdbcType="VARCHAR" column="qc2_zcjyrbg"/>
+        <result property="qc2Zgyq" jdbcType="VARCHAR" column="qc2_zgyq"/>
+        <result property="qc2Zn" jdbcType="VARCHAR" column="qc2_zn"/>
+        <result property="qc2Csyq" jdbcType="VARCHAR" column="qc2_csyq"/>
+        <result property="qc2Wpcgz" jdbcType="VARCHAR" column="qc2_wpcgz"/>
+        <result property="qc2Yhzj" jdbcType="VARCHAR" column="qc2_yhzj"/>
+        <result property="qc2Cp" jdbcType="VARCHAR" column="qc2_cp"/>
+        <result property="qc2Cl" jdbcType="VARCHAR" column="qc2_check_list"/>
+
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <resultMap id="qualityCheckItemVo" type="sop.vo.QualityCheckItemVo">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="qc2No" jdbcType="VARCHAR" column="qc2_no"/>
+        <result property="qc2Pic" jdbcType="VARCHAR" column="qc2_pic"/>
+        <result property="qc2PartPic" jdbcType="VARCHAR" column="qc2_part_pic"/>
+        <result property="qc2ItCat" jdbcType="CHAR" column="qc2_it_cat"/>
+        <result property="qc2ItNo" jdbcType="VARCHAR" column="qc2_it_no"/>
+        <result property="qc2ItSuffix" jdbcType="CHAR" column="qc2_it_suffix"/>
+        <result property="qc2ItCatNoSuffix" jdbcType="CHAR" column="qc2_it_cat_no_suffix"/>
+        <result property="qc2ItName" jdbcType="VARCHAR" column="qc2_it_name"/>
+
+        <result property="qc2Cl" jdbcType="VARCHAR" column="qc2_check_list"/>
+
+    </resultMap>
+    <select id="getQcImages" resultMap="qcImage">
+		select
+			*
+		from
+			qc_image
+		order by seq_no asc
+	</select>
+    <select id="getQcCountByPoNo" resultType="java.lang.Integer" parameterType="map">
+		select
+			count(0)
+		from
+			qctx1
+		where
+			qc_no = #{poNo}
+	</select>
+
+    <insert id="insertQualityCheck" parameterType="map">
+		insert into qctx1(
+			qc_no,
+			qc_po_no_ref,
+			qc_so_no_ref,
+			qc_of_no_ref,
+			assignee,
+			comment,
+			qc_status,
+			start_date,
+			due_date,
+			actual_start_date,
+			actual_end_date,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) values (
+			#{qcNo},
+			#{qcPoNoRef},
+			#{qcSoNoRef},
+			#{qcOfNoRef},
+			#{assignee},
+			#{comment},
+			#{qcStatus},
+			#{startDate},
+			#{dueDate},
+			#{actualStartDate},
+			#{actualEndDate},			
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+
+    <insert id="insertQualityCheckItem" parameterType="map">
+		insert into qctx2(
+			qc2_no,
+			qc2_pic,
+			qc2_part_pic,
+			qc2_it_cat,
+			qc2_it_no,
+			qc2_it_suffix,
+			qc2_it_cat_no_suffix,
+			qc2_it_name,
+			qc2_it_details,
+			qc2_check_list,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) values (
+			#{qc2No},
+			#{qc2Pic},
+			#{qc2PartPic},
+			#{qc2ItCat},
+			#{qc2ItNo},
+			#{qc2ItSuffix},
+			#{qc2ItCatNoSuffix},
+			#{qc2ItName},
+			'',
+			#{qc2Cl},
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+
+    <select id="getQualityCheckByFkQcNo" parameterType="map" resultMap="qualityCheck">
+		select
+			*
+		from
+			qctx1
+		where
+			qc_no = #{qcNo}
+	</select>
+
+    <select id="getQualityCheckItemListByFkQcNo" parameterType="map" resultMap="qualityCheckItemVo">
+		select
+			*
+		from
+			qctx2
+		where
+			qc2_no = #{qcNo}
+	</select>
+
+    <select id="getQcItemsByQcNo" parameterType="map" resultMap="qualityCheckItem">
+		select
+			*
+		from
+			qctx2
+		where
+			qc2_no = #{qcNo}
+	</select>
+
+    <select id="getQcItemByQcItemVo" parameterType="map" resultMap="qualityCheckItem">
+		select
+			*
+		from
+			qctx2
+		where
+			qc2_no = #{qc2No}
+		and
+			qc2_it_cat_no_suffix = #{qc2ItCatNoSuffix}
+	</select>
+
+
+    <select id="getQcItemByUniqueKey" parameterType="map" resultMap="qualityCheckItem">
+		select
+			*
+		from
+			qctx2
+		where
+			qc2_it_cat_no_suffix = #{qc2ItCatNoSuffix}
+	</select>
+
+
+    <update id="updateQualityCheck" parameterType="map">
+		update qctx1 set 
+			qc_po_no_ref = #{qcPoNoRef},
+			qc_so_no_ref = #{qcSoNoRef},
+			qc_of_no_ref = #{qcOfNoRef},
+			assignee = #{assignee},
+			comment = #{comment},
+			qc_status = #{qcStatus},
+			start_date = #{startDate},
+			due_date = #{dueDate},
+			actual_start_date = #{actualStartDate},
+			actual_end_date =#{actualEndDate},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where qc_no = ${qcNo}
+	</update>
+
+
+    <update id="updateQcItem" parameterType="map">
+		update
+			 qctx2
+		set
+			qc2_bz = #{qc2Bz},
+			qc2_bzmx = #{qc2Bzmx},
+			qc2_bzwlqd = #{qc2Bzwlqd},
+			qc2_cc = #{qc2Cc},
+			qc2_clsj = #{qc2Clsj},
+			qc2_csyq = #{qc2Csyq},
+			qc2_dhgj = #{qc2Dhgj},
+			qc2_fyhsm = #{qc2Fyhsm},
+			qc2_gfx = #{qc2Gfx},
+			qc2_gzcsxq = #{qc2Gzcsxq},
+			qc2_ins_not = #{qc2InsNot},
+			qc2_ins_rep = #{qc2InsRep},
+			qc2_it_details = #{qc2ItDetails},
+			qc2_jg = #{qc2Jg},
+			qc2_kx = #{qc2Kx},
+			qc2_lljybg = #{qc2Lljybg},
+			qc2_no = #{qc2No},
+			qc2_pic = #{qc2Pic},
+			qc2_part_pic = #{qc2PartPic},
+			qc2_scjhkz = #{qc2Scjhkz},
+			qc2_sfcsbg = #{qc2Sfcsbg},
+			qc2_sy = #{qc2Sy},
+			qc2_syk = #{qc2Syk},
+			qc2_tpcc = #{qc2Tpcc},
+			qc2_wpcgz = #{qc2Wpcgz},
+			qc2_wty = #{qc2Wty},
+			qc2_ycqktzcld = #{qc2Ycqktzcld},
+			qc2_yhzj = #{qc2Yhzj},
+			qc2_ysjc = #{qc2Ysjc},
+			qc2_zcjyrbg = #{qc2Zcjyrbg},
+			qc2_zgyq = #{qc2Zgyq},
+			qc2_zn = #{qc2Zn},
+			qc2_cp = #{qc2Cp},
+			qc2_check_list=#{qc2Cl},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where
+			id = #{id}
+	</update>
+    <update id="updateQcItemSelect" parameterType="map">
+		update
+			qctx2
+		set		
+			qc2_check_list=#{qc2Cl},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}
+		where
+			id = #{id}
+	</update>
+
+    <select id="findPageBreakByCondition" resultMap="qualityCheckVo" parameterType="map">
+        select
+        a.po_no,
+        a.po_date,
+        a.po_lshp_date,
+        a.po_etd_date,
+        b.qc_no,
+        b.qc_po_no_ref,
+        b.qc_so_no_ref,
+        b.qc_of_no_ref,
+        b.assignee,
+        b.start_date,
+        b.due_date,
+        b.qc_status
+        from
+        qctx1 b
+        left join
+        potx1 a
+        on a.po_no = b.qc_po_no_ref
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            replace(a.po_no, ' ', '') != ''
+            <if test="fromNo != null">
+                <if test="fromNo != ''">
+                    AND
+                    a.po_no &gt;= #{fromNo}
+                </if>
+            </if>
+            <if test="toNo != null">
+                <if test="toNo != ''">
+                    AND
+                    a.po_no &lt;= #{toNo}
+                </if>
+            </if>
+        </trim>
+        order by a.po_date desc, a.po_no
+    </select>
+
+    <select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        qctx1 b
+        left join
+        potx1 a
+        on a.po_no = b.qc_po_no_ref
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            replace(a.po_no, ' ', '') != ''
+            <if test="fromNo != null">
+                <if test="fromNo != ''">
+                    AND
+                    a.po_no &gt;= #{fromNo}
+                </if>
+            </if>
+            <if test="toNo != null">
+                <if test="toNo != ''">
+                    AND
+                    a.po_no &lt;= #{toNo}
+                </if>
+            </if>
+        </trim>
+    </select>
+    <delete id="deleteQc2" parameterType="string">
+		delete from
+			 qctx2
+		where
+			qc2_no = #{value}
+	</delete>
+    <delete id="deleteQc1" parameterType="string">
+		delete from
+			 qctx1
+		where
+			qc_no = #{value}
+	</delete>
+    <update id="finishQc" parameterType="map">
+		update
+			 qctx1
+		set
+			qc_status = 'Y'
+		where
+			qc_no = #{value}
+	</update>
+</mapper>

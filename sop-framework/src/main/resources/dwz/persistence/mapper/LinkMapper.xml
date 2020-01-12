@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.LinkMapper">
+    <resultMap id="rm" type="dwz.persistence.beans.Link">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="key" jdbcType="VARCHAR" column="linkKey"/>
+        <result property="name" jdbcType="VARCHAR" column="name"/>
+        <result property="from" jdbcType="INTEGER" column="linkFrom"/>
+        <result property="to" jdbcType="INTEGER" column="linkTo"/>
+        <result property="type" jdbcType="VARCHAR" column="type"/>
+        <result property="alt" jdbcType="BOOLEAN" column="alt"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id,
+		linkKey,
+		name,
+		LinkFrom,
+		linkTo,
+		type,
+		alt
+	</sql>
+
+    <select id="findAllLinks" resultMap="rm" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM links
+    </select>
+
+    <!-- 插入 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO links (
+			ID,
+			LINKKEY,
+			NAME,
+			LINKFROM,
+			LINKTO,
+			TYPE,
+			ALT
+		) VALUES (
+			#{id},
+			#{key},
+			#{name},
+			#{from},
+			#{to},
+			#{type},
+			#{alt}
+		)
+	</insert>
+
+    <!--删除所有的数据-->
+    <update id="truncateTable">
+		truncate table links
+	</update>
+</mapper>
+

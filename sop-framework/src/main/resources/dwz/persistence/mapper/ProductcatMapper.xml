@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.ProductcatMapper">
+    <sql id="Base_Column_List">
+		id,
+		barcodeval,
+		fkpatient,
+		importdatetime,
+		moddatetime,
+		freezed,
+		actived
+	</sql>
+    <resultMap id="productcatListMap" type="sop.vo.ProductCategoryVo">
+        <result property="catCode" jdbcType="CHAR" column="cat_code"/>
+        <result property="catDesc" jdbcType="VARCHAR" column="cat_desc"/>
+    </resultMap>
+
+    <resultMap type="sop.persistence.beans.ProductCategory" id="productcat">
+        <result property="catCode" jdbcType="CHAR" column="cat_code"/>
+        <result property="catDesc" jdbcType="VARCHAR" column="cat_desc"/>
+    </resultMap>
+
+    <select id="getAllProductCats" resultMap="productcatListMap">
+		select 
+			cat_code
+		from
+			prodcat
+	</select>
+
+    <!-- 查询product cat.列表 -->
+    <select id="getProductcatListByCondition" resultMap="productcatListMap" parameterType="map">
+        select
+        cat_code,
+        cat_desc
+        from
+        prodcat
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                cat_code LIKE "%"#{keywords}"%"
+                or cat_desc LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <if test="orderField != null and orderField != ''">
+            order by <if test="orderField != null and orderField != ''">${orderField}</if>
+            <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+        </if>
+    </select>
+    <select id="getProductcatListNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        prodcat
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                cat_code LIKE "%"#{keywords}"%"
+                or cat_desc LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+
+    <!-- 根据fkCatCode获取product category -->
+    <select id="getProductcatByFkCatCode" resultMap="productcat" parameterType="map">
+		select 
+			cat_code,
+			cat_desc
+		from
+			prodcat
+		where
+			cat_code = #{fkCatCode}
+	</select>
+    <!-- 更新product category -->
+    <update id="updateProductcat" parameterType="map">
+		UPDATE
+			prodcat
+		SET
+			cat_code = #{catCode},
+			cat_desc = #{catDesc}
+		WHERE 
+			cat_code = #{catCode}
+	</update>
+    <!-- 获取指定catCode数量 -->
+    <select id="getCountByFkCatCode" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(1) as c
+		from
+			prodcat a
+		where
+			a.cat_code = #{fkCatCode}
+	</select>
+    <!-- 增加product category -->
+    <insert id="insertProductcat" parameterType="map">
+		INSERT INTO prodcat(
+			cat_code,
+			cat_desc
+		) VALUES (
+			#{catCode},
+			#{catDesc}
+		)
+	</insert>
+    <delete id="deleteProductcat">
+		delete
+		from
+			prodcat
+		where
+			cat_code = #{fkCatCode}
+	</delete>
+</mapper>
