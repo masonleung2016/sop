@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dwz.persistence.mapper.AutogenMapper">
+    <resultMap id="autogenVoListMap" type="sop.vo.AutogenVo">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="autTxType" jdbcType="VARCHAR" column="aut_tx_type"/>
+        <result property="autTxNum" jdbcType="DECIMAL" column="aut_tx_num"/>
+        <result property="autTxPrefix" jdbcType="VARCHAR" column="aut_tx_prefix"/>
+        <result property="autDesc" jdbcType="VARCHAR" column="aut_desc"/>
+    </resultMap>
+    <resultMap id="autogen" type="sop.persistence.beans.Autogen">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="autTxType" jdbcType="VARCHAR" column="aut_tx_type"/>
+        <result property="autTxNum" jdbcType="DECIMAL" column="aut_tx_num"/>
+        <result property="autTxPrefix" jdbcType="VARCHAR" column="aut_tx_prefix"/>
+        <result property="autDesc" jdbcType="VARCHAR" column="aut_desc"/>
+        <result property="autSysFunc" jdbcType="VARCHAR" column="aut_sys_func"/>
+        <result property="revNo" jdbcType="DECIMAL" column="rev_no"/>
+
+        <result property="crtUsr" jdbcType="VARCHAR" column="crt_usr"/>
+        <result property="crtDate" jdbcType="TIMESTAMP" column="crt_date"/>
+        <result property="modUsr" jdbcType="VARCHAR" column="mod_usr"/>
+        <result property="modDate" jdbcType="TIMESTAMP" column="mod_date"/>
+    </resultMap>
+    <resultMap id="comVoListMap" type="sop.vo.CompanyVo">
+        <result property="coCode" jdbcType="CHAR" column="co_code"/>
+        <result property="coName" jdbcType="VARCHAR" column="co_name"/>
+        <result property="coChn" jdbcType="VARCHAR" column="co_chn"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+			co_code,
+			aut_tx_type,
+			aut_tx_num,
+			aut_tx_prefix,
+			aut_desc
+	</sql>
+    <!-- 查询autogen列表 -->
+    <select id="getAutogenListByCondition" resultMap="autogenVoListMap" parameterType="map">
+        select
+        co_code,
+        aut_tx_type,
+        aut_tx_num,
+        aut_tx_prefix,
+        aut_desc
+        from
+        autogen
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                co_code LIKE "%"#{keywords}"%"
+                or aut_tx_type LIKE "%"#{keywords}"%"
+                or aut_tx_prefix LIKE "%"#{keywords}"%"
+                or aut_desc LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField !=null and orderField !=''">
+                ORDER BY ${orderField}
+                <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+            </when>
+            <otherwise>
+                order by mod_date DESC
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getAutogenListNumByCondition" resultType="java.lang.Integer" parameterType="map">
+        select
+        count(0) as c
+        from
+        autogen
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            1 = 1
+            <if test="keywords != null">
+                AND (
+                co_code LIKE "%"#{keywords}"%"
+                or aut_tx_type LIKE "%"#{keywords}"%"
+                or aut_tx_prefix LIKE "%"#{keywords}"%"
+                or aut_desc LIKE "%"#{keywords}"%"
+                )
+            </if>
+        </trim>
+    </select>
+
+    <!-- 获取指定autogen数量 -->
+    <select id="getCountByAutogen" resultType="java.lang.Integer" parameterType="map">
+		select 
+			count(1) as c
+		from
+			autogen a
+		where
+			a.co_code = #{coCode}
+		and
+			a.aut_tx_type = #{autTxType}
+	</select>
+
+    <select id="getAutogen" resultMap="autogen" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        autogen
+        where
+        co_code = #{coCode}
+        and
+        aut_tx_type = #{autTxType}
+    </select>
+
+    <delete id="deleteAutogen" parameterType="map">
+		delete from
+			autogen 
+		where
+			co_code = #{coCode}
+		and
+			aut_tx_type = #{autTxType}
+	</delete>
+
+    <!-- 增加autogen -->
+    <insert id="insertAutogen" parameterType="map">
+		INSERT INTO autogen(
+			co_code,
+			aut_tx_type,
+			aut_tx_num,
+			aut_tx_prefix,
+			aut_desc,
+			aut_sys_func,
+			rev_no,
+			crt_usr,
+			crt_date,
+			mod_usr,
+			mod_date
+		) VALUES (
+			#{coCode},
+			#{autTxType},
+			#{autTxNum},
+			#{autTxPrefix},
+			#{autDesc},
+			#{autSysFunc},
+			#{revNo},
+			#{crtUsr},
+			#{crtDate},
+			#{modUsr},
+			#{modDate}
+		)
+	</insert>
+
+
+    <update id="updateAutogen" parameterType="map">
+		update autogen set
+			aut_tx_num = #{autTxNum},
+			aut_tx_prefix = #{autTxPrefix},
+			aut_desc = #{autDesc},
+			aut_sys_func = #{autSysFunc},
+			rev_no = #{revNo},
+			crt_usr = #{crtUsr},
+			crt_date = #{crtDate},
+			mod_usr = #{modUsr},
+			mod_date = #{modDate}		
+		where co_code = #{coCode} and aut_tx_type = #{autTxType}
+	</update>
+    <!-- 查询company列表 -->
+    <select id="getAllCompany" resultMap="comVoListMap">
+		select 
+			co_code,
+			co_name,
+			co_chn
+		from
+			comp
+	</select>
+
+</mapper>
