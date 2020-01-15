@@ -114,7 +114,6 @@ public final class ByteBufArrayInputStream extends InputStream implements LineIn
                 eol = true;
                 continue;
             }
-
             if (eol) {
                 if (b[0] == 10)
                     break;
