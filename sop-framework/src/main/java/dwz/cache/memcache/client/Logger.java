@@ -145,7 +145,6 @@ public class Logger {
     public void info(String mesg, Throwable ex) {
         if (this.level > LEVEL_INFO)
             return;
-
         log(mesg, ex);
     }
 
@@ -166,7 +165,6 @@ public class Logger {
     public void warn(String mesg, Throwable ex) {
         if (this.level > LEVEL_WARN)
             return;
-
         log(mesg, ex);
     }
 
@@ -183,7 +181,6 @@ public class Logger {
     public void error(String mesg, Throwable ex) {
         if (this.level > LEVEL_ERROR)
             return;
-
         log(mesg, ex);
     }
 
@@ -200,7 +197,6 @@ public class Logger {
     public void fatal(String mesg, Throwable ex) {
         if (this.level > LEVEL_FATAL)
             return;
-
         log(mesg, ex);
     }
 
