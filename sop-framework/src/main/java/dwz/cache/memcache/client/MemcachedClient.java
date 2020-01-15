@@ -1920,10 +1920,8 @@ public class MemcachedClient {
                         if (buf.get(pos--) != B_END[strPos--])
                             return false;
                     }
-
                     bi--;
                 }
-
                 isDone = strPos < 0;
                 return isDone;
             }
