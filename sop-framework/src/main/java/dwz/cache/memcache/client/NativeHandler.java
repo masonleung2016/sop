@@ -218,7 +218,6 @@ public class NativeHandler {
 
         if (value instanceof byte[])
             return encode((byte[]) value);
-
         return null;
     }
 
@@ -235,7 +234,6 @@ public class NativeHandler {
             b[0] = 1;
         else
             b[0] = 0;
-
         return b;
     }
 
@@ -317,7 +315,6 @@ public class NativeHandler {
 
         if (b.length < 1)
             return null;
-
 
         if ((flag & MemcachedClient.MARKER_BYTE) == MemcachedClient.MARKER_BYTE)
             return decodeByte(b);
