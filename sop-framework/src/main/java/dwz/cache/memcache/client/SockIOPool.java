@@ -1855,7 +1855,6 @@ public class SockIOPool {
                 if (eol) {
                     if (b[0] == 10)
                         break;
-
                     eol = false;
                 }
             }
@@ -1878,7 +1877,6 @@ public class SockIOPool {
                 int cnt = in.read(b, count, (b.length - count));
                 count += cnt;
             }
-
             return count;
         }
 
