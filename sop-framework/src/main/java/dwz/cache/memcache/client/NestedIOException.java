@@ -4,12 +4,12 @@
  * <p>
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the BSD license
- * <p>
+ * 
  * This library is distributed in the hope that it will be
  * useful, but WITHOUT ANY WARRANTY; without even the implied
  * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
  * PURPOSE.
- * <p>
+ * 
  * You should have received a copy of the BSD License along with this
  * library.
  *
