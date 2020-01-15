@@ -67,10 +67,7 @@ public class WebsiteContextFilter implements Filter {
             context = new DefaultAppContext();
             AppContextHolder.setContext(context);
         }
-
-
         chain.doFilter(req, res);
-
     }
 
     public void init(FilterConfig config) throws ServletException {
@@ -86,7 +83,5 @@ public class WebsiteContextFilter implements Filter {
                 this.skipUris[i] = this.skipUris[i].trim();
             }
         }
-
     }
-
 }
