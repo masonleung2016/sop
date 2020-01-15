@@ -38,8 +38,6 @@ public class MethodAuthorityInterceptor implements MethodInterceptor {
 //            if (args[i] instanceof ActionMapping) mapping = (ActionMapping)args[i];
 //        }
 
-
         return invocation.proceed();
     }
-
 }
