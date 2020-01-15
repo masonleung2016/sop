@@ -160,5 +160,4 @@ public class SessionValidateFilter implements Filter {
             this.loginUrl = sb.toString();
         }
     }
-
 }
