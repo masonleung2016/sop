@@ -27,7 +27,6 @@ public class SiteMeshWrapperFilter extends SiteMeshFilter {
         } else {
             super.doFilter(req, res, chain);
         }
-
     }
 
     private boolean isAjax(HttpServletRequest request) {
