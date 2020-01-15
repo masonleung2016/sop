@@ -69,6 +69,5 @@ public interface ErrorHandler {
      */
     public void handleErrorOnStats(final MemcachedClient client,
                                    final Throwable error);
-
 }
 // interface
