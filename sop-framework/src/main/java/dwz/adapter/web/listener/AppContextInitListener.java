@@ -22,7 +22,6 @@ public class AppContextInitListener implements ServletContextListener,
     }
 
     public void contextDestroyed(ServletContextEvent event) {
-
     }
 
     public void contextInitialized(ServletContextEvent event) {
