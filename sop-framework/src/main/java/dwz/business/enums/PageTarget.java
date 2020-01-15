@@ -24,5 +24,4 @@ public enum PageTarget {
     public String getName() {
         return this.name;
     }
-
 }
