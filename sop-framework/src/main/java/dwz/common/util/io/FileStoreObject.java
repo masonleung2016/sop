@@ -7,7 +7,6 @@ package dwz.common.util.io;
  */
 
 public class FileStoreObject {
-
     private String physicalPath;
     private String relativePath;
     private String ext;
