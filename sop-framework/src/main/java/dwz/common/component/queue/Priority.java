@@ -11,5 +11,4 @@ package dwz.common.component.queue;
  */
 
 public interface Priority extends Comparable<Priority> {
-
 }
