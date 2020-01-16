@@ -539,7 +539,7 @@ public interface CacheManager {
 
     /**
      * Retrieves stats for passed in servers (or all servers).
-     * <p>
+     * 
      * Returns a map keyed on the servername.
      * The value is another map which contains slabs stats
      * with slabnumber:field as key and value as value.
@@ -551,7 +551,7 @@ public interface CacheManager {
 
     /**
      * Retrieves items cachedump for all servers.
-     * <p>
+     * 
      * Returns a map keyed on the servername.
      * The value is another map which contains cachedump stats
      * with the cachekey as key and byte size and unix timestamp as value.
@@ -563,7 +563,7 @@ public interface CacheManager {
 
     /**
      * Retrieves stats for passed in servers (or all servers).
-     * <p>
+     * 
      * Returns a map keyed on the servername.
      * The value is another map which contains cachedump stats
      * with the cachekey as key and byte size and unix timestamp as value.
