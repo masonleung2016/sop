@@ -75,5 +75,4 @@ public class MemcachedClientConfig {
     public void setErrorHandler(String errorHandler) {
         this.errorHandler = errorHandler;
     }
-
 }
