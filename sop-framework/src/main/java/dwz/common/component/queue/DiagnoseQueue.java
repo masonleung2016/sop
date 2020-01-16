@@ -8,6 +8,7 @@ package dwz.common.component.queue;
  * @Date: 2020/1/8 15:11
  * @Package: dwz.common.component.queue
  */
+
 public interface DiagnoseQueue<E> {
 
     public int size();
@@ -19,5 +20,4 @@ public interface DiagnoseQueue<E> {
     public boolean isPriorityQueue();
 
     public E[] toArray(E[] objs);
-
 }
