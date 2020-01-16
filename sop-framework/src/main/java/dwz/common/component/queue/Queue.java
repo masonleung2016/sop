@@ -257,5 +257,4 @@ public class Queue<E> implements BaseQueue<E>, AdvanceQueue<E>, DiagnoseQueue<E>
             return true;
         }
     }
-
 }
