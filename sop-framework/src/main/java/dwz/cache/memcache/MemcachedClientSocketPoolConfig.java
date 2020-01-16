@@ -131,5 +131,4 @@ public class MemcachedClientSocketPoolConfig {
     public void setWeights(Integer[] weights) {
         this.weights = weights;
     }
-
 }
