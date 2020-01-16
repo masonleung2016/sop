@@ -20,9 +20,8 @@ public final class StringEncryptUtil {
      * The Default Key.
      */
     public static final String DEFAULT_KEY = "asdfsadf@#$%^$%^%^&*&asdf24243423234";
-//	不能使用PBEWithMD5AndTripleDES，只能使用DES
     /**
-     *
+     * 不能使用PBEWithMD5AndTripleDES，只能使用DES
      */
     private static final String ALGORITHM = "DES";
 
@@ -44,7 +43,6 @@ public final class StringEncryptUtil {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, keySpec, sr);
         return cipher.doFinal(originalByte);
-
     }
 
     public static String decrypt(final String encryptedString) throws Exception {
