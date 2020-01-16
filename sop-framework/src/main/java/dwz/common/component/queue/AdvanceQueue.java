@@ -8,6 +8,7 @@ package dwz.common.component.queue;
  * @Date: 2020/1/8 15:09
  * @Package: dwz.common.component.queue
  */
+
 public interface AdvanceQueue<E> {
 
     public void putInStrategy(E obj) throws Exception;
