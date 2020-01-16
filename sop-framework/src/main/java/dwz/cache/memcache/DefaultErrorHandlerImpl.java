@@ -56,5 +56,4 @@ public class DefaultErrorHandlerImpl implements ErrorHandler {
     public void handleErrorOnStats(MemcachedClient client, Throwable error) {
         Logger.error("ErrorOnStats", error);
     }
-
 }
