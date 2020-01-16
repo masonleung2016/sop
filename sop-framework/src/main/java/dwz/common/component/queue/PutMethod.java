@@ -7,6 +7,7 @@ package dwz.common.component.queue;
  * @Date: 2020/1/8 15:13
  * @Package: dwz.common.component.queue
  */
+
 public interface PutMethod {
 
     public boolean allowPut(BaseQueue<Object> queue, Object o);
