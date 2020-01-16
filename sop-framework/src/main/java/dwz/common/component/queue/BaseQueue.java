@@ -8,6 +8,7 @@ package dwz.common.component.queue;
  * @Date: 2020/1/8 15:10
  * @Package: dwz.common.component.queue
  */
+
 public interface BaseQueue<E> {
 
     public void put(E obj) throws Exception;
@@ -29,5 +30,4 @@ public interface BaseQueue<E> {
     public E[] toArray(E[] objs);
 
     public boolean remove(Object o);
-
 }
