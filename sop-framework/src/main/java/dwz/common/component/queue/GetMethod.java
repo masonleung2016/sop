@@ -7,7 +7,6 @@ package dwz.common.component.queue;
  * @Date: 2020/1/8 15:12
  * @Package: dwz.common.component.queue
  */
+
 public interface GetMethod {
-
 }
-
