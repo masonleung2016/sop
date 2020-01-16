@@ -258,5 +258,4 @@ public class ThreadPool implements ThreadPoolDiagnose {
             return diagnose;
         }
     }
-
 }
