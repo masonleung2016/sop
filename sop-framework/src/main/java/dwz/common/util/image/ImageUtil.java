@@ -27,7 +27,6 @@ import com.mortennobel.imagescaling.ThumpnailRescaleOp;
  */
 
 public class ImageUtil {
-
     public static void resize(File originalFile, File thumnailFile,
                               String dimension) {
         if (StringUtils.isNotBlank(dimension)
