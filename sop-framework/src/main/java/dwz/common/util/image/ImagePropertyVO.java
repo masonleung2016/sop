@@ -37,5 +37,4 @@ public class ImagePropertyVO {
     public void setHeight(int height) {
         this.height = height;
     }
-
 }
