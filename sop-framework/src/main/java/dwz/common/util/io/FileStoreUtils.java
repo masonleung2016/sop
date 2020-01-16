@@ -53,5 +53,4 @@ public class FileStoreUtils {
         System.out.println(fso.getRelativeFullPath());
         System.out.println(fso.getDateFullPath());
     }
-
 }
