@@ -14,7 +14,6 @@ import dwz.common.util.StringUtils;
  * @Package: dwz.common.component.db
  */
 public class PagedQuery {
-
     /**
      * 页面大小
      */
@@ -29,25 +28,21 @@ public class PagedQuery {
      * 页面个数
      */
     private int pagesCount;
-
     /**
      * 顺序
      */
     private ListOrderedMap orders;
-
     /**
      *
      */
     public PagedQuery() {
     }
-
     /**
      * @return the pagesCount
      */
     public final int getPagesCount() {
         return pagesCount;
     }
-
 
     /**
      * @param pagesCount the pagesCount to set
