@@ -56,7 +56,6 @@ public class PBECoder {
         PBEKeySpec keySpec = new PBEKeySpec(password.toCharArray());
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(ALGORITHM);
         SecretKey secretKey = keyFactory.generateSecret(keySpec);
-
         return secretKey;
     }
 
@@ -71,28 +70,20 @@ public class PBECoder {
      */
     public static byte[] encrypt(byte[] data, String password, byte[] salt)
             throws Exception {
-
         Key key = toKey(password);
-
         PBEParameterSpec paramSpec = new PBEParameterSpec(salt, 100);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key, paramSpec);
-
         return cipher.doFinal(data);
-
     }
 
     public static byte[] encrypt(byte[] data, String password)
             throws Exception {
-
         Key key = toKey(password);
-
         PBEParameterSpec paramSpec = new PBEParameterSpec(SALT, 100);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, key, paramSpec);
-
         return cipher.doFinal(data);
-
     }
 
 
@@ -107,27 +98,19 @@ public class PBECoder {
      */
     public static byte[] decrypt(byte[] data, String password, byte[] salt)
             throws Exception {
-
         Key key = toKey(password);
-
         PBEParameterSpec paramSpec = new PBEParameterSpec(salt, 100);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, key, paramSpec);
-
         return cipher.doFinal(data);
-
     }
 
     public static byte[] decrypt(byte[] data, String password)
             throws Exception {
-
         Key key = toKey(password);
-
         PBEParameterSpec paramSpec = new PBEParameterSpec(SALT, 100);
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, key, paramSpec);
-
         return cipher.doFinal(data);
-
     }
 }
