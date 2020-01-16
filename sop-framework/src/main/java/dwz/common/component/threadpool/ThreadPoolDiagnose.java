@@ -9,6 +9,7 @@ import dwz.common.component.threadpool.ThreadPool.ThreadDiagnose;
  * @Date: 2020/1/8 15:17
  * @Package: dwz.common.component.threadpool
  */
+
 public interface ThreadPoolDiagnose {
 
     public boolean running();
