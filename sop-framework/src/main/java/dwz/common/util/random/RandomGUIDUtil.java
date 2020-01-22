@@ -8,11 +8,13 @@ package dwz.common.util.random;
  */
 
 public class RandomGUIDUtil {
+
     /**
      * 产生唯一的随机字符串
      *
      * @return
      */
+    
     public static String generateKey() {
         return new RandomGUID(true).toString();
     }
