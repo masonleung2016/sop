@@ -91,7 +91,6 @@ class RandomGUID extends Object {
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-
     }
 
     public String valueBeforeMD5 = "";
@@ -104,7 +103,6 @@ class RandomGUID extends Object {
      * This block will run only once per JVM instance.
      */
     public String valueAfterMD5 = "";
-
 
     /**
      * Default constructor.  With no specification of security option,
