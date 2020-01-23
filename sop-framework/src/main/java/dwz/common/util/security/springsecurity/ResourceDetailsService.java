@@ -13,5 +13,6 @@ public interface ResourceDetailsService {
     /**
      * 返回带顺序的URL-授权关系Map, key为受保护的URL, value为能访问该URL的授权名称列表,以','分隔.
      */
+    
     public LinkedHashMap<String, String> getRequestMap() throws Exception; //NOSONAR
 }
