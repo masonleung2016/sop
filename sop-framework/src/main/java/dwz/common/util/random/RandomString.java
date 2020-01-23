@@ -47,5 +47,4 @@ public class RandomString {
         System.out.println(randomString(8));
         System.out.println(randomString(8));
     }
-
 }
