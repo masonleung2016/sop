@@ -128,10 +128,9 @@ public class DateUtils {
         String dateString = formatter.format(currentTime);
         return dateString;
     }
-    //-----------------------------------------------------------------------
 
     /**
-     * <p>Checks if two date objects are on the same day ignoring time.</p>
+     * Checks if two date objects are on the same day ignoring time.
      *
      * <p>28 Mar 2002 13:45 and 28 Mar 2002 06:01 would return true.
      * 28 Mar 2002 13:45 and 12 Mar 2002 13:45 would return false.
@@ -1825,5 +1824,4 @@ public class DateUtils {
             throw new UnsupportedOperationException();
         }
     }
-
 }
