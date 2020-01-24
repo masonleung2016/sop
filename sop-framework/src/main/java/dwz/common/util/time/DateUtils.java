@@ -1772,7 +1772,7 @@ public class DateUtils {
     }
 
     /**
-     * <p>Date iterator.</p>
+     * Date iterator.
      */
     @SuppressWarnings("rawtypes")
     static class DateIterator implements Iterator {
