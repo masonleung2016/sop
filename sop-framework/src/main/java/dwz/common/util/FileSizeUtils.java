@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
  */
 
 public class FileSizeUtils {
+    
     public static long ONE_KB = 1024;
     public static long ONE_MB = ONE_KB * 1024;
     public static long ONE_GB = ONE_MB * 1024;
