@@ -50,8 +50,6 @@ public class ScanClassUtils {
         } catch (Exception e) {
             new IllegalArgumentException("scan pakcage class error,pakcages:" + basePackages);
         }
-
         return result;
     }
-
 }
