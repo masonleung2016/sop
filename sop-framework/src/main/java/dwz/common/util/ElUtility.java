@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
  * @Date: 2020/1/8 15:54
  * @Package: dwz.common.util
  */
-
 public class ElUtility {
 
     public static boolean contains(Object o, Collection<?> c) {
