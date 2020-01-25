@@ -1737,5 +1737,4 @@ public class FastDateFormat extends Format {
             return "[" + mObj1 + ':' + mObj2 + ']';
         }
     }
-
 }
