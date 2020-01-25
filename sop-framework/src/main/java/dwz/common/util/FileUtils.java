@@ -136,7 +136,6 @@ public class FileUtils {
             }
         }
         return fileContent.toString();
-
     }
 
     public static boolean setFileContent(String path, String content) {
