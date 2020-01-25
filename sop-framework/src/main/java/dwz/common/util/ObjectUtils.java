@@ -65,5 +65,4 @@ public class ObjectUtils {
     public static boolean isNotEmpty(Object c) throws IllegalArgumentException {
         return !isEmpty(c);
     }
-
 }
