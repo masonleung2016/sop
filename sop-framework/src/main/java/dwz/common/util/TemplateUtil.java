@@ -42,5 +42,4 @@ public class TemplateUtil {
             throw new RuntimeException(e);
         }
     }
-
 }
