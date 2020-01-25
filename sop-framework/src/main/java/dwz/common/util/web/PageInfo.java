@@ -161,6 +161,7 @@ public class PageInfo {
      *
      * @return
      */
+    
     public int getRangeOfEnd() {
         int end = this.getRangeOfFirst() - 1 + this.getRangeSize();
         if (end > this.getPages()) {
