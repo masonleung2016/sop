@@ -68,5 +68,4 @@ public class SqlRemoveUtils {
         m.appendTail(sb);
         return removeOrders(sb.toString());
     }
-
 }
