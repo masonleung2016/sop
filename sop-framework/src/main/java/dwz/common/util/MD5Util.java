@@ -11,6 +11,7 @@ import java.security.MessageDigest;
  * @Date: 2020/1/8 16:03
  * @Package: dwz.common.util
  */
+
 public class MD5Util {
 
     public static String MD5(String s) {
