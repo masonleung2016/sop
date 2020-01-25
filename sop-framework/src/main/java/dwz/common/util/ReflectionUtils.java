@@ -21,12 +21,10 @@ import org.springframework.util.Assert;
 /**
  * 反射工具类.
  * 提供访问私有变量,获取泛型类型Class,提取集合中元素的属性,转换字符串到对象等Util函数.
- *
  * @Author: LCF
  * @Date: 2020/1/8 16:08
  * @Package: dwz.common.util
  */
-
 public class ReflectionUtils {
 
     private static Logger logger = LoggerFactory.getLogger(ReflectionUtils.class);
