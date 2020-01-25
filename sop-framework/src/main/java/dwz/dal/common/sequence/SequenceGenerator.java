@@ -111,5 +111,4 @@ public class SequenceGenerator {
             throw new RuntimeException(e);
         }
     }
-
 }
