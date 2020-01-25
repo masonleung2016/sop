@@ -7,6 +7,6 @@ import dwz.dal.BaseMapper;
  * @Date: 2020/1/8 16:18
  * @Package: dwz.dal.common.sequence.dao
  */
-public interface IdSequenceDao extends BaseMapper<DalSequenceDO, String> {
 
+public interface IdSequenceDao extends BaseMapper<DalSequenceDO, String> {
 }
