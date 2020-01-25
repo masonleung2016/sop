@@ -91,7 +91,6 @@ public class ClassFactoryUtil {
             Exception e = new Exception(dealerClass + "找不到或者类的构造方法为private", e1);
             throw e;
         }
-
         return instance;
     }
 }
