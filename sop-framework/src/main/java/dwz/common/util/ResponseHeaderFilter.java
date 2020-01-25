@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Author: LCF
  * @Date: 2020/1/8 16:09
  * @Package: dwz.common.util
- * <p>
  * 为Response设置Expires等Header的Filter.
- * <p>
  * eg.在web.xml中设置
  * <filter>
  * <filter-name>expiresHeaderFilter</filter-name>
@@ -68,4 +66,3 @@ public class ResponseHeaderFilter implements Filter {
     public void destroy() {
     }
 }
-
