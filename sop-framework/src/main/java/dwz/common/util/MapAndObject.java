@@ -140,6 +140,5 @@ public class MapAndObject implements Map {
             if (pd == null) return null;
             return pd.getReadMethod();
         }
-
     }
 }
