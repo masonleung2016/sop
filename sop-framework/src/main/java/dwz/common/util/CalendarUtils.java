@@ -37,6 +37,4 @@ public class CalendarUtils {
         c2.setTime(d2);
         return c1.get(field) == c2.get(field);
     }
-
-
 }
