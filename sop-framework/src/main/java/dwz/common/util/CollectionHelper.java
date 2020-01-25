@@ -123,5 +123,4 @@ public class CollectionHelper {
         List<Comparable> propertyValues = CollectionHelper.selectProperty(objects, propertyName);
         return Collections.min(propertyValues);
     }
-
 }
