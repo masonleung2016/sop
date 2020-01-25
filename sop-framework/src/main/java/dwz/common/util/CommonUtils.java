@@ -81,5 +81,4 @@ public class CommonUtils {
         if (o == null) return 0;
         else return (Integer) o;
     }
-
 }
