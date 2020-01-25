@@ -7,6 +7,7 @@ import java.util.Map;
  * @Date: 2020/1/8 16:03
  * @Package: dwz.common.util
  */
+
 public class MapUtils {
     @SuppressWarnings("all")
     public static void putIfNull(Map map, Object key, Object defaultValue) {
@@ -18,5 +19,4 @@ public class MapUtils {
             map.put(key, defaultValue);
         }
     }
-
 }
