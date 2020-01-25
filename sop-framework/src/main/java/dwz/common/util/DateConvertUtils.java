@@ -11,7 +11,6 @@ import org.apache.commons.lang.StringUtils;
  * @Date: 2020/1/8 15:53
  * @Package: dwz.common.util
  */
-
 public class DateConvertUtils {
 
     public static java.util.Date parse(String dateString, String dateFormat) {
