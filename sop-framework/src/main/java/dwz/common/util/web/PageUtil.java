@@ -109,6 +109,7 @@ public class PageUtil {
      *
      * @return
      */
+    
     public PageInfo getPageInfo() {
         PageInfo info = new PageInfo();
         info.setPages(this.getPages());
@@ -117,5 +118,4 @@ public class PageUtil {
         info.setPageSize(this.getPageSize());
         return info;
     }
-
 }
