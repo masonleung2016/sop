@@ -16,5 +16,4 @@ public class ServerInfo {
             return true;
         return false;
     }
-
 }
