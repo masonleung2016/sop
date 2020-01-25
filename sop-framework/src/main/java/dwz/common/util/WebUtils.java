@@ -15,7 +15,6 @@ import org.springframework.util.Assert;
 
 /**
  * Http与Servlet工具类.
- *
  * @Author: LCF
  * @Date: 2020/1/8 16:15
  * @Package: dwz.common.util
@@ -173,5 +172,4 @@ public class WebUtils {
         cookie.setMaxAge(cookieAge);
         response.addCookie(cookie);
     }
-
 }
