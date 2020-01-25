@@ -31,7 +31,6 @@ public class ThreadUtils {
      * 先使用shutdown尝试执行所有任务.
      * 超时后调用shutdownNow取消在workQueue中Pending的任务,并中断所有阻塞函数.
      * 另对在shutdown时线程本身被调用中断做了处理.
-     *
      * @param shutdownNowTimeout TODO
      */
     public static void gracefulShutdown(ExecutorService pool, int shutdownTimeout, int shutdownNowTimeout,
