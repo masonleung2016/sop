@@ -74,7 +74,6 @@ public class ReflectUtil {
         return null;
     }
 
-
     private static void makeAccessible(Field field) {
         if (!Modifier.isPublic(field.getModifiers())) {
             field.setAccessible(true);
@@ -92,7 +91,6 @@ public class ReflectUtil {
         }
         return null;
     }
-
 
     public static Object invokeMethod(Object object, String methodName,
                                       Class<?>[] parameterTypes, Object[] parameters)
@@ -115,7 +113,6 @@ public class ReflectUtil {
         return null;
     }
 
-
     public static void setFieldValue(Object object, String fieldName,
                                      Object value) {
         Field field = getDeclaredField(object, fieldName);
@@ -132,7 +129,6 @@ public class ReflectUtil {
             e.printStackTrace();
         }
     }
-
 
     public static Object getFieldValue(Object object, String fieldName) {
         Field field = getDeclaredField(object, fieldName);
@@ -151,5 +147,4 @@ public class ReflectUtil {
 
         return result;
     }
-
 }
