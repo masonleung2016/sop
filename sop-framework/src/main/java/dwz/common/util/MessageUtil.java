@@ -19,6 +19,7 @@ public class MessageUtil {
      * @param args
      * @return
      */
+    
     public static String pattern2String(String pattern, Object[] args) {
         if (StringUtils.isEmpty(pattern)) {
             throw new java.lang.IllegalArgumentException();
