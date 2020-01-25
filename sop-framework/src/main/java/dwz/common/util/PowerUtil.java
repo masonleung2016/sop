@@ -64,6 +64,7 @@ public class PowerUtil {
     /**
      * @param args
      */
+    
     public static void main(String[] args) {
 
         // purview =2^2+2^3+2^4＝28
