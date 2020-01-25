@@ -34,5 +34,4 @@ public class DalSequenceDO extends AbstractDO {
     public String getId() {
         return sequenceKey;
     }
-
 }
