@@ -22,6 +22,7 @@ public class ArrayUtils {
      * @param keys
      * @return
      */
+    
     @SuppressWarnings("all")
     public static Map toMap(Object[] array, String... keys) {
         if (array == null) return new HashMap();
@@ -34,5 +35,4 @@ public class ArrayUtils {
         }
         return m;
     }
-
 }
