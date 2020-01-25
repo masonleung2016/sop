@@ -270,7 +270,6 @@ public class PropertiesHelper {
     /**
      * delegate method start
      */
-
     public String getProperty(String key, String defaultValue) {
         return p.getProperty(key, defaultValue);
     }
