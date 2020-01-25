@@ -9,12 +9,11 @@ package dwz.common.util;
 public class StringUtils {
     /**
      * The empty String <code>""</code>.
-     *
      * @since 2.0
      */
     public static final String EMPTY = "";
     /**
-     * <p>The maximum size to which the padding constant(s) can expand.</p>
+     * The maximum size to which the padding constant(s) can expand.
      */
     private static final int PAD_LIMIT = 8192;
 
@@ -1721,5 +1720,4 @@ public class StringUtils {
         }
         return new StringBuffer(str).reverse().toString();
     }
-
 }
