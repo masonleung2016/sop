@@ -649,5 +649,4 @@ public class DurationFormatUtils {
             return StringUtils.repeat(this.value.toString(), this.count);
         }
     }
-
 }
