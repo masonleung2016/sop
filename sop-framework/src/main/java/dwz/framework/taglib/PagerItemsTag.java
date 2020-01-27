@@ -14,9 +14,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 
 public class PagerItemsTag extends TagSupport {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 3317096645296630097L;
 
     private Collection collection;
@@ -40,7 +38,6 @@ public class PagerItemsTag extends TagSupport {
         }
     }
 
-
     public int doAfterBody() throws JspException {
         rowIndex++;
         if (iterator.hasNext()) {
@@ -57,5 +54,4 @@ public class PagerItemsTag extends TagSupport {
         pageContext.removeAttribute("rowIndex");
         return SKIP_BODY;
     }
-
 }
