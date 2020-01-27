@@ -49,7 +49,6 @@ public abstract class AbstractBusinessObjectServiceMgr implements BusinessObject
 
     /**
      * (non-Javadoc)
-     *
      * @see cn.com.ecointel.roomyi.framework.sys.business.BusinessObjectServiceMgr#setInCache(cn.com.ecointel.roomyi.framework.sys.business.BusinessObject)
      */
     @Override
@@ -60,7 +59,6 @@ public abstract class AbstractBusinessObjectServiceMgr implements BusinessObject
 
     /**
      * (non-Javadoc)
-     *
      * @see cn.com.ecointel.roomyi.framework.sys.business.BusinessObjectServiceMgr#deleteFromCache(cn.com.ecointel.roomyi.framework.sys.business.BusinessObject)
      */
     @Override
@@ -72,7 +70,6 @@ public abstract class AbstractBusinessObjectServiceMgr implements BusinessObject
 
     /**
      * (non-Javadoc)
-     *
      * @see cn.com.ecointel.roomyi.framework.sys.business.BusinessObjectServiceMgr#getFromCache(java.lang.Class, java.io.Serializable)
      */
     @Override
