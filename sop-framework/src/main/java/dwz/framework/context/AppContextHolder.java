@@ -13,7 +13,6 @@ public class AppContextHolder {
         protected AppContext initialValue() {
             return null;
         }
-
     };
 
     public static AppContext getContext() {
@@ -23,5 +22,4 @@ public class AppContextHolder {
     public static void setContext(AppContext context) {
         holder.set(context);
     }
-
 }
