@@ -63,5 +63,4 @@ public class PagerWriteTag extends TagSupport {
     public void setProperty(String property) {
         this.property = property;
     }
-
 }
