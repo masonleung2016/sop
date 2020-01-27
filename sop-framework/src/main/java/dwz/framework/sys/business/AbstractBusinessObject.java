@@ -75,7 +75,6 @@ public abstract class AbstractBusinessObject implements BusinessObject {
         return false;
     }
 
-
     public String covertDateFormat(Date date) {
         if (date != null) {
             return new SimpleDateFormat("yyyy-MM-dd").format(date);
