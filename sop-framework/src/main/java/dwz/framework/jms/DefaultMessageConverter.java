@@ -12,13 +12,10 @@ import javax.jms.Session;
 public class DefaultMessageConverter {
 
     public Message toMessage(Object obj, Session session) throws JMSException {
-
         return null;
     }
 
-
     public Object fromMessage(Message msg) throws JMSException {
-
         return null;
     }
 }
