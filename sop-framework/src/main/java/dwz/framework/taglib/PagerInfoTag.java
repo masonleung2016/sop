@@ -12,9 +12,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 
 public class PagerInfoTag extends TagSupport {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
 
     private String totalItems;
@@ -114,5 +112,4 @@ public class PagerInfoTag extends TagSupport {
     public void setPageNumShown(String pageNumShown) {
         this.pageNumShown = pageNumShown;
     }
-
 }
