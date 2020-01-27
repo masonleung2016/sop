@@ -14,7 +14,6 @@ public class SpringContextHolder implements ApplicationContextAware {
 
     /**
      * 得到Spring 上下文环境
-     *
      * @return
      */
     public static ApplicationContext getApplicationContext() {
@@ -28,7 +27,6 @@ public class SpringContextHolder implements ApplicationContextAware {
 
     /**
      * 通过Spring Bean name 得到Bean
-     *
      * @param name bean 上下文定义名称
      */
     @SuppressWarnings("unchecked")
@@ -39,7 +37,6 @@ public class SpringContextHolder implements ApplicationContextAware {
 
     /**
      * 通过类型得到Bean
-     *
      * @param clazz
      * @return
      */
@@ -54,5 +51,4 @@ public class SpringContextHolder implements ApplicationContextAware {
             throw new IllegalStateException("applicaitonContext未注入,请在application-context.xml中定义SpringContextHolder");
         }
     }
-
 }
