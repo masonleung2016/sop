@@ -44,5 +44,4 @@ public class PagerPreviousTag extends TagSupport {
         pageContext.removeAttribute("prePage");
         return EVAL_PAGE;
     }
-
 }
