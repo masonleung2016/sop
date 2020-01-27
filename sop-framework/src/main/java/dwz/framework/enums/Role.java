@@ -22,5 +22,4 @@ public enum Role {
     public void setName(String name) {
         this.name = name;
     }
-
 }
