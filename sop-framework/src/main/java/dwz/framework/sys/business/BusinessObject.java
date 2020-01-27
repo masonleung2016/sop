@@ -15,5 +15,4 @@ public interface BusinessObject extends Serializable {
     boolean isNew();
 
     String getCacheKey();
-
 }
