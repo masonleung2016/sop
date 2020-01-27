@@ -13,10 +13,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 public class PagerFirstTag extends TagSupport {
 
     private static final long serialVersionUID = -6717631041489730918L;
-    /**
-     *
-     */
-
+    
     private int firstPage = 1;
     private int currentPageNum;
 
@@ -41,5 +38,4 @@ public class PagerFirstTag extends TagSupport {
         pageContext.removeAttribute("firstPage");
         return EVAL_PAGE;
     }
-
 }
