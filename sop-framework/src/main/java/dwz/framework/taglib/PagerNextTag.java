@@ -52,5 +52,4 @@ public class PagerNextTag extends TagSupport {
         pageContext.removeAttribute("nextPage");
         return EVAL_PAGE;
     }
-
 }
