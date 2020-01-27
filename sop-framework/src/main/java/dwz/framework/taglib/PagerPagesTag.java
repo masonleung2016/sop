@@ -35,11 +35,13 @@ public class PagerPagesTag extends TagSupport {
         } catch (Exception e) {
             throw new JspException(e);
         }
+        
         lastPage = totaItems / numPerPage;
         if (lastPage < 1) return SKIP_BODY;
         if (totaItems % numPerPage != 0) {
             lastPage++;
         }
+        
         if (currentPageNum % pageNumShown == 0) {
             from = (currentPageNum / pageNumShown - 1) * pageNumShown + 1;
         } else {
