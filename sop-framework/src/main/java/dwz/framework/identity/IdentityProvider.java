@@ -16,5 +16,4 @@ public interface IdentityProvider {
      * @pdOid 26ae022d-15ac-4415-be04-d8d86c652184
      */
     public Identity createIdentity(String identityString);
-
 }
