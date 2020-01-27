@@ -10,7 +10,6 @@ public class AssertUtils {
 
     /**
      * Assert为非新业务对象
-     *
      * @param businessObject
      */
     public static void notNewBusinessObject(BusinessObject businessObject) {
@@ -21,7 +20,6 @@ public class AssertUtils {
 
     /**
      * Assert为新业务对象
-     *
      * @param businessObject
      */
     public static void newBusinessObject(BusinessObject businessObject) {
@@ -29,5 +27,4 @@ public class AssertUtils {
             throw new java.lang.IllegalArgumentException();
         }
     }
-
 }
