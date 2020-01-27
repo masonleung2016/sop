@@ -86,7 +86,6 @@ public class TaskParseImpl implements TaskParse {
                     clazz, startTime, runnable);
             this.taskUnits.put(name, taskUnit);
         }
-
     }
 
     public TaskUnit getTaskUnit(String name) {
