@@ -25,5 +25,4 @@ public class SessionIdentity implements Identity {
     public void setAccessToken(Serializable accessToken) {
         this.accessToken = accessToken;
     }
-
 }
