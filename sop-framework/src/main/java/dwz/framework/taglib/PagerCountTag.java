@@ -50,7 +50,6 @@ public class PagerCountTag extends TagSupport {
         } else {
             return SKIP_BODY;
         }
-
     }
 
     public int doAfterBody() throws JspException {
@@ -67,5 +66,4 @@ public class PagerCountTag extends TagSupport {
         pageContext.removeAttribute("pageCount");
         return SKIP_BODY;
     }
-
 }
