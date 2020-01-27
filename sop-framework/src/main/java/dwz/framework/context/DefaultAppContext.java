@@ -22,6 +22,4 @@ public class DefaultAppContext implements AppContext {
     public void setUser(User user) {
         this.user = user;
     }
-
-
 }
