@@ -13,5 +13,4 @@ public interface AppContext {
 
     void setUser(User user);
 
-
 }
