@@ -27,9 +27,7 @@ public class Validator implements IdentityProvider {
         protected Validator initialValue() {
             return new Validator();
         }
-
     };
-
 
     private HttpSession session = null;
 
@@ -90,9 +88,7 @@ public class Validator implements IdentityProvider {
             context = new DefaultAppContext();
             AppContextHolder.setContext(context);
         }
-
         context.setUser(user);
-
     }
 
     public void cancel() {
@@ -117,7 +113,6 @@ public class Validator implements IdentityProvider {
         if (identityString == null) {
             return null;
         }
-
         return new SessionIdentity(identityString);
     }
 }
