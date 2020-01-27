@@ -64,5 +64,4 @@ public class PagerNextpagesTag extends TagSupport {
         pageContext.removeAttribute("pageNumShown");
         return EVAL_PAGE;
     }
-
 }
