@@ -23,5 +23,4 @@ public interface Identity {
      * @pdOid 6934fe46-ebee-414f-a403-b2834c3086b2
      */
     public void setAccessToken(Serializable accessToken);
-
 }
