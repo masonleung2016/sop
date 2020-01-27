@@ -11,9 +11,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 
 public class PagerLastTag extends TagSupport {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 4245943708585254361L;
     private int lastPage;
     private int totaItems;
@@ -47,5 +45,4 @@ public class PagerLastTag extends TagSupport {
         pageContext.removeAttribute("lastPage");
         return EVAL_PAGE;
     }
-
 }
