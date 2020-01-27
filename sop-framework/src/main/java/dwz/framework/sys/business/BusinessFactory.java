@@ -15,7 +15,6 @@ public class BusinessFactory {
     private static BusinessFactory bf;
 
     private BusinessFactory() {
-
     }
 
     public static BusinessFactory getInstance() {
@@ -32,5 +31,4 @@ public class BusinessFactory {
         Assert.hasText(serviceName);
         return (T) SpringContextHolder.getBean(serviceName);
     }
-
 }
