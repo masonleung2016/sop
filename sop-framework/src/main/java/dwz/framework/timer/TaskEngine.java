@@ -123,8 +123,6 @@ public class TaskEngine {
                 nextTask().run();
             }
         }
-
-
     }
 
     private static class ScheduledTask extends TimerTask {
@@ -172,7 +170,5 @@ public class TaskEngine {
             }
             return 0;
         }
-
     }
-
 }
