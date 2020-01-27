@@ -25,5 +25,4 @@ public interface TaskUnit {
     long getDelay();
 
     boolean isRunnable();
-
 }
