@@ -45,5 +45,4 @@ public abstract class TaskFactory {
     public abstract void startTasks(Collection<TaskUnit> units);
 
     public abstract TaskParse getTaskParse();
-
 }
