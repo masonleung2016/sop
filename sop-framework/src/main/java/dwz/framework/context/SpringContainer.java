@@ -23,5 +23,4 @@ public class SpringContainer implements ApplicationContextAware {
             throws BeansException {
         SpringContainer.ctx = ctx;
     }
-
 }
