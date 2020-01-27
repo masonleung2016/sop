@@ -66,5 +66,4 @@ public interface BusinessObjectServiceMgr {
      * @return
      */
     <T extends BusinessObject> List<java.io.Serializable> businessObject2Ids(List<T> bos);
-
 }
