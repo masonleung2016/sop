@@ -67,4 +67,5 @@ public interface Constants {
 
     String DOMAIN_KEY = "app.server.domain";
     String VALIDATION_CODE = "validation_code";
+    
 }
