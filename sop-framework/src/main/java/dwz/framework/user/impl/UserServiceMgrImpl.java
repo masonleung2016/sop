@@ -82,6 +82,4 @@ public class UserServiceMgrImpl extends AbstractBusinessObjectServiceMgr
     public int searchUserNum(BaseConditionVO vo) {
         return sysUserMapper.searchUserNum(vo);
     }
-
-
 }
