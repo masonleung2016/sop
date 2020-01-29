@@ -35,5 +35,4 @@ public interface AutogenMapper extends BaseMapper<Autogen, Integer> {
     Integer deleteAutogen(Autogen autogen);
 
     Integer updateAutogen(Autogen autogen);
-
 }
