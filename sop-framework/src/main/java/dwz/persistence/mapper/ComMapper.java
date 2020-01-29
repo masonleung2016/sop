@@ -32,5 +32,4 @@ public interface ComMapper extends BaseMapper<Company, Integer> {
     Integer insertCompany(Company currentCom);
 
     Integer deleteCompany(String fkCoCode);
-
 }
