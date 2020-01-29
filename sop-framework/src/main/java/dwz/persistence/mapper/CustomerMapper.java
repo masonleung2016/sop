@@ -47,4 +47,5 @@ public interface CustomerMapper extends BaseMapper<Customer, String> {
     void delCustAttns(String fkCuCode);
 
     String getCustomerNameByCuCode(String fkCuCode);
+
 }
