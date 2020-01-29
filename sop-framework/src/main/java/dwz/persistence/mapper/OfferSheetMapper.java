@@ -38,8 +38,7 @@ public interface OfferSheetMapper extends BaseMapper<OfferSheet, Integer> {
 
     OfferSheet getOfferSheetByOfferSheetVo(OfferSheetVo offerSheetVo);
 
-    List<OfferSheetItem> getOfferSheetItemListByOfferSheetVo(
-            OfferSheetVo offerSheetVo);
+    List<OfferSheetItem> getOfferSheetItemListByOfferSheetVo(OfferSheetVo offerSheetVo);
 
     Integer updateOfferSheet(OfferSheet currentOfferSheet);
 
@@ -49,8 +48,7 @@ public interface OfferSheetMapper extends BaseMapper<OfferSheet, Integer> {
 
     OfferSheet getOfferSheetByOffShNoPfixNo(String offShNoPfixNo);
 
-    List<OfferSheetItem> getOfferSheetItemListByOffShNoPfixNo(
-            String offShNoPfixNo);
+    List<OfferSheetItem> getOfferSheetItemListByOffShNoPfixNo(String offShNoPfixNo);
 
     void deleteOfferItemByOffShNoPfixNo(String offShNoPfixNo);
 
@@ -58,8 +56,7 @@ public interface OfferSheetMapper extends BaseMapper<OfferSheet, Integer> {
 
     OffAbCostPriceHead getAbCostPriceReport(OfferSheetConditionVo vo);
 
-    List<Object> getOffAbCostPrice(
-            OfferSheetConditionVo vo);
+    List<Object> getOffAbCostPrice(OfferSheetConditionVo vo);
 
     List<Object> getOffListItem(ItemMasterConditionVo vo);
 
@@ -68,4 +65,5 @@ public interface OfferSheetMapper extends BaseMapper<OfferSheet, Integer> {
     List<Object> getABPriceList(OfferSheetConditionVo vo);
 
     List<Object> getSimplifiedOff(OfferSheetConditionVo vo);
+    
 }
