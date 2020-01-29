@@ -35,4 +35,5 @@ public interface CurrencyMapper extends BaseMapper<Currency, String> {
     Integer getCountByFkCcyCode(String fkCcyCode);
 
     List<Currency> getAllCurrs();
+
 }
