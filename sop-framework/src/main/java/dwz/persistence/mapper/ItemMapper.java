@@ -23,7 +23,6 @@ import sop.vo.SearchItemConditionVo;
 import sop.vo.SoItemMasterVo;
 import sop.vo.SoSearchItemConditionVo;
 
-
 /**
  * @Author: LCF
  * @Date: 2020/1/8 17:23
@@ -70,35 +69,30 @@ public interface ItemMapper extends BaseMapper<ItemType, Integer> {
 
     ItemMaster getItemMasterByItCatNoSuffix(String itCatNoSuffix);
 
-    List<OffItemMasterVo> getOffersheetItemListFromOffNoByCondition(
-            OffSearchItemConditionVo vo);
+    List<OffItemMasterVo> getOffersheetItemListFromOffNoByCondition(OffSearchItemConditionVo vo);
 
     OfferSheetItem getOffItemByOffItem(OffItemMasterVo offerSheetItemSearch);
 
     List<SoItemMasterVo> getSoItemListByCondition(SoSearchItemConditionVo vo);
 
-    List<SoItemMasterVo> getSoItemListFromSoNoByCondition(
-            SoSearchItemConditionVo vo);
+    List<SoItemMasterVo> getSoItemListFromSoNoByCondition(SoSearchItemConditionVo vo);
 
-    List<SoItemMasterVo> getSoItemListFromOffNoByCondition(
-            SoSearchItemConditionVo vo);
+    List<SoItemMasterVo> getSoItemListFromOffNoByCondition(SoSearchItemConditionVo vo);
 
     SaleOrderItem getSoItemBySoItem(SoItemMasterVo saleOrderItemSearch);
 
     List<PoItemMasterVo> getPoItemListByCondition(PoSearchItemConditionVo vo);
 
-    List<PoItemMasterVo> getPoItemListFromOffNoByCondition(
-            PoSearchItemConditionVo vo);
+    List<PoItemMasterVo> getPoItemListFromOffNoByCondition(PoSearchItemConditionVo vo);
 
-    List<PoItemMasterVo> getPoItemListFromSoNoByCondition(
-            PoSearchItemConditionVo vo);
+    List<PoItemMasterVo> getPoItemListFromSoNoByCondition(PoSearchItemConditionVo vo);
 
-    List<PoItemMasterVo> getPoItemListFromPoNoByCondition(
-            PoSearchItemConditionVo vo);
+    List<PoItemMasterVo> getPoItemListFromPoNoByCondition(PoSearchItemConditionVo vo);
 
     PurchaseOrderItem getPoItemByPoItem(PoItemMasterVo purchaseOrderItemSearch);
 
     String getPartPicByItCatNoSuffix(String itCatNoSuffix);
 
     List<Object> getItemMasterReport(ItemMasterConditionVo vo);
+    
 }
