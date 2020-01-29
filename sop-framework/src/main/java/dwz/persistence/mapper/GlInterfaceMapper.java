@@ -19,8 +19,7 @@ import sop.vo.GlInterfaceVo;
 @Repository
 public interface GlInterfaceMapper extends BaseMapper<GlInterface, Integer> {
 
-    List<GlInterfaceVo> getGlInterfaceListByCondition(BaseConditionVO vo,
-                                                      RowBounds rb);
+    List<GlInterfaceVo> getGlInterfaceListByCondition(BaseConditionVO vo, RowBounds rb);
 
     Integer getGlInterfaceListNumByCondition(BaseConditionVO vo);
 
