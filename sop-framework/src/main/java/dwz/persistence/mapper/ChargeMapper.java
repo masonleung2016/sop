@@ -34,5 +34,4 @@ public interface ChargeMapper extends BaseMapper<Charge, Integer> {
     Integer deleteCharge(String fkChgCode);
 
     List<ChargeVo> getAllCharges();
-
 }
