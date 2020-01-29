@@ -39,4 +39,5 @@ public interface FactoryMapper extends BaseMapper<Factory, String> {
     List<FactoryVo> getAllFactories();
 
     String getLatestFactoryCodeByPrefix(String getCodeByPrefix);
+    
 }
