@@ -31,5 +31,4 @@ public interface ImproveSuggestionMapper extends BaseMapper<ImproveSuggestion, S
     Integer deleteImproveSuggestion(String impNo);
 
     List<ImproveSuggestion> getAllImproveSuggestion();
-
 }
