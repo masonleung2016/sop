@@ -33,5 +33,4 @@ public interface QcCheckListMapper extends BaseMapper<QcCheckList, String> {
     List<QcCheckList> getAllQcCheckList();
 
     List<QcCheckList> getQcCheckListByItemType(int itemType);
-
 }
