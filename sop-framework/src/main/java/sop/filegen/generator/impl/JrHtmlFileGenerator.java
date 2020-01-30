@@ -19,9 +19,7 @@ import sop.filegen.GenResult;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class JrHtmlFileGenerator extends BaseFileGenerator {
-
 
     @Override
     protected GenResult generateFile(GenRequest request) throws FileGenerationException {
@@ -64,6 +62,4 @@ public class JrHtmlFileGenerator extends BaseFileGenerator {
         }
         return result;
     }
-
-
 }
