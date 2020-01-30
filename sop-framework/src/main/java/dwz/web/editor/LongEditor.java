@@ -11,9 +11,9 @@ import org.springframework.util.StringUtils;
  */
 
 public class LongEditor extends PropertyEditorSupport {
+
     @Override
     public String getAsText() {
-
         return getValue().toString();
     }
 
