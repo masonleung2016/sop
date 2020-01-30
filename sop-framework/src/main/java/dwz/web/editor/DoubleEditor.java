@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
  */
 
 public class DoubleEditor extends PropertyEditorSupport {
+    
     @Override
     public String getAsText() {
 
