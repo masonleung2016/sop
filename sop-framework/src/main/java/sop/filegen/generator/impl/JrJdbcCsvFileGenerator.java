@@ -13,7 +13,6 @@ import sop.filegen.GenResult;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class JrJdbcCsvFileGenerator extends BaseFileGenerator {
 
     private DataSource ds;
@@ -45,6 +44,4 @@ public class JrJdbcCsvFileGenerator extends BaseFileGenerator {
         }
         return result;
     }
-
-
 }
