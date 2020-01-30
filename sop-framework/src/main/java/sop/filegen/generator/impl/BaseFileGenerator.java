@@ -48,7 +48,6 @@ public abstract class BaseFileGenerator implements FileGenerator {
             return result;
         }
 
-
         //if no error.
         try {
             result = generateFile(request);
@@ -68,12 +67,10 @@ public abstract class BaseFileGenerator implements FileGenerator {
                 logger.debug("Time consumed: {} ms", end - start);
             }
             //getReportService().updateReportRequestWithResult(logId, result, (end-start));
-
             afterGeneration(request, result);
         }
 
         return result;
-
     }
 
     protected Long afterGeneration(GenRequest request, GenResult result) {
@@ -87,10 +84,8 @@ public abstract class BaseFileGenerator implements FileGenerator {
         result.setStartTime(System.currentTimeMillis());
         logger.debug("start generating: reportId= {},  outputType= {}.", request.getReportId(), request.getOutputType());
 
-
         return logId;
     }
-
 
     public GenLogService getReportService() {
         return new GenLogServiceImpl();
@@ -103,6 +98,4 @@ public abstract class BaseFileGenerator implements FileGenerator {
     public void setLogId(Long logId) {
         this.logId = logId;
     }
-
-
 }
