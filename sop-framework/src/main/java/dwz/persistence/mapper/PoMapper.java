@@ -23,12 +23,10 @@ import sop.vo.SoPoConditionVo;
  * @Package: dwz.persistence.mapper
  */
 
-
 @Repository
 public interface PoMapper extends BaseMapper<PurchaseOrder, Integer> {
 
-    List<PurchaseOrderVo> findPageBreakByCondition(SoPoConditionVo vo,
-                                                   RowBounds rb);
+    List<PurchaseOrderVo> findPageBreakByCondition(SoPoConditionVo vo, RowBounds rb);
 
     Integer findNumberByCondition(SoPoConditionVo vo);
 
@@ -66,12 +64,12 @@ public interface PoMapper extends BaseMapper<PurchaseOrder, Integer> {
 
     void deletePurchaseOrder(String fkPoNo);
 
-    List<Object> getOrderFollowShipmentSchedulePo(
-            PoSoSearchItemReportConditionVo vo);
+    List<Object> getOrderFollowShipmentSchedulePo(PoSoSearchItemReportConditionVo vo);
 
     Integer getPoReportsCount(PoSoSearchItemReportConditionVo vo);
 
     List<Object> getPoShipmentScheduleReport(PoSoSearchItemReportConditionVo vo);
 
     List<Object> getPurchaseOrderReport(PoSearchItemConditionVo vo);
+    
 }
