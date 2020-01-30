@@ -42,9 +42,7 @@ public abstract class BaseController {
 //	protected SpringContextHolder _contextHolder;
 
     @InitBinder
-    protected void initBinder(HttpServletRequest request,
-                              ServletRequestDataBinder binder) throws Exception {
-
+    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         binder.registerCustomEditor(int.class, new IntegerEditor());
         binder.registerCustomEditor(long.class, new LongEditor());
         binder.registerCustomEditor(double.class, new DoubleEditor());
@@ -93,7 +91,7 @@ public abstract class BaseController {
         //HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
         LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
         Locale locale = localeResolver.resolveLocale(request);
-
+        
         return _res.getMessage(code, args, locale);
     }
 
