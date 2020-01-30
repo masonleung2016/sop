@@ -38,4 +38,5 @@ public interface SysUserMapper {
     List<SysUser> findPageBreakByCondition(BaseConditionVO vo, RowBounds rb);
 
     int searchUserNum(BaseConditionVO vo);
+    
 }
