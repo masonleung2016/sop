@@ -18,7 +18,6 @@ import sop.vo.ProductCategoryVo;
  * @Package: dwz.persistence.mapper
  */
 
-
 @Repository
 public interface ProductcatMapper extends BaseMapper<Company, Integer> {
 
@@ -34,8 +33,7 @@ public interface ProductcatMapper extends BaseMapper<Company, Integer> {
 
     Integer insertCompany(Company currentCom);
 
-    List<ProductCategoryVo> getProductcatListByCondition(BaseConditionVO vo,
-                                                         RowBounds rb);
+    List<ProductCategoryVo> getProductcatListByCondition(BaseConditionVO vo,RowBounds rb);
 
     Integer getProductcatListNumByCondition(BaseConditionVO vo);
 
