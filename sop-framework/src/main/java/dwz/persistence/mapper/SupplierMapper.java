@@ -29,4 +29,5 @@ public interface SupplierMapper extends BaseMapper<Supplier, String> {
     Supplier getSupplierByCode(@Param("code") String code);
 
     List<Supplier> findAllSuppliers();
+    
 }
