@@ -39,14 +39,12 @@ import sop.util.io.FileUtil;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public final class FileGeneratorUtils {
 
     public static final String JSON_DATE_FORMAT = DateTypeAdapter.JSON_DATE_FORMAT;
     private static final Logger LOG = LoggerFactory.getLogger(FileGeneratorUtils.class);
 
     private FileGeneratorUtils() {
-
     }
 
     public static String getDocxTemplate(String templateName) {
@@ -123,7 +121,6 @@ public final class FileGeneratorUtils {
         } else {
             userId = "SYSTEM";
         }
-
         return StringUtils.upperCase(request.getParameterAsString("templateID") + "_" + userId + "_" + DateUtils.formatDateTime(DateFormatConstant.DATETIME_WITHOUT_SEPARATOR_LONG_WITH_MILLIS, requestDatetime));
     }
 
@@ -249,10 +246,8 @@ public final class FileGeneratorUtils {
                 sheet.autoSizeColumn(i);
             }
         }
-
         return workbook;
     }
-
 
     /**
      * Reset the report result object.
@@ -335,7 +330,6 @@ public final class FileGeneratorUtils {
 
     /**
      * Copy the source file to a new file in the same parent directory.
-     *
      * @param src     source file
      * @param newName new file's name
      * @return the new copied file
@@ -395,7 +389,6 @@ public final class FileGeneratorUtils {
 
     /**
      * Format the given file's path.
-     *
      * @param f given file.
      * @return formatted file path.
      * @throws IOException
