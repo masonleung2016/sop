@@ -13,13 +13,15 @@ import dwz.dal.object.AbstractDO;
  * @Package: dwz.persistence
  */
 
-
 public class DataStore<T extends AbstractDO> {
     private List<T> _items;
+    
     private List<T> items;
 
     private List<T> addItems;
+    
     private List<T> updItems;
+    
     private List<T> delItems;
 
     public DataStore(List<T> items) {
@@ -58,7 +60,6 @@ public class DataStore<T extends AbstractDO> {
                     delItems.add(_item);
                 }
             }
-
             this.items = items;
         }
     }
@@ -83,5 +84,4 @@ public class DataStore<T extends AbstractDO> {
             }
         }
     }
-
 }
