@@ -21,7 +21,6 @@ import sop.vo.PayTermVo;
 @Repository
 public interface PayTermMapper extends BaseMapper<PayTerm, String> {
 
-
     // 查询
     List<PayTermVo> findPageBreakByCondition(BaseConditionVO vo, RowBounds rb);
 
@@ -40,4 +39,5 @@ public interface PayTermMapper extends BaseMapper<PayTerm, String> {
     void deletePaymentTerm(String payCode);
 
     List<PayTermVo> getAllPayTermVo();
+
 }
