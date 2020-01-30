@@ -9,18 +9,29 @@ import java.util.Date;
  */
 
 public class BaseConditionVO {
+    
     public final static int PAGE_SHOW_COUNT = 10;
+    
     private int pageNum = 1;
+    
     private int pageSize = 10;
+    
     private int totalCount = 0;
+    
     private String orderField;
+    
     private String orderDirection;
+    
     private String keywords;
+    
     private String status;
+    
     private String type;
+    
     private Date startDate;
+    
     private Date endDate;
-
+    
     public String getType() {
         return "".equals(type) ? null : type;
     }
