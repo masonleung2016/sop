@@ -22,4 +22,5 @@ public interface ProductItemMapper extends BaseMapper<Order, Integer> {
     List<ProductItem> findPageBreakByCondition(BaseConditionVO vo, RowBounds rb);
 
     Integer findNumberByCondition(BaseConditionVO vo);
+
 }
