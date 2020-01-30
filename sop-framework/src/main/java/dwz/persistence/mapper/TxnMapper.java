@@ -34,5 +34,4 @@ public interface TxnMapper extends BaseMapper<Txn, Integer> {
     List<TxnVo> getAllTxns();
 
     Integer deleteTxn(String fkTxtCode);
-
 }
