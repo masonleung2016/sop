@@ -34,5 +34,4 @@ public interface StaffMapper extends BaseMapper<Staff, Integer> {
     Integer deleteStaff(String fkSfCode);
 
     List<StaffVo> getAllStaffs();
-
 }
