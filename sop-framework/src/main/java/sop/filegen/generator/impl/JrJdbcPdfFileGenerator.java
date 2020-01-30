@@ -18,7 +18,6 @@ import sop.filegen.GenResult;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class JrJdbcPdfFileGenerator extends BaseFileGenerator {
 
     private DataSource ds;
@@ -57,7 +56,6 @@ public class JrJdbcPdfFileGenerator extends BaseFileGenerator {
                     File orgFile = new File(outFile);
                     FileUtils.deleteQuietly(orgFile);
                 }
-
             }
         } catch (Exception e) {
             logger.error("PDF generation error:", e);
@@ -68,6 +66,4 @@ public class JrJdbcPdfFileGenerator extends BaseFileGenerator {
         }
         return result;
     }
-
-
 }
