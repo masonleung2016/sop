@@ -18,10 +18,15 @@ public class DummyFileGenerator implements FileGenerator {
 
     @Override
     public GenResult generate(GenRequest request) {
+        
         GenResult result = new GenResult();
+        
         result.setReturnCode(FileGeneratorConstant.FAILED);
+        
         result.setMessage("System can not determine which report generator to be used. It may be due to empty reportType or outputType.");
+        
         ToStringBuilder.reflectionToString(request, ToStringStyle.MULTI_LINE_STYLE);
+        
         return result;
     }
 }
