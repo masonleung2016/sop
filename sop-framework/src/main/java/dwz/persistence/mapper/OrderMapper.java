@@ -32,5 +32,4 @@ public interface OrderMapper extends BaseMapper<Order, Integer> {
     Integer addChecklist(Map<String, Object> params);
 
     Checklist getDetailsByFkOrderProduct(Integer fkOrderProduct);
-
 }
