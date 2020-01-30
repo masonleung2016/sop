@@ -31,4 +31,5 @@ public interface QcDocFlowMapper extends BaseMapper<QcDocFlow, String> {
     Integer deleteQcDocFlow(String seqNo);
 
     List<QcDocFlow> getAllQcDocFlow();
+
 }
