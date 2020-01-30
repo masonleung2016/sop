@@ -40,10 +40,8 @@ public class CSSS2SpringExtensionsRegistryFactory extends SpringExtensionsRegist
 			ctx = new FileSystemXmlApplicationContext(resourceLocation);
 		}
 
-
 		return ctx;*/
         properties.setProperty("net.sf.jasperreports.awt.ignore.missing.font", "true");
         return SpringContainer.getContainer().getAppCtx();
     }
-
 }
