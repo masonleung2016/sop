@@ -12,13 +12,11 @@ import sop.filegen.FileGeneratorConstant;
 import sop.filegen.GenRequest;
 import sop.filegen.GenResult;
 
-
 /**
  * @Author: LCF
  * @Date: 2020/1/8 17:50
  * @Package: sop.filegen.generator.impl
  */
-
 
 public class JrJdbcHtmlFileGenerator extends BaseFileGenerator {
 
@@ -58,7 +56,6 @@ public class JrJdbcHtmlFileGenerator extends BaseFileGenerator {
                     File orgFile = new File(outFile);
                     FileUtils.deleteQuietly(orgFile);
                 }
-
             }
         } catch (Exception e) {
             logger.error("PDF generation error:", e);
