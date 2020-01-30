@@ -29,7 +29,6 @@ import sop.vo.PrintDTO;
  * @Package: sop.filegen.generator.impl
  */
 
-
 @Component(value = "generateDocUtil")
 public class GenerateDocUtil {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -61,7 +60,6 @@ public class GenerateDocUtil {
 
         } catch (XDocReportException e) {
             logger.error("failed to generate docx.", e);
-
         }
     }
 
@@ -97,7 +95,6 @@ public class GenerateDocUtil {
             logger.error("File not found.", e);
             return false;
         }
-
     }
 
     private boolean includeTemplate(String template) {
@@ -106,5 +103,4 @@ public class GenerateDocUtil {
         }
         return false;
     }
-
 }
