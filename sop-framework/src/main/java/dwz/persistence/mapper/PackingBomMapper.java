@@ -33,5 +33,4 @@ public interface PackingBomMapper extends BaseMapper<PackingBom, String> {
     Integer deletePackingBom(String pbNo);
 
     List<PackingBom> getAllPackingBom();
-
 }
