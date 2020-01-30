@@ -31,5 +31,4 @@ public interface PackingDetailMapper extends BaseMapper<PackingDetail, String> {
     Integer deletePackingDetail(String pdNo);
 
     List<PackingDetail> getAllPackingDetail();
-
 }
