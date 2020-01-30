@@ -46,8 +46,7 @@ public interface QcMapper extends BaseMapper<QualityCheck, Integer> {
 
     List<QualityCheckItem> getQcItemsByQcNo(String qcNo);
 
-    List<QualityCheckVo> findPageBreakByCondition(QualityCheckConditionVo vo,
-                                                  RowBounds rb);
+    List<QualityCheckVo> findPageBreakByCondition(QualityCheckConditionVo vo,、RowBounds rb);
 
     Integer findNumberByCondition(QualityCheckConditionVo vo);
 
@@ -59,8 +58,6 @@ public interface QcMapper extends BaseMapper<QualityCheck, Integer> {
 
     void deleteQc2(String qcNo);
 
-
     List<QcImage> getQcImages();
-
 
 }
