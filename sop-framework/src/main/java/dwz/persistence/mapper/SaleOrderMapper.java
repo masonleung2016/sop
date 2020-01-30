@@ -25,7 +25,6 @@ import sop.vo.TxnVo;
  * @Package: dwz.persistence.mapper
  */
 
-
 @Repository
 public interface SaleOrderMapper extends BaseMapper<SaleOrder, Integer> {
 
@@ -46,8 +45,7 @@ public interface SaleOrderMapper extends BaseMapper<SaleOrder, Integer> {
 
     SaleOrder getSaleOrderBySaleOrderVo(SaleOrderVo saleOrderVo);
 
-    List<SaleOrderItem> getSaleOrderItemListByFkSoNo(
-            String fkSoNo);
+    List<SaleOrderItem> getSaleOrderItemListByFkSoNo(String fkSoNo);
 
     Integer updateSaleOrder(SaleOrder currentSaleOrder);
 
@@ -81,8 +79,7 @@ public interface SaleOrderMapper extends BaseMapper<SaleOrder, Integer> {
 
     List<SaleOrderLc> getSaleOrderLcListByFkSoNo(String fkSoNo);
 
-    List<Object> getOrderFollowShipmentScheduleSo(
-            PoSoSearchItemReportConditionVo vo);
+    List<Object> getOrderFollowShipmentScheduleSo(PoSoSearchItemReportConditionVo vo);
 
     List<Object> getProformaInvoiceReport(SoPoConditionVo vo);
 
@@ -92,19 +89,15 @@ public interface SaleOrderMapper extends BaseMapper<SaleOrder, Integer> {
 
     Integer findNumberByCustomer(PoSoSearchItemReportConditionVo vo);
 
-    List<Object> getShipmentScheduleCustomerReports(
-            PoSoSearchItemReportConditionVo vo);
+    List<Object> getShipmentScheduleCustomerReports(PoSoSearchItemReportConditionVo vo);
 
     Integer findNumberByFactory(PoSoSearchItemReportConditionVo vo);
 
-    List<Object> getShipmentScheduleFactoryReports(
-            PoSoSearchItemReportConditionVo vo);
+    List<Object> getShipmentScheduleFactoryReports(PoSoSearchItemReportConditionVo vo);
 
-    List<Object> getShipmentScheduleWEtdEtaVesselReports(
-            PoSoSearchItemReportConditionVo vo);
+    List<Object> getShipmentScheduleWEtdEtaVesselReports(PoSoSearchItemReportConditionVo vo);
 
     Integer findNumberByCustomerItems(SearchItemReportConditionVo vo);
 
-    List<Object> getSoldItemSummaryBySoWPhotoReports(
-            SearchItemReportConditionVo vo);
+    List<Object> getSoldItemSummaryBySoWPhotoReports(SearchItemReportConditionVo vo);
 }
