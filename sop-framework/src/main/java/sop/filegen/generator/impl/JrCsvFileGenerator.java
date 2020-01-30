@@ -42,6 +42,4 @@ public class JrCsvFileGenerator extends BaseFileGenerator {
         }
         return result;
     }
-
-
 }
