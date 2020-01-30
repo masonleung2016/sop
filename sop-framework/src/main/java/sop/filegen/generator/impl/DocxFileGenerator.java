@@ -23,7 +23,6 @@ import sop.filegen.GenResult;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class DocxFileGenerator extends BaseFileGenerator {
 
     @Override
@@ -38,7 +37,6 @@ public class DocxFileGenerator extends BaseFileGenerator {
             // it to the registry
             InputStream in = new FileInputStream(FileGeneratorUtils.getDocxTemplate(request.getReportId()));
             IXDocReport report = XDocReportRegistry.getRegistry().loadReport(in, TemplateEngineKind.Velocity);
-
 
             // 3) Create context Java model
             IContext context = report.createContext();
@@ -71,6 +69,4 @@ public class DocxFileGenerator extends BaseFileGenerator {
 
         return rs;
     }
-
 }
-
