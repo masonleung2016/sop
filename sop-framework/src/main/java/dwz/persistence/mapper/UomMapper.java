@@ -34,5 +34,4 @@ public interface UomMapper extends BaseMapper<Uom, Integer> {
     Integer deleteUom(String fkuCode);
 
     List<UomVo> getAllUoms();
-
 }
