@@ -17,7 +17,6 @@ import dwz.framework.user.UserServiceMgr;
  * @Package: dwz.web
  */
 
-
 @Controller
 @RequestMapping(value = "/passport")
 public class PassportController extends BaseController {
@@ -128,6 +127,4 @@ public class PassportController extends BaseController {
 //		logoutMv.addObject("locale", locale);
         return "redirect:/login" + "?locale=" + locale;
     }
-
-
 }
