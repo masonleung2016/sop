@@ -13,9 +13,6 @@ import org.springframework.validation.ObjectError;
 
 public class ServiceVLDException extends BindException {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     public ServiceVLDException(BindingResult bindingResult) {
