@@ -15,9 +15,7 @@ import sop.filegen.GenResult;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class JrXlsxFileGenerator extends BaseFileGenerator {
-
 
     @Override
     protected GenResult generateFile(GenRequest request) throws FileGenerationException {
@@ -44,6 +42,4 @@ public class JrXlsxFileGenerator extends BaseFileGenerator {
         }
         return result;
     }
-
-
 }
