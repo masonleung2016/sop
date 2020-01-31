@@ -30,9 +30,6 @@ public class MailMergeTemplateSqlEngine {
 //
 //	private static MailMergeTemplateSqlEngine instance;
 //
-//
-//
-//
 //	private MailMergeTemplateSqlEngine() {
 //		super();
 //	}
@@ -298,6 +295,4 @@ public class MailMergeTemplateSqlEngine {
 //			System.out.println("==============================");
 //		}
 //	}
-
-
 }
