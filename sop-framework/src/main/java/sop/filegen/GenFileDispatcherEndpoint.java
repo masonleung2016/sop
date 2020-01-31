@@ -146,7 +146,6 @@ public class GenFileDispatcherEndpoint implements GenFileFunction {
                 result.setRemoteDownloadURL(downloadURL + relativePath);
             }
         }
-
         return result;
     }
 
@@ -163,5 +162,4 @@ public class GenFileDispatcherEndpoint implements GenFileFunction {
         logger.debug("Process with handler {}.", func);
         func.initCommonInfoForGenDOC(request);
     }
-
 }
