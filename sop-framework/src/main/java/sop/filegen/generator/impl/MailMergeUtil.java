@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import fr.opensagres.xdocreport.template.formatter.FieldsMetadata;
 
-
 /**
  * @Author: LCF
  * @Date: 2020/1/8 18:00
@@ -53,14 +52,12 @@ public class MailMergeUtil {
                     for (String name : names) {
                         metadata.addFieldAsList(key + "." + name);
                     }
-
                 }
             }
         }
 
         return metadata;
     }
-
 
     private static FieldsMetadata getFieldsMetadataByMap(FieldsMetadata metadata, String objName, Map<String, Object> map) {
         Set<String> keys = map.keySet();
@@ -144,9 +141,6 @@ public class MailMergeUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         printMetadataLog(metadata);
     }
 }
-
-
