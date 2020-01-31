@@ -42,6 +42,7 @@ public class JrJdbcXlsxFileGenerator extends BaseFileGenerator {
             result.setReportId(request.getReportId());
             result.setStatus(FileGeneratorConstant.REPORT_STATUS_COMPLETED);
         }
+
         return result;
     }
 }
