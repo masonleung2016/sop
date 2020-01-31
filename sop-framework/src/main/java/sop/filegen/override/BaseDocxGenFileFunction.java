@@ -28,7 +28,6 @@ import sop.util.Sys;
 
 public abstract class BaseDocxGenFileFunction extends DocxFileGenerator implements GenFileFunction {
 
-
     protected abstract void mergeContext(GenRequest request, GenResult response, IXDocReport report, IContext context);
 
     @Override
@@ -86,6 +85,4 @@ public abstract class BaseDocxGenFileFunction extends DocxFileGenerator implemen
 
         return rs;
     }
-
-
 }
