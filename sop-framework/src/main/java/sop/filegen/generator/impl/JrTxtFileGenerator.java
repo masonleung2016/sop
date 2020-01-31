@@ -42,6 +42,4 @@ public class JrTxtFileGenerator extends BaseFileGenerator {
         }
         return result;
     }
-
-
 }
