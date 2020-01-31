@@ -13,10 +13,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType
 public class BarcodeGenRequest extends GenRequest {
 
-    /**
-     *
-     */
-
     private static final long serialVersionUID = 1L;
 
     // OMR Left position of the OMR
