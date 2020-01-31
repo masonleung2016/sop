@@ -45,6 +45,4 @@ public class JrJdbcXlsFileGenerator extends BaseFileGenerator {
         }
         return result;
     }
-
-
 }
