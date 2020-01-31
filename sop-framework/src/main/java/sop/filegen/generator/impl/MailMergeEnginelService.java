@@ -16,7 +16,6 @@ public interface MailMergeEnginelService {
 
     String toMailMerge(String screenID, String templateID, GenRequest request, GenResult response, Object object, FieldsMetadata metadata);
 
-    void initCommonInfoForGenDOC(Integer caseKey, String screenID,
-                                 String templateID, GenRequest request);
+    void initCommonInfoForGenDOC(Integer caseKey, String screenID, String templateID, GenRequest request);
 
 }
