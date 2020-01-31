@@ -17,13 +17,11 @@ import net.sf.jasperreports.engine.JasperPrint;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class JrReportFiller {
 
     private static final Logger logger = LoggerFactory.getLogger(JrReportFiller.class);
 
     private DataSource jdbcDataSource;
-
 
     public JrReportFiller(DataSource jdbcDataSource) {
         super();
@@ -38,7 +36,6 @@ public class JrReportFiller {
         }
 
         return doFillReport(mainReport, model, jdbcDataSource);
-
     }
 
 
@@ -50,7 +47,6 @@ public class JrReportFiller {
         }
 
         return doFillReport(mainReport, model, null);
-
     }
 
     /**
@@ -79,5 +75,4 @@ public class JrReportFiller {
             }
         }
     }
-
 }
