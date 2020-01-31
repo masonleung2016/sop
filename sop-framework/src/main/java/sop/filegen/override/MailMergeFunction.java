@@ -18,7 +18,6 @@ import sop.util.Sys;
  * @Package: sop.filegen.override
  */
 
-
 @GenFile("SYSTEM-MAIL-MERGE")
 @Component
 public class MailMergeFunction implements GenFileFunction {
@@ -51,7 +50,6 @@ public class MailMergeFunction implements GenFileFunction {
     public void initCommonInfoForGenDOC(GenRequest genReq)
             throws FileGenerationException {
         // TODO Auto-generated method stub
-
     }
 
 //	@Override
@@ -88,5 +86,4 @@ public class MailMergeFunction implements GenFileFunction {
 //			throw new FileGenerationException(e);
 //		}
 //	}
-
 }
