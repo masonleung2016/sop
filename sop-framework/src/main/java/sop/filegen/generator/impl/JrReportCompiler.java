@@ -24,7 +24,6 @@ import net.sf.jasperreports.engine.JasperCompileManager;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class JrReportCompiler {
     private static final Logger logger = LoggerFactory.getLogger(JrReportCompiler.class);
     private static Map COMPILER_SETTINGS = new HashMap();
@@ -71,11 +70,7 @@ public class JrReportCompiler {
                     logger.error("Failed to compile report template {}, error: {}.", path, e);
                 }
             }
-
-
         }
-
-
     }
 
     public static void compileAllTemplates(String templateFolder, Map<String, String> jasperCaches) {
@@ -109,8 +104,6 @@ public class JrReportCompiler {
         } else {
             logger.warn("JasperReport template folder {} was not created.", jrxmlFolder);
         }
-
-
     }
 
     public static void main(String[] args) throws JRException {
