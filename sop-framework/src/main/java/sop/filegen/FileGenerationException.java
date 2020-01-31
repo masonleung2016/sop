@@ -28,5 +28,4 @@ public class FileGenerationException extends ServiceVLDException implements java
     public FileGenerationException(Object target, String objectName) {
         super(target, objectName);
     }
-
 }
