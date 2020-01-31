@@ -22,16 +22,10 @@ import net.sf.jasperreports.engine.util.JRStyledText;
 
 public class AbsolutePathSimpleFontFace implements FontFace {
 
-    /**
-     *
-     */
     private String file;
+
     private Font font;
 
-
-    /**
-     *
-     */
     public AbsolutePathSimpleFontFace(JasperReportsContext jasperReportsContext, String file) {
         this.file = file;
 
@@ -62,7 +56,6 @@ public class AbsolutePathSimpleFontFace implements FontFace {
         }
     }
 
-
     /**
      * @see #SimpleFontFace(JasperReportsContext, String)
      */
@@ -70,17 +63,10 @@ public class AbsolutePathSimpleFontFace implements FontFace {
         this(DefaultJasperReportsContext.getInstance(), file);
     }
 
-
-    /**
-     *
-     */
     public AbsolutePathSimpleFontFace(Font font) {
         this.font = font;
     }
 
-    /**
-     *
-     */
     public static AbsolutePathSimpleFontFace getInstance(JasperReportsContext jasperReportsContext, String fontName) {
         AbsolutePathSimpleFontFace fontFace = null;
 
@@ -97,28 +83,18 @@ public class AbsolutePathSimpleFontFace implements FontFace {
         return fontFace;
     }
 
-    /**
-     *
-     */
     public String getName() {
         //(String)font.getAttributes().get(TextAttribute.FAMILY);
         return font.getName();
     }
 
-    /**
-     *
-     */
     public String getFile() {
         return file;
     }
 
-    /**
-     *
-     */
     public Font getFont() {
         return font;
     }
-
 
     @Override
     public String getEot() {
@@ -126,13 +102,11 @@ public class AbsolutePathSimpleFontFace implements FontFace {
         return null;
     }
 
-
     @Override
     public String getPdf() {
         // TODO Auto-generated method stub
         return null;
     }
-
 
     @Override
     public String getSvg() {
@@ -140,18 +114,15 @@ public class AbsolutePathSimpleFontFace implements FontFace {
         return null;
     }
 
-
     @Override
     public String getTtf() {
         // TODO Auto-generated method stub
         return null;
     }
 
-
     @Override
     public String getWoff() {
         // TODO Auto-generated method stub
         return null;
     }
-
 }
