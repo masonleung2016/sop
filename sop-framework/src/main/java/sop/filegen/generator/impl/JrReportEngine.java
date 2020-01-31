@@ -29,7 +29,6 @@ import net.sf.jasperreports.engine.util.JRLoader;
  * @Package: sop.filegen.generator.impl
  */
 
-
 @SuppressWarnings("deprecation")
 public class JrReportEngine {
 
@@ -64,16 +63,13 @@ public class JrReportEngine {
         this.reportPath = reportPath;
     }
 
-
     public DataSource getDataSource() {
         return ds;
     }
 
-
     public void setDataSource(DataSource dataSource) {
         ds = dataSource;
     }
-
 
     public void compileAllTemplates() {
         JrReportCompiler.compileAllTemplates(reportPath, jasperFiles);
@@ -87,13 +83,11 @@ public class JrReportEngine {
         String jasperFile = JrReportEngine.class.getClassLoader().getResource("reportsTemplates").getPath() + "//" + mainReport + ".jasper";
         JrReportFiller filler = new JrReportFiller(this.getDataSource());
         return filler.fillReport(jasperFile, params);
-
     }
 
     public String exportPdfWithSQL(String mainReport, Map<String, Object> params, String outFile) throws Exception {
         JasperExportManager.exportReportToPdfFile(fillSQLReport(mainReport, params), outFile);
         return outFile;
-
     }
 
     public OutputStream exportPdfWithSQL(String mainReport, Map<String, Object> model, OutputStream outputStream) throws Exception {
@@ -110,7 +104,6 @@ public class JrReportEngine {
         exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File(outFile));
         exporter.exportReport();
         return outFile;
-
     }
 
     public String exportXlsxWithSQL(String mainReport, Map<String, Object> params, String outFile) throws Exception {
@@ -120,7 +113,6 @@ public class JrReportEngine {
         exporter.setParameter(JRExporterParameter.OUTPUT_FILE, new File(outFile));
         exporter.exportReport();
         return outFile;
-
     }
 
     public OutputStream exportXlsxWithSQL(String mainReport, Map<String, Object> params, OutputStream outputStream) throws Exception {
@@ -173,7 +165,6 @@ public class JrReportEngine {
         return outFile;
     }
 
-
     //
     public String exportXlsxWithJRDatasource(String mainReport, Map<String, Object> params, JRDataSource jrds, String outFile) throws Exception {
         JRXlsxExporter exporter = new JRXlsxExporter();
@@ -192,7 +183,6 @@ public class JrReportEngine {
         exporter.setParameter(JRTextExporterParameter.PAGE_WIDTH, 200);
         exporter.setParameter(JRTextExporterParameter.PAGE_HEIGHT, 300);
         return exportFileWithJRDatasource(exporter, mainReport, params, jrds, outFile);
-
     }
 
     public String exportCsvWithJRDatasource(String mainReport, Map<String, Object> params, JRDataSource jrds, String outFile) throws Exception {
@@ -244,8 +234,7 @@ public class JrReportEngine {
         return outputStream;
     }
 
-    public String exportHtmlWithJRDatasource(String mainReport,
-                                             Map<String, Object> params, JRDataSource jrds, String outFile) throws Exception {
+    public String exportHtmlWithJRDatasource(String mainReport, Map<String, Object> params, JRDataSource jrds, String outFile) throws Exception {
         //JrReportCompiler.compileToFileWhenNeccessary(this.getReportPath(),this.jasperFiles, mainReport);
         //Assert.isTrue(jasperFiles.containsKey(mainReport), "report can not be able to locate. "+ mainReport);
         //File sourceFile = new File(jasperFiles.get(mainReport));
@@ -257,11 +246,8 @@ public class JrReportEngine {
         return outFile;
     }
 
-    public String exportHtmlWithSQL(String mainReport,
-                                    Map<String, Object> params, String outFile) throws Exception {
+    public String exportHtmlWithSQL(String mainReport, Map<String, Object> params, String outFile) throws Exception {
         JasperExportManager.exportReportToHtmlFile(fillSQLReport(mainReport, params), outFile);
         return outFile;
     }
-
-
 }
