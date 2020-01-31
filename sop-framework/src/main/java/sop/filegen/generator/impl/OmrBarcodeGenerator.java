@@ -23,7 +23,6 @@ import com.itextpdf.text.pdf.PdfStamper;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class OmrBarcodeGenerator {
 
     private static final String TEMP_PATH = System.getProperty("java.io.tmpdir");
@@ -120,10 +119,8 @@ public class OmrBarcodeGenerator {
         for (int i = 0; i < nNumberOfOmr; i++) {
             if (anOmrFlag.get(i) == 1) {
                 omrPrintSingleMarking(fLEFT, (fTOP - (i * (fSPACE + fHEIGHT))), fWIDTH, fHEIGHT, stamper, pageNum);
-
             }
         }
-
     }
 
     private static void omrPrintSingleMarking(float dLeft, float dTop, float dWidth, float dHeight, PdfStamper stamper, int pageNum) throws Exception {
@@ -146,7 +143,6 @@ public class OmrBarcodeGenerator {
         for (int i = 1; i < nMAXOMRMARK; i++) {
             anOmrFlag.set(i, 0);
         }
-
     }
 
     //' Convert Dec number to Bin number
@@ -196,11 +192,9 @@ public class OmrBarcodeGenerator {
         Properties prop = new Properties();
         prop.load(new FileInputStream(f));
         prop.setProperty("nFromStart", "" + nFormStart);
-
 		/*		FileWriter fw = new FileWriter(f, false);
 		fw.write("nFromStart = "+ nFormStart+ "\r\n");
 		fw.close();*/
-
     }
 
     private static void complete(boolean sComInd) throws Exception {
@@ -250,7 +244,6 @@ public class OmrBarcodeGenerator {
         //' Loop for each page
         for (int i = 0; i < nNumberOfPage; i = i + 2) {
 
-
             if (i % nSingleDoubleSide == 0) {
                 //' Determine OMR marks
                 omrGenMarking(anOmrFlag, nPageCounter, i, nNumberOfPage, nFormStart);
@@ -264,7 +257,6 @@ public class OmrBarcodeGenerator {
             //for(int j = 1;j<nSingleDoubleSide;j++){
             //Application.Browser.Next
             //}
-
             //' Next page
             nPageCounter = nPageCounter + 1;
             if (nFormStart < nMaxForm)
@@ -279,7 +271,6 @@ public class OmrBarcodeGenerator {
         //' Update Complete Indicator
         //    complete (sVPLoc);
         complete(true);
-
     }
 
     private static synchronized Image createOrGetImage() throws Exception {
@@ -300,14 +291,12 @@ public class OmrBarcodeGenerator {
 
     public static void printBarcode(String inputFile, String outputFile) throws Exception {
 
-
         PdfReader reader = new PdfReader(inputFile);
         PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(outputFile));
         int total = reader.getNumberOfPages();
         ormPrintAll(total, 0, stamper);
         stamper.close();
     }
-
 
     public static void main(String[] args) throws Exception {
 //		printBarcode("c:/cssa-english.pdf", "c:/cssa-english111.pdf", 550, 20, 500, 5.0f);
@@ -319,7 +308,6 @@ public class OmrBarcodeGenerator {
 //		printBarcode("c:/cssa-english.pdf", "c:/cssa-english777.pdf", 550, 20, 500, 13.0f);
         printBarcode("c:/cssa-english.pdf", "c:/cssa-english2.pdf");
 //		printBarcode("c:/cssa-chinese.pdf", "c:/cssa-chinese2.pdf");
-
     }
 
     private static void printAnOmrFlag(List<Integer> anOmrFlag) {
