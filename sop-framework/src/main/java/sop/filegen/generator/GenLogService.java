@@ -7,5 +7,4 @@ package sop.filegen.generator;
  */
 
 public interface GenLogService {
-
 }
