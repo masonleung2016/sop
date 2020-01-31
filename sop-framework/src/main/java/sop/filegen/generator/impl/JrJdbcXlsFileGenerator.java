@@ -13,7 +13,6 @@ import sop.filegen.GenResult;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class JrJdbcXlsFileGenerator extends BaseFileGenerator {
 
     private DataSource ds;
