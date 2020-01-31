@@ -38,6 +38,4 @@ public class GenFileAnnotationBeanPostProcessor extends InstantiationAwareBeanPo
         }
         return true;
     }
-
-
 }
