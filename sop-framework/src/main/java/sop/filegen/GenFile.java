@@ -11,7 +11,6 @@ import java.lang.annotation.Target;
  * @Date: 2020/1/9 9:37
  * @Package: sop.filegen
  */
-
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
