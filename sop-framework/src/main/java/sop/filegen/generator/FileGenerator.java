@@ -13,4 +13,5 @@ import sop.filegen.GenResult;
 public interface FileGenerator {
 
     GenResult generate(GenRequest request) throws FileGenerationException;
+    
 }
