@@ -19,9 +19,7 @@ import sop.filegen.GenResult;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class JrPdfFileGenerator extends BaseFileGenerator {
-
 
     @Override
     protected GenResult generateFile(GenRequest request) throws FileGenerationException {
@@ -53,7 +51,6 @@ public class JrPdfFileGenerator extends BaseFileGenerator {
                     File orgFile = new File(outFile);
                     FileUtils.deleteQuietly(orgFile);
                 }
-
             }
         } catch (Exception e) {
             logger.error("PDF generation error:", e);
