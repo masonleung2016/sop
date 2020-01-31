@@ -4,7 +4,6 @@ import fr.opensagres.xdocreport.template.formatter.FieldsMetadata;
 import sop.filegen.GenRequest;
 import sop.filegen.GenResult;
 
-
 /**
  * @Author: LCF
  * @Date: 2020/1/8 17:58
@@ -32,7 +31,6 @@ public class MailMergeEnginelServiceImpl implements MailMergeEnginelService {
     public void initCommonInfoForGenDOC(Integer caseKey, String screenID,
                                         String templateID, GenRequest request) {
         // TODO Auto-generated method stub
-
     }
 //
 //
