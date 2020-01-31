@@ -14,7 +14,6 @@ import sop.util.DateTypeAdapter;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class JsonUtil {
     public static String toJson(Object request) {
         GsonBuilder gsonBuilder = new GsonBuilder();
