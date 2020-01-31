@@ -10,7 +10,6 @@ import java.util.Map;
  * @Package: sop.filegen.generator.impl
  */
 
-
 public class TestDTO {
     private String name;
     private String procUnit;
@@ -24,7 +23,6 @@ public class TestDTO {
     private String caseNature;
     private List<TestDTO> dtoList = new ArrayList<TestDTO>();
     private List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
-
 
     public String getName() {
         return name;
