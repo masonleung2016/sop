@@ -13,9 +13,13 @@ public class Checklist extends AbstractDO {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+
     private String itemMasterType;
+
     private String templateName;
+
     private Integer fkOrderProduct;
+
     private String details;
 
     public Integer getId() {
