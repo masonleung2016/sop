@@ -15,21 +15,37 @@ public class Company extends BaseBean {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    
     private String coCode;
+    
     private String coName;
+    
     private String coChn;
+    
     private String coAdd;
+    
     private String coChnAdd;
+    
     private String coTel;
+    
     private String coFax;
+    
     private Date coLyBeg;
+    
     private Date coLyEnd;
+    
     private Date coCyBeg;
+    
     private Date coCyEnd;
+    
     private String coFax2;
+    
     private String coTel2;
+    
     private String coFax1;
+    
     private String coTel1;
+    
 //	private boolean editMode;
 
     public Integer getId() {
