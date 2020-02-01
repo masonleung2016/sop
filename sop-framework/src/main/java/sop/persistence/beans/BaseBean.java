@@ -12,7 +12,6 @@ import dwz.dal.object.AbstractDO;
  * @Date: 2020/1/9 9:42
  * @Package: sop.persistence.beans
  */
-
 public abstract class BaseBean extends AbstractDO {
 
     private static final long serialVersionUID = -5409310829157611021L;
