@@ -13,11 +13,14 @@ public class CustAttn extends BaseBean {
      * table cust_attn
      */
     private static final long serialVersionUID = 1L;
+
     private Integer id;
+
     /**
      * cu_code
      */
     private String cuCode;
+
     /**
      * cu_name
      */
