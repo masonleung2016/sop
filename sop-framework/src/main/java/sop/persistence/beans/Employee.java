@@ -9,6 +9,7 @@ package sop.persistence.beans;
 public class Employee {
 
     public Integer id;
+
     public String name;
 
     public Employee(Integer id, String name) {
@@ -32,5 +33,4 @@ public class Employee {
     public void setName(String name) {
         this.name = name;
     }
-
 }
