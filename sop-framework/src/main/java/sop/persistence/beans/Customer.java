@@ -11,116 +11,145 @@ import java.util.Map;
  */
 
 public class Customer extends BaseBean {
+
     /**
      * table cust
      */
     private static final long serialVersionUID = 1L;
+
     private Integer id;
+    
     /**
      * cu_code
      */
     private String cuCode;
+    
     /**
      * cu_name
      */
     private String cuName;
+    
     /**
      * cu_chn
      */
     private String cuChn;
+    
     /**
      * cu_con_per
      */
     private String cuConPer;
+    
     /**
      * cu_add
      */
     private String cuAdd;
+    
     /**
      * cu_tel
      */
     private String cuTel;
+    
     /**
      * cu_fax
      */
     private String cuFax;
+    
     /**
      * cu_pay_tm
      */
     private String cuPayTm;
+    
     /**
      * cu_credit
      */
     private BigDecimal cuCredit;
+    
     /*这中间的field在表中都是空null，应该是不用了。*/
     /**
      * cu_con_per1
      */
     private String cuConPer1;
+    
     /**
      * cu_con_per2
      */
     private String cuConPer2;
+    
     /**
      * cu_chn_add
      */
     private String cuChnAdd;
+    
     /**
      * cu_tel1_cty
      */
     private String cuTel1Cty;
+    
     /**
      * cu_tel1_no
      */
     private String cuTel1No;
+    
     /**
      * cu_tel2_cty
      */
     private String cuTel2Cty;
+    
     /**
      * cu_tel2_no
      */
     private String cuTel2No;
+    
     /**
      * cu_fax1_cty
      */
     private String cuFax1Cty;
+    
     /**
      * cu_fax1_no
      */
     private String cuFax1No;
+    
     /**
      * cu_fax2_cty
      */
     private String cuFax2Cty;
+    
     /**
      * cu_fax2_no
      */
     private String cuFax2No;
+    
     /**
      * cu_sl_code
      */
     private String cuSlCode;
+    
     /**
      * cu_bt_code
      */
     private String cuBtCode;
+    
     /**
      * cu_pterm
      */
     private String cuPterm;
+    
     /**
      * cu_ccy
      */
     private String cuCcy;
+    
     /**
      * cu_cr_bal
      */
     private String cuCrBal;
+    
     /**
      * cu_cr_used
      */
     private String cuCrUsed;
+    
     /**
      * cu_type
      */
@@ -131,18 +160,22 @@ public class Customer extends BaseBean {
      * cu_gl_inf_si
      */
     private String cuGlInfSi;
+    
     /**
      * cu_website_url
      */
     private String cuWebsiteUrl;
+    
     /**
      * cu_FSC_cert_code
      */
     private String cuFSCCertCode;
+    
     /**
      * cu_FSC_valid_fm
      */
     private Date cuFSCValidFm;
+    
     /**
      * cu_FSC_valid_to
      */
