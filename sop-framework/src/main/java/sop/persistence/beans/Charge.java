@@ -15,10 +15,15 @@ public class Charge extends BaseBean {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+
     private String chgCode;
+
     private String chgDesc;
+
     private BigDecimal chgRate;
+
     private BigDecimal chgAmt;
+
     private String chgGlInf;
 
     public Integer getId() {
