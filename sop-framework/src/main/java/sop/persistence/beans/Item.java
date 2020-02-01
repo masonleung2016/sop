@@ -7,9 +7,13 @@ package sop.persistence.beans;
  */
 
 public class Item {
+
     private String id;
+
     private String cat;
+
     private String no;
+
     private String name;
 
     public String getId() {
