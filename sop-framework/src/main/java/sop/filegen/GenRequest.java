@@ -18,7 +18,6 @@ import org.apache.commons.lang.StringUtils;
  * @Package: sop.filegen
  */
 
-
 @XmlRootElement
 @XmlType
 public class GenRequest implements java.io.Serializable {
@@ -49,7 +48,6 @@ public class GenRequest implements java.io.Serializable {
 
     private boolean printBarCode;
 
-
     @XmlElement
     public Map<String, Object> getParams() {
         return params;
@@ -67,7 +65,6 @@ public class GenRequest implements java.io.Serializable {
     public void setReportId(String reportId) {
         this.reportId = reportId;
     }
-
 
     @XmlElement
     public String getOutputType() {
@@ -108,7 +105,6 @@ public class GenRequest implements java.io.Serializable {
     public String getParameterAsString(String key) {
         return StringUtils.trimToEmpty(String.valueOf(this.params.get(key)));
     }
-
 
     @XmlElement
     public Date getScheduleDatetime() {
@@ -173,6 +169,4 @@ public class GenRequest implements java.io.Serializable {
     public void addFieldAsHtmlStyling(String field) {
         this.getHtmlFields().add(field);
     }
-
-
 }
