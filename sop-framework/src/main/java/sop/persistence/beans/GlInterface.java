@@ -9,48 +9,59 @@ import java.math.BigDecimal;
  */
 
 public class GlInterface extends BaseBean {
+    
     /**
      * table glinf
      */
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    
     /**
      * co_code
      */
     private String coCode;
+    
     /**
      * gl_inf_code
      */
     private String glInfCode;
+    
     /**
      * gl_inf_desc
      */
     private String glInfDesc;
+    
     /**
      * gl_inf_ac_dr
      */
     private String glInfAcDr;
+    
     /**
      * gl_inf_dp_dr
      */
     private String glInfDpDr;
+    
     /**
      * gl_inf_cst_dr
      */
     private String glInfCstDr;
+    
     /**
      * gl_inf_ac_cr
      */
     private String glInfAcCr;
+    
     /**
      * gl_inf_dp_cr
      */
     private String glInfDpCr;
+    
     /**
      * gl_inf_cst_cr
      */
     private String glInfCstCr;
+    
     /**
      * rev_no
      */
