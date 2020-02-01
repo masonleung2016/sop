@@ -26,7 +26,6 @@ public class GenResult implements java.io.Serializable {
 
     private Integer logId;
 
-
     private long startTime;
 
     private long endTime;
@@ -40,7 +39,6 @@ public class GenResult implements java.io.Serializable {
     public void setReturnCode(String returnCode) {
         this.returnCode = returnCode;
     }
-
 
     @XmlElement
     public String getReportFile() {
