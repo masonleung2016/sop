@@ -10,7 +10,6 @@ public interface GenFileFunction {
 
     GenResult generateFile(GenRequest request) throws FileGenerationException;
 
-
     //for init info
     void initCommonInfoForGenDOC(GenRequest genReq) throws FileGenerationException;
 }
