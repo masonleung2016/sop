@@ -8,11 +8,14 @@ import java.io.Serializable;
  * @Package: sop.persistence.beans
  */
 
-
 public class ImproveSuggestion extends BaseBean {
+
     private String impNo;
+
     private String category;
+
     private String template;
+
     private String impDetail;
 
     public String getImpNo() {
@@ -51,5 +54,4 @@ public class ImproveSuggestion extends BaseBean {
     public Serializable getId() {
         return this.impNo;
     }
-
 }
