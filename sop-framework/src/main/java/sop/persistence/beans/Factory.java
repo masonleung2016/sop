@@ -15,40 +15,73 @@ public class Factory extends BaseBean {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+
     private String suCode;
+
     private String suName;
+
     private String suChn;
+
     private String suConPer;
+
     private String suAdd;
+
     private String suTel;
+
     private String suFax;
+
     private String suPayTm;
+
     private BigDecimal suCredit;
+
     private String suType;
+
     /*这中间的field在表中都是空null，应该是不用了。*/
     private String suConPer1;
+
     private String suConPer2;
+
     private String suChnAdd;
+
     private String suTel1Cty;
+    
     private String suTel1No;
+    
     private String suTel2Cty;
+    
     private String suTel2No;
+    
     private String suFax1Cty;
+    
     private String suFax1No;
+    
     private String suFax2Cty;
+    
     private String suFax2No;
+    
     private String suPterm;
+    
     private String suCcy;
+    
     private String suCrBal;
+
     private String suCrUsed;
+    
     private String suGlInfSettle;
+    
     /*这中间的field在表中都是空null，应该是不用了。*/
     private String suWebsiteUrl;
+    
     private String suFSCCertCode;
+    
     private String suFSCValidFm;
+    
     private String suFSCValidTo;
+    
     private String suBSCICertCode;
+    
     private String suBSCIValidFm;
+    
     private String suBSCIValidTo;
 
     public Integer getId() {
