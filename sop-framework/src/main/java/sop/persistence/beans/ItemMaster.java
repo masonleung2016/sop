@@ -16,81 +16,101 @@ public class ItemMaster extends BaseBean {
      * table itemmasters
      */
     private static final long serialVersionUID = 1L;
+
     private Integer id;
+
     /**
      * it_cat_no_suffix
      */
     private String itCatNoSuffix;
+
     /**
      * it_cat
      */
     private String itCat;
+
     /**
      * it_no
      */
     private String itNo;
+
     /**
      * it_suffix
      */
     private String itSuffix;
+
     /**
      * it_name
      */
     private String itName;
+
     /**
      * it_uom
      */
     private String itUom;
+	
     /**
      * it_del_time
      */
     private String itDelTime;
+	
     /**
      * it_base_price
      */
     private BigDecimal itBasePrice;
+	
     /**
      * it_curr
      */
     private String itCurr;
+	
     /**
      * it_handle
      */
     private String itHandle;
+	
     /**
      * it_fty_item_no
      */
     private String itFtyItemNo;
+	
     /**
      * it_desc_of_sh
      */
     private String itDescOfSh;
+	
     /**
      * it_rmk
      */
     private String itRmk;
+	
     /**
      * it_pkg_detail
      */
     private String itPkgDetail;
+	
     /**
      * it_inn_ctn_uom
      */
     private String itInnCtnUom;
+	
     /**
      * it_pkg_inn_pcs
      */
     private String itPkgInnPcs;
+	
     /**
      * it_exp_ctn_1_l_cm
      * = it_pkg_l_cm
      */
     private BigDecimal itExpCtn1LCm;
+	
     /**
      * it_exp_ctn_1_w_cm
      * = it_pkg_w_cm
      */
     private BigDecimal itExpCtn1WCm;
+	
     /**
      * it_exp_ctn_1_h_cm
      * = it_pkg_h_cm
@@ -117,126 +137,179 @@ public class ItemMaster extends BaseBean {
      * it_exp_ctn_uom
      */
     private String itExpCtnUom;
+	
     /**
      * it_pkg_exp_pcs
      */
     private String itPkgExpPcs;
+	
     /**
      * it_cbm_total
      */
     private BigDecimal itCbmTotal;
+	
     /**
      * it_exp_ctn_1_cbm
      * = it_cbm_total
      */
     private BigDecimal itExpCtn1Cbm;
+	
     /**
      * it_pkg_nw_kg
      */
     private BigDecimal itPkgNwKg;
+	
     /**
      * it_exp_ctn_1_nw
      */
     private BigDecimal itExpCtn1Nw;
+	
     /**
      * it_pkg_20_qty
      */
     private BigDecimal itPkg20Qty;
+	
     /**
      * it_pkg_40_qty
      */
     private BigDecimal itPkg40Qty;
+	
     /**
      * it_pkg_40HQ_qty
      */
     private BigDecimal itPkg40HQQty;
+	
     /**
      * it_pkg_gw_kg
      */
     private BigDecimal itPkgGwKg;
+	
     /**
      * it_exp_ctn_1_gw
      * = it_pkg_gw_kg
      */
     private BigDecimal itExpCtn1Gw;
+	
     /**
      * it_fty_fob_cost
      */
     private BigDecimal itFtyFobCost;
+	
     /**
      * it_fty_fob_port
      */
     private String itFtyFobPort;
+	
     /**
      * it_fty_code
      */
     private String itFtyCode;
+	
     /**
      * it_fty_cost_last_update
      */
     private Date itFtyCostLastUpdate;
+	
     /**
      * it_fty_name
      */
     private String itFtyName;
+	
     /**
      * it_pic_name_jpg1
      */
     private String itPicNameJpg1;
+	
     /**
      * it_pic_name_jpg2
      */
     private String itPicNameJpg2;
+	
     /**
      * it_image_1
      */
     private String itImage1;
+	
     /**
      * it_image_2
      */
     private String itImage2;
+	
     /**
      * it_image_3
      */
     private String itImage3;
+	
     /**
      * it_image_4
      */
     private String itImage4;
+	
     private String itImage1Encode;
+	
     private String itImage2Encode;
+	
     private String itImage3Encode;
+	
     private String itImage4Encode;
+	
     /**
      * it_desc_fty_po
      */
     private String itDescFtyPo;
+	
     private BigDecimal itPkgLCm0;
+	
     private BigDecimal itPkgWCm0;
+	
     private BigDecimal itPkgHCm0;
+	
     private BigDecimal itPkgLCm1;
+	
     private BigDecimal itPkgWCm1;
+	
     private BigDecimal itPkgHCm1;
+	
     private BigDecimal itPkgLCm2;
+	
     private BigDecimal itPkgWCm2;
+	
     private BigDecimal itPkgHCm2;
+	
     private BigDecimal itPkgLCm3;
+	
     private BigDecimal itPkgWCm3;
+	
     private BigDecimal itPkgHCm3;
+	
     private BigDecimal itPkgLCm4;
+	
     private BigDecimal itPkgWCm4;
+	
     private BigDecimal itPkgHCm4;
+	
     private BigDecimal itPkgLCm5;
+	
     private BigDecimal itPkgWCm5;
+	
     private BigDecimal itPkgHCm5;
+	
     private String itPkgIndInnPcs;
+	
     private String itIndInnCtnUom;
+	
     private String itIndPacking;
+	
     private String itIndLabel;
+	
     private String itInnPacking;
+	
     private String itInnLabel;
+	
     private String itExpCtnPacking;
+	
     private String itExpCtnLabel;
+	
     /**
      * fk_item_type
      */
@@ -250,11 +323,11 @@ public class ItemMaster extends BaseBean {
      * fk_template
      */
     private Integer fkTemplate;
+	
     /**
      * detail_data
      */
     private String detailData;
-
 
     /**
      * sub_category 子类
@@ -264,54 +337,65 @@ public class ItemMaster extends BaseBean {
      * label_eng
      */
     private String labelEng;
+	
     /**
      * label_chn
      */
     private String labelChn;
+	
     /**
      * importdatetime
      */
     private Date importdatetime;
+	
     /**
      * item_eng_name
      */
     private String itemEngName;
+	
     /**
      * item_chn_name
      */
     private String itemChnName;
+	
     /**
      * template_name
      */
     private String templateName;
+	
     /**
      * eng_template_name
      */
     private String engTemplateName;
+	
     /**
      * item_type
      */
     private String itemType;
+	
     /**
      * part_pic
      */
     private String partPic;
+	
     /**
      * it_fty_fob_cost_b
      */
     private BigDecimal itFtyFobCostB;
+	
     /**
      * it_moq_a
      */
     private Integer itMoqA;
+	
     /**
      * it_moq_b
      */
     private Integer itMoqB;
+	
     private String shippingMark;
 
     public ItemMaster() {
-
     }
 
     public Integer getId() {
