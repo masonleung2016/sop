@@ -16,10 +16,15 @@ public class Currency extends BaseBean {
 
     //field name和字段名一一对应，除了id
     private Integer id;
+    
     private String ccyCode;
+    
     private String ccyDesc;
+    
     private String ccyChn;
+    
     private BigDecimal ccyRate;
+    
     private String ccyRef;// no use?
 
     public Integer getId() {
@@ -61,7 +66,6 @@ public class Currency extends BaseBean {
     public void setCcyRate(BigDecimal ccyRate) {
         this.ccyRate = ccyRate;
     }
-
 
     public String getCcyRef() {
         return ccyRef;
