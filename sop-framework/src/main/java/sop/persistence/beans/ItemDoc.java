@@ -9,18 +9,25 @@ import java.io.Serializable;
  */
 
 public class ItemDoc extends BaseBean {
+
     private String docNo;
+
     private String itemNo;
 
     private String ofNo;
+
     private String poNo;
+
     private String soNo;
+
     private String qcNo;
 
     private String category;
+
     private String shortName;
 
     private String docType;
+
     private String path;
 
     @Override
@@ -107,5 +114,4 @@ public class ItemDoc extends BaseBean {
     public void setDocType(String docType) {
         this.docType = docType;
     }
-
 }
