@@ -9,6 +9,7 @@ import it.sauronsoftware.base64.Base64;
  */
 
 public class CustAttn extends BaseBean {
+    
     /**
      * table cust_attn
      */
