@@ -15,12 +15,19 @@ public class Autogen extends BaseBean {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+
     private String coCode;
+
     private String autTxType;
+
     private String autTxNum;
+
     private String autTxPrefix;
+
     private String autDesc;
+
     private String autSysFunc;
+
     private BigDecimal revNo;
 
     public Integer getId() {
