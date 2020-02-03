@@ -14,39 +14,22 @@ import sop.vo.OfferSheetVo;
 
 public class OfferSheet extends BaseBean {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-    /**
-     * co_code
-     */
+
     private String coCode;
-    /**
-     * off_sh_no_pfix
-     */
+
     private String offShNoPfix;
-    /**
-     * off_sh_no
-     */
+
     private String offShNo;
-    /**
-     * off_sh_no_pfix_no
-     */
+
     private String offShNoPfixNo;
-    /**
-     * off_date
-     */
+
     private Date offDate;
-    /**
-     * off_cust
-     */
+
     private String offCust;
-    /**
-     * off_cust_attn
-     */
+
     private String offCustAttn;
 
     private List<Item> items;
