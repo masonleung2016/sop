@@ -9,9 +9,13 @@ import java.io.Serializable;
  */
 
 public class PackingBom extends BaseBean {
+    
     private String pbNo;
+    
     private String category;
+    
     private String template;
+    
     private String pbDetail;
 
     public String getPbNo() {
@@ -50,5 +54,4 @@ public class PackingBom extends BaseBean {
     public Serializable getId() {
         return this.pbNo;
     }
-
 }
