@@ -11,17 +11,21 @@ import dwz.dal.object.AbstractDO;
  */
 
 public class OrderProduct extends AbstractDO {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    
     private Integer fkOrder;
+    
     private String productNo;
+    
     private String productEngName;
+    
     private String productChnName;
+    
     private Integer fkProduct;
+    
     private Date importdatetime;
 
     public Integer getId() {
