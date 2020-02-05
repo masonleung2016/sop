@@ -11,131 +11,70 @@ import java.math.BigDecimal;
 
 public class OfferSheetItem extends BaseBean {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
+    
     private Integer id;
-    /**
-     * co_code
-     */
+
     private String coCode;
-    /**
-     * off2_sh_no_pfix
-     */
+
     private String off2ShNoPfix;
-    /**
-     * off2_sh_no
-     */
+
     private String off2ShNo;
-    /**
-     * off2_sh_no_pfix_no
-     */
+
     private String off2ShNoPfixNo;
-    /**
-     * off2_it_cat
-     */
+
     private String off2ItCat;
-    /**
-     * off2_it_no
-     */
+
     private String off2ItNo;
-    /**
-     * off2_it_suffix
-     */
+
     private String off2ItSuffix;
-    /**
-     * off2_desc_offer_sh
-     */
+
     private String off2DescOfferSh;
-    /**
-     * off2_it_name
-     */
+
     private String off2ItName;
-    /**
-     * off2_it_remark
-     */
+
     private String off2ItRemark;
-    /**
-     * off2_cert_origin
-     */
+
     private String off2CertOrigin;
-    /**
-     * off2_form_a
-     */
+
     private String off2FormA;
-    /**
-     * off2_cnf_price
-     */
+
     private BigDecimal off2CnfPrice;
-    /**
-     * off2_fob_port
-     */
+
     private String off2FobPort;
-    /**
-     * off2_cnf_port
-     */
+
     private String off2CnfPort;
-    /**
-     * off2_curr_code
-     */
+
     private String off2CurrCode;
-    /**
-     * off2_fob_price
-     */
+
     private BigDecimal off2FobPrice;
-    /**
-     * off2_fob_cost
-     */
+
     private BigDecimal off2FobCost;
-    /**
-     * off2_markup_rate
-     */
+
     private BigDecimal off2MarkupRate;
-    /**
-     * off2_fob_price_b
-     */
+
     private BigDecimal off2FobPriceB;
-    /**
-     * off2_markup_rate_b
-     */
+
     private BigDecimal off2MarkupRateB;
-    /**
-     * off2_price_trade_unit
-     */
+
     private String off2PriceTradeUnit;
-    /**
-     * off2_price
-     */
+
     private BigDecimal off2Price;
-    /**
-     * off2_price_port
-     */
+
     private String off2PricePort;
-    /**
-     * off2_moq
-     */
+
     private BigDecimal off2Moq;
-    /**
-     * off2_moq_uom
-     */
+
     private String off2MoqUom;
-    /**
-     * off2_it_cat_no_suffix
-     */
+
     private String off2ItCatNoSuffix;
-    /**
-     * off2_fob_cost_b
-     */
+
     private BigDecimal off2FobCostB;
-    /**
-     * off2_moq_a
-     */
+
     private Integer off2MoqA;
-    /**
-     * off2_moq_b
-     */
+
     private Integer off2MoqB;
+    
     public OfferSheetItem() {
 
     }
