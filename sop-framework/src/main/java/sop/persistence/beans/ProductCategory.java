@@ -6,16 +6,16 @@ package sop.persistence.beans;
  * @Package: sop.persistence.beans
  */
 
-
 public class ProductCategory extends BaseBean {
-    /**
-     * table comp
-     */
+
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    
     private String catCode;
+    
     private String catDesc;
+    
     private boolean editMode;
 
     public Integer getId() {
