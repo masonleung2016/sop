@@ -9,247 +9,128 @@ import java.util.Date;
  * @Package: sop.persistence.beans
  */
 
-
 public class PurchaseOrder extends BaseBean {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * po_art_art_no
-     */
     private String poArtArtNo;
-    /**
-     * po_art_ean_no
-     */
+
     private String poArtEanNo;
-    /**
-     * po_art_general
-     */
+
     private String poArtGeneral;
-    /**
-     * po_art_grn_point
-     */
+
     private String poArtGrnPoint;
-    /**
-     * po_art_lang
-     */
+
     private String poArtLang;
-    /**
-     * po_art_other
-     */
+
     private String poArtOther;
-    /**
-     * po_art_resy
-     */
+
     private String poArtResy;
-    /**
-     * po_cnf
-     */
+
     private String poCnf;
-    /**
-     * po_cnf_port
-     */
+
     private String poCnfPort;
-    /**
-     * po_cont_req
-     */
+
     private String poContReq;
-    /**
-     * po_ctn_pkg_desc
-     */
+
     private String poCtnPkgDesc;
-    /**
-     * po_curr
-     */
+
     private String poCurr;
-    /**
-     * po_date
-     */
+
     private Date poDate;
-    /**
-     * po_del_details
-     */
+
     private String poDelDetails;
-    /**
-     * po_dep_date
-     */
+
     private Date poDepDate;
-    /**
-     * po_dep_paid
-     */
+
     private BigDecimal poDepPaid;
-    /**
-     * po_dep_ratio
-     */
+
     private BigDecimal poDepRatio;
-    /**
-     * po_dest
-     */
+
     private String poDest;
-    /**
-     * po_dtl_art_no
-     */
+
     private String poDtlArtNo;
-    /**
-     * po_dtl_ean_no
-     */
+
     private String poDtlEanNo;
-    /**
-     * po_dtl_general
-     */
+
     private String poDtlGeneral;
-    /**
-     * po_dtl_grn_point
-     */
+
     private String poDtlGrnPoint;
-    /**
-     * po_dtl_lang
-     */
+
     private String poDtlLang;
-    /**
-     * po_dtl_other
-     */
+
     private String poDtlOther;
-    /**
-     * po_dtl_resy
-     */
+
     private String poDtlResy;
-    /**
-     * po_etd_date
-     */
+
     private Date poEtdDate;
-    /**
-     * po_fob
-     */
+
     private String poFob;
-    /**
-     * po_fob_port
-     */
+
     private String poFobPort;
-    /**
-     * po_iart_ins_sh
-     */
+
     private String poIartInsSh;
-    /**
-     * po_iart_label
-     */
+
     private String poIartLabel;
-    /**
-     * po_iart_other
-     */
+
     private String poIartOther;
-    /**
-     * po_idtl_ins_sh
-     */
+
     private String poIdtlInsSh;
-    /**
-     * po_idtl_label
-     */
+
     private String poIdtlLabel;
-    /**
-     * po_idtl_other
-     */
+
     private String poIdtlOther;
-    /**
-     * po_ipkg_ins_sh
-     */
+
     private String poIpkgInsSh;
-    /**
-     * po_ipkg_label
-     */
+
     private String poIpkgLabel;
-    /**
-     * po_ipkg_other
-     */
+
     private String poIpkgOther;
-    /**
-     * po_lshp_date
-     */
+
     private Date poLshpDate;
-    /**
-     * po_no
-     */
+
     private String poNo;
-    /**
-     * po_odtl
-     */
+
     private String poOdtl;
-    /**
-     * po_ord_amt_word
-     */
+
     private String poOrdAmtWord;
-    /**
-     * po_ord_tot_amt
-     */
+
     private BigDecimal poOrdTotAmt;
-    /**
-     * po_ord_tot_chg
-     */
+
     private BigDecimal poOrdTotChg;
-    /**
-     * po_ord_tot_net
-     */
+
     private BigDecimal poOrdTotNet;
-    /**
-     * po_pkg_art_no
-     */
+
     private String poPkgArtNo;
-    /**
-     * po_pkg_ean_no
-     */
+
     private String poPkgEanNo;
-    /**
-     * po_pkg_general
-     */
+
     private String poPkgGeneral;
-    /**
-     * po_pkg_grn_point
-     */
+
     private String poPkgGrnPoint;
-    /**
-     * po_pkg_lang
-     */
+
     private String poPkgLang;
-    /**
-     * po_pkg_other
-     */
+
     private String poPkgOther;
-    /**
-     * po_pkg_resy
-     */
+
     private String poPkgResy;
-    /**
-     * po_pterm
-     */
+
     private String poPterm;
-    /**
-     * po_pterm_days
-     */
+
     private BigDecimal poPtermDays;
-    /**
-     * po_routing
-     */
+
     private String poRouting;
-    /**
-     * po_so_no_ref
-     */
+
     private String poSoNoRef;
-    /**
-     * po_sp_main_mark
-     */
+
     private String poSpMainMark;
-    /**
-     * po_sp_side_mark
-     */
+
     private String poSpSideMark;
-    /**
-     * po_su_code
-     */
+
     private String poSuCode;
-    /**
-     * po_su_pterm
-     */
+
     private String poSuPterm;
+    
     private Integer id;
 
     public String getPoArtArtNo() {
