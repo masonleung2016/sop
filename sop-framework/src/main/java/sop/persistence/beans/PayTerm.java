@@ -9,28 +9,20 @@ import java.math.BigDecimal;
  * @Date: 2020/1/9 9:55
  * @Package: sop.persistence.beans
  */
+
 public class PayTerm extends BaseBean {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 571494775875473675L;
+    
     //实体类的属性和表的字段名称一一对应
     private Integer id;
-    /**
-     * pay_code
-     */
+
     private String payCode;
-    /**
-     * pay_desc
-     */
+
     private String payDesc;
-    /**
-     * pay_days
-     */
+
     private BigDecimal payDays;
-    /**
-     * pay_date
-     */
+
     private Double payDate;
 
     public Integer getId() {
