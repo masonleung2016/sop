@@ -12,44 +12,28 @@ import it.sauronsoftware.base64.Base64;
 
 public class PurchaseOrderCharge extends BaseBean {
 
-    /**
-     * potx5
-     */
     private static final long serialVersionUID = -185248557316796065L;
-    /**
-     * po5_ccy
-     */
+
     private String po5Ccy;
-    /**
-     * po5_chg_amt
-     */
+
     private BigDecimal po5ChgAmt;
-    /**
-     * po5_chg_code
-     */
+
     private String po5ChgCode;
+    
     private String encodePo5ChgCode;
-    /**
-     * po5_chg_desc
-     */
+
     private String po5ChgDesc;
-    /**
-     * po5_chg_rate
-     */
+
     private BigDecimal po5ChgRate;
-    /**
-     * po5_ex_rate
-     */
+
     private BigDecimal po5ExRate;
-    /**
-     * po5_no
-     */
+
     private String po5No;
-    /**
-     * po5_remk
-     */
+
     private String po5Remk;
+    
     private Integer id;
+    
     public PurchaseOrderCharge() {
 
     }
