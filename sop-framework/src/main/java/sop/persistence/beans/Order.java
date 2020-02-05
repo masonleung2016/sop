@@ -15,7 +15,9 @@ public class Order extends AbstractDO {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    
     private String orderNum;
+    
     private Date importdatetime;
 
     public Integer getId() {
