@@ -9,15 +9,17 @@ import dwz.dal.object.AbstractDO;
  */
 
 public class Template extends AbstractDO {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    
     private Integer fkItemMaster;
+    
     private String name;
+    
     private String labelEng;
+    
     private String labelChn;
 
     public Integer getId() {
@@ -59,6 +61,4 @@ public class Template extends AbstractDO {
     public void setLabelChn(String labelChn) {
         this.labelChn = labelChn;
     }
-
-
 }
