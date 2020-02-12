@@ -11,39 +11,26 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.persistence.beans
  */
 
-
 public class PurchaseOrderLc extends BaseBean {
 
-    /**
-     * potx4lc
-     */
     private static final long serialVersionUID = -185248557316796065L;
-    /**
-     * po4_exp_date
-     */
+
     private Date po4ExpDate;
-    /**
-     * po4_lc_amt
-     */
+
     private BigDecimal po4LcAmt;
-    /**
-     * po4_lc_no
-     */
+
     private String po4LcNo;
+
     private String encodePo4LcNo;
-    /**
-     * po4_no
-     */
+
     private String po4No;
-    /**
-     * po4_paid_amt
-     */
+
     private BigDecimal po4PaidAmt;
-    /**
-     * po4_paid_date
-     */
+
     private Date po4PaidDate;
+
     private Integer id;
+    
     public PurchaseOrderLc() {
 
     }
