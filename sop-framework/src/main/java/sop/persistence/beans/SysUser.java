@@ -9,16 +9,19 @@ import dwz.dal.object.AbstractDO;
  */
 
 public class SysUser extends AbstractDO {
-    /**
-     * table users
-     */
+
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    
     private String coCode;
+    
     private String usrId;
+    
     private String usrName;
+    
     private String usrPass;
+    
     private String usrLevel;
 
     private String usrRole;
@@ -78,6 +81,4 @@ public class SysUser extends AbstractDO {
     public void setUsrRole(String usrRole) {
         this.usrRole = usrRole;
     }
-
-
 }
