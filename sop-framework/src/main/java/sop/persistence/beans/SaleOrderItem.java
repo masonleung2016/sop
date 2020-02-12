@@ -8,79 +8,46 @@ import java.math.BigDecimal;
  * @Package: sop.persistence.beans
  */
 
-
 public class SaleOrderItem extends BaseBean {
 
-    /**
-     * sotx2
-     */
     private static final long serialVersionUID = -185248557316796065L;
+    
     private Integer id;
-    /**
-     * so2_no
-     */
+
     private String so2No;
-    /**
-     * so2_off_sh_no_pfix
-     */
+
     private String so2OffShNoPfix;
-    /**
-     * so2_off_sh_no
-     */
+
     private String so2OffShNo;
-    /**
-     * so2_it_cat
-     */
+
     private String so2ItCat;
-    /**
-     * so2_it_no
-     */
+
     private String so2ItNo;
-    /**
-     * so2_it_suffix
-     */
+
     private String so2ItSuffix;
-    /**
-     * so2_it_name
-     */
+
     private String so2ItName;
-    /**
-     * so2_ord_qty
-     */
+
     private BigDecimal so2OrdQty;
-    /**
-     * so2_shd_qty
-     */
+
     private BigDecimal so2ShdQty;
-    /**
-     * so2_uom
-     */
+
     private String so2Uom;
-    /**
-     * so2_uprice
-     */
+
     private BigDecimal so2Uprice;
-    /**
-     * so2_amt
-     */
+
     private BigDecimal so2Amt;
-    /**
-     * so2_remk
-     */
+
     private String so2Remk;
-    /**
-     * so2_it_details
-     */
+
     private String so2ItDetails;
-    /**
-     * so2_cu_it_no
-     */
+
     private String so2CuItNo;
-    /**
-     * so2_ean
-     */
+
     private String so2Ean;
+    
     private String so2ItCatNoSuffix;
+    
     public SaleOrderItem() {
 
     }
