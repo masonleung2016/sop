@@ -6,20 +6,22 @@ package sop.persistence.beans;
  * @Package: sop.persistence.beans
  */
 
-
 public class Txn extends BaseBean {
-    /**
-     * table txtype
-     */
+
     private static final long serialVersionUID = 1L;
 
     private Integer id;
 
     private String txtCode;
+    
     private String txtDesc;
+    
     private String txtIn;
+    
     private String txtOut;
+    
     private String txtDefLocIn;
+    
     private String txtDefLocOut;
 
     public Integer getId() {
