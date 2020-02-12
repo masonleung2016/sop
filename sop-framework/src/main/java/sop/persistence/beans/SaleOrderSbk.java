@@ -9,36 +9,23 @@ import java.util.Date;
  * @Package: sop.persistence.beans
  */
 
-
 public class SaleOrderSbk extends BaseBean {
 
-    /**
-     * sotx3sbk
-     */
     private static final long serialVersionUID = -185248557316796065L;
+    
     private Integer id;
-    /**
-     * co_code
-     */
-    private String coCode;
-    /**
-     * so3_no
-     */
-    private String so3No;
-    /**
-     * so3_exp_shp_date
-     */
-    private Date so3ExpShpDate;
-    /**
-     * so3_exp_shp_qty
-     */
-    private BigDecimal so3ExpShpQty;
-    /**
-     * so3_remk
-     */
-    private String so3Remk;
-    public SaleOrderSbk() {
 
+    private String coCode;
+
+    private String so3No;
+
+    private Date so3ExpShpDate;
+
+    private BigDecimal so3ExpShpQty;
+
+    private String so3Remk;
+    
+    public SaleOrderSbk() {
     }
 
     @Override
