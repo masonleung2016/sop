@@ -6,50 +6,80 @@ package sop.persistence.beans;
  * @Package: sop.persistence.beans
  */
 
-
 public class Supplier extends BaseBean {
-    /**
-     * table supp
-     */
+
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    
     private String code;
+    
     private String name;
-    //表是suChn，实际表示的值，应该是email
+
 //	private String suChn;
+    
     private String email;
+    
     private String contactPerson;
+    
     private String address;
+    
     private String tel;
+    
     private String fax;
+    
     private String payTerm;
+    
     private String credit;
+    
     private String type;
+    
     /*这中间的field在表中都是空null，应该是不用了。*/
     private String su_con_per1;
+    
     private String su_con_per2;
+    
     private String su_chn_add;
+    
     private String su_tel1_cty;
+    
     private String su_tel1_no;
+    
     private String su_tel2_cty;
+    
     private String su_tel2_no;
+    
     private String su_fax1_cty;
+    
     private String su_fax1_no;
+    
     private String su_fax2_cty;
+    
     private String su_fax2_no;
+    
     private String su_pterm;
+    
     private String su_ccy;
+    
     private String su_cr_bal;
+    
     private String su_cr_used;
+    
     private String su_gl_inf_settle;
+    
     /*这中间的field在表中都是空null，应该是不用了。*/
     private String websiteUrl;
+    
     private String fscCertCode;
+    
     private String fscValidFm;
+    
     private String fscValidTo;
+    
     private String bsciCertCode;
+    
     private String bsciValidFm;
+    
     private String bsciValidTo;
 
     public Integer getId() {
@@ -323,6 +353,4 @@ public class Supplier extends BaseBean {
     public void setBsciValidTo(String bsciValidTo) {
         this.bsciValidTo = bsciValidTo;
     }
-
-
 }
