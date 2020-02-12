@@ -9,164 +9,86 @@ import java.util.Date;
  * @Package: sop.persistence.beans
  */
 
-
 public class SaleOrder extends BaseBean {
 
     private static final long serialVersionUID = 1L;
 
     private Integer id;
 
-    /**
-     * co_code
-     */
     private String coCode;
-    /**
-     * so_no
-     */
+
     private String soNo;
-    /**
-     * so_cu_code
-     */
+
     private String soCuCode;
-    /**
-     * so_cu_po_no
-     */
+
     private String soCuPoNo;
-    /**
-     * so_date
-     */
+
     private Date soDate;
-    /**
-     * so_lshp_date
-     */
+
     private Date soLshpDate;
-    /**
-     * so_etd
-     */
+
     private Date soEtd;
-    /**
-     * so_curr
-     */
+
     private String soCurr;
-    /**
-     * so_fob
-     */
+
     private String soFob;
-    /**
-     * so_fob_port
-     */
+
     private String soFobPort;
-    /**
-     * so_cnf
-     */
+
     private String soCnf;
-    /**
-     * so_cnf_port
-     */
+
     private String soCnfPort;
-    /**
-     * so_su_code
-     */
+ 
     private String soSuCode;
-    /**
-     * so_cont_req
-     */
+
     private String soContReq;
-    /**
-     * so_dest
-     */
+
     private String soDest;
-    /**
-     * so_routing
-     */
+
     private String soRouting;
-    /**
-     * so_su_con_no
-     */
+
     private String soSuConNo;
-    /**
-     * so_su_pterm
-     */
+
     private String soSuPterm;
-    /**
-     * so_del_details
-     */
+
     private String soDelDetails;
-    /**
-     * so_pay_term
-     */
+
     private String soPayTerm;
-    /**
-     * so_odtl_prof
-     */
+
     private String soOdtlProf;
-    /**
-     * so_ord_tot_amt
-     */
+
     private BigDecimal soOrdTotAmt;
-    /**
-     * so_ord_amt_word
-     */
+
     private String soOrdAmtWord;
-    /**
-     * so_ord_tot_chg
-     */
+
     private BigDecimal soOrdTotChg;
-    /**
-     * so_ord_tot_net
-     */
+
     private BigDecimal soOrdTotNet;
-    /**
-     * so_handle
-     */
+
     private String soHandle;
-    /**
-     * so_paid_status
-     */
+
     private String soPaidStatus;
-    /**
-     * so_bnk_elc
-     */
+
     private String soBnkElc;
-    /**
-     * so_bnk_tf
-     */
+
     private String soBnkTf;
-    /**
-     * so_status
-     */
+
     private String soStatus;
-    /**
-     * so_pterm
-     */
+
     private String soPterm;
-    /**
-     * so_pterm_days
-     */
+
     private BigDecimal soPtermDays;
-    /**
-     * so_dep_paid
-     */
+
     private BigDecimal soDepPaid;
-    /**
-     * so_dep_ratio
-     */
+
     private BigDecimal soDepRatio;
-    /**
-     * so_dep_date
-     */
+
     private Date soDepDate;
-    /**
-     * so_dest_final
-     */
+
     private String soDestFinal;
-    /**
-     * so_cu_name
-     */
+
     private String soCuName;
-    /**
-     * so_su_name
-     */
+
     private String soSuName;
 
     public Integer getId() {
