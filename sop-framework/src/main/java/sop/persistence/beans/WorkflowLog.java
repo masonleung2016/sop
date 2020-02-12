@@ -12,7 +12,6 @@ public class WorkflowLog extends BaseBean {
 
     private String qcNo;
 
-
     private String comment;
 
     public String getComment() {
