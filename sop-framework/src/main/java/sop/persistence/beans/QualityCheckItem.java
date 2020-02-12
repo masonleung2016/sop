@@ -6,321 +6,134 @@ package sop.persistence.beans;
  * @Package: sop.persistence.beans
  */
 
-
 public class QualityCheckItem extends QcItemBase {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * qc2_no
-     */
     private String qc2No;
 
-    /**
-     * qc2_pic
-     */
     private String qc2Pic;
 
-    /**
-     * qc2_part_pic
-     */
     private String qc2PartPic;
 
-    /**
-     * qc2_it_cat
-     */
     private String qc2ItCat;
 
-    /**
-     * qc2_it_no
-     */
     private String qc2ItNo;
 
-    /**
-     * qc2_it_suffix
-     */
     private String qc2ItSuffix;
 
-    /**
-     * qc2_it_cat_no_suffix
-     */
     private String qc2ItCatNoSuffix;
 
-    /**
-     * qc2_it_name
-     */
     private String qc2ItName;
 
-    /**
-     * qc2_it_details
-     */
     private String qc2ItDetails;
 
-    /**
-     * 验货通知单 qc2_have_ins_not
-     */
     private boolean qc2HaveInsNot;
 
-    /**
-     * 验货通知单 qc2_ins_not
-     */
     private String qc2InsNot;
 
-    /**
-     * qc2_bzmx
-     */
     private String qc2Bzmx;
 
-    /**
-     * qc2_bz
-     */
     private String qc2Bz;
 
-    /**
-     * qc2_bzwlqd
-     */
     private String qc2Bzwlqd;
 
-    /**
-     * qc2_dhgj
-     */
     private String qc2Dhgj;
 
-    /**
-     * qc2_cp
-     */
     private String qc2Cp;
 
-    /**
-     * qc2_ins_rep
-     */
     private String qc2InsRep;
 
-    /**
-     * qc2_have_zgyq
-     */
     //private boolean qc2HaveZgyq;
 
-    /**
-     * qc2_zgyq
-     */
     private String qc2Zgyq;
 
-    /**
-     * qc2_have_sfcsbg
-     */
     //private boolean qc2HaveSfcsbg;
 
-    /**
-     * qc2_sfcsbg
-     */
     private String qc2Sfcsbg;
 
-    /**
-     * qc2_have_ysjc
-     */
     //private boolean qc2HaveYsjc;
 
-    /**
-     * qc2_ysjc
-     */
     private String qc2Ysjc;
 
-    /**
-     * qc2_have_syk
-     */
     //private boolean qc2HaveSyk;
 
-    /**
-     * qc2_syk
-     */
     private String qc2Syk;
 
-    /**
-     * qc2_have_fyhsm
-     */
     //private boolean qc2HaveFyhsm;
 
-    /**
-     * qc2_fyhsm
-     */
     private String qc2Fyhsm;
 
-    /**
-     * qc2_have_sy
-     */
     //private boolean qc2HaveSy;
 
-    /**
-     * qc2_sy
-     */
     private String qc2Sy;
 
-    /**
-     * qc2_have_tpcc
-     */
     //private boolean qc2HaveTpcc;
 
-    /**
-     * qc2_tpcc
-     */
     private String qc2Tpcc;
 
-    /**
-     * qc2_have_wty
-     */
     //private boolean qc2HaveWty;
 
-    /**
-     * qc2_wty
-     */
     private String qc2Wty;
 
-    /**
-     * qc2_have_kx
-     */
     //private boolean qc2HaveKx;
 
-    /**
-     * qc2_kx
-     */
     private String qc2Kx;
 
-    /**
-     * qc2_have_cc
-     */
     //private boolean qc2HaveCc;
 
-    /**
-     * qc2_cc
-     */
     private String qc2Cc;
 
-    /**
-     * qc2_have_lljybg
-     */
     //private boolean qc2HaveLljybg;
 
-    /**
-     * qc2_lljybg
-     */
     private String qc2Lljybg;
 
-    /**
-     * qc2_have_zcjyrbg
-     */
     //private boolean qc2HaveZcjyrbg;
 
-    /**
-     * qc2_zcjyrbg
-     */
     private String qc2Zcjyrbg;
 
-    /**
-     * qc2_have_scjhkz
-     */
     //private boolean qc2HaveScjhkz;
 
-    /**
-     * qc2_scjhkz
-     */
     private String qc2Scjhkz;
 
-    /**
-     * qc2_have_gzcsxq
-     */
     //private boolean qc2HaveGzcsxq;
 
-    /**
-     * qc2_gzcsxq
-     */
     private String qc2Gzcsxq;
 
-    /**
-     * qc2_have_jg
-     */
     //private boolean qc2HaveJg;
 
-    /**
-     * qc2_jg
-     */
     private String qc2Jg;
 
-    /**
-     * qc2_have_zn
-     */
     //private boolean qc2HaveZn;
 
-    /**
-     * qc2_zn
-     */
     private String qc2Zn;
 
-    /**
-     * qc2_have_gfx
-     */
     //private boolean qc2HaveGfx;
 
-    /**
-     * qc2_gfx
-     */
     private String qc2Gfx;
 
-    /**
-     * qc2_have_clsj
-     */
     //private boolean qc2HaveClsj;
 
-    /**
-     * qc2_clsj
-     */
     private String qc2Clsj;
 
-    /**
-     * qc2_have_ycqktzcld
-     */
     //private boolean qc2HaveYcqktzcld;
 
-    /**
-     * qc2_ycqktzcld
-     */
     private String qc2Ycqktzcld;
 
-    /**
-     * qc2_have_wpcgz
-     */
     //private boolean qc2HaveWpcgz;
 
-    /**
-     * qc2_wpcgz
-     */
     private String qc2Wpcgz;
 
-    /**
-     * qc2_have_csyq
-     */
     //private boolean qc2HaveCsyq;
 
-    /**
-     * qc2_csyq
-     */
     private String qc2Csyq;
 
-    /**
-     * qc2_have_yhzj
-     */
     //private boolean qc2HaveYhzj;
 
-    /**
-     * qc2_yhzj
-     */
     private String qc2Yhzj;
 
-
-    /**
-     * qc2_checklist
-     */
     private String qc2Cl;
+    
     private Integer id;
 
     public QualityCheckItem() {
@@ -667,6 +480,4 @@ public class QualityCheckItem extends QcItemBase {
     public void setQc2Cl(String qc2cl) {
         this.qc2Cl = qc2cl;
     }
-
-
 }
