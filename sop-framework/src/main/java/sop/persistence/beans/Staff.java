@@ -7,13 +7,13 @@ package sop.persistence.beans;
  */
 
 public class Staff extends BaseBean {
-    /**
-     * table staff
-     */
+
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    
     private String sfCode;
+    
     private String sfName;
 
     public Integer getId() {
