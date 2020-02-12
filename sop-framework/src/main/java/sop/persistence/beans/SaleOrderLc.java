@@ -11,45 +11,29 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.persistence.beans
  */
 
-
 public class SaleOrderLc extends BaseBean {
 
-    /**
-     * sotx4lc
-     */
     private static final long serialVersionUID = -185248557316796065L;
+    
     private Integer id;
-    /**
-     * co_code
-     */
-    private String coCode;
-    /**
-     * so4_no
-     */
-    private String so4No;
-    /**
-     * so4_lc_no
-     */
-    private String so4LcNo;
-    private String encodeSo4LcNo;
-    /**
-     * so4_exp_date
-     */
-    private Date so4ExpDate;
-    /**
-     * so4_lc_amt
-     */
-    private BigDecimal so4LcAmt;
-    /**
-     * so4_settle_date
-     */
-    private Date so4SettleDate;
-    /**
-     * so4_settle_amt
-     */
-    private BigDecimal so4SettleAmt;
-    public SaleOrderLc() {
 
+    private String coCode;
+
+    private String so4No;
+
+    private String so4LcNo;
+    
+    private String encodeSo4LcNo;
+
+    private Date so4ExpDate;
+
+    private BigDecimal so4LcAmt;
+
+    private Date so4SettleDate;
+
+    private BigDecimal so4SettleAmt;
+    
+    public SaleOrderLc() {
     }
 
     @Override
