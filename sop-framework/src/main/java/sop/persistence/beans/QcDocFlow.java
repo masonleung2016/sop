@@ -8,9 +8,7 @@ import java.io.Serializable;
  * @Package: sop.persistence.beans
  */
 
-
 public class QcDocFlow extends BaseBean {
-
 
     private String seqNo;
 
