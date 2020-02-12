@@ -9,95 +9,55 @@ import java.math.BigDecimal;
  */
 public class PurchaseOrderItem extends BaseBean {
 
-    /**
-     * potx2
-     */
     private static final long serialVersionUID = -185248557316796065L;
-    /**
-     * po2_amt
-     */
-    private BigDecimal po2Amt;
-    /**
-     * po2_appendix
-     */
-    private String po2Appendix;
-    /**
-     * po2_article
-     */
-    private String po2Article;
-    /**
-     * po2_ean
-     */
-    private String po2Ean;
-    /**
-     * po2_exp_ctn_pcs
-     */
-    private String po2ExpCtnPcs;
-    /**
-     * po2_exp_uom
-     */
-    private String po2ExpUom;
-    /**
-     * po2_inn_ctn_pcs
-     */
-    private String po2InnCtnPcs;
-    /**
-     * po2_inn_uom
-     */
-    private String po2InnUom;
-    /**
-     * po2_it_cat
-     */
-    private String po2ItCat;
-    /**
-     * po2_it_details
-     */
-    private String po2ItDetails;
-    /**
-     * po2_it_name
-     */
-    private String po2ItName;
-    /**
-     * po2_it_no
-     */
-    private String po2ItNo;
-    /**
-     * po2_it_suffix
-     */
-    private String po2ItSuffix;
-    /**
-     * po2_no
-     */
-    private String po2No;
-    /**
-     * po2_ord_qty
-     */
-    private BigDecimal po2OrdQty;
-    /**
-     * po2_remk
-     */
-    private String po2Remk;
-    /**
-     * po2_shd_qty
-     */
-    private BigDecimal po2ShdQty;
-    /**
-     * po2_so_no
-     */
-    private String po2SoNo;
-    /**
-     * po2_uom
-     */
-    private String po2Uom;
-    /**
-     * po2_uprice
-     */
-    private BigDecimal po2Uprice;
-    private String po2ItCatNoSuffix;
-    private Integer id;
-    public PurchaseOrderItem() {
 
+    private BigDecimal po2Amt;
+
+    private String po2Appendix;
+
+    private String po2Article;
+
+    private String po2Ean;
+
+    private String po2ExpCtnPcs;
+
+    private String po2ExpUom;
+
+    private String po2InnCtnPcs;
+
+    private String po2InnUom;
+
+    private String po2ItCat;
+
+    private String po2ItDetails;
+
+    private String po2ItName;
+
+    private String po2ItNo;
+
+    private String po2ItSuffix;
+
+    private String po2No;
+
+    private BigDecimal po2OrdQty;
+
+    private String po2Remk;
+
+    private BigDecimal po2ShdQty;
+
+    private String po2SoNo;
+
+    private String po2Uom;
+
+    private BigDecimal po2Uprice;
+    
+    private String po2ItCatNoSuffix;
+    
+    private Integer id;
+    
+    public PurchaseOrderItem() {
     }
+    
     public PurchaseOrderItem(ItemMaster itemMaster) {
         this.po2SoNo = "0000000000";
         this.po2ItCat = itemMaster.getItCat();
