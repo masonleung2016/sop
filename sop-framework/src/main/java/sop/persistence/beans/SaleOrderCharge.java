@@ -10,51 +10,32 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.persistence.beans
  */
 
-
 public class SaleOrderCharge extends BaseBean {
 
-    /**
-     * sotx5
-     */
     private static final long serialVersionUID = -185248557316796065L;
+
     private Integer id;
-    /**
-     * co_code
-     */
+
     private String coCode;
-    /**
-     * so5_ccy
-     */
+
     private String so5Ccy;
-    /**
-     * so5_chg_amt
-     */
+
     private BigDecimal so5ChgAmt;
-    /**
-     * so5_chg_code
-     */
+
     private String so5ChgCode;
+    
     private String encodeSo5ChgCode;
-    /**
-     * so5_chg_desc
-     */
+
     private String so5ChgDesc;
-    /**
-     * so5_chg_rate
-     */
+
     private BigDecimal so5ChgRate;
-    /**
-     * so5_ex_rate
-     */
+
     private BigDecimal so5ExRate;
-    /**
-     * so5_no
-     */
+
     private String so5No;
-    /**
-     * so5_remk
-     */
+
     private String so5Remk;
+    
     public SaleOrderCharge() {
 
     }
