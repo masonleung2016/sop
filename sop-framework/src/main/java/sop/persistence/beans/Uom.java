@@ -11,21 +11,26 @@ import dwz.dal.object.AbstractDO;
  * @Package: sop.persistence.beans
  */
 
-
 public class Uom extends AbstractDO {
-    /**
-     * table uom
-     */
+
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+    
     private String uCode;
+    
     private String uDesc;
+    
     private String uChn;
+    
     private BigDecimal uRate;
+    
     private String crtUsr;
+    
     private Date crtDate;
+    
     private String modUsr;
+    
     private Date modDate;
 
     public Integer getId() {
