@@ -14,21 +14,34 @@ import sop.vo.QualityCheckDetailsVo;
 public class QualityCheck extends BaseBean {
 
     private static final long serialVersionUID = 1L;
+    
     private String qcNo;
+    
     private String qcStatus;
+    
     private String qcPoNoRef;
+    
     private String qcSoNoRef;
+    
     private String qcOfNoRef;
+    
     private String assignee;
+    
     private String comment;
+    
     private Date startDate;
+    
     private Date dueDate;
+    
     private Date actualStartDate;
+    
     private Date actualEndDate;
+    
     private Integer id;
+    
     public QualityCheck() {
-
     }
+    
     public QualityCheck(String qcNo, User user, QualityCheckDetailsVo currentQc) {
         this.qcNo = qcNo;
         this.actualStartDate = currentQc.getActualStartDate();
@@ -52,7 +65,6 @@ public class QualityCheck extends BaseBean {
         setCrtDate(new Date());
         setModDate(new Date());
     }
-
 
     public QualityCheck(String qcNo, User user) {
         this.qcNo = qcNo;
