@@ -9,30 +9,20 @@ import java.util.Date;
  * @Package: sop.persistence.beans
  */
 
-
 public class PurchaseOrderSbk extends BaseBean {
 
-    /**
-     * potx3sbk
-     */
     private static final long serialVersionUID = -185248557316796065L;
-    /**
-     * po3_exp_shp_date
-     */
+
     private Date po3ExpShpDate;
-    /**
-     * po3_exp_shp_qty
-     */
+
     private BigDecimal po3ExpShpQty;
-    /**
-     * po3_no
-     */
+
     private String po3No;
-    /**
-     * po3_remk
-     */
+
     private String po3Remk;
+
     private Integer id;
+
     public PurchaseOrderSbk() {
 
     }
