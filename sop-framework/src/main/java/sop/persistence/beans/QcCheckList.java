@@ -8,11 +8,14 @@ import java.io.Serializable;
  * @Package: sop.persistence.beans
  */
 
-
 public class QcCheckList extends BaseBean {
+
     private String qctNo;
+
     private String category;
+
     private String template;
+
     private String qctDetail;
 
     public String getCategory() {
@@ -51,5 +54,4 @@ public class QcCheckList extends BaseBean {
     public void setQctDetail(String qctDetail) {
         this.qctDetail = qctDetail;
     }
-
 }
