@@ -8,26 +8,42 @@ import java.math.BigDecimal;
  * @Package: sop.reports.vo
  */
 
-
 public class ItemMaterReport {
 
     private String it_cat;
+    
     private String it_no;
+    
     private String it_suffix;
+    
     private String it_name;
+    
     private BigDecimal it_pkg_20_qty;
+    
     private BigDecimal it_pkg_40_qty;
+    
     private BigDecimal it_cbm_total;
+    
     private BigDecimal it_pkg_l_cm;
+    
     private BigDecimal it_pkg_w_cm;
+    
     private BigDecimal it_pkg_h_cm;
+    
     private String it_uom_inn;
+    
     private String it_pkg_exp_pcs;
+    
     private String it_pkg_detail;
+    
     private String it_desc_of_sh;
+    
     private String it_desc_fty_po;
+    
     private String it_fty_name;
+    
     private String it_image_1;
+    
     private String it_fty_code;
 
     public String getIt_fty_code() {
@@ -173,6 +189,4 @@ public class ItemMaterReport {
     public void setIt_fty_name(String it_fty_name) {
         this.it_fty_name = it_fty_name;
     }
-
-
 }
