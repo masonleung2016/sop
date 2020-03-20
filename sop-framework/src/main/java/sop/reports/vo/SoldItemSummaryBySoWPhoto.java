@@ -7,8 +7,11 @@ package sop.reports.vo;
  */
 
 public class SoldItemSummaryBySoWPhoto {
+    
     private String it_cat_no_suffix;
+    
     private String so2_cu_it_no;
+    
     private String it_image_1;
 
     public String getIt_cat_no_suffix() {
