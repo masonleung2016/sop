@@ -8,21 +8,34 @@ import java.math.BigDecimal;
  * @Package: sop.reports.vo
  */
 
-
 public class CostPriceList {
+    
     private String no;
+    
     private String date;
+    
     private String vto;
+    
     private String attn;
+    
     private String itno;
+    
     private String itname;
+    
     private BigDecimal it_pkg_20_qty;
+    
     private BigDecimal it_pkg_40_qty;
+    
     private BigDecimal it_fty_fob_cost;
+    
     private String it_fty_fob_port;
+    
     private String it_image_1;
+    
     private String it_fty_code;
+    
     private String it_fty_name;
+    
     private String it_fty_item_no;
 
     public String getNo() {
@@ -136,5 +149,4 @@ public class CostPriceList {
     public void setIt_fty_item_no(String it_fty_item_no) {
         this.it_fty_item_no = it_fty_item_no;
     }
-
 }
