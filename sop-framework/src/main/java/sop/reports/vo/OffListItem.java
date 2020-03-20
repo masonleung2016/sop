@@ -6,14 +6,20 @@ package sop.reports.vo;
  * @Package: sop.reports.vo
  */
 
-
 public class OffListItem {
+    
     private String off_sh_no_pfix;
+    
     private String off_sh_no;
+    
     private String it_no;
+    
     private String off2_it_name;
+    
     private String off2_curr_code;
+    
     private String of_fob;
+    
     private String of_cnf;
 
     public String getOff_sh_no_pfix() {
@@ -71,6 +77,4 @@ public class OffListItem {
     public void setOf_cnf(String of_cnf) {
         this.of_cnf = of_cnf;
     }
-
-
 }
