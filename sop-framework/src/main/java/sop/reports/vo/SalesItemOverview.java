@@ -8,28 +8,48 @@ import java.math.BigDecimal;
  * @Package: sop.reports.vo
  */
 
-
 public class SalesItemOverview {
+    
     private String so_cu_code;
+    
     private String so_su_code;
+    
     private String so_no;
+    
     private String so_cu_po_no;
+    
     private String so_handle;
+    
     private String so2_ean;
+    
     private String itno;
+    
     private BigDecimal so2_uprice;
+    
     private BigDecimal no1;
+    
     private BigDecimal no2;
+    
     private BigDecimal no3;
+    
     private String cu_name;
+    
     private String su_name;
+    
     private String po2_no;
+    
     private BigDecimal po2_uprice;
+    
     private BigDecimal it_pkg_40HQ_qty;
+    
     private String it_image_1;
+    
     private String it_name;
+    
     private String year1;
+    
     private String year2;
+    
     private String year3;
 
     public String getSo_cu_code() {
@@ -199,5 +219,4 @@ public class SalesItemOverview {
     public void setYear3(String year3) {
         this.year3 = year3;
     }
-
 }
