@@ -11,12 +11,8 @@ import dwz.dal.object.AbstractDO;
  * @Package: sop.reports.vo
  */
 
-
 public class OffAbCostPrice extends AbstractDO {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private String off_sh_no_pfix_no;
