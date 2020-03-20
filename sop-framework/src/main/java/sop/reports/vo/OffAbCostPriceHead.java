@@ -8,20 +8,22 @@ import java.util.Date;
  * @Package: sop.reports.vo
  */
 
-
 public class OffAbCostPriceHead {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private String offShNoPfixNo;
+    
     private String coName;
+    
     private String cuName;
+    
     private String offCustAttn;
+    
     private String offShNoPfix;
+    
     private String offShNo;
+    
     private Date offDate;
 
     public OffAbCostPriceHead() {
