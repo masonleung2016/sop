@@ -9,22 +9,36 @@ import java.util.Date;
  * @Package: sop.reports.vo
  */
 
-
 public class ShipmentScheduleFactory {
+    
     private String co_code;
+    
     private String so_no;
+    
     private String su_name;
+    
     private String cu_code;
+    
     private String cu_name;
+    
     private String it_cat_no_suffix;
+    
     private String so2_it_name;
+    
     private String so_cont_req;
+    
     private BigDecimal so2_ord_qty;
+    
     private String so2_uom;
+    
     private BigDecimal so2_uprice;
+    
     private BigDecimal so2_amt;
+    
     private String so_fob_port;
+    
     private Date so_lshp_date;
+    
     private String so_handle;
 
     public String getCo_code() {
