@@ -8,28 +8,48 @@ import java.math.BigDecimal;
  * @Package: sop.reports.vo
  */
 
-
 public class ProformaInvoice {
+    
     private String customer;
+    
     private String cuadd;
+    
     private String attn;
+    
     private String orderno;
+    
     private String yourno;
+    
     private String dest;
+    
     private String fob;
+    
     private String curr;
+    
     private String itno;
+    
     private String art;
+    
     private String ean;
+    
     private String itname;
+    
     private String decription;
+    
     private BigDecimal qty;
+    
     private String uom;
+    
     private BigDecimal so2_uprice;
+    
     private BigDecimal so2_amt;
+    
     private String remarks;
+    
     private String container;
+    
     private String shipment;
+    
     private String terms;
 
     public String getCustomer() {
@@ -199,5 +219,4 @@ public class ProformaInvoice {
     public void setTerms(String terms) {
         this.terms = terms;
     }
-
 }
