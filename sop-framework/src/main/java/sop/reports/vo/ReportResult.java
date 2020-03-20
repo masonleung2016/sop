@@ -8,18 +8,18 @@ import java.util.List;
  * @Package: sop.reports.vo
  */
 
-
 public class ReportResult implements java.io.Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private String status = "0";
+    
     private Integer dataCount = 0;
+    
     private String fileName;
+    
     private String reportHtml;
+    
     private List<ReportDownload> reportDownloads;
 
     public String getStatus() {
