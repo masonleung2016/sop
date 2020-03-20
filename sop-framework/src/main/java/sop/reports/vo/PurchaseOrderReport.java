@@ -8,63 +8,118 @@ import java.math.BigDecimal;
  * @Package: sop.reports.vo
  */
 
-
 public class PurchaseOrderReport {
+    
     private String pono;
+    
     private String podate;
+    
     private String suppname;
+    
     private String cntreq;
+    
     private String scno;
+    
     private String shipment;
+    
     private String etd;
+    
     private String dest;
+    
     private String payment;
+    
     private String fobport;
+    
     private String itno;
+    
     private String itname;
+    
     private String article;
+    
     private String ean;
+    
     private String appendix;
+    
     private String unit1;
+    
     private String unit2;
+    
     private BigDecimal qty;
+    
     private String uom;
+    
     private BigDecimal uprice;
+    
     private String curr;
+    
     private BigDecimal amt;
+    
     private String detail;
+    
     private String pkggenflag;
+    
     private String pkggenart;
+    
     private String pkggendtl;
+    
     private String pkggpflag;
+    
     private String pkggpart;
+    
     private String pkggpdtl;
+    
     private String pkgresyflag;
+    
     private String pkgresyart;
+    
     private String pkgresydtl;
+    
     private String pkgartnoflag;
+    
     private String pkgartnoart;
+    
     private String pkgartnodtl;
+    
     private String pkgeanflag;
+    
     private String pkgeanart;
+    
     private String pkgeandtl;
+    
     private String pkglangflag;
+    
     private String pkglangart;
+    
     private String pkglangdtl;
+    
     private String pkgotherflag;
+    
     private String pkgotherart;
+    
     private String pkgotherdtl;
+    
     private String pkginsflag;
+    
     private String pkginsart;
+    
     private String pkginsdtl;
+    
     private String pkgilablflag;
+    
     private String pkgilablart;
+    
     private String pkgilabldtl;
+    
     private String pkgiotherflag;
+    
     private String pkgiotherart;
+    
     private String pkgiotherdtl;
+    
     private String mainmark;
+    
     private String sidemark;
+    
     private String remark;
 
     public String getPono() {
@@ -514,5 +569,4 @@ public class PurchaseOrderReport {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-
 }
