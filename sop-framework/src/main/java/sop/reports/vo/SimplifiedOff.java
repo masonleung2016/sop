@@ -8,26 +8,44 @@ import java.math.BigDecimal;
  * @Package: sop.reports.vo
  */
 
-
 public class SimplifiedOff {
+    
     private String no;
+    
     private String date;
+    
     private String vto;
+    
     private String attn;
+    
     private String code;
+    
     private BigDecimal price;
+    
     private String fob;
+    
     private String itno;
+    
     private String itname;
+    
     private BigDecimal it_pkg_20_qty;
+    
     private BigDecimal it_pkg_40_qty;
+    
     private BigDecimal it_pkg_40HQ_qty;
+    
     private String off2_desc_offer_sh;
+    
     private BigDecimal cbm;
+    
     private String it_uom;
+    
     private String it_pkg_exp_pcs;
+    
     private String it_image_1;
+    
     private String it_pkg_detail;
+    
     private String it_desc_of_sh;
 
     public String getNo() {
@@ -181,5 +199,4 @@ public class SimplifiedOff {
     public void setIt_desc_of_sh(String it_desc_of_sh) {
         this.it_desc_of_sh = it_desc_of_sh;
     }
-
 }
