@@ -11,28 +11,38 @@ import dwz.dal.object.AbstractDO;
  * @Package: sop.reports.vo
  */
 
-
 public class OrderFollowShipmentSchedulePo extends AbstractDO {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private String co_code;
+    
     private String po_no;
+    
     private String so_cu_name;
+    
     private String su_name;
+    
     private String it_cat_no_suffix;
+    
     private String po2_it_name;
+    
     private String po_cont_req;
+    
     private BigDecimal po2_ord_qty;
+    
     private String po2_uom;
+    
     private String po_fob_port;
+    
     private String po_curr;
+    
     private BigDecimal po2_uprice;
+    
     private BigDecimal po2_amt;
+    
     private Date po_etd_date;
+    
     private String so_handle;
 
     public OrderFollowShipmentSchedulePo() {
