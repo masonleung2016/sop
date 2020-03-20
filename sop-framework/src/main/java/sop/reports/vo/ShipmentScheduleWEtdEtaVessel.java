@@ -9,21 +9,34 @@ import java.util.Date;
  * @Package: sop.reports.vo
  */
 
-
 public class ShipmentScheduleWEtdEtaVessel {
+    
     private String so_no;
+    
     private String so_cu_po_no;
+    
     private String so2_cu_it_no;
+    
     private String so2_ean;
+    
     private String it_cat_no_suffix;
+    
     private String so2_it_name;
+    
     private String so_cont_req;
+    
     private BigDecimal so2_ord_qty;
+    
     private String so2_uom;
+    
     private BigDecimal so2_uprice;
+    
     private BigDecimal so2_amt;
+    
     private Date so_lshp_date;
+    
     private String so_status;
+    
     private Date so_etd;
 
     public String getSo_no() {
