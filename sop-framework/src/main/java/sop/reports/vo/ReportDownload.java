@@ -8,13 +8,12 @@ package sop.reports.vo;
 
 public class ReportDownload implements java.io.Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private String fileType;
+    
     private String fileName;
+    
     private String remoteDownloadURL;
 
     public String getFileType() {
