@@ -61,7 +61,8 @@ public class ItemDocServiceMgrImpl extends AbstractBusinessObjectServiceMgr
                     checker.setReturnStr("信息无误");
                 }
             }
-        } else {
+        } else 
+        {
             checker.setSuccess(false);
             checker.setReturnStr("信息为空,保存失败");
         }
