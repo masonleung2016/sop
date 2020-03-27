@@ -19,7 +19,6 @@ import sop.services.ProductItemServiceMgr;
  * @Package: sop.services.impl
  */
 
-
 @Service(ProductItemServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class ProductItemServiceMgrImpl extends AbstractBusinessObjectServiceMgr
@@ -35,6 +34,4 @@ public class ProductItemServiceMgrImpl extends AbstractBusinessObjectServiceMgr
                 rb);
         return items;
     }
-
-
 }
