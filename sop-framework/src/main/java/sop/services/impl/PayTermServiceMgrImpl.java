@@ -23,7 +23,6 @@ import sop.vo.PayTermVo;
  * @Package: sop.services.impl
  */
 
-
 @Transactional(rollbackFor = Exception.class)
 @Service(PayTermServiceMgr.SERVICE_NAME)
 public class PayTermServiceMgrImpl extends AbstractBusinessObjectServiceMgr
