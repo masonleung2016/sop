@@ -1,6 +1,5 @@
 package sop.services.impl;
 
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -43,7 +42,6 @@ import sop.vo.UomVo;
  * @Date: 2020/1/9 10:43
  * @Package: sop.services.impl
  */
-
 
 @Service(ItemServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
@@ -99,7 +97,6 @@ public class ItemServiceMgrImpl extends AbstractBusinessObjectServiceMgr
         return itemMasterCombos;
     }
 
-
     @Override
     public List<ItemType> getItemTypes() {
         List<ItemType> itemTypes = itemMapper.getAllItemTypes();
@@ -144,7 +141,6 @@ public class ItemServiceMgrImpl extends AbstractBusinessObjectServiceMgr
                     checker.setSuccess(false);
                     checker.setReturnStr("该Item No.已存在");
                 } else {
-
                 }
             }
         } else {
