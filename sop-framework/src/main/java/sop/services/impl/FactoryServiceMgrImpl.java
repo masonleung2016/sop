@@ -119,7 +119,6 @@ public class FactoryServiceMgrImpl extends AbstractBusinessObjectServiceMgr impl
                     checker.setSuccess(false);
                     checker.setReturnStr("该Factory Code已存在");
                 } else {
-
                 }
             }
         } else {
@@ -158,7 +157,6 @@ public class FactoryServiceMgrImpl extends AbstractBusinessObjectServiceMgr impl
                 Integer factoryCodeSuffixInt = Integer.valueOf(factoryCodeSuffix) + 1;
                 factoryCode = factoryCodePrefix + factoryCodeSuffixInt;
             }
-
         }
         return factoryCode;
     }
