@@ -27,7 +27,6 @@ import sop.vo.OrderProductVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(OrderServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class OrderServiceMgrImpl extends AbstractBusinessObjectServiceMgr
@@ -98,8 +97,5 @@ public class OrderServiceMgrImpl extends AbstractBusinessObjectServiceMgr
             params.put("fkProduct", item.getId());
             Integer fkchecklist = orderMapper.addChecklist(params);
         }
-
     }
-
-
 }
