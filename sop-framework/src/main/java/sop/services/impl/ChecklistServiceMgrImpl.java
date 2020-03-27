@@ -15,7 +15,6 @@ import sop.services.ChecklistServiceMgr;
  * @Package: sop.services.impl
  */
 
-
 @Service(ChecklistServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class ChecklistServiceMgrImpl extends AbstractBusinessObjectServiceMgr
