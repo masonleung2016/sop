@@ -38,7 +38,6 @@ import sop.vo.TxnVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(OfferSheetServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class OfferSheetServiceMgrImpl extends AbstractBusinessObjectServiceMgr
@@ -345,7 +344,6 @@ public class OfferSheetServiceMgrImpl extends AbstractBusinessObjectServiceMgr
                 vo.setTo(null);
             }
         }
-
     }
 
     @Override
