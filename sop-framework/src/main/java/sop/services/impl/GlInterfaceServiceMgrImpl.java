@@ -22,7 +22,6 @@ import sop.vo.GlInterfaceVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(GlInterfaceServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class GlInterfaceServiceMgrImpl extends AbstractBusinessObjectServiceMgr
