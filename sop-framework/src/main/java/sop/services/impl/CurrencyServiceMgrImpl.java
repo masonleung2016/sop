@@ -22,7 +22,6 @@ import sop.services.CurrencyServiceMgr;
  * @Package: sop.services.impl
  */
 
-
 @Transactional(rollbackFor = Exception.class)
 @Service(CurrencyServiceMgr.SERVICE_NAME)
 public class CurrencyServiceMgrImpl extends AbstractBusinessObjectServiceMgr implements CurrencyServiceMgr {
