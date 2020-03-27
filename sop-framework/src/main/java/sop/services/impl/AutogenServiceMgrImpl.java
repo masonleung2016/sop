@@ -26,7 +26,6 @@ import sop.vo.CompanyVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(AutogenServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class AutogenServiceMgrImpl extends AbstractBusinessObjectServiceMgr
