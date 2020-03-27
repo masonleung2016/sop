@@ -23,7 +23,6 @@ import sop.services.PackingBomServiceMgr;
  * @Package: sop.services.impl
  */
 
-
 @Service(PackingBomServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class PackingBomServiceMgrImpl extends AbstractBusinessObjectServiceMgr
@@ -87,7 +86,6 @@ public class PackingBomServiceMgrImpl extends AbstractBusinessObjectServiceMgr
         }
     }
 
-
     @Override
     public boolean updatePackingBom(PackingBom PackingBom) {
         try {
@@ -115,13 +113,11 @@ public class PackingBomServiceMgrImpl extends AbstractBusinessObjectServiceMgr
         }
     }
 
-
     @Override
     public List<PackingBom> getAllPackingBoms() {
         List<PackingBom> packingBomList = packingBomMapper.getAllPackingBom();
         return packingBomList;
     }
-
 
     @Override
     public PackingBom getPackingBomByNo(String pbNo) {
