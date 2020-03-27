@@ -23,7 +23,6 @@ import sop.vo.ChargeVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(ChargeServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class ChargeServiceMgrImpl extends AbstractBusinessObjectServiceMgr
