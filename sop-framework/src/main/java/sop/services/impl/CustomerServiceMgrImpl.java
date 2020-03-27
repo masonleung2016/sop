@@ -117,7 +117,6 @@ public class CustomerServiceMgrImpl extends AbstractBusinessObjectServiceMgr imp
                 }
             }
         }
-
     }
 
     @Override
@@ -186,7 +185,6 @@ public class CustomerServiceMgrImpl extends AbstractBusinessObjectServiceMgr imp
                     checker.setSuccess(false);
                     checker.setReturnStr("该Customer Code已存在");
                 } else {
-
                 }
             }
         } else {
