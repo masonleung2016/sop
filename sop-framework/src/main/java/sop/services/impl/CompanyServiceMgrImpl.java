@@ -22,7 +22,6 @@ import sop.vo.CompanyVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(CompanyServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class CompanyServiceMgrImpl extends AbstractBusinessObjectServiceMgr
