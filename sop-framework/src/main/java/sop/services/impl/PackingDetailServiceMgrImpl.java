@@ -23,7 +23,6 @@ import sop.services.PackingDetailServiceMgr;
  * @Package: sop.services.impl
  */
 
-
 @Service(PackingDetailServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class PackingDetailServiceMgrImpl extends AbstractBusinessObjectServiceMgr
@@ -87,7 +86,6 @@ public class PackingDetailServiceMgrImpl extends AbstractBusinessObjectServiceMg
         }
     }
 
-
     @Override
     public boolean updatePackingDetail(PackingDetail PackingDetail) {
         try {
@@ -115,13 +113,11 @@ public class PackingDetailServiceMgrImpl extends AbstractBusinessObjectServiceMg
         }
     }
 
-
     @Override
     public List<PackingDetail> getAllPackingDetails() {
         List<PackingDetail> packingDetailList = packingDetailMapper.getAllPackingDetail();
         return packingDetailList;
     }
-
 
     @Override
     public PackingDetail getPackingDetailByNo(String pdNo) {
