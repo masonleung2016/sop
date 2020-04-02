@@ -22,7 +22,6 @@ import sop.vo.ProductCategoryVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(ProductcatServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class ProductcatServiceMgrImpl extends AbstractBusinessObjectServiceMgr
@@ -107,5 +106,4 @@ public class ProductcatServiceMgrImpl extends AbstractBusinessObjectServiceMgr
             return false;
         }
     }
-
 }
