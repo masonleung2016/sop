@@ -16,7 +16,6 @@ import sop.vo.FactoryVo;
  * @Package: sop.services
  */
 
-
 public interface FactoryServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "factoryServiceMgr";
 
@@ -41,6 +40,4 @@ public interface FactoryServiceMgr extends BusinessObjectServiceMgr {
     Checker checkDecimal(Factory factory);
 
     String getLatestFactoryCodeByPrefix(String getCodeByPrefix);
-
-
 }
