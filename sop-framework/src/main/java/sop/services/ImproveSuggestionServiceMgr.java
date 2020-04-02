@@ -31,6 +31,5 @@ public interface ImproveSuggestionServiceMgr extends BusinessObjectServiceMgr {
 
     boolean deleteImproveSuggestion(String impNo) throws ServiceException;
 
-
     List<ImproveSuggestion> getAllImproveSuggestions();
 }
