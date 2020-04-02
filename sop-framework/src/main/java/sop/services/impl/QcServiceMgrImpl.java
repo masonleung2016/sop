@@ -60,13 +60,11 @@ import sop.vo.QualityCheckDetailsVo;
 import sop.vo.QualityCheckItemVo;
 import sop.vo.QualityCheckVo;
 
-
 /**
  * @Author: LCF
  * @Date: 2020/1/9 10:51
  * @Package: sop.services.impl
  */
-
 
 @Service(QcServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
@@ -520,7 +518,6 @@ public class QcServiceMgrImpl extends AbstractBusinessObjectServiceMgr implement
         detailVo.put(prefix + "poNo", item.getQc2No());
         detailVo.put(prefix + "itemNo", item.getQc2ItCatNoSuffix());
         detailVo.put(prefix + "itemNameEng", item.getQc2ItName());
-
     }
 
     @Override
@@ -533,7 +530,6 @@ public class QcServiceMgrImpl extends AbstractBusinessObjectServiceMgr implement
             exportQcItem2(qualityCheckItem);
             logger.info("==================================handleQcItemPic");
             handleQcItemPic(qualityCheckItem);
-
         }
     }
 
@@ -2372,6 +2368,4 @@ public class QcServiceMgrImpl extends AbstractBusinessObjectServiceMgr implement
         }
         return true;
     }
-
-
 }
