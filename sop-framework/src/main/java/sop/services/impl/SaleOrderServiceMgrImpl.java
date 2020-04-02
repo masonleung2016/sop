@@ -52,7 +52,6 @@ import sop.vo.StaffVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(SaleOrderServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class SaleOrderServiceMgrImpl extends AbstractBusinessObjectServiceMgr
