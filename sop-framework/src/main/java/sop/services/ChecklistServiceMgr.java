@@ -13,5 +13,4 @@ public interface ChecklistServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "checklistServiceMgr";
 
     Checklist getDetailsByFkOrderProduct(Integer fkorder_product);
-
 }
