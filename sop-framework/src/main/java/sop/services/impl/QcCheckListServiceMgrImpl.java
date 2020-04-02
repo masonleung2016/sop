@@ -23,7 +23,6 @@ import sop.services.QcCheckListServiceMgr;
  * @Package: sop.services.impl
  */
 
-
 @Service(QcCheckListServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class QcCheckListServiceMgrImpl extends AbstractBusinessObjectServiceMgr
@@ -115,13 +114,11 @@ public class QcCheckListServiceMgrImpl extends AbstractBusinessObjectServiceMgr
         }
     }
 
-
     @Override
     public List<QcCheckList> getAllQcCheckLists() {
         List<QcCheckList> qcCheckListList = qcCheckListMapper.getAllQcCheckList();
         return qcCheckListList;
     }
-
 
     @Override
     public QcCheckList getQcCheckListByNo(String pbNo) {
