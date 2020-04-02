@@ -18,7 +18,6 @@ import sop.vo.SearchItemConditionVo;
  * @Package: sop.services
  */
 
-
 public interface ItemServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "itemServiceMgr";
 
