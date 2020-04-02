@@ -22,7 +22,6 @@ import sop.vo.StaffVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(StaffServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class StaffServiceMgrImpl extends AbstractBusinessObjectServiceMgr
@@ -112,5 +111,4 @@ public class StaffServiceMgrImpl extends AbstractBusinessObjectServiceMgr
             return false;
         }
     }
-
 }
