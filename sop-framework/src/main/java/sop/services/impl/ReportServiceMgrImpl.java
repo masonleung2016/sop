@@ -1,6 +1,5 @@
 package sop.services.impl;
 
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,14 +42,13 @@ import sop.vo.SoPoConditionVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(ReportServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class ReportServiceMgrImpl extends AbstractBusinessObjectServiceMgr
         implements ReportServiceMgr {
-
     @Autowired
     private OfferSheetMapper offerSheetMapper;
+    
     @Autowired
     private ItemMapper itemMasterMapper;
 
