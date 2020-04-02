@@ -23,7 +23,6 @@ import sop.vo.UomVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(UomServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class UomServiceMgrImpl extends AbstractBusinessObjectServiceMgr
