@@ -1,7 +1,6 @@
 package sop.services;
 
 import java.util.List;
-
 import dwz.framework.sys.business.BusinessObjectServiceMgr;
 import dwz.framework.vo.Checker;
 import dwz.persistence.BaseConditionVO;
