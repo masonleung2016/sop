@@ -18,7 +18,6 @@ import sop.vo.CustomerVo;
  * @Package: sop.services
  */
 
-
 public interface CustomerServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "customerServiceMgr";
 
@@ -44,8 +43,5 @@ public interface CustomerServiceMgr extends BusinessObjectServiceMgr {
 
     Checker checkCustAttn(CustAttn custAttn, Customer customer);
 
-    Map<String, CustAttn> removeCustAttn(String fkAttn,
-                                         Map<String, CustAttn> custAttns);
-
-
+    Map<String, CustAttn> removeCustAttn(String fkAttn, Map<String, CustAttn> custAttns);
 }
