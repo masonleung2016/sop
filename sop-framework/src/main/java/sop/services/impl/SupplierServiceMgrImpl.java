@@ -38,8 +38,7 @@ public class SupplierServiceMgrImpl extends AbstractBusinessObjectServiceMgr imp
     @Override
     public List<Supplier> searchSupplier(BaseConditionVO vo) {
         RowBounds rb = new RowBounds(vo.getStartIndex(), vo.getPageSize());
-        List<Supplier> supplierList = supplierMapper.findPageBreakByCondition(vo,
-                rb);
+        List<Supplier> supplierList = supplierMapper.findPageBreakByCondition(vo,rb);
         return supplierList;
     }
 
