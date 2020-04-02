@@ -1,7 +1,6 @@
 package sop.services;
 
 import java.util.List;
-
 import dwz.framework.sys.business.BusinessObjectServiceMgr;
 import dwz.framework.sys.exception.ServiceException;
 import dwz.framework.vo.Checker;
@@ -34,6 +33,4 @@ public interface CurrencyServiceMgr extends BusinessObjectServiceMgr {
     Checker checkDecimal(Currency currency);
 
     Checker checkCurrency(Currency currency);
-
-
 }
