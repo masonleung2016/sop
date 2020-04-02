@@ -23,7 +23,6 @@ import sop.vo.TxnVo;
  * @Package: sop.services.impl
  */
 
-
 @Service(TxnServiceMgr.SERVICE_NAME)
 @Transactional(rollbackFor = Exception.class)
 public class TxnServiceMgrImpl extends AbstractBusinessObjectServiceMgr
