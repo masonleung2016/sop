@@ -49,7 +49,6 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  * @Package: sop.utils
  */
 
-
 public class Common {
 
     private static final Log log = LogFactory
