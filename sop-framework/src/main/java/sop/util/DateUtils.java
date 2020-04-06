@@ -31,6 +31,7 @@ import sop.util.lang.StringUtil;
 public class DateUtils {
 
     final static Date NULLDATE = (new GregorianCalendar(1111, 10, 11)).getTime();  // index of month from 0 to 11!
+    
     public static int WEEK_DAY_NUM = 7;
 
     /**
