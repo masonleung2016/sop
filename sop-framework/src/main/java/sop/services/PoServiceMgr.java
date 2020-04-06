@@ -22,7 +22,6 @@ import sop.vo.SoPoConditionVo;
  * @Package: sop.services
  */
 
-
 public interface PoServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "poServiceMgr";
 
