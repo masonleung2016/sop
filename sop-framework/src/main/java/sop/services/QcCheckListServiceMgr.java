@@ -14,7 +14,6 @@ import sop.persistence.beans.QcCheckList;
  * @Package: sop.services
  */
 
-
 public interface QcCheckListServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "qcCheckListServiceMgr";
 
@@ -32,10 +31,8 @@ public interface QcCheckListServiceMgr extends BusinessObjectServiceMgr {
 
     boolean deleteQcCheckList(String pbNo) throws ServiceException;
 
-
     List<QcCheckList> getAllQcCheckLists();
 
     List<QcCheckList> getQcCheckListByItemType(int itemType);
-
 
 }
