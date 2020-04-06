@@ -18,7 +18,6 @@ import sop.vo.QualityCheckVo;
  * @Package: sop.services
  */
 
-
 public interface QcServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "qcServiceMgr";
 
@@ -30,13 +29,11 @@ public interface QcServiceMgr extends BusinessObjectServiceMgr {
 
     boolean updateQc(QualityCheck qc, QualityCheckDetailsVo currentQc);
 
-
     public QualityCheckDetailsVo getQualityCheckDetailsVoByFkQcNo(String qcNo);
 
     QualityCheckItem getQcItemByQcItemVo(QcItemBase qcItemVo);
 
     QualityCheckItem getQcItemByUniqueKey(String qc2ItCatNoSuffix);
-
 
     boolean updateQcItem(QualityCheckItem currentQcItem);
 
