@@ -17,7 +17,6 @@ import org.apache.commons.net.ftp.FTPClient;
 
 public class Ftp {
 
-
     /**
      * Description: 向FTP服务器上传文件
      *
