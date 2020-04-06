@@ -44,7 +44,6 @@ public class Sys extends BaseSys {
         return cal.getTime();
     }
 
-
     public static Date getMaxDate() {
         Calendar cal = Calendar.getInstance(Locale.CHINA);
         cal.set(Calendar.YEAR, 9999);
