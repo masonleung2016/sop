@@ -28,5 +28,4 @@ public interface SupplierServiceMgr extends BusinessObjectServiceMgr {
 
     void deleteSupplier(String ccyCode) throws ServiceException;
 
-
 }
