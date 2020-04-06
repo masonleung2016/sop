@@ -100,7 +100,7 @@ public class FilesRemover {
                         buf.append("File housekeep, ");
                     }
                     buf.append(filePath);
-                    //               LogUtil.printInfo(buf.toString());
+                    //            LogUtil.printInfo(buf.toString());
                 } else {
                     try {
                         FileUtils.forceDeleteOnExit(file);
@@ -111,7 +111,7 @@ public class FilesRemover {
                             buf.append("File housekeep, ");
                         }
                         buf.append(filePath);
-                        //                  LogUtil.printInfo(buf.toString());
+                        //                LogUtil.printInfo(buf.toString());
                     } catch (Exception ex) {
                         LOG.error("Exception caused while housekeeping file," + file, ex);
                     }
