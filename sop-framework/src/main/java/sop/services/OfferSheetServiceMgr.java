@@ -21,7 +21,6 @@ import sop.vo.OfferSheetVo;
  * @Package: sop.services
  */
 
-
 public interface OfferSheetServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "offerSheetServiceMgr";
 
@@ -66,6 +65,5 @@ public interface OfferSheetServiceMgr extends BusinessObjectServiceMgr {
     void getCustAttnsByCuCode(OfferSheet currentOfferSheet, OfferSheetCombos offerSheetCombos);
 
     List<CustAttn> getCustAttnsByCuCode(String fkCust);
-
 
 }
