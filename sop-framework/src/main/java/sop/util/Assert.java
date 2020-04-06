@@ -10,19 +10,16 @@ import org.apache.commons.lang.StringUtils;
 
 public class Assert {
 
-
     public static void assertEquals(Object obj, Object obj2, String errorMsg) {
         if (!obj.equals(obj2)) {
             throw new IllegalArgumentException(errorMsg);
         }
     }
 
-
     /**
      * Assert a boolean expression, throwing <code>IllegalArgumentException</code>
      * if the test result is <code>false</code>.
      * <pre class="code">Assert.isTrue(i &gt; 0, "The value must be greater than zero");</pre>
-     *
      * @param expression a boolean expression
      * @param message    the exception message to use if the assertion fails
      * @throws IllegalArgumentException if expression is <code>false</code>
@@ -37,7 +34,6 @@ public class Assert {
      * Assert a boolean expression, throwing <code>IllegalArgumentException</code>
      * if the test result is <code>false</code>.
      * <pre class="code">Assert.isTrue(i &gt; 0);</pre>
-     *
      * @param expression a boolean expression
      * @throws IllegalArgumentException if expression is <code>false</code>
      */
@@ -48,7 +44,6 @@ public class Assert {
     /**
      * Assert that an object is <code>null</code> .
      * <pre class="code">Assert.isNull(value, "The value must be null");</pre>
-     *
      * @param object  the object to check
      * @param message the exception message to use if the assertion fails
      * @throws IllegalArgumentException if the object is not <code>null</code>
@@ -62,7 +57,6 @@ public class Assert {
     /**
      * Assert that an object is <code>null</code> .
      * <pre class="code">Assert.isNull(value);</pre>
-     *
      * @param object the object to check
      * @throws IllegalArgumentException if the object is not <code>null</code>
      */
@@ -73,7 +67,6 @@ public class Assert {
     /**
      * Assert that an object is not <code>null</code> .
      * <pre class="code">Assert.notNull(clazz, "The class must not be null");</pre>
-     *
      * @param object  the object to check
      * @param message the exception message to use if the assertion fails
      * @throws IllegalArgumentException if the object is <code>null</code>
@@ -87,7 +80,6 @@ public class Assert {
     /**
      * Assert that an object is not <code>null</code> .
      * <pre class="code">Assert.notNull(clazz);</pre>
-     *
      * @param object the object to check
      * @throws IllegalArgumentException if the object is <code>null</code>
      */
@@ -99,7 +91,6 @@ public class Assert {
      * Assert that the given String is not empty; that is,
      * it must not be <code>null</code> and not the empty String.
      * <pre class="code">Assert.hasLength(name, "Name must not be empty");</pre>
-     *
      * @param text    the String to check
      * @param message the exception message to use if the assertion fails
      * @see StringUtils#hasLength
@@ -114,7 +105,6 @@ public class Assert {
      * Assert that the given String is not empty; that is,
      * it must not be <code>null</code> and not the empty String.
      * <pre class="code">Assert.hasLength(name);</pre>
-     *
      * @param text the String to check
      * @see StringUtils#hasLength
      */
@@ -209,7 +199,6 @@ public class Assert {
     public static void noNullElements(Object[] array) {
         noNullElements(array, "[Assertion failed] - this array must not contain any null elements");
     }
-
 
     /**
      * Assert that the provided object is an instance of the provided class.
