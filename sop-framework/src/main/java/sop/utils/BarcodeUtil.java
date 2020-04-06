@@ -17,7 +17,6 @@ import org.krysalis.barcode4j.tools.UnitConv;
 
 /**
  * 条形码工具类
- *
  * @Author: LCF
  * @Date: 2020/1/9 11:25
  * @Package: sop.utils
@@ -27,7 +26,6 @@ public class BarcodeUtil {
 
     /**
      * 生成文件
-     *
      * @param msg
      * @param path
      * @return
@@ -44,7 +42,6 @@ public class BarcodeUtil {
 
     /**
      * 生成字节
-     *
      * @param msg
      * @return
      */
@@ -56,7 +53,6 @@ public class BarcodeUtil {
 
     /**
      * 生成到流
-     *
      * @param msg
      * @param ous
      */
