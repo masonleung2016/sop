@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 
 /**
  * 把表示美元的阿拉伯数字转换为英文大写的格式。
- *
  * @Author: LCF
  * @Date: 2020/1/9 11:27
  * @Package: sop.utils
@@ -26,7 +25,6 @@ public class DollarNumberFormat {
     /**
      * 把阿拉伯数字转换为英文大写格式。<br>
      * 例如：123.01：One Hundred Twenty Three Dollars And One Cent
-     *
      * @param value
      * @return
      */
@@ -111,5 +109,4 @@ public class DollarNumberFormat {
             return NUMBERS[number] + " Hundred " + result;
         // 百位&十位&个位。
     }
-
 }
