@@ -9,9 +9,13 @@ package sop.utils;
 public class ColAndRow {
 
     private int startCol;
+    
     private int startRow;
+    
     private int endCol;
+    
     private int endRow;
+    
     public ColAndRow() {
 
     }
