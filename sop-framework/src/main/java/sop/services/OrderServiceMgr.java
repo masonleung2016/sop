@@ -27,4 +27,5 @@ public interface OrderServiceMgr extends BusinessObjectServiceMgr {
     List<OrderProduct> getProductsByOrderId(int id);
 
     void addOrderProduct(OrderProductVo orderProductVo) throws ServiceException;
+    
 }
