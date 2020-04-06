@@ -83,7 +83,6 @@ public class FilesRemover {
                 count = fileL.size();
             }
 
-
             int size = fileL.size();
             File file;
             StringBuffer buf;
@@ -145,8 +144,6 @@ public class FilesRemover {
         } else {
             LOG.warn("folder is not a directory");
         }
-
         return false;
     }
 }
-
