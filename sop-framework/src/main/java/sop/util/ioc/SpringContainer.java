@@ -18,7 +18,6 @@ public class SpringContainer implements ApplicationContextAware {
     /**
      * Create instance of Spring Container should be called by
      * Spring framework only.
-     *
      * @return New instance of SpringContainer
      */
     public static SpringContainer createInstance() {
@@ -39,7 +38,6 @@ public class SpringContainer implements ApplicationContextAware {
 
     /**
      * Check to seek contain bean
-     *
      * @param id Bean id
      * @return true if contain bean
      */
@@ -49,7 +47,6 @@ public class SpringContainer implements ApplicationContextAware {
 
     /**
      * Return the bean contained with container
-     *
      * @param id Reference to the bean
      * @return Bean instance
      */
