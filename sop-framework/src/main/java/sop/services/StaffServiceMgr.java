@@ -30,4 +30,5 @@ public interface StaffServiceMgr extends BusinessObjectServiceMgr {
     boolean insertStaff(Staff currentStaff);
 
     boolean deleteStaff(String fkSfCode);
+    
 }
