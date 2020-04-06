@@ -15,7 +15,6 @@ import sop.vo.PayTermVo;
  * @Package: sop.services
  */
 
-
 public interface PayTermServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "payTermServiceMgr";
 
@@ -34,6 +33,5 @@ public interface PayTermServiceMgr extends BusinessObjectServiceMgr {
     boolean deletePaymentTerm(String payCode) throws ServiceException;
 
     Checker checkDecimal(PayTerm payTerm);
-
 
 }
