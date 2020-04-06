@@ -16,5 +16,4 @@ public interface ProductItemServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "productItemServiceMgr";
 
     List<ProductItem> searchProductItem(BaseConditionVO vo);
-
 }
