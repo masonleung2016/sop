@@ -14,7 +14,6 @@ import org.apache.commons.lang.StringUtils;
 
 public class BaseSys {
 
-
     private static volatile long DELTA_TO_DB_TIMESTAMP = 0L;
 
     public static void setDbTimestampDelta(long delta) {
@@ -36,7 +35,6 @@ public class BaseSys {
     public static String getFolderSeparator() {
         return File.separator;
     }
-
 
     public static java.util.Calendar getServerCalendar() {
         Calendar cal = Calendar.getInstance();
@@ -104,8 +102,6 @@ public class BaseSys {
         System.out.println(getYear());
         System.out.println(getMonth());
         System.out.println(getDay());
-
-
         System.out.println(getYYYY());
         System.out.println(getMM());
         System.out.println(getDD());
