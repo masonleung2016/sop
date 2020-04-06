@@ -15,7 +15,6 @@ import sop.vo.SoPoConditionVo;
  * @Package: sop.services
  */
 
-
 public interface ReportServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "reportServiceMgr";
 
