@@ -15,7 +15,6 @@ import sop.vo.ProductCategoryVo;
  * @Package: sop.services
  */
 
-
 public interface ProductcatServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "productcatServiceMgr";
 
