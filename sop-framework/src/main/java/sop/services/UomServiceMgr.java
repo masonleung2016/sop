@@ -31,4 +31,5 @@ public interface UomServiceMgr extends BusinessObjectServiceMgr {
     boolean updateUom(Uom uom) throws ServiceException;
 
     boolean deleteUom(String fkuCode) throws ServiceException;
+    
 }
