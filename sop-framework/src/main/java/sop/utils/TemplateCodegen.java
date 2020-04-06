@@ -18,7 +18,6 @@ import sop.util.lang.StringUtil;
  * @Package: sop.utils
  */
 
-
 public class TemplateCodegen {
 
     public static void main(String[] args) {
@@ -45,7 +44,6 @@ public class TemplateCodegen {
                 }
             }
         }
-
     }
 
     public static void readRow(HSSFSheet sheet, int row) {
