@@ -51,7 +51,6 @@ public class StringUtil {
             rtnBytes[i] = (byte) Integer.parseInt(hexStr.substring(i * 2,
                     i * 2 + 2), 16);
         }
-
         return rtnBytes;
     }
 
@@ -218,7 +217,6 @@ public class StringUtil {
 
     /**
      * Checks if a given String array contains the specified search String.
-     *
      * @param tokens A String array to be searched.
      * @param target The target search String.
      * @return <PRE>
@@ -226,7 +224,6 @@ public class StringUtil {
      * </PRE>
      * <p>
      * if the given String array contains the specified search String,
-     *
      * <PRE>
      * false
      * </PRE>
@@ -278,7 +275,6 @@ public class StringUtil {
      * </PRE>
      * <p>
      * if the given String contains only digits,
-     *
      * <PRE>
      * false
      * </PRE>
