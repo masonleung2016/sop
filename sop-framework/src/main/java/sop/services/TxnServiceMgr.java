@@ -31,4 +31,5 @@ public interface TxnServiceMgr extends BusinessObjectServiceMgr {
     boolean updateTxn(Txn currentTxn) throws ServiceException;
 
     boolean deleteTxn(String fkTxtCode);
+    
 }
