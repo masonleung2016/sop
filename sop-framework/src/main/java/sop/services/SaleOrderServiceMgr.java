@@ -110,4 +110,5 @@ public interface SaleOrderServiceMgr extends BusinessObjectServiceMgr {
     void updateItemAmount(SaleOrderDetailsVo currentSaleOrder);
 
     void updateChargeAmount(SaleOrderDetailsVo currentSaleOrder);
+    
 }
