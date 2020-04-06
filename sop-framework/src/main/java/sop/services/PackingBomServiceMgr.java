@@ -31,6 +31,5 @@ public interface PackingBomServiceMgr extends BusinessObjectServiceMgr {
 
     boolean deletePackingBom(String pbNo) throws ServiceException;
 
-
     List<PackingBom> getAllPackingBoms();
 }
