@@ -45,6 +45,4 @@ public class DateTypeAdapter implements JsonSerializer<Date>,
             throw new JsonParseException(e);
         }
     }
-
-
 }
