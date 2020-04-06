@@ -51,7 +51,6 @@ public class TemplateCodegen {
         for (int i = 0; i < cols; i++) {
             String s = readCell(sheet, i, row);
             System.out.println(s);
-
         }
     }
 
@@ -67,7 +66,6 @@ public class TemplateCodegen {
                 sb.append(optionTemplate(val.split("、")));
             }
         }
-
         return sb.toString();
     }
 
