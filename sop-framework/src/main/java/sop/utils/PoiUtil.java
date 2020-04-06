@@ -1,6 +1,5 @@
 package sop.utils;
 
-
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
