@@ -43,16 +43,27 @@ import sop.util.Sys;
 
 public class FileUtil {
     public static final String MIME_TXT = "text/plain";
+    
     public static final String MIME_RTF = "application/rtf";
+    
     public static final String MIME_HTM = "text/html";
+    
     public static final String MIME_PDF = "application/pdf";
+    
     public static final String MIME_PS = "application/postscript";
+    
     public static final String MIME_TIF = "image/tiff";
+    
     public static final String MIME_PNG = "image/png";
+    
     public static final String MIME_GIF = "image/gif";
+    
     public static final String MIME_JPG = "image/jpeg";
+    
     protected static final int BUFFER_SIZE = 4096;
+    
     private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
+    
     private static final Hashtable<String, String> mimeSet;
 
     static {
@@ -81,6 +92,7 @@ public class FileUtil {
      * @param output Output file
      * @throws IOException
      */
+    
     public static void appendFile(File input, File output) throws IOException {
         copyFile(input, output, true);
     }
