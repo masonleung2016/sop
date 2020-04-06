@@ -14,7 +14,6 @@ import sop.persistence.beans.PackingDetail;
  * @Package: sop.services
  */
 
-
 public interface PackingDetailServiceMgr extends BusinessObjectServiceMgr {
     String SERVICE_NAME = "packingDetailServiceMgr";
 
