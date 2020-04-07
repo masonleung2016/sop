@@ -8,12 +8,16 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.vo
  */
 
-
 public class FactoryVo {
+    
     private String suCode;
+    
     private String encodeSuCode;
+    
     private String suName;
+    
     private String suChn;
+    
     private String suConPer;
 
     public String getSuCode() {
