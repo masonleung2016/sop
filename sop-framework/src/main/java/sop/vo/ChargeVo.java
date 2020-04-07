@@ -10,14 +10,20 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.vo
  */
 
-
 public class ChargeVo {
+    
     private Integer id;
+    
     private String chgCode;
+    
     private String encodeChgCode;
+    
     private String chgDesc;
+    
     private BigDecimal chgRate;
+    
     private BigDecimal chgAmt;
+    
     private String chgGlInf;
 
     public Integer getId() {
