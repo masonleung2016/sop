@@ -8,7 +8,6 @@ import java.util.Date;
  * @Package: sop.vo
  */
 
-
 public class PoSoSearchItemReportConditionVo extends SoPoConditionVo {
     /**
      * search list condition
