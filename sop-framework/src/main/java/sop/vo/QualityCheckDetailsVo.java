@@ -15,7 +15,6 @@ import sop.persistence.beans.WorkflowLog;
  * @Package: sop.vo
  */
 
-
 public class QualityCheckDetailsVo {
 
     //ItemNo--JSON
@@ -26,28 +25,49 @@ public class QualityCheckDetailsVo {
      * qc_no
      */
     private String qcNo;
+    
     private String encodeQcNo;
+    
     private String qcStatus;
 
     private boolean isNew;
+    
     private List<QualityCheckItemVo> qcItems;
+    
     private String ofNo;
+    
     private String poNo;
+    
     private String soNo;
+    
     private Date startDate;
+    
     private Date dueDate;
+    
     private Date actualStartDate;
+    
     private Date actualCompleteDate;
+    
     private String status;
+    
     private String assignee;
+    
     private String priority;
+    
     private String category;
+    
     private String watchers;
+    
     private String comment;
+    
     private List<WorkflowLog> logs;
+    
     private String qcPoNoRef;
+    
     private String qcSoNoRef;
+    
     private String qcOfNoRef;
+    
     public QualityCheckDetailsVo() {
 
     }
