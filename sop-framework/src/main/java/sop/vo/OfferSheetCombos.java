@@ -10,10 +10,12 @@ import sop.persistence.beans.CustAttn;
  * @Package: sop.vo
  */
 
-
 public class OfferSheetCombos {
+    
     private List<TxnVo> txns;
+    
     private List<CustomerVo> customers;
+    
     private List<CustAttn> custAttns;
 
     public List<TxnVo> getTxns() {
