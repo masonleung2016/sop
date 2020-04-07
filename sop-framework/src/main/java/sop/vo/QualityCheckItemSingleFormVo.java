@@ -13,10 +13,12 @@ import sop.persistence.beans.BaseBean;
 
 public class QualityCheckItemSingleFormVo extends AbstractDO {
 
-
     private String qcNo;
+    
     private String itCatNoSuffix;
+    
     private String form;
+    
     private String data;
 
     public QualityCheckItemSingleFormVo() {
@@ -59,6 +61,4 @@ public class QualityCheckItemSingleFormVo extends AbstractDO {
         // TODO Auto-generated method stub
         return null;
     }
-
-
 }
