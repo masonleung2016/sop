@@ -9,13 +9,16 @@ import java.util.List;
  */
 
 public class FactoryComboVo {
+    
     private List<PayTermVo> payTerms;
 
     public List<PayTermVo> getPayTerms() {
+        
         return payTerms;
     }
 
     public void setPayTerms(List<PayTermVo> payTerms) {
+        
         this.payTerms = payTerms;
     }
 }
