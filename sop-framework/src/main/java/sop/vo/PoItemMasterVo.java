@@ -6,7 +6,6 @@ package sop.vo;
  * @Package: sop.vo
  */
 
-
 public class PoItemMasterVo extends SoItemMasterVo {
 
     private String poNo;
