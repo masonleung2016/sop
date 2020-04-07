@@ -9,8 +9,11 @@ package sop.vo;
 public class PrintDTO implements java.io.Serializable {
 
     private static final long serialVersionUID = -101038718354574077L;
+    
     private String app;
+    
     private String fileNo;
+    
     private String part;
 
     public String getApp() {
@@ -36,5 +39,4 @@ public class PrintDTO implements java.io.Serializable {
     public void setPart(String part) {
         this.part = part;
     }
-
 }
