@@ -13,6 +13,7 @@ public class FactoryConditionVo extends BaseConditionVO {
      * search list condition
      */
     private String fromNo;
+    
     private String toNo;
 
     public String getFromNo() {
@@ -30,6 +31,4 @@ public class FactoryConditionVo extends BaseConditionVO {
     public void setToNo(String toNo) {
         this.toNo = toNo;
     }
-
-
 }
