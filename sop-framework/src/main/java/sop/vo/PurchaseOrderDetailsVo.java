@@ -20,22 +20,28 @@ import sop.persistence.beans.SaleOrderSbk;
  * @Package: sop.vo
  */
 
-
 public class PurchaseOrderDetailsVo extends PurchaseOrder {
 
-    /**
-     * PO 组合VO
-     */
     private static final long serialVersionUID = -7730194593419089855L;
+    
     private Map<String, PurchaseOrderItem> purchaseOrderItems;
+    
     private boolean haveLc = false;
+    
     private PurchaseOrderLc purchaseOrderLc;
+    
     private Map<String, PurchaseOrderLc> purchaseOrderLcs;
+    
     private boolean haveCharge = false;
+    
     private PurchaseOrderCharge purchaseOrderCharge;
+    
     private Map<String, PurchaseOrderCharge> purchaseOrderCharges;
+    
     private boolean haveSbk = false;
+    
     private PurchaseOrderSbk purchaseOrderSbk;
+    
     private Map<String, PurchaseOrderSbk> purchaseOrderSbks;
 
     public PurchaseOrderDetailsVo() {
