@@ -8,12 +8,16 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.vo
  */
 
-
 public class CompanyVo {
+    
     private Integer id;
+    
     private String coCode;
+    
     private String encodeCoCode;
+    
     private String coName;
+    
     private String coChn;
 
     public Integer getId() {
