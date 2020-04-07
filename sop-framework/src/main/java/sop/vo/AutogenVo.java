@@ -8,7 +8,6 @@ import java.math.BigDecimal;
  * @Package: sop.vo
  */
 
-
 public class AutogenVo {
     private Integer id;
     private String coCode;
