@@ -11,8 +11,11 @@ import sop.persistence.beans.Currency;
  */
 
 public class PurchaseOrderCombos {
+    
     private List<Currency> currs;
+    
     private List<FactoryVo> factories;
+    
     private List<PayTermVo> payTerms;
 
     public List<Currency> getCurrs() {
