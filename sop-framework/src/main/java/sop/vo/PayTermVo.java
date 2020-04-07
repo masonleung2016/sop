@@ -10,7 +10,6 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.vo
  */
 
-
 public class PayTermVo {
     /**
      * pay_code
@@ -36,7 +35,9 @@ public class PayTermVo {
     }
 
     public void setPayCode(String payCode) {
+        
         this.payCode = payCode;
+        
         this.encodePayCode = Base64.encode(payCode, "utf-8");
     }
 
