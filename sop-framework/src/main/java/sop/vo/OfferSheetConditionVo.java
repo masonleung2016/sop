@@ -8,13 +8,18 @@ import dwz.persistence.BaseConditionVO;
  * @Package: sop.vo
  */
 
-
 public class OfferSheetConditionVo extends BaseConditionVO {
+    
     private String fromPrefix;
+    
     private String fromNo;
+    
     private String toPrefix;
+    
     private String toNo;
+    
     private String from;
+    
     private String to;
 
     public String getFromPrefix() {
