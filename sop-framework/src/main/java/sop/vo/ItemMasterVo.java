@@ -8,9 +8,10 @@ import java.math.BigDecimal;
  * @Package: sop.vo
  */
 
-
 public class ItemMasterVo {
+    
     private Integer id;
+    
     /**
      * it_cat_no_suffix
      */
@@ -54,9 +55,13 @@ public class ItemMasterVo {
      * it_image_4
      */
     private String itImage4;
+    
     private String itDelTime;
+    
     private BigDecimal itBasePrice;
+    
     private String itCurr;
+    
     private String itHandle;
 
     public Integer getId() {
@@ -170,6 +175,4 @@ public class ItemMasterVo {
     public void setItHandle(String itHandle) {
         this.itHandle = itHandle;
     }
-
-
 }
