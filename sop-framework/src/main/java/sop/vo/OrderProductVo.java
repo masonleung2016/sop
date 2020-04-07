@@ -12,7 +12,9 @@ import sop.persistence.beans.ProductItem;
  */
 
 public class OrderProductVo {
+    
     private Order order;
+    
     private List<ProductItem> productItems;
 
     public Order getOrder() {
