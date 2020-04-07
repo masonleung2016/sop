@@ -13,9 +13,6 @@ import sop.persistence.beans.BaseBean;
 
 public class OfferSheetVo extends BaseBean {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private Integer id;
