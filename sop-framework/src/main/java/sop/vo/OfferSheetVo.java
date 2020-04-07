@@ -11,7 +11,6 @@ import sop.persistence.beans.BaseBean;
  * @Package: sop.vo
  */
 
-
 public class OfferSheetVo extends BaseBean {
 
     /**
