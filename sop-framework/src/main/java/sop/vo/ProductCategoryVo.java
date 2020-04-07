@@ -8,15 +8,16 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.vo
  */
 
-
 public class ProductCategoryVo {
     /**
      * table comp
      */
     private String catCode;
+    
     private String encodeCatCode;
+    
     private String catDesc;
-
+    
     public String getCatCode() {
         return catCode;
     }
