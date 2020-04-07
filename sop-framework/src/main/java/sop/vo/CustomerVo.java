@@ -10,14 +10,20 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.vo
  */
 
-
 public class CustomerVo {
+    
     private Integer id;
+    
     private String cuCode;
+    
     private String encodeCuCode;
+    
     private String cuName;
+    
     private String cuChn;
+    
     private String cuConPer;
+    
     private List<String> custAttns;
 
     public Integer getId() {
