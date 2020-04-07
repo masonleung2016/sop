@@ -6,10 +6,10 @@ package sop.vo;
  * @Package: sop.vo
  */
 
-
 public class OffItemMasterVo extends ItemMasterVo {
 
     private String offShNoPfix;
+    
     private String offShNo;
 
     public OffItemMasterVo() {
