@@ -12,9 +12,13 @@ public class OffSearchItemConditionVo extends SearchItemConditionVo {
      * search list condition
      */
     private String module;
+    
     private String fromPrefix;
+    
     private String fromNo;
+    
     private String toPrefix;
+    
     private String toNo;
 
     public String getFromPrefix() {
