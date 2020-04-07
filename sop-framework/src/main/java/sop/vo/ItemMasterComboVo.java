@@ -11,13 +11,18 @@ import sop.persistence.beans.ItemType;
  * @Package: sop.vo
  */
 
-
 public class ItemMasterComboVo {
+    
     private List<ItemType> itemTypes;
+    
     private List<UomVo> uoms;
+    
     private List<Currency> currs;
+    
     private List<StaffVo> staffs;
+    
     private List<FactoryVo> factories;
+    
     private List<ProductCategoryVo> productCats;
 
     public List<ItemType> getItemTypes() {
