@@ -9,7 +9,9 @@ import java.util.List;
  */
 
 public class CustomerComboVo {
+    
     private List<PayTermVo> payTerms;
+    
     private List<GlInterfaceVo> glInterfaces;
 
     public List<PayTermVo> getPayTerms() {
