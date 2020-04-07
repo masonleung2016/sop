@@ -8,8 +8,8 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.vo
  */
 
-
 public class GlInterfaceVo {
+    
     private Integer id;
     /**
      * gl_inf_code
