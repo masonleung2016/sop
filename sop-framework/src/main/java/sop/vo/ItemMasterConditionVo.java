@@ -13,6 +13,7 @@ public class ItemMasterConditionVo implements Serializable {
     private static final long serialVersionUID = 6237430476528427602L;
 
     private String fromNo;
+    
     private String toNo;
 
     public String getFromNo() {
@@ -30,6 +31,4 @@ public class ItemMasterConditionVo implements Serializable {
     public void setToNo(String toNo) {
         this.toNo = toNo;
     }
-
-
 }
