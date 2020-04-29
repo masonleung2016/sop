@@ -8,46 +8,28 @@ import sop.persistence.beans.QcItemBase;
  * @Package: sop.vo
  */
 
-
 public class QualityCheckItemVo extends QcItemBase {
 
     private static final long serialVersionUID = -1048689537594984065L;
-    /**
-     * id
-     */
+
     private Integer id;
-    /**
-     * qc2_no
-     */
+
     private String qc2No;
-    /**
-     * qc2_pic
-     */
+
     private String qc2Pic;
-    /**
-     * qc2_part_pic
-     */
+
     private String qc2PartPic;
-    /**
-     * qc2_it_cat
-     */
+
     private String qc2ItCat;
-    /**
-     * qc2_it_no
-     */
+
     private String qc2ItNo;
-    /**
-     * qc2_it_suffix
-     */
+
     private String qc2ItSuffix;
-    /**
-     * qc2_it_cat_no_suffix
-     */
+
     private String qc2ItCatNoSuffix;
-    /**
-     * qc2_it_name
-     */
+
     private String qc2ItName;
+    
     private String qc2Cl;
 
     public QualityCheckItemVo() {
@@ -129,7 +111,6 @@ public class QualityCheckItemVo extends QcItemBase {
     public void setQc2ItName(String qc2ItName) {
         this.qc2ItName = qc2ItName;
     }
-
 
     public Integer getId() {
         return id;
