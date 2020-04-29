@@ -10,12 +10,16 @@ import sop.persistence.beans.Currency;
  * @Package: sop.vo
  */
 
-
 public class SaleOrderCombos {
+    
     private List<CustomerVo> customers;
+    
     private List<Currency> currs;
+    
     private List<FactoryVo> factories;
+    
     private List<PayTermVo> payTerms;
+    
     private List<StaffVo> staffs;
 
     public List<CustomerVo> getCustomers() {
