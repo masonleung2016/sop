@@ -10,31 +10,18 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.vo
  */
 
-
 public class QualityCheckVo {
 
-    /**
-     * qc_po_no_ref
-     */
     private String qcPoNoRef;
 
     private String encodePoNo;
 
-    /**
-     * qc_no
-     */
     private String qcNo;
 
     private String encodeQcNo;
 
-    /**
-     * qc_status
-     */
     private String qcStatus;
 
-    /**
-     * po_no
-     */
     private String poNo;
 
     private Date poDate;
@@ -42,13 +29,21 @@ public class QualityCheckVo {
     private Date poLshpDate;
 
     private Date poEtdDate;
+    
     private String qcSoNoRef;
+    
     private String qcOfNoRef;
+    
     private String assignee;
+    
     private String comment;
+    
     private Date startDate;
+    
     private Date dueDate;
+    
     private Date actualStartDate;
+    
     private Date actualEndDate;
 
     public Date getPoDate() {
@@ -188,5 +183,4 @@ public class QualityCheckVo {
     public void setActualEndDate(Date actualEndDate) {
         this.actualEndDate = actualEndDate;
     }
-
 }
