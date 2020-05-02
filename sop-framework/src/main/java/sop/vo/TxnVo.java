@@ -8,11 +8,14 @@ import it.sauronsoftware.base64.Base64;
  * @Package: sop.vo
  */
 
-
 public class TxnVo {
+    
     private Integer id;
+    
     private String txtCode;
+    
     private String encodeTxtCode;
+    
     private String txtDesc;
 
     public Integer getId() {
