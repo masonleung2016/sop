@@ -7,9 +7,7 @@ package sop.vo;
  */
 
 public class SoSearchItemConditionVo extends OffSearchItemConditionVo {
-    /**
-     * search list condition
-     */
+
     private String fromSoNo;
 
     private String toSoNo;
