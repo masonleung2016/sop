@@ -7,19 +7,21 @@ package sop.vo;
  */
 
 public class SearchItemReportConditionVo extends PoSoSearchItemReportConditionVo {
-    /**
-     * search list condition
-     */
 
     private String fromItCat;
+    
     private String fromItNo;
+    
     private String fromItSuffix;
 
     private String toItCat;
+    
     private String toItNo;
+    
     private String toItSuffix;
 
     private String fromItCatNoSuffix;
+    
     private String toItCatNoSuffix;
 
     public String getFromItCat() {
