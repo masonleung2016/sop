@@ -17,17 +17,24 @@ public class SoItemMasterVo extends OffItemMasterVo {
     public SoItemMasterVo(String soNo, String itCat,
                           String itNo, String itSuffix) {
         this.soNo = soNo;
+        
         setItCat(itCat);
+        
         setItNo(itNo);
+        
         setItSuffix(itSuffix);
     }
 
     public SoItemMasterVo(String offPre, String offNo, String itCat,
                           String itNo, String itSuffix) {
         setOffShNoPfix(offPre);
+        
         setOffShNo(offNo);
+        
         setItCat(itCat);
+        
         setItNo(itNo);
+        
         setItSuffix(itSuffix);
     }
 
