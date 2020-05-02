@@ -9,10 +9,15 @@ import java.math.BigDecimal;
  */
 
 public class UomVo {
+    
     private Integer id;
+    
     private String uCode;
+    
     private String uDesc;
+    
     private String uChn;
+    
     private BigDecimal uRate;
 
     public Integer getId() {
