@@ -8,23 +8,32 @@ import dwz.persistence.BaseConditionVO;
  * @Package: sop.vo
  */
 
-
 public class SearchItemConditionVo extends BaseConditionVO {
-    /**
-     * search list condition
-     */
+
     private String itemNoFrom1;
+    
     private String itemNoFrom2;
+    
     private String itemNoFrom3;
+    
     private String itemNoFrom;
+    
     private String itemNoTo1;
+    
     private String itemNoTo2;
+    
     private String itemNoTo3;
+    
     private String itemNoTo;
+    
     private boolean indexFlag = true;
+    
     private Integer fkItemMaster;
+    
     private String itemMasterType;
+    
     private Integer fkTemplate;
+    
     private String templateName;
 
     private Integer fkTempType;
@@ -140,6 +149,4 @@ public class SearchItemConditionVo extends BaseConditionVO {
     public void setFkTempType(Integer fkTempType) {
         this.fkTempType = fkTempType;
     }
-
-
 }
