@@ -34,17 +34,22 @@ import sop.services.ChecklistServiceMgr;
 @Controller("management.checklistController")
 @RequestMapping(value = "/management/checklist")
 public class ChecklistController extends BaseController {
+    
     @Autowired
     private ChecklistServiceMgr checklistServiceMgr;
 
     @RequestMapping("/desktop")
     public String list() {
+        
         return "/management/itemmaster/desktop/desk1";
+        
     }
 
     @RequestMapping("/export")
     public void export(HttpServletRequest request, HttpServletResponse response) {
+        
 //		上面的路径：D:\RRR\project\sop-web\src\main\webapp\resources\itemmaster\templateFileName.xlsx (系统找不到指定的路径。)
+        
         String templateFileName = request.getSession().getServletContext()
                 .getRealPath("/")
                 + "/templateFileName.xlsx";
