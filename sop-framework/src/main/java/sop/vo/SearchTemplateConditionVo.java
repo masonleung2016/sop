@@ -7,10 +7,15 @@ package sop.vo;
  */
 
 public class SearchTemplateConditionVo {
+    
     private Integer fkItemMaster;
+    
     private String itemMasterType;
+    
     private Integer fkTemplate;
+    
     private String templateName;
+    
     private String engTemplateName;
 
     public String getItemMasterType() {
@@ -52,6 +57,4 @@ public class SearchTemplateConditionVo {
     public void setEngTemplateName(String engTemplateName) {
         this.engTemplateName = engTemplateName;
     }
-
-
 }
