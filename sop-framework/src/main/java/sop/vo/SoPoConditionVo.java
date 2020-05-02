@@ -9,7 +9,9 @@ import dwz.persistence.BaseConditionVO;
  */
 
 public class SoPoConditionVo extends BaseConditionVO {
+    
     private String fromNo;
+    
     private String toNo;
 
     public String getFromNo() {
