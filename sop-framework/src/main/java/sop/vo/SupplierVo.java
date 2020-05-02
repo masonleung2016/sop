@@ -7,29 +7,43 @@ package sop.vo;
  */
 
 public class SupplierVo {
-    /**
-     * table supp
-     */
+
     private static final long serialVersionUID = 1L;
 
     private String code;
+    
     private String name;
+    
     //表是suChn，实际表示的值，应该是email
     //private String suChn;
     private String email;
+    
     private String contactPerson;
+    
     private String address;
+    
     private String tel;
+    
     private String fax;
+    
     private String payTerm;
+    
     private String credit;
+    
     private String type;
+    
     private String websiteUrl;
+    
     private String fscCertCode;
+    
     private String fscValidFm;
+    
     private String fscValidTo;
+    
     private String bsciCertCode;
+    
     private String bsciValidFm;
+    
     private String bsciValidTo;
 
     public String getCode() {
