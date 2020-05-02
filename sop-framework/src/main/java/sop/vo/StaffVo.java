@@ -9,6 +9,7 @@ import it.sauronsoftware.base64.Base64;
  */
 
 public class StaffVo {
+    
     private String sfCode;
 
     private String encodeSfCode;
@@ -20,7 +21,9 @@ public class StaffVo {
     }
 
     public void setSfCode(String sfCode) {
+        
         this.sfCode = sfCode;
+        
         this.encodeSfCode = Base64.encode(sfCode, "utf-8");
     }
 
