@@ -32,14 +32,21 @@ public class CurrencyController extends BaseController {
 
     @RequestMapping("/list")
     public String index(BaseConditionVO vo, Model model) {
+        
         List<Currency> currencyList = currencyMgr.searchCurrency(vo);
+        
         Integer totalCount = currencyMgr.searchCurrencyNum(vo);
 
         vo.setTotalCount(totalCount);
+        
         model.addAttribute("totalCount", totalCount);
+        
         model.addAttribute("pageSize", vo.getPageSize());
+        
         model.addAttribute("vo", vo);
+        
         model.addAttribute("currencyList", currencyList);
+        
         return "/management/currency/list";
     }
 
@@ -83,58 +90,100 @@ public class CurrencyController extends BaseController {
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public ModelAndView insert(Currency currency) {
+        
         Checker checker = currencyMgr.checkCurrency(currency);
+        
         if (checker.isSuccess()) {
+            
             Checker checkerDecimal = currencyMgr.checkDecimal(currency);
+            
             if (checkerDecimal.isSuccess()) {
+                
                 try {
+                    
                     currencyMgr.addCurrency(currency);
+                    
                 } catch (ServiceException e) {
+                    
                     e.printStackTrace();
+                    
                     return ajaxDoneError("Code 重复");
+                    
                 }
+                
                 return ajaxDoneSuccess(getMessage("msg.operation.success"));
+                
             } else {
+                
                 return ajaxDoneError(checkerDecimal.getReturnStr());
+                
             }
+            
         } else {
+            
             return ajaxDoneError(checker.getReturnStr());
+            
         }
     }
 
     @RequestMapping("/edit/{ccycode}")
     public String edit(@PathVariable("ccycode") String ccycode, Model model) {
+        
         Currency currency = currencyMgr.getCurrencyByName(ccycode);
+        
         model.addAttribute("currency", currency);
+        
         return "/management/currency/edit";
+        
     }
 
     @RequestMapping("/update")
     public ModelAndView update(Currency currency) {
+        
         Checker checker = currencyMgr.checkCurrencyDecimal(currency);
+        
         if (checker.isSuccess()) {
+            
             try {
+                
                 currencyMgr.updateCurrency(currency);
+                
             } catch (ServiceException e) {
+                
                 e.printStackTrace();
+                
                 return ajaxDoneError(e.getMessage());
+                
             }
+            
             return ajaxDoneSuccess(getMessage("msg.operation.success"));
+            
         } else {
+            
             return ajaxDoneError(checker.getReturnStr());
+            
         }
     }
 
     @RequestMapping("/delete/{fkCcyCode}")
     public ModelAndView delete(@PathVariable("fkCcyCode") String fkCcyCode) {
+        
         try {
+            
             if (currencyMgr.deleteCurrency(fkCcyCode)) {
+                
                 return ajaxDoneSuccess(getMessage("msg.operation.success"));
+                
             } else {
+                
                 return ajaxDoneError(getMessage("msg.operation.failure"));
+                
             }
+            
         } catch (ServiceException e) {
+            
             return ajaxDoneError(e.toString());
+            
         }
     }
 }
