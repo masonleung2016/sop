@@ -31,12 +31,14 @@ public class DownloadController extends BaseController {
             response.setContentType("application/octet-stream");
             response.addHeader("Content-Disposition", "attachment;filename=" + itemNo + ".xls");
             sout = response.getOutputStream();
+            
             //输出的输出流
             byte b[] = Common.getQc(encodeQcNo, itemNo);
             if (b != null) {
                 sout.write(b);
                 sout.flush();
             }
+            
             //输入完毕，清除缓冲
             sout.close();
         } catch (IOException e) {
