@@ -32,7 +32,6 @@ import sop.vo.FactoryVo;
  * @Package: sop.web.management
  */
 
-
 @Controller("management.factoryController")
 @RequestMapping(value = "/management/factory")
 public class FactoryController extends BaseController {
@@ -42,13 +41,21 @@ public class FactoryController extends BaseController {
 
     @RequestMapping("/list")
     public String index(FactoryConditionVo vo, Model model) {
+        
         List<FactoryVo> factoryList = factoryMgr.searchFactory(vo);
+        
         Integer totalCount = factoryMgr.searchFactoryNum(vo);
+        
         vo.setTotalCount(totalCount);
+        
         model.addAttribute("totalCount", totalCount);
+        
         model.addAttribute("pageSize", vo.getPageSize());
+        
         model.addAttribute("vo", vo);
+        
         model.addAttribute("factoryList", factoryList);
+        
         return "/management/factory/list";
     }
 
