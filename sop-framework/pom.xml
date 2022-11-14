@@ -21,7 +21,7 @@
     <properties>
         <maven.test.skip>true</maven.test.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <springFrameworkVersion>3.1.2.RELEASE</springFrameworkVersion>
+        <springFrameworkVersion>3.2.18.RELEASE</springFrameworkVersion>
     </properties>
 
     <build>
